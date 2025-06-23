@@ -20,7 +20,7 @@ jobs:
         script: |
           # Extract files
           cd /var/www/code/glp-indtim
-          sudo git pull origin main
+          sudo git pull origin main --no-ff
 
           # Install dependencies
           sudo composer install --optimize-autoloader --no-dev
