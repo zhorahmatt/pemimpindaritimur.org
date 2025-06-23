@@ -1,0 +1,68 @@
+name: Deploy to On-Premises Server
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Extract and setup application
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: ${{ secrets.PORT || 22 }}
+        script: |
+          # Extract files
+          cd /var/www/code/glp-indtim
+          sudo git pull origin main
+
+          # Install dependencies
+          sudo composer install --optimize-autoloader --no-dev
+
+          # Running Migration & Seeder
+          sudo -u www-data php artisan migrate
+          sudo -u www-data php artisan db:seed
+
+          # Set proper permissions
+          sudo chown -R www-data:www-data /var/www/code/glp-indtim
+          sudo chmod -R 755 /var/www/code/glp-indtim
+          sudo chmod -R 775 /var/www/code/glp-indtim/storage
+          sudo chmod -R 775 /var/www/code/glp-indtim/bootstrap/cache
+
+          # Install/update composer dependencies on server (production)
+          cd /var/www/code/glp-indtim
+          sudo -u www-data composer install --optimize-autoloader --no-dev
+
+          # Generate application key if needed
+          if ! grep -q "APP_KEY=base64:" .env; then
+            sudo -u www-data php artisan key:generate
+          fi
+
+          # Clear and cache config
+          sudo -u www-data php artisan config:clear
+          sudo -u www-data php artisan config:cache
+          sudo -u www-data php artisan route:cache
+          sudo -u www-data php artisan view:cache
+
+          # Run database migrations
+          sudo -u www-data php artisan migrate --force
+
+          # Clear application cache
+          sudo -u www-data php artisan cache:clear
+
+          #storage link & optimize
+          sudo -u www-data php artisan storage:unlink
+          sudo -u www-data php artisan storage:link
+          sudo -u www-data php artisan optimize
+
+          # Restart web server (adjust based on your setup)
+          sudo systemctl reload nginx
+          # sudo systemctl reload apache2  # Use this if you're using Apache
+
+          echo "Deployment completed successfully!"
