@@ -22,7 +22,7 @@ jobs:
           cd /var/www/code/glp-indtim
           sudo git pull origin main --no-ff
 
-          # Install dependencies
+          # Install dependenciess
           sudo composer install --optimize-autoloader --no-dev
 
           # Running Migration & Seeder
