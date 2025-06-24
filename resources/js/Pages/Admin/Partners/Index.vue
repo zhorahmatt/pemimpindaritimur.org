@@ -119,20 +119,29 @@
                                 </div>
                                 <div class="card-body p-6">
                                     <div class="mb-5 fv-row">
+                                        <label class="required form-label fs-6">Logo</label>
+                                        <div id="partner-dropzone" :key="dropzoneKey"
+                                            class="dropzone border-dashed border-myprimary rounded p-5 text-center">
+                                            <div class="dz-message needsclick flex-column text-center gap-5 p-5">
+                                                <i class="ri-image-add-line text-myprimary fs-3x"></i>
+                                                <div>
+                                                    <h3 class="fs-5 fw-bold text-gray-900 mb-2">Jatuhkan file di sini /
+                                                        klik untuk mengunggah.</h3>
+                                                    <span class="fs-7 fw-semibold text-gray-400">Maksimal 10 MB</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div v-if="errors.logo" class="text-mydanger mt-2">
+                                            {{ errors . logo }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-5 fv-row">
                                         <label class="required form-label fs-6">Nama</label>
                                         <input type="text" class="form-control fs-5" v-model="form.name"
                                             required placeholder="Masukkan nama disini..."
                                             :class="{ 'is-invalid': errors.name }" />
                                         <div v-if="errors.name" class="text-mydanger mt-2">
                                             {{ errors . name }}
-                                        </div>
-                                    </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="required form-label fs-6">Logo</label>
-                                        <input type="file" class="form-control fs-5" @input="form.logo = $event.target.files[0]"
-                                            :class="{ 'is-invalid': errors.logo }" />
-                                        <div v-if="errors.logo" class="text-mydanger mt-2">
-                                            {{ errors . logo }}
                                         </div>
                                     </div>
                                     <div class="fv-row">
@@ -171,7 +180,8 @@
     import LayoutAdmin from '../../../Layouts/Admin.vue';
     import Pagination from '../../../Components/Pagination.vue';
     import { Head, Link, router } from '@inertiajs/vue3';
-    import { reactive, ref } from 'vue';
+    import { reactive, ref, nextTick, watch } from 'vue';
+    import Dropzone from 'dropzone';
     import Swal from 'sweetalert2';
 
     export default {
@@ -197,7 +207,13 @@
                 });
             }
 
-            const openDrawer = () => {
+            const dropzoneRef = ref(null);
+            const dropzoneKey = ref(Date.now());
+
+            const openDrawer = async () => {
+                dropzoneKey.value = Date.now();
+                await nextTick();
+
                 const drawerEl = document.querySelector('#kt_drawer_example_advanced');
                 if (drawerEl && window.KTDrawer) {
                     const drawer = KTDrawer.getInstance(drawerEl) || new KTDrawer(drawerEl);
@@ -222,6 +238,10 @@
                 isEditMode.value = false;
                 editing.value = null;
 
+                if (dropzoneRef.value) {
+                    dropzoneRef.value.removeAllFiles(true);
+                }
+
                 const drawerCloseBtn = document.querySelector('#kt_drawer_example_advanced_close');
                 if (drawerCloseBtn) drawerCloseBtn.click();
             };
@@ -236,7 +256,7 @@
                 const payload = new FormData();
                 payload.append('name', form.name);
                 payload.append('link', form.link);
-                if (form.logo instanceof File) {
+                if (form.logo && (form.logo instanceof File || form.logo instanceof Blob)) {
                     payload.append('logo', form.logo);
                 }
 
@@ -295,11 +315,7 @@
                 form.logo = null;
                 form.link = partner.link;
 
-                const drawerEl = document.querySelector('#kt_drawer_example_advanced');
-                if (drawerEl && window.KTDrawer) {
-                    const drawer = KTDrawer.getInstance(drawerEl) || new KTDrawer(drawerEl);
-                    drawer.show();
-                }
+                openDrawer();
             };
 
             const destroy = (id) => {
@@ -327,11 +343,47 @@
                             showConfirmButton: false,
                             customClass: {
                                 popup: 'swal-custom-icon',
-                            }
+                            },
                         });
                     }
-                })
+                });
             };
+
+            watch(dropzoneKey, () => {
+                nextTick(() => {
+                    const dz = new Dropzone('#partner-dropzone', {
+                        url: '/',
+                        paramName: 'logo',
+                        maxFiles: 1,
+                        maxFilesize: 10,
+                        acceptedFiles: 'image/jpeg,image/png',
+                        autoProcessQueue: false,
+                        addRemoveLinks: true,
+                        dictRemoveFile: 'Hapus',
+                        init: function() {
+                            this.on('addedfile', function(file) {
+                                form.logo = file;
+                            });
+
+                            this.on('removedfile', function() {
+                                form.logo = null;
+                            });
+
+                            dropzoneRef.value = this;
+
+                            if (isEditMode.value && editing.value?.logo) {
+                                const mockFile = {
+                                    name: editing.value.logo.split('/').pop(),
+                                };
+                                this.emit('addedfile', mockFile);
+                                this.emit('thumbnail', mockFile, `/storage/${editing.value.logo}`);
+                                this.emit('complete', mockFile);
+                                mockFile.previewElement.classList.add('dz-success', 'dz-complete');
+                            }
+                        },
+                    });
+                });
+            });
 
             return {
                 search,
@@ -343,9 +395,10 @@
                 editPartner,
                 isEditMode,
                 openDrawer,
-            }
-        }
-    }
+                dropzoneKey,
+            };
+        },
+    };
 </script>
 
 <style>

@@ -618,4 +618,9 @@ img.object-fit-cover {
 
 .tox .tox-collection--list .tox-collection__item--active:not(.tox-collection__item--state-disabled) {
     background-color: var(--bs-myprimary-500) !important;
-}   
+}
+
+#testimonial-dropzone .dz-size,
+#partner-dropzone .dz-size {
+    display: none !important;
+}

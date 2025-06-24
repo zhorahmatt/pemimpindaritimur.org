@@ -44,27 +44,34 @@
                                     class="table align-middle table-row-bordered fs-5 gy-5 border-bottom border-gray-300 mb-0">
                                     <thead>
                                         <tr class="text-start text-gray-600 fw-bold fs-7 text-uppercase gs-0">
-                                            <th class="w-20px ps-6 pe-5 bg-secondary" style="letter-spacing: 0.04em;">#</th>
-                                            <th class="bg-secondary min-w-250px" style="letter-spacing: 0.04em;">Dari / Oleh</th>
-                                            <th class="bg-secondary min-w-300px" style="letter-spacing: 0.04em;">Testimoni</th>
-                                            <th class="bg-secondary pe-6 min-w-125px" style="letter-spacing: 0.04em;"></th>
+                                            <th class="w-20px ps-6 pe-5 bg-secondary" style="letter-spacing: 0.04em;">#
+                                            </th>
+                                            <th class="bg-secondary min-w-250px" style="letter-spacing: 0.04em;">Dari /
+                                                Oleh</th>
+                                            <th class="bg-secondary min-w-300px" style="letter-spacing: 0.04em;">
+                                                Testimoni</th>
+                                            <th class="bg-secondary pe-6 min-w-125px" style="letter-spacing: 0.04em;">
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody class="fw-semibold text-gray-600">
                                         <tr v-if="testimonials.data.length === 0">
                                             <td colspan="4" class="text-center py-10">
-                                                <img src="/assets/media/illustrations/empty.png"
-                                                    alt="Tidak ada data" class="mh-300px">
+                                                <img src="/assets/media/illustrations/empty.png" alt="Tidak ada data"
+                                                    class="mh-300px">
                                                 <h2 class="text-gray-800 mb-4">Testimoni Tidak Ditemukan</h2>
-                                                <p class="text-gray-600 fs-4">Belum ada testimoni atau pencarian tidak sesuai.</p>
+                                                <p class="text-gray-600 fs-4">Belum ada testimoni atau pencarian tidak
+                                                    sesuai.</p>
                                             </td>
                                         </tr>
-                                        <tr v-else v-for="(testimonial, index) in testimonials.data" :key="index">
+                                        <tr v-else v-for="(testimonial, index) in testimonials.data"
+                                            :key="index">
                                             <td class="ps-6">
                                                 {{ ++index + (testimonials . current_page - 1) * testimonials . per_page }}
                                             </td>
                                             <td class="d-flex align-items-center gap-3">
-                                                <img class="w-45px h-45px min-w-45px rounded-circle object-fit-cover" :src="`/storage/${testimonial.photo}`" alt="Foto Profil">
+                                                <img class="w-45px h-45px min-w-45px rounded-circle object-fit-cover"
+                                                    :src="`/storage/${testimonial.photo}`" alt="Foto Profil">
                                                 <div>
                                                     <p class="text-dark fw-bold mb-1">{{ testimonial . name }}</p>
                                                     <p class="fs-7 mb-0">{{ testimonial . title }}</p>
@@ -100,7 +107,8 @@
                 data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'100%', 'md': '500px'}"
                 data-kt-drawer-direction="end">
                 <div class="card w-100 rounded-0">
-                    <div class="card-header ps-6 pe-3 h-60px border-bottom border-gray-300 h-60px h-lg-70px" style="min-height: unset;">
+                    <div class="card-header ps-6 pe-3 h-60px border-bottom border-gray-300 h-60px h-lg-70px"
+                        style="min-height: unset;">
                         <div class="card-title">
                             <h2>{{ isEditMode ? 'Edit Testimoni' : 'Tambah Testimoni' }}</h2>
                         </div>
@@ -122,16 +130,25 @@
                                 <div class="card-body p-6">
                                     <div class="mb-5 fv-row">
                                         <label class="required form-label fs-6">Foto Profil</label>
-                                        <input type="file" class="form-control fs-5" @input="form.photo = $event.target.files[0]"
-                                            :class="{ 'is-invalid': errors.photo }" />
+                                        <div id="testimonial-dropzone" :key="dropzoneKey"
+                                            class="dropzone border-dashed border-myprimary rounded p-5 text-center">
+                                            <div class="dz-message needsclick flex-column text-center gap-5 p-5">
+                                                <i class="ri-image-add-line text-myprimary fs-3x"></i>
+                                                <div>
+                                                    <h3 class="fs-5 fw-bold text-gray-900 mb-2">Jatuhkan file di sini /
+                                                        klik untuk mengunggah.</h3>
+                                                    <span class="fs-7 fw-semibold text-gray-400">Maksimal 10 MB</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div v-if="errors.photo" class="text-mydanger mt-2">
                                             {{ errors . photo }}
                                         </div>
                                     </div>
                                     <div class="mb-5 fv-row">
                                         <label class="required form-label fs-6">Nama</label>
-                                        <input type="text" class="form-control fs-5" v-model="form.name"
-                                            required placeholder="Masukkan nama disini..."
+                                        <input type="text" class="form-control fs-5" v-model="form.name" required
+                                            placeholder="Masukkan nama disini..."
                                             :class="{ 'is-invalid': errors.name }" />
                                         <div v-if="errors.name" class="text-mydanger mt-2">
                                             {{ errors . name }}
@@ -139,8 +156,8 @@
                                     </div>
                                     <div class="fv-row">
                                         <label class="required form-label fs-6">Gelar / Peran</label>
-                                        <input type="text" class="form-control fs-5" v-model="form.title"
-                                            required placeholder="Masukkan gelar / peran disini..."
+                                        <input type="text" class="form-control fs-5" v-model="form.title" required
+                                            placeholder="Masukkan gelar / peran disini..."
                                             :class="{ 'is-invalid': errors.title }" />
                                         <div v-if="errors.title" class="text-mydanger mt-2">
                                             {{ errors . title }}
@@ -157,9 +174,9 @@
                                 </div>
                                 <div class="card-body p-6">
                                     <div class="fv-row">
-                                        <textarea class="form-control fs-5" data-kt-autosize="true" rows="5"
-                                            required placeholder="Masukkan detail testimoni disini..."
-                                            v-model="form.testimonial" :class="{ 'is-invalid': errors.testimonial }">
+                                        <textarea class="form-control fs-5" data-kt-autosize="true" rows="5" required
+                                            placeholder="Masukkan detail testimoni disini..." v-model="form.testimonial"
+                                            :class="{ 'is-invalid': errors.testimonial }">
                                         </textarea>
                                         <div v-if="errors.testimonial" class="text-mydanger mt-2">
                                             {{ errors . testimonial }}
@@ -177,7 +194,8 @@
                                     {{ isEditMode ? 'Edit Testimoni' : 'Tambah Testimoni' }}
                                 </span>
                                 <span class="indicator-progress">
-                                    Mohon Tunggu... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    Mohon Tunggu... <span
+                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                 </span>
                             </button>
                         </div>
@@ -192,7 +210,8 @@
     import LayoutAdmin from '../../../Layouts/Admin.vue';
     import Pagination from '../../../Components/Pagination.vue';
     import { Head, Link, router } from '@inertiajs/vue3';
-    import { reactive, ref } from 'vue';
+    import { reactive, ref, nextTick, watch } from 'vue';
+    import Dropzone from 'dropzone';
     import Swal from 'sweetalert2';
 
     export default {
@@ -201,7 +220,7 @@
         components: {
             Head,
             Link,
-            Pagination
+            Pagination,
         },
 
         props: {
@@ -218,7 +237,13 @@
                 });
             }
 
-            const openDrawer = () => {
+            const dropzoneRef = ref(null);
+            const dropzoneKey = ref(Date.now());
+
+            const openDrawer = async () => {
+                dropzoneKey.value = Date.now();
+                await nextTick();
+
                 const drawerEl = document.querySelector('#kt_drawer_example_advanced');
                 if (drawerEl && window.KTDrawer) {
                     const drawer = KTDrawer.getInstance(drawerEl) || new KTDrawer(drawerEl);
@@ -245,6 +270,10 @@
                 isEditMode.value = false;
                 editing.value = null;
 
+                if (dropzoneRef.value) {
+                    dropzoneRef.value.removeAllFiles(true);
+                }
+
                 const drawerCloseBtn = document.querySelector('#kt_drawer_example_advanced_close');
                 if (drawerCloseBtn) drawerCloseBtn.click();
             };
@@ -260,7 +289,7 @@
                 payload.append('name', form.name);
                 payload.append('title', form.title);
                 payload.append('testimonial', form.testimonial);
-                if (form.photo instanceof File) {
+                if (form.photo && (form.photo instanceof File || form.photo instanceof Blob)) {
                     payload.append('photo', form.photo);
                 }
 
@@ -320,26 +349,22 @@
                 form.photo = null;
                 form.testimonial = testimonial.testimonial;
 
-                const drawerEl = document.querySelector('#kt_drawer_example_advanced');
-                if (drawerEl && window.KTDrawer) {
-                    const drawer = KTDrawer.getInstance(drawerEl) || new KTDrawer(drawerEl);
-                    drawer.show();
-                }
+                openDrawer();
             };
 
             const destroy = (id) => {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Apakah Anda yakin?',
-                    text: "Anda tidak akan dapat mengembalikan ini!",
+                    text: 'Anda tidak akan dapat mengembalikan ini!',
                     showCancelButton: true,
-                    confirmButtonText: "Hapus",
-                    cancelButtonText: "Batal",
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
                     customClass: {
                         popup: 'swal-custom-icon',
-                        confirmButton: "btn btn-sm btn-myprimary",
-                        cancelButton: "btn btn-sm btn-mydanger"
-                    }
+                        confirmButton: 'btn btn-sm btn-myprimary',
+                        cancelButton: 'btn btn-sm btn-mydanger',
+                    },
                 }).then((result) => {
                     if (result.isConfirmed) {
                         router.delete(`/admin/testimonials/${id}`);
@@ -352,11 +377,47 @@
                             showConfirmButton: false,
                             customClass: {
                                 popup: 'swal-custom-icon',
-                            }
+                            },
                         });
                     }
-                })
+                });
             };
+
+            watch(dropzoneKey, () => {
+                nextTick(() => {
+                    const dz = new Dropzone('#testimonial-dropzone', {
+                        url: '/',
+                        paramName: 'photo',
+                        maxFiles: 1,
+                        maxFilesize: 10,
+                        acceptedFiles: 'image/jpeg,image/png',
+                        autoProcessQueue: false,
+                        addRemoveLinks: true,
+                        dictRemoveFile: 'Hapus',
+                        init: function() {
+                            this.on('addedfile', function(file) {
+                                form.photo = file;
+                            });
+
+                            this.on('removedfile', function() {
+                                form.photo = null;
+                            });
+
+                            dropzoneRef.value = this;
+
+                            if (isEditMode.value && editing.value?.photo) {
+                                const mockFile = {
+                                    name: editing.value.photo.split('/').pop(),
+                                };
+                                this.emit('addedfile', mockFile);
+                                this.emit('thumbnail', mockFile, `/storage/${editing.value.photo}`);
+                                this.emit('complete', mockFile);
+                                mockFile.previewElement.classList.add('dz-success', 'dz-complete');
+                            }
+                        },
+                    });
+                });
+            });
 
             return {
                 search,
@@ -368,11 +429,11 @@
                 editTestimonial,
                 isEditMode,
                 openDrawer,
-            }
-        }
-    }
+                dropzoneKey,
+            };
+        },
+    };
 </script>
 
-<style>
-
+<style >
 </style>
