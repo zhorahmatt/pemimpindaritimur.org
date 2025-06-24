@@ -20,10 +20,11 @@ jobs:
         script: |
           # Extract files
           cd /var/www/code/glp-indtim
+          pwd
           sudo git pull origin main --no-ff
 
           # Install dependenciess
-          sudo composer install --optimize-autoloader --no-dev
+          sudo -u www-data php composer install --optimize-autoloader --no-dev
 
           # Running Migration & Seeder
           sudo -u www-data php artisan migrate
