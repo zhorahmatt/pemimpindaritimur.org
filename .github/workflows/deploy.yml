@@ -60,6 +60,24 @@ jobs:
         find ../deployment/vendor -name "test" -type d -exec rm -rf {} + 2>/dev/null || true
         find ../deployment/vendor -name ".git" -type d -exec rm -rf {} + 2>/dev/null || true
 
+        # Ensure storage directories exist with proper structure
+        mkdir -p ../deployment/storage/framework/cache/data
+        mkdir -p ../deployment/storage/framework/sessions
+        mkdir -p ../deployment/storage/framework/views
+        mkdir -p ../deployment/storage/framework/testing
+        mkdir -p ../deployment/storage/logs
+        mkdir -p ../deployment/storage/app/public
+        mkdir -p ../deployment/bootstrap/cache
+
+        # Create .gitkeep files to preserve directory structure
+        touch ../deployment/storage/framework/cache/.gitignore
+        touch ../deployment/storage/framework/sessions/.gitignore
+        touch ../deployment/storage/framework/views/.gitignore
+        touch ../deployment/storage/framework/testing/.gitignore
+        touch ../deployment/storage/logs/.gitignore
+        touch ../deployment/storage/app/.gitignore
+        touch ../deployment/bootstrap/cache/.gitignore
+
     - name: Create deployment archive
       run: |
         cd ../deployment
@@ -99,6 +117,15 @@ jobs:
           if [ -f "/var/www/code/glp-indtim/.env" ]; then
             sudo cp /var/www/code/glp-indtim/.env /var/www/code/glp-indtim-new/.env
           fi
+
+          # Ensure all storage directories exist with proper permissions
+          sudo mkdir -p /var/www/code/glp-indtim-new/storage/framework/cache/data
+          sudo mkdir -p /var/www/code/glp-indtim-new/storage/framework/sessions
+          sudo mkdir -p /var/www/code/glp-indtim-new/storage/framework/views
+          sudo mkdir -p /var/www/code/glp-indtim-new/storage/framework/testing
+          sudo mkdir -p /var/www/code/glp-indtim-new/storage/logs
+          sudo mkdir -p /var/www/code/glp-indtim-new/storage/app/public
+          sudo mkdir -p /var/www/code/glp-indtim-new/bootstrap/cache
 
           # Set proper permissions
           sudo chown -R www-data:www-data /var/www/code/glp-indtim-new
