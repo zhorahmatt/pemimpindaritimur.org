@@ -133,8 +133,12 @@ jobs:
           sudo chmod -R 775 /var/www/code/glp-indtim-new/storage
           sudo chmod -R 775 /var/www/code/glp-indtim-new/bootstrap/cache
 
-          # Switch to new version
-          cd /var/www/code/glp-indtim-new
+          # ATOMIC SWITCH - Move this BEFORE Laravel commands
+          sudo mv /var/www/code/glp-indtim /var/www/code/glp-indtim-old 2>/dev/null || true
+          sudo mv /var/www/code/glp-indtim-new /var/www/code/glp-indtim
+
+          # Now run Laravel commands on the active directory
+          cd /var/www/code/glp-indtim
 
           # Generate application key if needed
           if ! grep -q "APP_KEY=base64:" .env; then
@@ -154,13 +158,11 @@ jobs:
           sudo -u www-data php artisan cache:clear
 
           # Storage link & optimize
-          sudo -u www-data php artisan storage:unlink
+          sudo -u www-data php artisan storage:unlink 2>/dev/null || true
           sudo -u www-data php artisan storage:link
           sudo -u www-data php artisan optimize
 
-          # Atomic switch
-          sudo mv /var/www/code/glp-indtim /var/www/code/glp-indtim-old 2>/dev/null || true
-          sudo mv /var/www/code/glp-indtim-new /var/www/code/glp-indtim
+          # Clean up old version
           sudo rm -rf /var/www/code/glp-indtim-old
 
           # Restart web server
