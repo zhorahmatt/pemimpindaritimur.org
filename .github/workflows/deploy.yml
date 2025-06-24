@@ -35,16 +35,28 @@ jobs:
     - name: Build frontend assets
       run: npm run build
 
+    - name: Clean up before archiving
+      run: |
+        # Remove development files and caches
+        rm -rf node_modules
+        rm -rf .git
+        rm -rf tests
+        rm -rf storage/logs/*
+        rm -rf storage/framework/cache/*
+        rm -rf storage/framework/sessions/*
+        rm -rf storage/framework/views/*
+        rm -rf bootstrap/cache/*
+        find vendor -name "tests" -type d -exec rm -rf {} + 2>/dev/null || true
+        find vendor -name "test" -type d -exec rm -rf {} + 2>/dev/null || true
+        find vendor -name ".git" -type d -exec rm -rf {} + 2>/dev/null || true
+
     - name: Create deployment archive
       run: |
-        tar -czf deployment.tar.gz \
-          --exclude='.git' \
-          --exclude='node_modules' \
+        tar --warning=no-file-changed -czf deployment.tar.gz \
           --exclude='.env' \
-          --exclude='storage/logs/*' \
-          --exclude='storage/framework/cache/*' \
-          --exclude='storage/framework/sessions/*' \
-          --exclude='storage/framework/views/*' \
+          --exclude='*.log' \
+          --exclude='*.tmp' \
+          --exclude='.phpunit.result.cache' \
           .
 
     - name: Copy files to server
