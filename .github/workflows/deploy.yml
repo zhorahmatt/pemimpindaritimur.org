@@ -10,7 +10,54 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Extract and setup application
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, pdo_mysql, zip
+        coverage: none
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install Composer dependencies
+      run: composer install --optimize-autoloader --no-dev
+
+    - name: Install NPM dependencies
+      run: npm ci
+
+    - name: Build frontend assets
+      run: npm run build
+
+    - name: Create deployment archive
+      run: |
+        tar -czf deployment.tar.gz \
+          --exclude='.git' \
+          --exclude='node_modules' \
+          --exclude='.env' \
+          --exclude='storage/logs/*' \
+          --exclude='storage/framework/cache/*' \
+          --exclude='storage/framework/sessions/*' \
+          --exclude='storage/framework/views/*' \
+          .
+
+    - name: Copy files to server
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: ${{ secrets.PORT || 22 }}
+        source: "deployment.tar.gz"
+        target: "/tmp/"
+
+    - name: Deploy application
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.HOST }}
@@ -18,32 +65,38 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: ${{ secrets.PORT || 22 }}
         script: |
-          # Extract files
-          cd /var/www/code/glp-indtim
-          pwd
-          sudo git pull origin main --no-ff
+          # Create backup
+          if [ -d "/var/www/code/glp-indtim" ]; then
+            sudo cp -r /var/www/code/glp-indtim /var/www/code/glp-indtim-backup-$(date +%Y%m%d-%H%M%S)
+          fi
 
-          # Install dependenciess
-          sudo -u www-data php composer install --optimize-autoloader --no-dev
+          # Extract new deployment
+          cd /var/www/code
+          sudo rm -rf glp-indtim-new
+          sudo mkdir -p glp-indtim-new
+          sudo tar -xzf /tmp/deployment.tar.gz -C glp-indtim-new
 
-          # Running Migration & Seeder
-          sudo -u www-data php artisan migrate
-          sudo -u www-data php artisan db:seed
+          # Copy .env file if exists
+          if [ -f "/var/www/code/glp-indtim/.env" ]; then
+            sudo cp /var/www/code/glp-indtim/.env /var/www/code/glp-indtim-new/.env
+          fi
 
-          # Set proper permissionss
-          sudo chown -R www-data:www-data /var/www/code/glp-indtim
-          sudo chmod -R 755 /var/www/code/glp-indtim
-          sudo chmod -R 775 /var/www/code/glp-indtim/storage
-          sudo chmod -R 775 /var/www/code/glp-indtim/bootstrap/cache
+          # Set proper permissions
+          sudo chown -R www-data:www-data /var/www/code/glp-indtim-new
+          sudo chmod -R 755 /var/www/code/glp-indtim-new
+          sudo chmod -R 775 /var/www/code/glp-indtim-new/storage
+          sudo chmod -R 775 /var/www/code/glp-indtim-new/bootstrap/cache
 
-          # Install/update composer dependencies on server (production)
-          cd /var/www/code/glp-indtim
-          sudo -u www-data composer install --optimize-autoloader --no-dev
+          # Switch to new version
+          cd /var/www/code/glp-indtim-new
 
           # Generate application key if needed
           if ! grep -q "APP_KEY=base64:" .env; then
             sudo -u www-data php artisan key:generate
           fi
+
+          # Run migrations
+          sudo -u www-data php artisan migrate --force
 
           # Clear and cache config
           sudo -u www-data php artisan config:clear
@@ -51,18 +104,23 @@ jobs:
           sudo -u www-data php artisan route:cache
           sudo -u www-data php artisan view:cache
 
-          # Run database migrations
-          sudo -u www-data php artisan migrate --force
-
           # Clear application cache
           sudo -u www-data php artisan cache:clear
 
-          #storage link & optimize
+          # Storage link & optimize
           sudo -u www-data php artisan storage:unlink
           sudo -u www-data php artisan storage:link
           sudo -u www-data php artisan optimize
 
-          # Restart web server (adjust based on your setup)
+          # Atomic switch
+          sudo mv /var/www/code/glp-indtim /var/www/code/glp-indtim-old 2>/dev/null || true
+          sudo mv /var/www/code/glp-indtim-new /var/www/code/glp-indtim
+          sudo rm -rf /var/www/code/glp-indtim-old
+
+          # Restart web server
           sudo systemctl reload nginx
+
+          # Clean up
+          rm /tmp/deployment.tar.gz
 
           echo "Deployment completed successfully!"
