@@ -10,6 +10,8 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard', App\Http\Controllers\Admin\DashboardController::class)->name('admin.dashboard');
+        Route::resource('/activities', \App\Http\Controllers\Admin\ActivityController::class, ['as' => 'admin']);
+        Route::resource('/programs', \App\Http\Controllers\Admin\ProgramController::class, ['as' => 'admin']);
         Route::resource('/blogs', \App\Http\Controllers\Admin\BlogController::class, ['as' => 'admin']);
         Route::resource('/testimonials', \App\Http\Controllers\Admin\TestimonialController::class, ['as' => 'admin']);
         Route::resource('/partners', \App\Http\Controllers\Admin\PartnerController::class, ['as' => 'admin']);

@@ -46,9 +46,9 @@
                                         <tr class="text-start text-gray-600 fw-bold fs-7 text-uppercase gs-0">
                                             <th class="w-20px ps-6 pe-5 bg-secondary" style="letter-spacing: 0.04em;">#</th>
                                             <th class="bg-secondary min-w-250px" style="letter-spacing: 0.04em;">Judul Blog</th>
-                                            <th class="bg-secondary min-w-100px" style="letter-spacing: 0.04em;">Kategori</th>
+                                            <th class="bg-secondary min-w-150px" style="letter-spacing: 0.04em;">Kategori</th>
                                             <th class="bg-secondary min-w-100px" style="letter-spacing: 0.04em;">Status</th>
-                                            <th class="bg-secondary pe-6 min-w-150px" style="letter-spacing: 0.04em;"></th>
+                                            <th class="bg-secondary pe-6 min-w-125px" style="letter-spacing: 0.04em;"></th>
                                         </tr>
                                     </thead>
                                     <tbody class="fw-semibold text-gray-600">
@@ -64,13 +64,23 @@
                                             <td class="ps-6">
                                                 {{ ++index + (blogs . current_page - 1) * blogs . per_page }}
                                             </td>
-                                            <td class="text-dark fw-bold">{{ blog . title }}</td>
+                                            <td class="text-dark fw-bold">
+                                                <i v-if="blog.is_featured" class="ri-star-fill fs-4 me-1 text-warning"></i>
+                                                {{ blog.title }}
+                                            </td>
                                             <td>{{ blog . category }}</td>
-                                            <td>{{ blog . status }}</td>
+                                            <td>
+                                                <span
+                                                    class="badge text-capitalize fs-7 px-3 py-2"
+                                                    :class="{
+                                                        'bg-mysecondary text-mysecondary': blog.status === 'published',
+                                                        'bg-mydanger-light text-mydanger-light': blog.status === 'archived'
+                                                    }"
+                                                >
+                                                    {{ blog.status === 'published' ? 'Terbit' : blog.status === 'archived' ? 'Arsip' : blog.status }}
+                                                </span>
+                                            </td>
                                             <td class="text-end pe-6">
-                                                <Link :href="`/admin/blogs/${blog.id}`" type="button"
-                                                    class="btn btn-sm btn-icon btn-mysecondary me-2">
-                                                    <i class="ri-edit-2-fill fs-3"></i></Link>
                                                 <Link :href="`/admin/blogs/${blog.id}/edit`" type="button"
                                                     class="btn btn-sm btn-icon btn-mysecondary me-2">
                                                     <i class="ri-edit-2-fill fs-3"></i></Link>

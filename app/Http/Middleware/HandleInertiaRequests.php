@@ -49,6 +49,8 @@ class HandleInertiaRequests extends Middleware
             'auth'  => [
                 'user'      => fn() => $request->user(),
             ],
+
+            'TinyMCEApiKey' => config('tinymce.api_key'),
         ];
     }
 }

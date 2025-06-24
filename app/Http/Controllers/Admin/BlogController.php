@@ -13,7 +13,7 @@ class BlogController extends Controller
     {
         $blogs = Blog::when(request()->q, function ($blogs) {
             $blogs = $blogs->where('title', 'like', '%' . request()->q . '%');
-        })->latest()->paginate(10);
+        })->orderByDesc('is_featured')->latest()->paginate(10);
 
         $blogs->appends(['q' => request()->q]);
 
@@ -38,6 +38,9 @@ class BlogController extends Controller
             'status'      => 'required',
             'is_featured' => 'required',
         ], [
+            'content.required' => 'Konten tidak boleh kosong.',
+            'status.required'  => 'Status tidak boleh kosong.',
+            'image.required'   => 'Gambar tidak boleh kosong.',
             'image.image' => 'Gambar blog harus berupa file gambar.',
             'image.mimes' => 'Gambar blog harus berekstensi jpg, jpeg, atau png.',
             'image.max'   => 'Ukuran gambar blog maksimal 10MB.',
@@ -61,6 +64,8 @@ class BlogController extends Controller
     public function edit($id)
     {
         $blog = Blog::findOrFail($id);
+        $blog->image_name = basename($blog->image);
+        $blog->image_size = Storage::disk('public')->size($blog->image);
 
         return inertia('Admin/Blogs/Edit', [
             'blog' => $blog,
@@ -78,6 +83,8 @@ class BlogController extends Controller
             'status'      => 'required',
             'is_featured' => 'required',
         ], [
+            'content.required' => 'Konten tidak boleh kosong.',
+            'status.required'  => 'Status tidak boleh kosong.',
             'image.image' => 'Gambar blog harus berupa file gambar.',
             'image.mimes' => 'Gambar blog harus berekstensi jpg, jpeg, atau png.',
             'image.max'   => 'Ukuran gambar blog maksimal 10MB.',

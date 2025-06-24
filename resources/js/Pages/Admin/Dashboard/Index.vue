@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="d-flex flex-column">
                                         <p class="fs-4 fw-semibold text-gray-800 mb-1">Kegiatan Internal</p>
-                                        <h1 class="fs-2hx mb-0">0</h1>
+                                        <h1 class="fs-2hx mb-0">{{ activities }}</h1>
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="d-flex flex-column">
                                         <p class="fs-4 fw-semibold text-gray-800 mb-1">Program Amal</p>
-                                        <h1 class="fs-2hx mb-0">0</h1>
+                                        <h1 class="fs-2hx mb-0">{{ programs }}</h1>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="d-flex flex-column">
                                         <p class="fs-4 fw-semibold text-gray-800 mb-1">Blog</p>
-                                        <h1 class="fs-2hx mb-0">0</h1>
+                                        <h1 class="fs-2hx mb-0">{{ blogs }}</h1>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,6 @@
     import LayoutAdmin from '../../../Layouts/Admin.vue';
     import {
         Head,
-        Link,
     } from '@inertiajs/vue3';
 
     export default {
@@ -81,8 +80,13 @@
 
         components: {
             Head,
-            Link,
         },
+
+        props: {
+            activities: Number,
+            programs: Number,
+            blogs: Number,
+        }
 
     };
 </script>
