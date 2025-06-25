@@ -13,11 +13,11 @@
                     <div
                         class="d-flex flex-column justify-content-center align-items-center min-vh-100 text-center px-5">
                         <p class="fw-semibold text-white fs-2 text-uppercase mb-4" style="letter-spacing: 0.08em;">
-                            Yayasan Pemimpin dari Timur
+                            {{ profile.name }}
                         </p>
                         <h1 class="fw-bolder text-white lh-base fs-4x fs-md-4x mb-0">
-                            <span class="d-none d-sm-inline">#DariTimurUntukIndonesia</span>
-                            <span class="d-inline d-sm-none">#DariTimurUntuk<br />Indonesia</span>
+                            <span class="d-none d-sm-inline">{{ profile.tagline }}</span>
+                            <span class="d-inline d-sm-none" v-html="formatTagline(profile.tagline)"></span>
                         </h1>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         Tentang Kami
                     </p>
                     <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
-                        Yayasan Pemimpin Dari Timur
+                        {{ profile.name }}
                     </h1>
                     <p class="fw-semibold text-gray-600 fs-2 mb-0">
                         didirikan sebagai <span class="fw-bolder text-mydanger">wadah kolabrasi</span> 🤝 dan
@@ -44,28 +44,28 @@
                         <div class="col-6 col-sm-3 d-flex flex-column justify-content-center">
                             <p class="fs-2 fw-bold text-dark mb-0 mb-md-n2">Berdiri Sejak</p>
                             <h1 class="fw-boldest text-myprimary lh-base fs-4x fs-md-4x mb-0" data-kt-countup="true"
-                                data-kt-countup-duration="3" data-kt-countup-value="2025" data-kt-countup-separator="">
+                                data-kt-countup-duration="3" :data-kt-countup-value="profile.year" data-kt-countup-separator="">
                                 0
                             </h1>
                         </div>
                         <div class="col-6 col-sm-3 d-flex flex-column justify-content-center">
                             <p class="fs-2 fw-bold text-dark mb-0 mb-md-n2">Anggota</p>
                             <h1 class="fw-boldest text-myprimary lh-base fs-4x fs-md-4x mb-0" data-kt-countup="true"
-                                data-kt-countup-duration="3" data-kt-countup-value="100" data-kt-countup-suffix="+">
+                                data-kt-countup-duration="3" :data-kt-countup-value="profile.members">
                                 0
                             </h1>
                         </div>
                         <div class="col-6 col-sm-3 d-flex flex-column justify-content-center">
                             <p class="fs-2 fw-bold text-dark mb-0 mb-md-n2">Kegiatan Internal</p>
                             <h1 class="fw-boldest text-myprimary lh-base fs-4x fs-md-4x mb-0" data-kt-countup="true"
-                                data-kt-countup-duration="3" data-kt-countup-value="10" data-kt-countup-suffix="+">
+                                data-kt-countup-duration="3" :data-kt-countup-value="total_activities">
                                 0
                             </h1>
                         </div>
                         <div class="col-6 col-sm-3 d-flex flex-column justify-content-center">
                             <p class="fs-2 fw-bold text-dark mb-0 mb-md-n2">Program Amal</p>
                             <h1 class="fw-boldest text-myprimary lh-base fs-4x fs-md-4x mb-0" data-kt-countup="true"
-                                data-kt-countup-duration="3" data-kt-countup-value="10" data-kt-countup-suffix="+">
+                                data-kt-countup-duration="3" :data-kt-countup-value="total_programs">
                                 0
                             </h1>
                         </div>
@@ -402,8 +402,7 @@
                                     <p class="fw-semibold text-white fs-4 mb-0">Graduate Leadership Program
                                         <br>Indonesia Timur</p>
                                 </div>
-                                <p class="text-white opacity-75 fs-4 mb-0">Jl. Abdullah Daeng Sirua No. 460, Batua,
-                                    Kec. Manggala, Kota Makassar, Sulawesi Selatan 90233</p>
+                                <p class="text-white opacity-75 fs-4 mb-0">{{ profile.address }}</p>
                             </div>
                             <div class="col-12 col-md-6 d-flex flex-row gap-15 gap-xl-20 justify-content-md-end">
                                 <div class="d-flex flex-column gap-4">
@@ -422,25 +421,25 @@
                                     <p class="text-white opacity-50 fs-4 mb-0 text-uppercase"
                                         style="letter-spacing: 0.08em;">Sosial Media</p>
                                     <div class="d-flex flex-column gap-2">
-                                        <a href="#" target="_blank"
+                                        <a :href="`https://facebook.com/${profile.facebook}`" target="_blank"
                                             class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
                                             <i class="ri-facebook-box-fill fs-3 text-white"></i>
-                                            GLP Indtim
+                                            {{ profile.facebook }}
                                         </a>
-                                        <a href="#" target="_blank"
+                                        <a :href="`https://instagram.com/${profile.instagram}`" target="_blank"
                                             class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
                                             <i class="ri-instagram-line fs-3 text-white"></i>
-                                            @glpindtim
+                                            {{ profile.instagram }}
                                         </a>
-                                        <a href="#" target="_blank"
+                                        <a :href="`https://wa.me/${profile.whatsapp}`" target="_blank"
                                             class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
                                             <i class="ri-whatsapp-fill fs-3 text-white"></i>
-                                            +62 813 4124 6332
+                                            {{ formatWhatsapp(profile.whatsapp) }}
                                         </a>
-                                        <a href="#" target="_blank"
+                                        <a :href="`mailto:${profile.email}`" target="_blank"
                                             class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
                                             <i class="ri-mail-line fs-3 text-white"></i>
-                                            glpindtim@gmail.com
+                                            {{ profile.email }}
                                         </a>
                                     </div>
                                 </div>
@@ -482,7 +481,10 @@
         },
 
         props: {
+            profile: Object,
+            total_activities: Number,
             activities: Array,
+            total_programs: Number,
             programs: Array,
             blogs: Array,
             partners: Array,
@@ -505,6 +507,14 @@
         },
 
         methods: {
+            formatTagline(text) {
+                const parts = text.match(/[A-Z][a-z]+|#[A-Z][a-z]+/g);
+                if (!parts || parts.length < 2) return text;
+
+                const lastWord = parts.pop();
+                return parts.join('') + '<br>' + lastWord;
+            },
+
             initSlider(container) {
                 const element = document.querySelector(container);
                 if (!element) return;
@@ -571,6 +581,18 @@
                         }
                     });
                 });
+            },
+
+            formatWhatsapp(number) {
+                if (!number.startsWith('62') || number.length < 10) return number;
+
+                const prefix = '+62';
+                const main = number.slice(2);
+                const part1 = main.slice(0, 3);
+                const part2 = main.slice(3, 7);
+                const part3 = main.slice(7);
+
+                return `${prefix} ${part1} ${part2} ${part3}`;
             }
         }
     };
