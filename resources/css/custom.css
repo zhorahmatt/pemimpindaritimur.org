@@ -368,6 +368,10 @@ body {
     border-right-color: var(--bs-mydanger-800) !important;
 }
 
+.ribbon.ribbon-clip.ribbon-start .ribbon-label > .ribbon-inner.bg-mywarning:before  {
+    border-right-color: var(--bs-mywarning-800) !important;
+}
+
 #activity-card img,
 #program-card img,
 #blog-card img {

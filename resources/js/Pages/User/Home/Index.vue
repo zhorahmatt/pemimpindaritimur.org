@@ -116,7 +116,7 @@
             </section>
 
             <!-- Activities Section -->
-            <section id="activities" class="py-20">
+            <section id="activities" class="py-20" v-if="activities.length > 0">
                 <div class="container text-center">
                     <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
                         Bersama Menyatukan Langkah 🚀
@@ -129,214 +129,29 @@
                     </p>
 
                     <div class="activities-slider mb-10">
-                        <div>
+                        <div v-for="(activity, index) in activities" :key="index">
                             <Link class="d-flex flex-column gap-4 text-start m-5" id="activity-card">
-                            <div class="ribbon ribbon-start ribbon-clip">
-                                <div class="ribbon-label fs-6">
-                                    Dibuka
-                                    <span class="ribbon-inner bg-mysuccess"></span>
+                                <div class="ribbon ribbon-start ribbon-clip">
+                                    <div class="ribbon-label fs-6">
+                                        {{ activity.phase }}
+                                        <span class="ribbon-inner"
+                                            :class="{
+                                                'bg-mywarning': activity.phase === 'Akan Datang',
+                                                'bg-mysuccess': activity.phase === 'Dibuka',
+                                                'bg-mydanger': activity.phase === 'Ditutup',
+                                                'bg-myprimary': activity.phase === 'Terlaksana'
+                                            }"
+                                        ></span>
+                                    </div>
+                                    <div class="overflow-hidden position-relative rounded-4 mh-300px">
+                                        <img :src="`/storage/${activity.image}`" class="img-fluid object-fit-cover mw-100"
+                                            alt="Gambar Kegiatan Internal" />
+                                    </div>
                                 </div>
-                                <div class="overflow-hidden position-relative rounded-4 ">
-                                    <img src="assets/media/illustrations/landing-hero.jpg" class="mw-100"
-                                        alt="" />
+                                <div class="d-flex flex-column">
+                                    <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">{{ activity.title }}</p>
+                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-3">{{ stripTags(activity.content) }}</p>
                                 </div>
-                            </div>
-                            <div>
-                                <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Lorem Ipsum Dolor</p>
-                                <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum, dolor sit amet
-                                    consectetur adipisicing elit. Laudantium numquam ex iusto sequi ea excepturi neque
-                                    accusantium asperiores odit commodi.</p>
-                            </div>
-                            <div class="d-flex flex-column gap-2">
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-user-heart-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-calendar-schedule-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet
-                                        consectetur</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-map-pin-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet</p>
-                                </div>
-                            </div>
-                            </Link>
-                        </div>
-                        <div>
-                            <Link class="d-flex flex-column gap-4 text-start m-5" id="activity-card">
-                            <div class="ribbon ribbon-start ribbon-clip">
-                                <div class="ribbon-label fs-6">
-                                    Ditutup
-                                    <span class="ribbon-inner bg-mydanger"></span>
-                                </div>
-                                <div class="overflow-hidden position-relative rounded-4 ">
-                                    <img src="assets/media/illustrations/landing-hero.jpg" class="mw-100"
-                                        alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Lorem Ipsum Dolor</p>
-                                <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum, dolor sit amet
-                                    consectetur adipisicing elit. Laudantium numquam ex iusto sequi ea excepturi neque
-                                    accusantium asperiores odit commodi.</p>
-                            </div>
-                            <div class="d-flex flex-column gap-2">
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-user-heart-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-calendar-schedule-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet
-                                        consectetur</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-map-pin-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet</p>
-                                </div>
-                            </div>
-                            </Link>
-                        </div>
-                        <div>
-                            <Link class="d-flex flex-column gap-4 text-start m-5" id="activity-card">
-                            <div class="ribbon ribbon-start ribbon-clip">
-                                <div class="ribbon-label fs-6">
-                                    Terlaksana
-                                    <span class="ribbon-inner bg-myprimary"></span>
-                                </div>
-                                <div class="overflow-hidden position-relative rounded-4 ">
-                                    <img src="assets/media/illustrations/landing-hero.jpg" class="mw-100"
-                                        alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Lorem Ipsum Dolor</p>
-                                <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum, dolor sit amet
-                                    consectetur adipisicing elit. Laudantium numquam ex iusto sequi ea excepturi neque
-                                    accusantium asperiores odit commodi.</p>
-                            </div>
-                            <div class="d-flex flex-column gap-2">
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-user-heart-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-calendar-schedule-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet
-                                        consectetur</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-map-pin-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet</p>
-                                </div>
-                            </div>
-                            </Link>
-                        </div>
-                        <div>
-                            <Link class="d-flex flex-column gap-4 text-start m-5" id="activity-card">
-                            <div class="ribbon ribbon-start ribbon-clip">
-                                <div class="ribbon-label fs-6">
-                                    Dibuka
-                                    <span class="ribbon-inner bg-mysuccess"></span>
-                                </div>
-                                <div class="overflow-hidden position-relative rounded-4 ">
-                                    <img src="assets/media/illustrations/landing-hero.jpg" class="mw-100"
-                                        alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Lorem Ipsum Dolor</p>
-                                <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum, dolor sit amet
-                                    consectetur adipisicing elit. Laudantium numquam ex iusto sequi ea excepturi neque
-                                    accusantium asperiores odit commodi.</p>
-                            </div>
-                            <div class="d-flex flex-column gap-2">
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-user-heart-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-calendar-schedule-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet
-                                        consectetur</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-map-pin-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet</p>
-                                </div>
-                            </div>
-                            </Link>
-                        </div>
-                        <div>
-                            <Link class="d-flex flex-column gap-4 text-start m-5" id="activity-card">
-                            <div class="ribbon ribbon-start ribbon-clip">
-                                <div class="ribbon-label fs-6">
-                                    Ditutup
-                                    <span class="ribbon-inner bg-mydanger"></span>
-                                </div>
-                                <div class="overflow-hidden position-relative rounded-4 ">
-                                    <img src="assets/media/illustrations/landing-hero.jpg" class="mw-100"
-                                        alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Lorem Ipsum Dolor</p>
-                                <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum, dolor sit amet
-                                    consectetur adipisicing elit. Laudantium numquam ex iusto sequi ea excepturi neque
-                                    accusantium asperiores odit commodi.</p>
-                            </div>
-                            <div class="d-flex flex-column gap-2">
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-user-heart-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-calendar-schedule-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet
-                                        consectetur</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-map-pin-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet</p>
-                                </div>
-                            </div>
-                            </Link>
-                        </div>
-                        <div>
-                            <Link class="d-flex flex-column gap-4 text-start m-5" id="activity-card">
-                            <div class="ribbon ribbon-start ribbon-clip">
-                                <div class="ribbon-label fs-6">
-                                    Terlaksana
-                                    <span class="ribbon-inner bg-myprimary"></span>
-                                </div>
-                                <div class="overflow-hidden position-relative rounded-4 ">
-                                    <img src="assets/media/illustrations/landing-hero.jpg" class="mw-100"
-                                        alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Lorem Ipsum Dolor</p>
-                                <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum, dolor sit amet
-                                    consectetur adipisicing elit. Laudantium numquam ex iusto sequi ea excepturi neque
-                                    accusantium asperiores odit commodi.</p>
-                            </div>
-                            <div class="d-flex flex-column gap-2">
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-user-heart-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-calendar-schedule-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet
-                                        consectetur</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center gap-3">
-                                    <i class="ri-map-pin-line fs-3 text-myprimary"></i>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Lorem ipsum dolor sit amet</p>
-                                </div>
-                            </div>
                             </Link>
                         </div>
                     </div>
@@ -376,7 +191,7 @@
             </section>
 
             <!-- Programs Section -->
-            <section id="programs" class="py-20">
+            <section id="programs" class="py-20" v-if="programs.length > 0">
                 <div class="container text-center">
                     <p class="fw-semibold text-myprimary fs-4 text-uppercase mb-3 px-4 py-1 d-inline-block rounded-pill bg-myprimary-light"
                         style="letter-spacing: 0.08em;">
@@ -391,142 +206,29 @@
                     </p>
 
                     <div class="programs-slider mb-10">
-                        <div>
+                        <div v-for="(program, index) in programs" :key="index">
                             <Link class="d-flex flex-column gap-4 text-start m-5" id="program-card">
-                            <div class="ribbon ribbon-start ribbon-clip">
-                                <div class="ribbon-label fs-6">
-                                    Dibuka
-                                    <span class="ribbon-inner bg-mysuccess"></span>
+                                <div class="ribbon ribbon-start ribbon-clip">
+                                    <div class="ribbon-label fs-6">
+                                        {{ program.phase }}
+                                        <span class="ribbon-inner"
+                                            :class="{
+                                                'bg-mywarning': program.phase === 'Akan Datang',
+                                                'bg-mysuccess': program.phase === 'Dibuka',
+                                                'bg-mydanger': program.phase === 'Ditutup',
+                                                'bg-myprimary': program.phase === 'Terlaksana'
+                                            }"
+                                        ></span>
+                                    </div>
+                                    <div class="overflow-hidden position-relative rounded-4 mh-300px">
+                                        <img :src="`/storage/${program.image}`" class="img-fluid object-fit-cover mw-100"
+                                            alt="Gambar Program Amal" />
+                                    </div>
                                 </div>
-                                <div class="overflow-hidden position-relative rounded-4 ">
-                                    <img src="assets/media/illustrations/landing-hero.jpg" class="mw-100"
-                                        alt="" />
+                                <div class="d-flex flex-column">
+                                    <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">{{ program.title }}</p>
+                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-3">{{ stripTags(program.content) }}</p>
                                 </div>
-                            </div>
-                            <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                <div class="flex-grow-1">
-                                    <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Lorem Ipsum Dolor</p>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-3">Lorem ipsum, dolor sit amet
-                                        consectetur adipisicing elit.</p>
-                                </div>
-                                <p class="fw-semibold text-gray-500 fs-6 mb-0 mt-8 text-uppercase"
-                                    style="letter-spacing: 0.04em;">1 Mei 2025</p>
-                            </div>
-                            </Link>
-                        </div>
-                        <div>
-                            <Link class="d-flex flex-column gap-4 text-start m-5" id="program-card">
-                            <div class="ribbon ribbon-start ribbon-clip">
-                                <div class="ribbon-label fs-6">
-                                    Terlaksana
-                                    <span class="ribbon-inner bg-myprimary"></span>
-                                </div>
-                                <div class="overflow-hidden position-relative rounded-4 ">
-                                    <img src="assets/media/illustrations/landing-hero.jpg" class="mw-100"
-                                        alt="" />
-                                </div>
-                            </div>
-                            <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                <div class="flex-grow-1">
-                                    <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Lorem Ipsum Dolor</p>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-3">Lorem ipsum, dolor sit amet
-                                        consectetur adipisicing elit.</p>
-                                </div>
-                                <p class="fw-semibold text-gray-500 fs-6 mb-0 mt-8 text-uppercase"
-                                    style="letter-spacing: 0.04em;">1 Mei 2025</p>
-                            </div>
-                            </Link>
-                        </div>
-                        <div>
-                            <Link class="d-flex flex-column gap-4 text-start m-5" id="program-card">
-                            <div class="ribbon ribbon-start ribbon-clip">
-                                <div class="ribbon-label fs-6">
-                                    Terlaksana
-                                    <span class="ribbon-inner bg-myprimary"></span>
-                                </div>
-                                <div class="overflow-hidden position-relative rounded-4 ">
-                                    <img src="assets/media/illustrations/landing-hero.jpg" class="mw-100"
-                                        alt="" />
-                                </div>
-                            </div>
-                            <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                <div class="flex-grow-1">
-                                    <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Lorem Ipsum Dolor</p>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-3">Lorem ipsum, dolor sit amet
-                                        consectetur adipisicing elit.</p>
-                                </div>
-                                <p class="fw-semibold text-gray-500 fs-6 mb-0 mt-8 text-uppercase"
-                                    style="letter-spacing: 0.04em;">1 Mei 2025</p>
-                            </div>
-                            </Link>
-                        </div>
-                        <div>
-                            <Link class="d-flex flex-column gap-4 text-start m-5" id="program-card">
-                            <div class="ribbon ribbon-start ribbon-clip">
-                                <div class="ribbon-label fs-6">
-                                    Terlaksana
-                                    <span class="ribbon-inner bg-myprimary"></span>
-                                </div>
-                                <div class="overflow-hidden position-relative rounded-4 ">
-                                    <img src="assets/media/illustrations/landing-hero.jpg" class="mw-100"
-                                        alt="" />
-                                </div>
-                            </div>
-                            <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                <div class="flex-grow-1">
-                                    <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Lorem Ipsum Dolor</p>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-3">Lorem ipsum, dolor sit amet
-                                        consectetur adipisicing elit.</p>
-                                </div>
-                                <p class="fw-semibold text-gray-500 fs-6 mb-0 mt-8 text-uppercase"
-                                    style="letter-spacing: 0.04em;">1 Mei 2025</p>
-                            </div>
-                            </Link>
-                        </div>
-                        <div>
-                            <Link class="d-flex flex-column gap-4 text-start m-5" id="program-card">
-                            <div class="ribbon ribbon-start ribbon-clip">
-                                <div class="ribbon-label fs-6">
-                                    Terlaksana
-                                    <span class="ribbon-inner bg-myprimary"></span>
-                                </div>
-                                <div class="overflow-hidden position-relative rounded-4 ">
-                                    <img src="assets/media/illustrations/landing-hero.jpg" class="mw-100"
-                                        alt="" />
-                                </div>
-                            </div>
-                            <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                <div class="flex-grow-1">
-                                    <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Lorem Ipsum Dolor</p>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-3">Lorem ipsum, dolor sit amet
-                                        consectetur adipisicing elit.</p>
-                                </div>
-                                <p class="fw-semibold text-gray-500 fs-6 mb-0 mt-8 text-uppercase"
-                                    style="letter-spacing: 0.04em;">1 Mei 2025</p>
-                            </div>
-                            </Link>
-                        </div>
-                        <div>
-                            <Link class="d-flex flex-column gap-4 text-start m-5" id="program-card">
-                            <div class="ribbon ribbon-start ribbon-clip">
-                                <div class="ribbon-label fs-6">
-                                    Terlaksana
-                                    <span class="ribbon-inner bg-myprimary"></span>
-                                </div>
-                                <div class="overflow-hidden position-relative rounded-4 ">
-                                    <img src="assets/media/illustrations/landing-hero.jpg" class="mw-100"
-                                        alt="" />   
-                                </div>
-                            </div>
-                            <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                <div class="flex-grow-1">
-                                    <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Lorem Ipsum Dolor</p>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-3">Lorem ipsum, dolor sit amet
-                                        consectetur adipisicing elit.</p>
-                                </div>
-                                <p class="fw-semibold text-gray-500 fs-6 mb-0 mt-8 text-uppercase"
-                                    style="letter-spacing: 0.04em;">1 Mei 2025</p>
-                            </div>
                             </Link>
                         </div>
                     </div>
@@ -555,7 +257,7 @@
             </section>
 
             <!-- Blogs Section -->
-            <section id="blogs" class="mb-20 py-20">
+            <section id="blogs" class="mb-20 py-20" v-if="blogs.length > 0">
                 <div class="container">
                     <p class="fw-semibold text-myprimary fs-4 text-uppercase mb-3 px-4 py-1 d-inline-block rounded-pill bg-myprimary-light"
                         style="letter-spacing: 0.08em;">
@@ -568,74 +270,26 @@
                         Kisah, refleksi, dan inspirasi dari perjalanan kami
                         <span class="fw-bolder text-mydanger">menebar kebaikan</span>.
                     </p>
-
                     <div class="d-flex flex-column gap-10 mb-15">
-                        <Link class="d-flex flex-row gap-5 gap-sm-6 gap-md-7 text-start" id="blog-card">
-                        <div
-                            class="overflow-hidden position-relative rounded-4 mw-125px mw-md-200px order-3 order-md-0">
-                            <img src="assets/media/illustrations/landing-hero.jpg"
-                                class="img-blog img-fluid h-md-100 mt-9 mt-md-0" alt="" />
+                        <div v-for="(blog, index) in blogs" :key="index">
+                            <Link href="#" class="d-flex flex-row gap-5 gap-sm-6 gap-md-7 text-start" id="blog-card">
+                                <div
+                                    class="overflow-hidden position-relative rounded-4 mw-125px mw-md-200px order-3 order-md-0">
+                                    <img :src="`/storage/${blog.image}`"
+                                        class="img-blog img-fluid object-fit-cover h-md-100 mt-9 mt-md-0" alt="" />
+                                </div>
+                                <div class="d-flex flex-column justify-content-between flex-grow-1">
+                                    <div class="flex-grow-1">
+                                        <p class="fw-bold text-myprimary fs-5 mb-1 text-uppercase"
+                                            style="letter-spacing: 0.06em;">{{ blog.category }}</p>
+                                        <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">{{ blog.title }}</p>
+                                        <p class="text-gray-600 fs-4 mb-0 text-truncate-2">{{ stripTags(blog.content) }}</p>
+                                    </div>
+                                    <p class="fw-semibold text-gray-500 fs-6 mb-0 mt-8 text-uppercase"
+                                        style="letter-spacing: 0.04em;">{{ formatDate(blog.created_at) }}</p>
+                                </div>
+                            </Link>
                         </div>
-                        <div class="d-flex flex-column justify-content-between flex-grow-1">
-                            <div class="flex-grow-1">
-                                <p class="fw-bold text-myprimary fs-5 mb-1 text-uppercase"
-                                    style="letter-spacing: 0.06em;">Informasi</p>
-                                <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Pentingnya Pendidikan untuk
-                                    Meningkatkan Kualitas Hidup Anak 🎓</p>
-                                <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Pendidikan adalah fondasi utama
-                                    untuk membuka pintu masa depan yang lebih baik. Dengan pendidikan yang layak,
-                                    anak-anak dapat mengembangkan potensi, memperluas wawasan, dan membangun karakter
-                                    yang kuat. Yuk, dukung bersama agar semua anak mendapatkan hak pendidikan yang sama.
-                                </p>
-                            </div>
-                            <p class="fw-semibold text-gray-500 fs-6 mb-0 mt-8 text-uppercase"
-                                style="letter-spacing: 0.04em;">1 Mei 2025</p>
-                        </div>
-                        </Link>
-                        <Link class="d-flex flex-row gap-5 gap-sm-6 gap-md-7 text-start" id="blog-card">
-                        <div
-                            class="overflow-hidden position-relative rounded-4 mw-125px mw-md-200px order-3 order-md-0">
-                            <img src="assets/media/illustrations/landing-hero.jpg"
-                                class="img-blog img-fluid h-md-100 mt-9 mt-md-0" alt="" />
-                        </div>
-                        <div class="d-flex flex-column justify-content-between flex-grow-1">
-                            <div class="flex-grow-1">
-                                <p class="fw-bold text-myprimary fs-5 mb-1 text-uppercase"
-                                    style="letter-spacing: 0.06em;">Informasi</p>
-                                <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Pentingnya Pendidikan untuk
-                                    Meningkatkan Kualitas Hidup Anak 🎓</p>
-                                <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Pendidikan adalah fondasi utama
-                                    untuk membuka pintu masa depan yang lebih baik. Dengan pendidikan yang layak,
-                                    anak-anak dapat mengembangkan potensi, memperluas wawasan, dan membangun karakter
-                                    yang kuat. Yuk, dukung bersama agar semua anak mendapatkan hak pendidikan yang sama.
-                                </p>
-                            </div>
-                            <p class="fw-semibold text-gray-500 fs-6 mb-0 mt-8 text-uppercase"
-                                style="letter-spacing: 0.04em;">1 Mei 2025</p>
-                        </div>
-                        </Link>
-                        <Link class="d-flex flex-row gap-5 gap-sm-6 gap-md-7 text-start" id="blog-card">
-                        <div
-                            class="overflow-hidden position-relative rounded-4 mw-125px mw-md-200px order-3 order-md-0">
-                            <img src="assets/media/illustrations/landing-hero.jpg"
-                                class="img-blog img-fluid h-md-100 mt-9 mt-md-0" alt="" />
-                        </div>
-                        <div class="d-flex flex-column justify-content-between flex-grow-1">
-                            <div class="flex-grow-1">
-                                <p class="fw-bold text-myprimary fs-5 mb-1 text-uppercase"
-                                    style="letter-spacing: 0.06em;">Informasi</p>
-                                <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">Pentingnya Pendidikan untuk
-                                    Meningkatkan Kualitas Hidup Anak 🎓</p>
-                                <p class="text-gray-600 fs-4 mb-0 text-truncate-2">Pendidikan adalah fondasi utama
-                                    untuk membuka pintu masa depan yang lebih baik. Dengan pendidikan yang layak,
-                                    anak-anak dapat mengembangkan potensi, memperluas wawasan, dan membangun karakter
-                                    yang kuat. Yuk, dukung bersama agar semua anak mendapatkan hak pendidikan yang sama.
-                                </p>
-                            </div>
-                            <p class="fw-semibold text-gray-500 fs-6 mb-0 mt-8 text-uppercase"
-                                style="letter-spacing: 0.04em;">1 Mei 2025</p>
-                        </div>
-                        </Link>
                     </div>
                     <div class="text-center">
                         <Link class="btn-link-myprimary fw-bold fs-4">
@@ -655,17 +309,21 @@
                                 <span class="d-inline d-md-none">Jejak Kebaikan, Suara dari Hati 🤍</span>
                             </h1>
                             <p class="fw-medium text-white opacity-75 fs-2 mb-0 text-center text-md-start">
-                                <span class="d-none d-md-inline">Dari tangan yang memberi <br>hingga yang menerima.</span>
+                                <span class="d-none d-md-inline">Dari tangan yang memberi <br>hingga yang
+                                    menerima.</span>
                                 <span class="d-inline d-md-none">Dari tangan yang memberi hingga yang menerima.</span>
                             </p>
                         </div>
                         <div class="testimonial-cards col-12 col-md-6 position-relative overflow-hidden h-700px">
                             <div class="testimonial-scroll d-flex flex-column gap-5 gap-lg-10">
                                 <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4">
-                                    <img src="assets/media/elements/quotation_marks.png"
-                                        class="w-45px" alt="" />
+                                    <img src="assets/media/elements/quotation_marks.png" class="w-45px"
+                                        alt="" />
                                     <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                        <p class="text-dark fs-4 mb-0 fw-semibold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.</p>
+                                        <p class="text-dark fs-4 mb-0 fw-semibold">Lorem ipsum dolor sit amet,
+                                            consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                            ullamco laboris nisi ut aliquip ex ea.</p>
                                         <div class="d-flex flex-row gap-5 mt-5 align-items-center">
                                             <img src="assets/media/avatars/300-1.jpg"
                                                 class="w-50px h-50px rounded-pill" alt="" />
@@ -677,10 +335,13 @@
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4">
-                                    <img src="assets/media/elements/quotation_marks.png"
-                                        class="w-45px" alt="" />
+                                    <img src="assets/media/elements/quotation_marks.png" class="w-45px"
+                                        alt="" />
                                     <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                        <p class="text-dark fs-4 mb-0 fw-semibold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.</p>
+                                        <p class="text-dark fs-4 mb-0 fw-semibold">Lorem ipsum dolor sit amet,
+                                            consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                            ullamco laboris nisi ut aliquip ex ea.</p>
                                         <div class="d-flex flex-row gap-5 mt-5 align-items-center">
                                             <img src="assets/media/avatars/300-1.jpg"
                                                 class="w-50px h-50px rounded-pill" alt="" />
@@ -692,10 +353,13 @@
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4">
-                                    <img src="assets/media/elements/quotation_marks.png"
-                                        class="w-45px" alt="" />
+                                    <img src="assets/media/elements/quotation_marks.png" class="w-45px"
+                                        alt="" />
                                     <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                        <p class="text-dark fs-4 mb-0 fw-semibold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.</p>
+                                        <p class="text-dark fs-4 mb-0 fw-semibold">Lorem ipsum dolor sit amet,
+                                            consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                            ullamco laboris nisi ut aliquip ex ea.</p>
                                         <div class="d-flex flex-row gap-5 mt-5 align-items-center">
                                             <img src="assets/media/avatars/300-1.jpg"
                                                 class="w-50px h-50px rounded-pill" alt="" />
@@ -707,10 +371,13 @@
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4">
-                                    <img src="assets/media/elements/quotation_marks.png"
-                                        class="w-45px" alt="" />
+                                    <img src="assets/media/elements/quotation_marks.png" class="w-45px"
+                                        alt="" />
                                     <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                        <p class="text-dark fs-4 mb-0 fw-semibold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.</p>
+                                        <p class="text-dark fs-4 mb-0 fw-semibold">Lorem ipsum dolor sit amet,
+                                            consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                            ullamco laboris nisi ut aliquip ex ea.</p>
                                         <div class="d-flex flex-row gap-5 mt-5 align-items-center">
                                             <img src="assets/media/avatars/300-1.jpg"
                                                 class="w-50px h-50px rounded-pill" alt="" />
@@ -747,7 +414,8 @@
                         <img src="assets/media/elements/mockup-phone.png" class="w-75 w-sm-325px" alt="" />
 
                         <!-- Bank Account Card -->
-                        <div class="bank-card mt-10 p-10 bg-gradient-myprimary text-start w-100 w-sm-400px position-absolute z-index-1">
+                        <div
+                            class="bank-card mt-10 p-10 bg-gradient-myprimary text-start w-100 w-sm-400px position-absolute z-index-1">
                             <div class="d-flex align-items-center gap-3 mb-10">
                                 <h1 class="fw-bolder text-white lh-base fs-4x fs-md-3x mb-0">
                                     BSI
@@ -758,7 +426,8 @@
                                 </p>
                             </div>
                             <div class="d-flex align-items-center gap-3">
-                                <h3 id="bank-number" class="fw-bolder text-white opacity-100 lh-base fs-3x fs-md-2hx mb-0">
+                                <h3 id="bank-number"
+                                    class="fw-bolder text-white opacity-100 lh-base fs-3x fs-md-2hx mb-0">
                                     9508335430
                                 </h3>
                                 <i id="copy-icon" class="ri-file-copy-2-line text-white fs-1 cursor-pointer"></i>
@@ -780,37 +449,46 @@
                                 <div class="d-flex align-items-center gap-4">
                                     <img alt="Logo" src="assets/media/logos/glp-indtim-logo.png"
                                         class="logo-default h-55px" />
-                                    <p class="fw-semibold text-white fs-4 mb-0">Graduate Leadership Program <br>Indonesia Timur</p>
+                                    <p class="fw-semibold text-white fs-4 mb-0">Graduate Leadership Program
+                                        <br>Indonesia Timur</p>
                                 </div>
-                                <p class="text-white opacity-75 fs-4 mb-0">Jl. Abdullah Daeng Sirua No. 460, Batua, Kec. Manggala, Kota Makassar, Sulawesi Selatan 90233</p>
+                                <p class="text-white opacity-75 fs-4 mb-0">Jl. Abdullah Daeng Sirua No. 460, Batua,
+                                    Kec. Manggala, Kota Makassar, Sulawesi Selatan 90233</p>
                             </div>
                             <div class="col-12 col-md-6 d-flex flex-row gap-15 gap-xl-20 justify-content-md-end">
                                 <div class="d-flex flex-column gap-4">
-                                    <p class="text-white opacity-50 fs-4 mb-0 text-uppercase" style="letter-spacing: 0.08em;">Navigasi</p>
+                                    <p class="text-white opacity-50 fs-4 mb-0 text-uppercase"
+                                        style="letter-spacing: 0.08em;">Navigasi</p>
                                     <div class="d-flex flex-column gap-2">
                                         <a href="#home" class="fw-semibold text-white fs-4">Beranda</a>
-                                        <a href="#about" class="fw-semibold text-white fs-4">Tentang Kami</a>
-                                        <a href="#activities" class="fw-semibold text-white fs-4">Kegiatan Internal</a>
+                                        <a href="#about" class="fw-semibold text-white fs-4">Galeri Kami</a>
+                                        <a href="#activities" class="fw-semibold text-white fs-4">Kegiatan
+                                            Internal</a>
                                         <a href="#programs" class="fw-semibold text-white fs-4">Program Amal</a>
                                         <a href="#testimonials" class="fw-semibold text-white fs-4">Testimoni</a>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column gap-4">
-                                    <p class="text-white opacity-50 fs-4 mb-0 text-uppercase" style="letter-spacing: 0.08em;">Sosial Media</p>
+                                    <p class="text-white opacity-50 fs-4 mb-0 text-uppercase"
+                                        style="letter-spacing: 0.08em;">Sosial Media</p>
                                     <div class="d-flex flex-column gap-2">
-                                        <a href="#" target="_blank" class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
+                                        <a href="#" target="_blank"
+                                            class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
                                             <i class="ri-facebook-box-fill fs-3 text-white"></i>
                                             GLP Indtim
                                         </a>
-                                        <a href="#" target="_blank" class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
+                                        <a href="#" target="_blank"
+                                            class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
                                             <i class="ri-instagram-line fs-3 text-white"></i>
                                             @glpindtim
                                         </a>
-                                        <a href="#" target="_blank" class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
+                                        <a href="#" target="_blank"
+                                            class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
                                             <i class="ri-whatsapp-fill fs-3 text-white"></i>
                                             +62 813 4124 6332
                                         </a>
-                                        <a href="#" target="_blank" class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
+                                        <a href="#" target="_blank"
+                                            class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
                                             <i class="ri-mail-line fs-3 text-white"></i>
                                             glpindtim@gmail.com
                                         </a>
@@ -824,8 +502,10 @@
                     <div class="container d-flex flex-column flex-md-row gap-3 justify-content-between">
                         <p class="text-white opacity-50 fs-4 mb-0">2025 © GLPINDTIM, All Right Reserved</p>
                         <div class="d-flex flex-column flex-sm-row gap-1 gap-sm-5 gap-md-10">
-                            <p class="fw-semibold text-white opacity-75 fs-4 mb-0 text-uppercase" style="letter-spacing: 0.08em;">#PemimpinDariTimur</p>
-                            <p class="fw-semibold text-white opacity-75 fs-4 mb-0 text-uppercase" style="letter-spacing: 0.08em;">#DariTimurBeriDampak</p>
+                            <p class="fw-semibold text-white opacity-75 fs-4 mb-0 text-uppercase"
+                                style="letter-spacing: 0.08em;">#PemimpinDariTimur</p>
+                            <p class="fw-semibold text-white opacity-75 fs-4 mb-0 text-uppercase"
+                                style="letter-spacing: 0.08em;">#DariTimurBeriDampak</p>
                         </div>
                     </div>
                 </div>
@@ -837,7 +517,7 @@
 <script>
     import Navbar from "../../../Components/Navbar/User.vue";
     import {
-        Link
+        Link,
     } from '@inertiajs/vue3';
     import VanillaTilt from "vanilla-tilt";
     import {
@@ -851,6 +531,12 @@
             Link,
         },
 
+        props: {
+            activities: Array,
+            programs: Array,
+            blogs: Array,
+        },
+
         mounted() {
             const elements = document.querySelectorAll('.bg-gradient-myprimary');
             VanillaTilt.init(elements, {
@@ -860,46 +546,51 @@
                 "max-glare": 0.2,
             });
 
-            tns({
-                container: '.activities-slider',
-                items: 1,
-                mouseDrag: true,
-                autoplay: true,
-                autoplayTimeout: 3000,
-                controls: false,
-                autoplayButtonOutput: false,
-                responsive: {
-                    768: {
-                        items: 2
-                    },
-                    1200: {
-                        items: 3
-                    }
-                }
-            });
-
-            tns({
-                container: '.programs-slider',
-                items: 1,
-                mouseDrag: true,
-                autoplay: true,
-                autoplayTimeout: 3000,
-                controls: false,
-                autoplayButtonOutput: false,
-                responsive: {
-                    768: {
-                        items: 2
-                    },
-                    1200: {
-                        items: 3
-                    }
-                }
-            });
+            this.initSlider('.activities-slider');
+            this.initSlider('.programs-slider');
 
             document.getElementById('copy-icon').addEventListener('click', this.copyToClipboard);
         },
 
         methods: {
+            initSlider(container) {
+                const element = document.querySelector(container);
+                if (!element) return;
+
+                tns({
+                    container: container,
+                    items: 1,
+                    mouseDrag: true,
+                    autoplay: true,
+                    autoplayTimeout: 3000,
+                    controls: false,
+                    autoplayButtonOutput: false,
+                    responsive: {
+                        768: {
+                            items: 2
+                        },
+                        1200: {
+                            items: 3
+                        }
+                    }
+                });
+            },
+
+            stripTags(html) {
+                const div = document.createElement("div");
+                div.innerHTML = html;
+                return div.textContent || div.innerText || "";
+            },
+
+            formatDate(dateStr) {
+                const date = new Date(dateStr);
+                return new Intl.DateTimeFormat('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                }).format(date);
+            },
+
             copyToClipboard() {
                 const bankNumber = document.getElementById('bank-number').innerText;
 
@@ -908,7 +599,7 @@
                         icon: 'success',
                         title: 'Nomor rekening berhasil disalin!',
                         text: 'Setiap langkah kebaikan yang Anda berikan, menjadi bagian dari perjalanan bersama ✨',
-                        timer: 3000, 
+                        timer: 3000,
                         timerProgressBar: true,
                         showConfirmButton: false,
                         customClass: {
@@ -920,7 +611,7 @@
                         icon: 'error',
                         title: 'Gagal Menyalin!',
                         text: 'Silakan coba lagi.',
-                        timer: 2000, 
+                        timer: 2000,
                         timerProgressBar: true,
                         showConfirmButton: false,
                         customClass: {

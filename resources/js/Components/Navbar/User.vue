@@ -51,8 +51,8 @@
                 </div>
                 <div class="flex-equal text-end ms-4">
                     <Link href="#" class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
-                        <i class="ri-whatsapp-fill fs-2"></i>
-                        Hubungi Kami
+                        <i class="ri-gallery-fill fs-2"></i>
+                        Galeri Kami
                     </Link>
                 </div>
             </div>

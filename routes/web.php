@@ -2,11 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/', function () {
-    return \Inertia\Inertia::render('User/Home/Index');
-});
-
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard', App\Http\Controllers\Admin\DashboardController::class)->name('admin.dashboard');
@@ -19,3 +14,5 @@ Route::prefix('admin')->group(function () {
         Route::resource('/user', \App\Http\Controllers\Admin\UserController::class, ['as' => 'admin']);
     });
 });
+
+Route::get('/', \App\Http\Controllers\User\HomeController::class)->name('user.home');
