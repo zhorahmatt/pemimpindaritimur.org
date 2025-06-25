@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use App\Models\Program;
 use App\Models\Blog;
+use App\Models\Partner;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -30,10 +32,16 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
+        $partners = Partner::all();
+
+        $testimonials = Testimonial::all();
+
         return inertia('User/Home/Index', [
             'activities' => $activities,
             'programs' => $programs,
             'blogs' => $blogs,
+            'partners' => $partners,
+            'testimonials' => $testimonials,
         ]);
     }
 }

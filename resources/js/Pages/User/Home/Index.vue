@@ -160,31 +160,21 @@
                 </div>
             </section>
 
-            <!-- Supports Section -->
-            <section id="supports" class="py-20">
+            <!-- Partners Section -->
+            <section id="partners" class="py-20" v-if="partners.length > 0">
                 <div class="container text-center">
                     <p class="fw-semibold text-gray-600 fs-2 mb-12">
                         Dipercaya oleh mereka yang menyebar <span class="fw-bolder text-mydanger">cahaya harapan
                             ✨</span>
                     </p>
-                    <div class="marquee-wrapper overflow-hidden position-relative w-100">
-                        <div class="marquee-content">
-                            <img src="assets/media/logos/sample-logo1.png" class="me-12" alt="Logo 1" />
-                            <img src="assets/media/logos/sample-logo2.png" class="me-12" alt="Logo 2" />
-                            <img src="assets/media/logos/sample-logo3.png" class="me-12" alt="Logo 3" />
-                            <img src="assets/media/logos/sample-logo4.png" class="me-12" alt="Logo 4" />
-                            <img src="assets/media/logos/sample-logo5.png" class="me-12" alt="Logo 5" />
-                            <img src="assets/media/logos/sample-logo6.png" class="me-12" alt="Logo 6" />
-                            <img src="assets/media/logos/sample-logo7.png" class="me-12" alt="Logo 7" />
-
-                            <!-- Perulangan -->
-                            <img src="assets/media/logos/sample-logo1.png" class="me-12" alt="Logo 1" />
-                            <img src="assets/media/logos/sample-logo2.png" class="me-12" alt="Logo 2" />
-                            <img src="assets/media/logos/sample-logo3.png" class="me-12" alt="Logo 3" />
-                            <img src="assets/media/logos/sample-logo4.png" class="me-12" alt="Logo 4" />
-                            <img src="assets/media/logos/sample-logo5.png" class="me-12" alt="Logo 5" />
-                            <img src="assets/media/logos/sample-logo6.png" class="me-12" alt="Logo 6" />
-                            <img src="assets/media/logos/sample-logo7.png" class="me-12" alt="Logo 7" />
+                    <div class="partners-wrapper overflow-hidden position-relative w-100">
+                        <div class="partners-content">
+                            <a v-for="(partner, index) in partners" :key="index" :href="partner.link" target="_blank" rel="noopener">
+                                <img class="me-12 h-50px" :src="`/storage/${partner.logo}`" :alt="partner.name" />
+                            </a>
+                            <a v-for="(partner, index) in partners" :key="index" :href="partner.link" target="_blank" rel="noopener">
+                                <img class="me-12 h-50px" :src="`/storage/${partner.logo}`" :alt="partner.name" />
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -300,7 +290,7 @@
             </section>
 
             <!-- Testimonials Section -->
-            <section id="testimonials" class="bg-myprimary py-0">
+            <section id="testimonials" class="bg-myprimary py-0" v-if="testimonials.length > 0">
                 <div class="container d-flex flex-row justify-content-center align-items-center ">
                     <div class="row align-items-center">
                         <div class="col-12 col-md-6 mb-20 mb-md-0 mt-20 pt-20 mt-md-0 pt-md-0">
@@ -316,74 +306,34 @@
                         </div>
                         <div class="testimonial-cards col-12 col-md-6 position-relative overflow-hidden h-700px">
                             <div class="testimonial-scroll d-flex flex-column gap-5 gap-lg-10">
-                                <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4">
+                                <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4"
+                                    v-for="(testimonial, index) in testimonials" :key="index">
                                     <img src="assets/media/elements/quotation_marks.png" class="w-45px"
                                         alt="" />
                                     <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                        <p class="text-dark fs-4 mb-0 fw-semibold">Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
-                                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                            ullamco laboris nisi ut aliquip ex ea.</p>
+                                        <p class="text-dark fs-4 mb-0 fw-semibold">{{ testimonial.testimonial }}</p>
                                         <div class="d-flex flex-row gap-5 mt-5 align-items-center">
-                                            <img src="assets/media/avatars/300-1.jpg"
-                                                class="w-50px h-50px rounded-pill" alt="" />
+                                            <img :src="`/storage/${testimonial.photo}`"
+                                                class="object-fit-cover w-50px h-50px rounded-pill" alt="" />
                                             <div>
-                                                <p class="text-dark fs-4 fw-bolder mb-0">Aldi Perdana Asri</p>
-                                                <p class="text-gray-600 fs-6 mb-0">Lorem ipsum</p>
+                                                <p class="text-dark fs-4 fw-bolder mb-0">{{ testimonial.name }}</p>
+                                                <p class="text-gray-600 fs-6 mb-0">{{ testimonial.title }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4">
+                                <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4"
+                                    v-for="(testimonial, index) in testimonials" :key="index">
                                     <img src="assets/media/elements/quotation_marks.png" class="w-45px"
                                         alt="" />
                                     <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                        <p class="text-dark fs-4 mb-0 fw-semibold">Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
-                                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                            ullamco laboris nisi ut aliquip ex ea.</p>
+                                        <p class="text-dark fs-4 mb-0 fw-semibold">{{ testimonial.testimonial }}</p>
                                         <div class="d-flex flex-row gap-5 mt-5 align-items-center">
-                                            <img src="assets/media/avatars/300-1.jpg"
-                                                class="w-50px h-50px rounded-pill" alt="" />
+                                            <img :src="`/storage/${testimonial.photo}`"
+                                                class="object-fit-cover w-50px h-50px rounded-pill" alt="" />
                                             <div>
-                                                <p class="text-dark fs-4 fw-bolder mb-0">Aldi Perdana Asri</p>
-                                                <p class="text-gray-600 fs-6 mb-0">Lorem ipsum</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4">
-                                    <img src="assets/media/elements/quotation_marks.png" class="w-45px"
-                                        alt="" />
-                                    <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                        <p class="text-dark fs-4 mb-0 fw-semibold">Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
-                                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                            ullamco laboris nisi ut aliquip ex ea.</p>
-                                        <div class="d-flex flex-row gap-5 mt-5 align-items-center">
-                                            <img src="assets/media/avatars/300-1.jpg"
-                                                class="w-50px h-50px rounded-pill" alt="" />
-                                            <div>
-                                                <p class="text-dark fs-4 fw-bolder mb-0">Aldi Perdana Asri</p>
-                                                <p class="text-gray-600 fs-6 mb-0">Lorem ipsum</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4">
-                                    <img src="assets/media/elements/quotation_marks.png" class="w-45px"
-                                        alt="" />
-                                    <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                        <p class="text-dark fs-4 mb-0 fw-semibold">Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
-                                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                            ullamco laboris nisi ut aliquip ex ea.</p>
-                                        <div class="d-flex flex-row gap-5 mt-5 align-items-center">
-                                            <img src="assets/media/avatars/300-1.jpg"
-                                                class="w-50px h-50px rounded-pill" alt="" />
-                                            <div>
-                                                <p class="text-dark fs-4 fw-bolder mb-0">Aldi Perdana Asri</p>
-                                                <p class="text-gray-600 fs-6 mb-0">Lorem ipsum</p>
+                                                <p class="text-dark fs-4 fw-bolder mb-0">{{ testimonial.name }}</p>
+                                                <p class="text-gray-600 fs-6 mb-0">{{ testimonial.title }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -535,6 +485,8 @@
             activities: Array,
             programs: Array,
             blogs: Array,
+            partners: Array,
+            testimonials: Array,
         },
 
         mounted() {
