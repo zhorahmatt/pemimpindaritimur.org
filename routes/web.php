@@ -16,3 +16,5 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/', \App\Http\Controllers\User\HomeController::class)->name('user.home');
+Route::get('/blogs', \App\Http\Controllers\User\BlogController::class)->name('user.blog');
+Route::get('/blogs/{slug}', [\App\Http\Controllers\User\BlogController::class, 'show'])->name('user.blog.show');

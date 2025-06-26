@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import Navbar from "../Components/Navbar.vue";
+    import Navbar from "../Components/Navbar/Admin.vue";
     import Sidebar from '../Components/Sidebar.vue';
 
     export default {

@@ -68,33 +68,29 @@ body {
 
 [data-kt-sticky-landing-header="on"] .landing-header .menu .menu-link.active,
 [data-kt-sticky-landing-header="on"] .landing-header .menu .menu-link:hover,
-.menu-state-title-primary .menu-item .menu-link.active,
-.menu-state-title-primary .menu-item .menu-link:hover {
-    background-color: unset;
+#hero .landing-header .menu .menu-link.active,
+.landing-header .menu .menu-link:hover {
+    background-color: unset !important;
     color: var(--bs-myprimary-500) !important;
     font-weight: 600
 }
 
-.landing-header .menu .menu-link.active,
-.landing-header .menu .menu-link:hover {
-    color: #FFFFFF !important;
-    font-weight: 600
-}
-
-.btn-myicon i {
+#home #kt_landing_menu_toggle .btn-myicon i {
     color: #FFFFFFBF !important;
 }
 
-.btn-myicon:hover i {
+#home #kt_landing_menu_toggle .btn-myicon:hover i {
     color: #FFFFFF !important;
 }
 
-[data-kt-sticky-landing-header="on"] .btn-myicon i {
+[data-kt-sticky-landing-header="on"] .btn-myicon i,
+#hero .landing-header .btn-myicon i {
     color: var(--bs-gray-400) !important;
 }
 
-[data-kt-sticky-landing-header="on"] .btn-myicon:hover i {
-    color: #5462F6 !important;
+[data-kt-sticky-landing-header="on"] .btn-myicon:hover i,
+#hero .landing-header .btn-myicon:hover i {
+    color: var(--bs-myprimary-500) !important;
 }
 
 .btn-myprimary,
@@ -577,7 +573,7 @@ img.object-fit-cover {
 }
 
 .border-myprimary {
-    border-color: var(--bs-myprimary-500);
+    border-color: var(--bs-myprimary-500) !important;
 }
 
 .dropzone .dz-image img {
@@ -627,4 +623,40 @@ img.object-fit-cover {
 #testimonial-dropzone .dz-size,
 #partner-dropzone .dz-size {
     display: none !important;
+}
+
+#content-editor p,
+#content-editor li {
+    color: var(--bs-gray-700);
+}
+
+#content-editor strong,
+#content-editor h2,
+#content-editor h3,
+#content-editor h4 {
+    font-weight: 700;
+    color: var(--bs-dark);
+}
+
+#content-editor a {
+    color: var(--bs-myprimary-500);
+}
+
+#content-editor a:hover {
+    color: var(--bs-myprimary-600);
+}
+
+#content-editor h2 {
+    font-size: calc(1.4rem + 1vw) !important;
+    margin-bottom: 1rem !important;
+}
+
+#content-editor h3 {
+    font-size: calc(1.3rem + 0.8vw) !important;
+    margin-bottom: .9rem !important;
+}
+
+#content-editor h4 {
+    font-size: calc(1.2rem + 0.6vw) !important;
+    margin-bottom: .8rem !important;
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="landing-header" data-kt-sticky="true" data-kt-sticky-name="landing-header"
-        data-kt-sticky-offset="{default: '200px', lg: '300px'}">
+        data-kt-sticky-offset="{default: '400px'}">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center flex-equal">

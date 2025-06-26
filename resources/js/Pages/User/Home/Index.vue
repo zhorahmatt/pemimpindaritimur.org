@@ -1,4 +1,8 @@
 <template>
+    <Head>
+        <title>GLP INDTIM</title>
+    </Head>
+
     <main id="kt_body" class="bg-light position-relative app-blank" data-kt-name="metronic" data-bs-spy="scroll"
         data-bs-target="#kt_landing_menu">
         <div class="d-flex flex-column flex-root" id="kt_app_root">
@@ -264,7 +268,7 @@
                         <div v-for="(blog, index) in blogs" :key="index">
                             <Link href="#" class="d-flex flex-row gap-5 gap-sm-6 gap-md-7 text-start" id="blog-card">
                                 <div
-                                    class="overflow-hidden position-relative rounded-4 mw-125px mw-md-200px order-3 order-md-0">
+                                    class="overflow-hidden position-relative rounded-4 w-125px w-md-200px order-3 order-md-0 flex-shrink-0">
                                     <img :src="`/storage/${blog.image}`"
                                         class="img-blog img-fluid object-fit-cover h-md-100 mt-9 mt-md-0" alt="" />
                                 </div>
@@ -282,8 +286,9 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <Link class="btn-link-myprimary fw-bold fs-4">
-                        Lihat semua blog <i class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i>
+                        <Link href="/blogs" class="btn-link-myprimary fw-bold fs-4">
+                            Lihat semua blog 
+                            <i class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i>
                         </Link>
                     </div>
                 </div>
@@ -465,19 +470,16 @@
 
 <script>
     import Navbar from "../../../Components/Navbar/User.vue";
-    import {
-        Link,
-    } from '@inertiajs/vue3';
+    import { Head, Link } from '@inertiajs/vue3';
     import VanillaTilt from "vanilla-tilt";
-    import {
-        tns
-    } from "tiny-slider";
+    import { tns } from "tiny-slider";
     import Swal from 'sweetalert2';
 
     export default {
         components: {
-            Navbar,
+            Head,
             Link,
+            Navbar,
         },
 
         props: {
