@@ -374,22 +374,20 @@
                             class="bank-card mt-10 p-10 bg-gradient-myprimary text-start w-100 w-sm-400px position-absolute z-index-1">
                             <div class="d-flex align-items-center gap-3 mb-10">
                                 <h1 class="fw-bolder text-white lh-base fs-4x fs-md-3x mb-0">
-                                    BSI
+                                    {{ profile.bank_name }}
                                 </h1>
                                 <p class="custom-flex-text text-white opacity-75 fs-8 mt-1 text-uppercase mb-0"
-                                    style="letter-spacing: 0.08em;">
-                                    Bank Syariah <br>Indonesia
-                                </p>
+                                    style="letter-spacing: 0.08em;" v-html="formattedBankName()"></p>
                             </div>
                             <div class="d-flex align-items-center gap-3">
                                 <h3 id="bank-number"
                                     class="fw-bolder text-white opacity-100 lh-base fs-3x fs-md-2hx mb-0">
-                                    9508335430
+                                    {{ profile.bank_number }}
                                 </h3>
                                 <i id="copy-icon" class="ri-file-copy-2-line text-white fs-1 cursor-pointer"></i>
                             </div>
                             <p class="text-white opacity-75 fs-4 mb-0">
-                                a.n Aldi Perdana Asri
+                                a.n {{ profile.bank_account }}
                             </p>
                         </div>
                     </div>
@@ -403,7 +401,7 @@
                         <div class="row g-10">
                             <div class="col-12 col-md-6 d-flex flex-column gap-5 justify-content-between">
                                 <div class="d-flex align-items-center gap-4">
-                                    <img alt="Logo" src="/assets/media/logos/glp-indtim-logo.png"
+                                    <img alt="Logo" :src="`/storage/${profile.logo}`"
                                         class="logo-default h-55px" />
                                     <p class="fw-semibold text-white fs-4 mb-0">Graduate Leadership Program
                                         <br>Indonesia Timur</p>
@@ -554,6 +552,20 @@
                     month: 'long',
                     year: 'numeric',
                 }).format(date);
+            },
+
+            formattedBankName() {
+                const map = {
+                    BCA: 'Bank Central<br>Asia',
+                    BRI: 'Bank Rakyat<br>Indonesia',
+                    BNI: 'Bank Negara<br>Indonesia',
+                    BTN: 'Bank Tabungan<br>Negara',
+                    BSI: 'Bank Syariah<br>Indonesia',
+                    Mandiri: ' ',
+                };
+
+                const name = this.profile.bank_name;
+                return map[name] || this.profile.bank_name;
             },
 
             copyToClipboard() {

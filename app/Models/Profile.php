@@ -11,10 +11,14 @@ class Profile extends Model
 
     protected $fillable = [
         'name',
+        'logo',
         'tagline',
         'year',
         'members',
         'address',
+        'bank_name',
+        'bank_number',
+        'bank_account',
         'facebook',
         'instagram',
         'whatsapp',

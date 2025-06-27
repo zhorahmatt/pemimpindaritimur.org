@@ -35,6 +35,23 @@
                                 </div>
                                 <div class="col-md-8 col-xl-9 card-body px-8 py-7">
                                     <div class="mb-5 fv-row">
+                                        <label class="form-label fs-6">Logo Yayasan</label>
+                                        <div id="logo-dropzone" :key="dropzoneKey"
+                                            class="dropzone border-dashed border-myprimary rounded p-5 text-center">
+                                            <div class="dz-message needsclick flex-column text-center gap-5 p-5">
+                                                <i class="ri-image-add-line text-myprimary fs-3x"></i>
+                                                <div>
+                                                    <h3 class="fs-5 fw-bold text-gray-900 mb-2">Jatuhkan file di sini /
+                                                        klik untuk mengunggah.</h3>
+                                                    <span class="fs-7 fw-semibold text-gray-400">Maksimal 10 MB</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div v-if="errors.logo" class="text-mydanger mt-2">
+                                            {{ errors . logo }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-5 fv-row">
                                         <label class="required form-label fs-6">Nama Yayasan</label>
                                         <input type="text" class="form-control fs-5" required placeholder="Masukkan nama yayasan disini..."
                                             v-model="form.name" :class="{ 'is-invalid': errors.name }">
@@ -76,6 +93,50 @@
                                         </textarea>
                                         <div v-if="errors.address" class="text-mydanger mt-2">
                                             {{ errors . address }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card border border-gray-300 my-6">
+                            <div class="row align-items-start m-0">
+                                <div class="col-md-4 col-xl-3 card-header px-8 py-7 border-0 pb-0">
+                                    <div class="card-title d-flex flex-column m-0">
+                                        <h2>Rekening Donasi</h2>
+                                        <p class="fs-5 text-gray-600 mt-3 mb-0 fw-normal">Mengelola informasi rekening untuk donasi
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-xl-9 card-body px-8 py-7">
+                                    <div class="mb-5 fv-row">
+                                        <label class="required form-label fs-6">Nama Bank</label>
+                                        <select class="form-select fs-5" required v-model="form.bank_name"
+                                            :class="{ 'is-invalid': errors.bank_name }">
+                                            <option value="BCA">BCA</option>
+                                            <option value="BRI">BRI</option>
+                                            <option value="BNI">BNI</option>
+                                            <option value="Mandiri">Mandiri</option>
+                                            <option value="BTN">BTN</option>
+                                            <option value="BSI">BSI</option>
+                                        </select>
+                                        <div v-if="errors.bank_name" class="text-mydanger mt-2">
+                                            {{ errors . bank_name }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-5 fv-row">
+                                        <label class="required form-label fs-6">Nomor Rekening</label>
+                                        <input type="text" class="form-control fs-5" required placeholder="Masukkan nomor rekening disini..."
+                                            v-model="form.bank_number" :class="{ 'is-invalid': errors.bank_number }">
+                                        <div v-if="errors.bank_number" class="text-mydanger mt-2">
+                                            {{ errors . bank_number }}
+                                        </div>
+                                    </div>
+                                    <div class="fv-row">
+                                        <label class="required form-label fs-6">Nama Pemilik</label>
+                                        <input type="text" class="form-control fs-5" required placeholder="Masukkan nama pemilik disini..."
+                                            v-model="form.bank_account" :class="{ 'is-invalid': errors.bank_account }">
+                                        <div v-if="errors.bank_account" class="text-mydanger mt-2">
+                                            {{ errors . bank_account }}
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +229,8 @@
 <script>
     import LayoutAdmin from '../../../Layouts/Admin.vue';
     import { Head, Link, router } from '@inertiajs/vue3';
-    import { reactive } from 'vue';
+    import { reactive, onMounted } from 'vue';
+    import Dropzone from 'dropzone';
     import Swal from 'sweetalert2';
 
     export default {
@@ -187,14 +249,50 @@
         setup(props) {
             const form = reactive({
                 name: props.profile.name,
+                logo: null,
                 tagline: props.profile.tagline,
                 year: props.profile.year,
                 members: props.profile.members,
                 address: props.profile.address,
+                bank_name: props.profile.bank_name,
+                bank_number: props.profile.bank_number,
+                bank_account: props.profile.bank_account,
                 facebook: props.profile.facebook,
                 instagram: props.profile.instagram,
                 whatsapp: props.profile.whatsapp,
                 email: props.profile.email,
+            });
+
+            onMounted(() => {
+                const dz = new Dropzone('#logo-dropzone', {
+                    url: '/', 
+                    paramName: 'logo',
+                    maxFiles: 1,
+                    maxFilesize: 10,
+                    acceptedFiles: 'image/jpeg,image/png',
+                    autoProcessQueue: false,
+                    addRemoveLinks: true,
+                    dictRemoveFile: 'Hapus',
+                    init: function () {
+                        this.on('addedfile', function (file) {
+                            form.logo = file;
+                        });
+                        this.on('removedfile', function () {
+                            form.logo = null;
+                        });
+
+                        if (props.profile.logo) {
+                            const mockFile = {
+                                name: props.profile.image_name ?? 'Logo Yayasan',
+                                size: props.profile.image_size ?? 12345
+                            };
+                            this.emit('addedfile', mockFile);
+                            this.emit('thumbnail', mockFile, `/storage/${props.profile.logo}`);
+                            this.emit('complete', mockFile);
+                            mockFile.previewElement.classList.add('dz-success', 'dz-complete');
+                        }
+                    },
+                });
             });
 
             const submit = () => {
@@ -204,6 +302,23 @@
                     submitBtn.setAttribute('disabled', true);
                 }
 
+                const payload = new FormData();
+                payload.append('name', form.name);
+                payload.append('tagline', form.tagline);
+                payload.append('year', form.year);
+                payload.append('members', form.members);
+                payload.append('address', form.address);
+                payload.append('bank_name', form.bank_name);
+                payload.append('bank_number', form.bank_number);
+                payload.append('bank_account', form.bank_account);
+                payload.append('facebook', form.facebook);
+                payload.append('instagram', form.instagram);
+                payload.append('whatsapp', form.whatsapp);
+                payload.append('email', form.email);
+                if (form.logo && (form.logo instanceof File || form.logo instanceof Blob)) {
+                    payload.append('logo', form.logo);
+                }
+
                 const cleanup = () => {
                     if (submitBtn) {
                         submitBtn.removeAttribute('data-kt-indicator');
@@ -211,17 +326,8 @@
                     }
                 };
 
-                router.put(`/admin/profile/${props.profile.id}`, {
-                    name: form.name,
-                    tagline: form.tagline,
-                    year: form.year,
-                    members: form.members,
-                    address: form.address,
-                    facebook: form.facebook,
-                    instagram: form.instagram,
-                    whatsapp: form.whatsapp,
-                    email: form.email,
-                }, {
+                payload.append('_method', 'PUT');
+                router.post(`/admin/profile/${props.profile.id}`, payload, {
                     onSuccess: () => {
                         Swal.fire({
                             icon: 'success',

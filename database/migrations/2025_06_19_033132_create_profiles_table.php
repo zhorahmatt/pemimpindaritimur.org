@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('logo')->nullable();
             $table->string('tagline');
             $table->integer('year');
             $table->integer('members');
             $table->text('address');
+            $table->string('bank_name');
+            $table->string('bank_number');
+            $table->string('bank_account');
             $table->string('facebook');
             $table->string('instagram');
             $table->string('whatsapp');
