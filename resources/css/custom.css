@@ -69,7 +69,9 @@ body {
 [data-kt-sticky-landing-header="on"] .landing-header .menu .menu-link.active,
 [data-kt-sticky-landing-header="on"] .landing-header .menu .menu-link:hover,
 #hero .landing-header .menu .menu-link.active,
-.landing-header .menu .menu-link:hover {
+.landing-header .menu .menu-link:hover,
+.menu-state-title-primary .menu-item .menu-link.active,
+.menu-state-title-primary .menu-item .menu-link:hover {
     background-color: unset !important;
     color: var(--bs-myprimary-500) !important;
     font-weight: 600
@@ -634,7 +636,7 @@ img.object-fit-cover {
 #content-editor h2,
 #content-editor h3,
 #content-editor h4 {
-    font-weight: 700;
+    font-weight: 600;
     color: var(--bs-dark);
 }
 
@@ -659,4 +661,18 @@ img.object-fit-cover {
 #content-editor h4 {
     font-size: calc(1.2rem + 0.6vw) !important;
     margin-bottom: .8rem !important;
+}
+
+@media (min-width: 1200px) {
+    #content-editor h2 {
+        font-size: 2.25rem !important;
+    }
+
+    #content-editor h3 {
+        font-size: 2rem !important;
+    }
+
+    #content-editor h4 {
+        font-size: 1.75rem !important;
+    }
 }

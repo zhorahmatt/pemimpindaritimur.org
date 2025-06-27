@@ -10,12 +10,12 @@
                 <!-- Hero Section -->
                 <section id="hero" class="bg-white border-bottom border-gray-200 py-0">
                     <Navbar />
-                    <div class="container d-flex flex-column align-items-center text-center pt-10 pb-20">
+                    <div class="container d-flex flex-column align-items-center text-center pt-10 pb-10 pb-lg-20">
                         <p class="fw-semibold text-myprimary fs-4 text-uppercase mb-3 px-4 py-1 d-inline-block rounded-pill bg-myprimary-light"
                             style="letter-spacing: 0.08em;">
                             #CeritaDariTimur
                         </p>
-                        <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
+                        <h1 class="fw-bolder text-dark lh-base fs-3x mb-3">
                             Catatan Kebaikan ✍️
                         </h1>
                         <p class="fw-semibold text-gray-600 fs-2 mb-8">
@@ -34,7 +34,7 @@
                 </section>
 
                 <!-- Blogs Section -->
-                <section id="blogs" class="py-20">
+                <section id="blogs" class="py-10 py-lg-20">
                     <div class="container">
                         <div v-if="blogs.data.length === 0" class="text-center">
                             <img src="/assets/media/illustrations/empty.png"
@@ -75,7 +75,7 @@
                         <div class="row g-10">
                             <div class="col-12 col-md-6 d-flex flex-column gap-5 justify-content-between">
                                 <div class="d-flex align-items-center gap-4">
-                                    <img alt="Logo" src="assets/media/logos/glp-indtim-logo.png"
+                                    <img alt="Logo" src="/assets/media/logos/glp-indtim-logo.png"
                                         class="logo-default h-55px" />
                                     <p class="fw-semibold text-white fs-4 mb-0">Graduate Leadership Program
                                         <br>Indonesia Timur</p>

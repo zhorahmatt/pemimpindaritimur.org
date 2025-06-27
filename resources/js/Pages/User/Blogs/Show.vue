@@ -13,7 +13,7 @@
                     <div class="container pt-8">
                         <img :src="`/storage/${blog.image}`"
                             class="img-fluid object-fit-cover rounded-4 w-100 mh-500px" alt="Gambar Blog" />
-                        <h1 class="fw-bolder text-dark text-center lh-base fs-3x pt-8 pt-md-10 px-md-10 px-lg-20 mb-0">
+                        <h1 class="fw-bold text-dark text-center lh-base fs-3x pt-8 pt-md-10 px-md-10 px-lg-20 mb-0">
                             {{ blog.title }}
                         </h1>
                         <div class="d-flex justify-content-center gap-4 pt-5 px-md-10 px-lg-20">
@@ -52,7 +52,7 @@
                         <div class="row g-10">
                             <div class="col-12 col-md-6 d-flex flex-column gap-5 justify-content-between">
                                 <div class="d-flex align-items-center gap-4">
-                                    <img alt="Logo" src="assets/media/logos/glp-indtim-logo.png"
+                                    <img alt="Logo" src="/assets/media/logos/glp-indtim-logo.png"
                                         class="logo-default h-55px" />
                                     <p class="fw-semibold text-white fs-4 mb-0">Graduate Leadership Program
                                         <br>Indonesia Timur</p>
@@ -147,12 +147,6 @@
         },
 
         methods: {
-            stripTags(html) {
-                const div = document.createElement("div");
-                div.innerHTML = html;
-                return div.textContent || div.innerText || "";
-            },
-
             formatDate(dateStr) {
                 const date = new Date(dateStr);
                 return new Intl.DateTimeFormat('id-ID', {
@@ -202,21 +196,6 @@
                 return `${prefix} ${part1} ${part2} ${part3}`;
             }
         },
-
-        setup() {
-            const search = ref('' || (new URL(document.location)).searchParams.get('q'));
-
-            const handleSearch = () => {
-                router.get('/blogs', {
-                    q: search.value,
-                });
-            }
-
-            return {
-                search,
-                handleSearch
-            }
-        }
     };
 </script>
 

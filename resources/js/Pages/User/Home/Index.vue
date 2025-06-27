@@ -134,7 +134,7 @@
 
                     <div class="activities-slider mb-10">
                         <div v-for="(activity, index) in activities" :key="index">
-                            <Link class="d-flex flex-column gap-4 text-start m-5" id="activity-card">
+                            <Link :href="`/activities/${activity.slug}`" class="d-flex flex-column gap-4 text-start m-5" id="activity-card">
                                 <div class="ribbon ribbon-start ribbon-clip">
                                     <div class="ribbon-label fs-6">
                                         {{ activity.phase }}
@@ -159,7 +159,7 @@
                             </Link>
                         </div>
                     </div>
-                    <Link class="btn-link-myprimary fw-bold fs-4">Lihat semua kegiatan internal <i
+                    <Link href="/activities" class="btn-link-myprimary fw-bold fs-4">Lihat semua kegiatan internal <i
                         class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i></Link>
                 </div>
             </section>
@@ -201,7 +201,7 @@
 
                     <div class="programs-slider mb-10">
                         <div v-for="(program, index) in programs" :key="index">
-                            <Link class="d-flex flex-column gap-4 text-start m-5" id="program-card">
+                            <Link :href="`/programs/${program.slug}`" class="d-flex flex-column gap-4 text-start m-5" id="program-card">
                                 <div class="ribbon ribbon-start ribbon-clip">
                                     <div class="ribbon-label fs-6">
                                         {{ program.phase }}
@@ -226,8 +226,9 @@
                             </Link>
                         </div>
                     </div>
-                    <Link class="btn-link-myprimary fw-bold fs-4">Lihat semua program amal <i
-                        class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i></Link>
+                    <Link href="/programs" class="btn-link-myprimary fw-bold fs-4">
+                        Lihat semua program amal 
+                        <i class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i></Link>
                 </div>
             </section>
 
@@ -266,7 +267,7 @@
                     </p>
                     <div class="d-flex flex-column gap-10 mb-15">
                         <div v-for="(blog, index) in blogs" :key="index">
-                            <Link href="#" class="d-flex flex-row gap-5 gap-sm-6 gap-md-7 text-start" id="blog-card">
+                            <Link :href="`/blogs/${blog.slug}`" class="d-flex flex-row gap-5 gap-sm-6 gap-md-7 text-start" id="blog-card">
                                 <div
                                     class="overflow-hidden position-relative rounded-4 w-125px w-md-200px order-3 order-md-0 flex-shrink-0">
                                     <img :src="`/storage/${blog.image}`"
@@ -313,7 +314,7 @@
                             <div class="testimonial-scroll d-flex flex-column gap-5 gap-lg-10">
                                 <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4"
                                     v-for="(testimonial, index) in testimonials" :key="index">
-                                    <img src="assets/media/elements/quotation_marks.png" class="w-45px"
+                                    <img src="/assets/media/elements/quotation_marks.png" class="w-45px"
                                         alt="" />
                                     <div class="d-flex flex-column justify-content-between flex-grow-1">
                                         <p class="text-dark fs-4 mb-0 fw-semibold">{{ testimonial.testimonial }}</p>
@@ -329,7 +330,7 @@
                                 </div>
                                 <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4"
                                     v-for="(testimonial, index) in testimonials" :key="index">
-                                    <img src="assets/media/elements/quotation_marks.png" class="w-45px"
+                                    <img src="/assets/media/elements/quotation_marks.png" class="w-45px"
                                         alt="" />
                                     <div class="d-flex flex-column justify-content-between flex-grow-1">
                                         <p class="text-dark fs-4 mb-0 fw-semibold">{{ testimonial.testimonial }}</p>
@@ -366,7 +367,7 @@
 
 
                     <div class="position-relative d-flex justify-content-center mt-15">
-                        <img src="assets/media/elements/mockup-phone.png" class="w-75 w-sm-325px" alt="" />
+                        <img src="/assets/media/elements/mockup-phone.png" class="w-75 w-sm-325px" alt="" />
 
                         <!-- Bank Account Card -->
                         <div
@@ -402,7 +403,7 @@
                         <div class="row g-10">
                             <div class="col-12 col-md-6 d-flex flex-column gap-5 justify-content-between">
                                 <div class="d-flex align-items-center gap-4">
-                                    <img alt="Logo" src="assets/media/logos/glp-indtim-logo.png"
+                                    <img alt="Logo" src="/assets/media/logos/glp-indtim-logo.png"
                                         class="logo-default h-55px" />
                                     <p class="fw-semibold text-white fs-4 mb-0">Graduate Leadership Program
                                         <br>Indonesia Timur</p>

@@ -16,5 +16,9 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/', \App\Http\Controllers\User\HomeController::class)->name('user.home');
+Route::get('/activities', \App\Http\Controllers\User\ActivityController::class)->name('user.activity');
+Route::get('/activities/{slug}', [\App\Http\Controllers\User\ActivityController::class, 'show'])->name('user.activity.show');
+Route::get('/programs', \App\Http\Controllers\User\ProgramController::class)->name('user.program');
+Route::get('/programs/{slug}', [\App\Http\Controllers\User\ProgramController::class, 'show'])->name('user.program.show');
 Route::get('/blogs', \App\Http\Controllers\User\BlogController::class)->name('user.blog');
 Route::get('/blogs/{slug}', [\App\Http\Controllers\User\BlogController::class, 'show'])->name('user.blog.show');
