@@ -116,6 +116,20 @@
                             Indonesia
                         </h3>
                     </div>
+
+                    <div v-for="(program, index) in programs" :key="index">
+                        <a href="#" class="d-block overlay position-relative"
+                            @click.prevent="openLightbox(`/storage/${program.image}`)">
+                            <img :src="`/storage/${program.image}`" :alt="program.title"
+                                class="overlay-wrapper rounded-4 mh-175px" />
+                            <div class="overlay-layer position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-25 rounded-4">
+                                <i class="ri-eye-fill text-white fs-3x"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                    <FsLightbox :toggler="lightboxToggler" :slide="currentIndex" :sources="lightboxSources" />
+
                 </div>
             </section>
 
@@ -147,7 +161,7 @@
                                             }"
                                         ></span>
                                     </div>
-                                    <div class="overflow-hidden position-relative rounded-4 mh-300px">
+                                    <div class="overflow-hidden position-relative rounded-4 ratio ratio-4x3">
                                         <img :src="`/storage/${activity.image}`" class="img-fluid object-fit-cover mw-100"
                                             alt="Gambar Kegiatan Internal" />
                                     </div>
@@ -214,7 +228,7 @@
                                             }"
                                         ></span>
                                     </div>
-                                    <div class="overflow-hidden position-relative rounded-4 mh-300px">
+                                    <div class="overflow-hidden position-relative rounded-4 ratio ratio-4x3">
                                         <img :src="`/storage/${program.image}`" class="img-fluid object-fit-cover mw-100"
                                             alt="Gambar Program Amal" />
                                     </div>
@@ -271,7 +285,7 @@
                                 <div
                                     class="overflow-hidden position-relative rounded-4 w-125px w-md-200px order-3 order-md-0 flex-shrink-0">
                                     <img :src="`/storage/${blog.image}`"
-                                        class="img-blog img-fluid object-fit-cover h-md-100 mt-9 mt-md-0" alt="" />
+                                        class="img-blog img-fluid object-fit-cover h-md-100 mt-9 mt-md-0 ratio ratio-4x3" alt="" />
                                 </div>
                                 <div class="d-flex flex-column justify-content-between flex-grow-1">
                                     <div class="flex-grow-1">
@@ -381,7 +395,7 @@
                             </div>
                             <div class="d-flex align-items-center gap-3">
                                 <h3 id="bank-number"
-                                    class="fw-bolder text-white opacity-100 lh-base fs-3x fs-md-2hx mb-0">
+                                    class="fw-bolder text-white opacity-100 lh-base fs-3x fs-md-2hx mb-0 text-truncate">
                                     {{ profile.bank_number }}
                                 </h3>
                                 <i id="copy-icon" class="ri-file-copy-2-line text-white fs-1 cursor-pointer"></i>
@@ -473,12 +487,14 @@
     import VanillaTilt from "vanilla-tilt";
     import { tns } from "tiny-slider";
     import Swal from 'sweetalert2';
+    import FsLightbox from "fslightbox-vue";
 
     export default {
         components: {
             Head,
             Link,
             Navbar,
+            FsLightbox
         },
 
         props: {
@@ -507,6 +523,13 @@
             document.getElementById('copy-icon').addEventListener('click', this.copyToClipboard);
         },
 
+        data() {
+            return {
+                lightboxToggler: false,
+                lightboxSources: [],
+            };
+        },
+
         methods: {
             formatTagline(text) {
                 const parts = text.match(/[A-Z][a-z]+|#[A-Z][a-z]+/g);
@@ -514,6 +537,12 @@
 
                 const lastWord = parts.pop();
                 return parts.join('') + '<br>' + lastWord;
+            },
+
+            openLightbox(clickedImageUrl) {
+                this.lightboxSources = this.programs.map(p => `/storage/${p.image}`);
+                this.currentIndex = this.lightboxSources.indexOf(clickedImageUrl) + 1;
+                this.lightboxToggler = !this.lightboxToggler;
             },
 
             initSlider(container) {

@@ -48,7 +48,7 @@
                                     <div
                                         class="overflow-hidden position-relative rounded-4 w-125px w-md-200px order-3 order-md-0 flex-shrink-0">
                                         <img :src="`/storage/${blog.image}`"
-                                            class="img-blog img-fluid object-fit-cover h-md-100 mt-9 mt-md-0" alt="" />
+                                            class="img-blog img-fluid object-fit-cover h-md-100 mt-9 mt-md-0 ratio ratio-4x3" alt="" />
                                     </div>
                                     <div class="d-flex flex-column justify-content-between flex-grow-1">
                                         <div class="flex-grow-1">

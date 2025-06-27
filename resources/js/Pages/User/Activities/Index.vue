@@ -55,7 +55,7 @@
                                                 }"
                                             ></span>
                                         </div>
-                                        <div class="overflow-hidden position-relative rounded-4 mh-300px">
+                                        <div class="overflow-hidden position-relative rounded-4 mh-300px ratio ratio-4x3">
                                             <img :src="`/storage/${activity.image}`" class="img-fluid object-fit-cover mw-100"
                                                 alt="Gambar Kegiatan Internal" />
                                         </div>
