@@ -41,7 +41,7 @@ jobs:
         if [ "${{ github.event.inputs.branch_filters }}" != "" ]; then
           FILTERS='${{ github.event.inputs.branch_filters }}'
         else
-          FILTERS='{"exclude": ["main", "master"], "include_patterns": [".*"], "exclude_patterns": []}'
+          FILTERS='{"exclude": ["main", "master"]}'
         fi
         echo "filters=$FILTERS" >> $GITHUB_OUTPUT
         echo "dry_run=${{ github.event.inputs.dry_run || 'false' }}" >> $GITHUB_OUTPUT
