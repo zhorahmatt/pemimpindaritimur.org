@@ -122,4 +122,4 @@ jobs:
         echo "❌ Conflicts: $CONFLICT_COUNT"
         echo "📋 Up to date: $UP_TO_DATE_COUNT"
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
