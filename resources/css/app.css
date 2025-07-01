@@ -1,1 +1,5 @@
 @import './custom.css';
+
+html {
+    color-scheme: light !important;
+}

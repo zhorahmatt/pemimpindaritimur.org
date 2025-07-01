@@ -350,7 +350,7 @@ body {
 }
 
 .ribbon.ribbon-start .ribbon-label {
-    top: 8% !important;
+    top: 6% !important;
     transform: translateX(-5px) !important;
 }
 
@@ -622,6 +622,7 @@ img.object-fit-cover {
     background-color: var(--bs-myprimary-500) !important;
 }
 
+#gallery-dropzone .dz-size,
 #testimonial-dropzone .dz-size,
 #partner-dropzone .dz-size {
     display: none !important;
@@ -675,4 +676,27 @@ img.object-fit-cover {
     #content-editor h4 {
         font-size: 1.75rem !important;
     }
+}
+
+.masonry-gallery {
+    column-count: 4;
+    column-gap: 1rem;
+}
+
+@media (max-width: 992px) {
+    .masonry-gallery {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 576px) {
+    .masonry-gallery {
+        column-count: 2;
+    }
+}
+
+.masonry-item {
+    width: 100%;
+    margin-bottom: 1rem;
+    break-inside: avoid;
 }

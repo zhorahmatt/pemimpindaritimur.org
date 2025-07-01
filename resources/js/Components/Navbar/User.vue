@@ -2,18 +2,18 @@
     <div class="landing-header" data-kt-sticky="true" data-kt-sticky-name="landing-header"
         data-kt-sticky-offset="{default: '400px'}">
         <div class="container">
-            <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center justify-content-between gap-4">
                 <div class="d-flex align-items-center flex-equal">
                     <button class="btn btn-icon btn-myicon ms-n3 me-3 d-flex d-lg-none" id="kt_landing_menu_toggle">
                         <i class="ri-menu-line fs-1"></i>
                     </button>
                     <a v-if="$page.url === '/'" href="#home" data-kt-scroll-toggle="true">
-                        <img alt="Logo" src="/assets/media/logos/glp-indtim-logo.png"
-                            class="logo-default d-none d-lg-block h-35px h-lg-55px" />
+                        <img alt="Logo" :src="`/storage/${profile.logo}`"
+                            class="logo-default d-none d-lg-block h-30px h-lg-45px" />
                     </a>
                     <Link v-else href="/">
-                        <img alt="Logo" src="/assets/media/logos/glp-indtim-logo.png"
-                            class="logo-default d-none d-lg-block h-35px h-lg-55px" />
+                        <img alt="Logo" :src="`/storage/${profile.logo}`"
+                            class="logo-default d-none d-lg-block h-30px h-lg-45px" />
                     </Link>
                 </div>
                 <div class="d-lg-block" id="kt_header_nav_wrapper">
@@ -63,8 +63,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex-equal text-end ms-4">
-                    <Link href="#"
+                <div class="flex-equal text-end">
+                    <Link href="/galleries"
                         class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
                         <i class="ri-gallery-fill fs-2"></i>
                         Galeri Kami
@@ -85,10 +85,33 @@
             Link,
         },
 
+        props: {
+            profile: Object
+        },
+
+        mounted() {
+            this.initDrawer();
+        },
+
         methods: {
+            initDrawer() {
+                if (window.KTDrawer) {
+                    window.KTDrawer.createInstances();
+                }
+            },
+
+            resetDrawer() {
+                const drawerElement = document.querySelector('[data-kt-drawer="on"]');
+                if (drawerElement) {
+                    drawerElement.setAttribute('data-kt-drawer', 'off');
+                }
+            },
+
             goToSection(sectionId) {
                 this.$inertia.visit('/', {
                     onFinish: () => {
+                        this.resetDrawer();
+                        this.initDrawer();
                         setTimeout(() => {
                             const el = document.getElementById(sectionId);
                             if (el) {
@@ -96,6 +119,15 @@
                             }
                         }, 100);
                     }
+                });
+            }
+        },
+
+        watch: {
+            '$page.url'(newVal, oldVal) {
+                this.$nextTick(() => {
+                    this.resetDrawer();
+                    this.initDrawer();
                 });
             }
         }

@@ -13,7 +13,9 @@ class ProfileController extends Controller
     {
         $profile = Profile::find(1);
         $profile->image_name = basename($profile->logo);
-        $profile->image_size = Storage::disk('public')->size($profile->logo);
+        $profile->image_size = ($profile->logo && Storage::disk('public')->exists($profile->logo))
+            ? Storage::disk('public')->size($profile->logo)
+            : null;
 
         return inertia('Admin/Profile/Index', [
             'profile' => $profile,
