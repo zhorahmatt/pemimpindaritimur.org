@@ -1,0 +1,125 @@
+name: Smart Auto-merge to All Branches
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (show what would be merged without doing it)'
+        type: boolean
+        default: false
+      branch_filters:
+        description: 'JSON config for branch filtering'
+        required: false
+        default: '{"exclude": ["main", "master"], "include_patterns": [".*"], "exclude_patterns": []}'
+jobs:
+  smart-auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Configure Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    - name: Parse branch filters
+      id: filters
+      run: |
+        # Default filters if not provided
+        FILTERS='${{ github.event.inputs.branch_filters }}'
+        if [ -z "$FILTERS" ]; then
+          FILTERS='{"exclude": ["main", "master"], "include_patterns": [".*"], "exclude_patterns": []}'
+        fi
+        echo "filters=$FILTERS" >> $GITHUB_OUTPUT
+
+    - name: Discover and filter branches
+      id: branches
+      run: |
+        # Get all remote branches
+        ALL_BRANCHES=$(git branch -r | grep -v 'HEAD' | sed 's/origin\///' | xargs)
+
+        echo "🔍 All branches found: $ALL_BRANCHES"
+
+        # Parse JSON filters (simplified - in production you might want to use jq)
+        FILTERS='${{ steps.filters.outputs.filters }}'
+
+        FILTERED_BRANCHES=""
+
+        # This part automatically skips main/master
+        for branch in $ALL_BRANCHES; do
+          branch=$(echo "$branch" | xargs)
+
+          # Skip main/master by default
+          if [[ "$branch" == "main" || "$branch" == "master" ]]; then
+            echo "⏭️  Skipping main branch: $branch"
+            continue
+          fi
+
+          # Skip temporary/archive branches
+          if [[ "$branch" =~ ^(temp|archive|backup)/ ]]; then
+            echo "⏭️  Skipping temporary branch: $branch"
+            continue
+          fi
+
+          # Add to filtered list
+          FILTERED_BRANCHES="$FILTERED_BRANCHES $branch"
+        done
+
+        echo "target_branches=$FILTERED_BRANCHES" >> $GITHUB_OUTPUT
+        echo "🎯 Target branches: $FILTERED_BRANCHES"
+
+    - name: Execute merges
+      run: |
+        TARGET_BRANCHES="${{ steps.branches.outputs.target_branches }}"
+        DRY_RUN="${{ github.event.inputs.dry_run || 'false' }}"
+
+        if [ "$DRY_RUN" = "true" ]; then
+          echo "🧪 DRY RUN MODE - No actual merges will be performed"
+        fi
+
+        SUCCESS_COUNT=0
+        CONFLICT_COUNT=0
+        UP_TO_DATE_COUNT=0
+
+        for branch in $TARGET_BRANCHES; do
+          if [ -z "$branch" ]; then continue; fi
+
+          echo "\n🔄 Processing: $branch"
+
+          git checkout "$branch"
+          git pull origin "$branch"
+
+          # Check if already up to date
+          if git merge-base --is-ancestor main HEAD; then
+            echo "✅ $branch is already up to date"
+            UP_TO_DATE_COUNT=$((UP_TO_DATE_COUNT + 1))
+            continue
+          fi
+
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "🧪 Would merge main into $branch"
+            continue
+          fi
+
+          # Attempt merge
+          if git merge main --no-edit; then
+            git push origin "$branch"
+            echo "✅ Merged main → $branch"
+            SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+          else
+            echo "❌ Conflict in $branch"
+            git merge --abort
+            CONFLICT_COUNT=$((CONFLICT_COUNT + 1))
+          fi
+        done
+
+        echo "\n📊 SUMMARY:"
+        echo "✅ Successful: $SUCCESS_COUNT"
+        echo "❌ Conflicts: $CONFLICT_COUNT"
+        echo "📋 Up to date: $UP_TO_DATE_COUNT"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
