@@ -49,15 +49,26 @@ jobs:
     - name: Discover and filter branches
       id: branches
       run: |
-        # Get all remote branches
-        git fetch --all
-        ALL_BRANCHES=$(git branch -r | grep -v 'HEAD' | sed 's/origin\//' | tr '\n' ' ')
+        # Fetch all branches explicitly
+        git fetch origin
+        git remote update origin --prune
+        
+        # Get all remote branches using ls-remote (more reliable)
+        ALL_BRANCHES=$(git ls-remote --heads origin | awk '{print $2}' | sed 's|refs/heads/||' | tr '\n' ' ')
         echo "All remote branches: $ALL_BRANCHES"
         echo "Number of branches found: $(echo $ALL_BRANCHES | wc -w)"
 
+        # Alternative method if ls-remote doesn't work
+        if [ -z "$ALL_BRANCHES" ]; then
+          echo "Trying alternative method..."
+          git fetch --all --prune
+          ALL_BRANCHES=$(git branch -r | grep -v 'HEAD' | sed 's/origin\///' | sed 's/^[[:space:]]*//' | tr '\n' ' ')
+          echo "Alternative method found: $ALL_BRANCHES"
+          echo "Number of branches found (alternative): $(echo $ALL_BRANCHES | wc -w)"
+        fi
+
         # Parse filters
         FILTERS='${{ steps.filters.outputs.filters }}'
-        echo "Filters JSON: $FILTERS"
         EXCLUDE_LIST=$(echo "$FILTERS" | jq -r '.exclude[]?' 2>/dev/null || echo "")
         INCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.include_patterns[]?' 2>/dev/null)
         EXCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.exclude_patterns[]?' 2>/dev/null || echo "")
