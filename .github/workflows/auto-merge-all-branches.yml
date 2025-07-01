@@ -67,11 +67,23 @@ jobs:
           echo "Number of branches found (alternative): $(echo $ALL_BRANCHES | wc -w)"
         fi
 
-        # Parse filters
+        # Parse filters with explicit checks
         FILTERS='${{ steps.filters.outputs.filters }}'
-        EXCLUDE_LIST=$(echo "$FILTERS" | jq -r '.exclude[]?' 2>/dev/null | tr '\n' ' ' || echo "")
-        INCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.include_patterns[]?' 2>/dev/null)
-        EXCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.exclude_patterns[]?' 2>/dev/null || echo "")
+        echo "Raw filters: $FILTERS"
+        
+        # Parse exclude list
+        EXCLUDE_LIST=$(echo "$FILTERS" | jq -r 'if .exclude then .exclude[] else empty end' 2>/dev/null | tr '\n' ' ' || echo "")
+        
+        # Parse include patterns with explicit check
+        HAS_INCLUDE=$(echo "$FILTERS" | jq -r 'has("include_patterns")' 2>/dev/null || echo "false")
+        if [ "$HAS_INCLUDE" = "true" ]; then
+          INCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.include_patterns[]' 2>/dev/null | tr '\n' ' ')
+        else
+          INCLUDE_PATTERNS=".*"
+        fi
+        
+        # Parse exclude patterns
+        EXCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r 'if .exclude_patterns then .exclude_patterns[] else empty end' 2>/dev/null | tr '\n' ' ' || echo "")
         
         # Set default include pattern if none specified
         if [ -z "$INCLUDE_PATTERNS" ]; then
