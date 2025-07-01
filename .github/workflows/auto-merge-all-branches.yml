@@ -53,26 +53,35 @@ jobs:
         git fetch --all
         ALL_BRANCHES=$(git branch -r | grep -v 'HEAD' | sed 's/origin\//' | tr '\n' ' ')
         echo "All remote branches: $ALL_BRANCHES"
+        echo "Number of branches found: $(echo $ALL_BRANCHES | wc -w)"
 
         # Parse filters
         FILTERS='${{ steps.filters.outputs.filters }}'
+        echo "Filters JSON: $FILTERS"
         EXCLUDE_LIST=$(echo "$FILTERS" | jq -r '.exclude[]?' 2>/dev/null || echo "")
         INCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.include_patterns[]?' 2>/dev/null)
         EXCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.exclude_patterns[]?' 2>/dev/null || echo "")
-
+        
         # Set default include pattern if none specified
         if [ -z "$INCLUDE_PATTERNS" ]; then
           INCLUDE_PATTERNS=".*"
         fi
+        
+        echo "Exclude list: $EXCLUDE_LIST"
+        echo "Include patterns: $INCLUDE_PATTERNS"
+        echo "Exclude patterns: $EXCLUDE_PATTERNS"
 
         # Filter branches
         FILTERED_BRANCHES=""
         for branch in $ALL_BRANCHES; do
+          echo "\n--- Processing branch: $branch ---"
+          
           # Skip if in exclude list
           SKIP=false
           for exclude in $EXCLUDE_LIST; do
             if [ "$branch" = "$exclude" ]; then
               SKIP=true
+              echo "Branch $branch is in exclude list"
               break
             fi
           done
@@ -85,8 +94,10 @@ jobs:
           # Check include patterns
           INCLUDE=false
           for pattern in $INCLUDE_PATTERNS; do
+            echo "Testing pattern '$pattern' against branch '$branch'"
             if echo "$branch" | grep -qE "$pattern"; then
               INCLUDE=true
+              echo "Branch $branch matches include pattern $pattern"
               break
             fi
           done
@@ -101,6 +112,7 @@ jobs:
           for pattern in $EXCLUDE_PATTERNS; do
             if [ -n "$pattern" ] && echo "$branch" | grep -qE "$pattern"; then
               EXCLUDE=true
+              echo "Branch $branch matches exclude pattern $pattern"
               break
             fi
           done
@@ -110,10 +122,12 @@ jobs:
             continue
           fi
 
+          echo "✅ Including branch: $branch"
           FILTERED_BRANCHES="$FILTERED_BRANCHES $branch"
         done
 
-        echo "Filtered branches for merging: $FILTERED_BRANCHES"
+        echo "\nFiltered branches for merging: '$FILTERED_BRANCHES'"
+        echo "Number of filtered branches: $(echo $FILTERED_BRANCHES | wc -w)"
         echo "branches=$FILTERED_BRANCHES" >> $GITHUB_OUTPUT
 
     - name: Merge main to branches
