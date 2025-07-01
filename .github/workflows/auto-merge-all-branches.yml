@@ -51,14 +51,19 @@ jobs:
       run: |
         # Get all remote branches
         git fetch --all
-        ALL_BRANCHES=$(git branch -r | grep -v 'HEAD' | sed 's/origin\///' | tr '\n' ' ')
+        ALL_BRANCHES=$(git branch -r | grep -v 'HEAD' | sed 's/origin\//' | tr '\n' ' ')
         echo "All remote branches: $ALL_BRANCHES"
 
         # Parse filters
         FILTERS='${{ steps.filters.outputs.filters }}'
         EXCLUDE_LIST=$(echo "$FILTERS" | jq -r '.exclude[]?' 2>/dev/null || echo "")
-        INCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.include_patterns[]?' 2>/dev/null || echo ".*")
+        INCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.include_patterns[]?' 2>/dev/null)
         EXCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.exclude_patterns[]?' 2>/dev/null || echo "")
+
+        # Set default include pattern if none specified
+        if [ -z "$INCLUDE_PATTERNS" ]; then
+          INCLUDE_PATTERNS=".*"
+        fi
 
         # Filter branches
         FILTERED_BRANCHES=""
