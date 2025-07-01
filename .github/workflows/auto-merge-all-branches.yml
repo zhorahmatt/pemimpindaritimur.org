@@ -117,16 +117,13 @@ jobs:
             continue
           fi
 
-          # Check include patterns
+          # Check include patterns - simplified approach
           INCLUDE=false
-          for pattern in $INCLUDE_PATTERNS; do
-            echo "Testing pattern '$pattern' against branch '$branch'"
-            if echo "$branch" | grep -qE "$pattern"; then
-              INCLUDE=true
-              echo "Branch $branch matches include pattern $pattern"
-              break
-            fi
-          done
+          echo "Testing pattern '$INCLUDE_PATTERNS' against branch '$branch'"
+          if echo "$branch" | grep -qE "$INCLUDE_PATTERNS"; then
+            INCLUDE=true
+            echo "Branch $branch matches include pattern $INCLUDE_PATTERNS"
+          fi
 
           if [ "$INCLUDE" = "false" ]; then
             echo "Excluding branch: $branch (doesn't match include patterns)"
