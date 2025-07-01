@@ -69,7 +69,7 @@ jobs:
 
         # Parse filters
         FILTERS='${{ steps.filters.outputs.filters }}'
-        EXCLUDE_LIST=$(echo "$FILTERS" | jq -r '.exclude[]?' 2>/dev/null || echo "")
+        EXCLUDE_LIST=$(echo "$FILTERS" | jq -r '.exclude[]?' 2>/dev/null | tr '\n' ' ' || echo "")
         INCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.include_patterns[]?' 2>/dev/null)
         EXCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.exclude_patterns[]?' 2>/dev/null || echo "")
         
@@ -78,9 +78,12 @@ jobs:
           INCLUDE_PATTERNS=".*"
         fi
         
-        echo "Exclude list: $EXCLUDE_LIST"
-        echo "Include patterns: $INCLUDE_PATTERNS"
-        echo "Exclude patterns: $EXCLUDE_PATTERNS"
+        # Trim whitespace from exclude list
+        EXCLUDE_LIST=$(echo $EXCLUDE_LIST | xargs)
+        
+        echo "Exclude list: '$EXCLUDE_LIST'"
+        echo "Include patterns: '$INCLUDE_PATTERNS'"
+        echo "Exclude patterns: '$EXCLUDE_PATTERNS'"
 
         # Filter branches
         FILTERED_BRANCHES=""
