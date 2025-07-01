@@ -8,7 +8,7 @@ on:
       branch_filters:
         description: 'Branch filtering configuration (JSON)'
         required: false
-        default: '{"exclude": ["main", "master"], "include_patterns": [".*"], "exclude_patterns": []}'
+        default: '{"exclude": ["main", "master"] }'
       dry_run:
         description: 'Dry run mode (only show what would be merged)'
         required: false
