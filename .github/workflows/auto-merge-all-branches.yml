@@ -1,0 +1,261 @@
+name: Auto Merge Main to All Branches
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      branch_filters:
+        description: 'Branch filtering configuration (JSON)'
+        required: false
+        default: '{"exclude": ["main", "master"], "include_patterns": [".*"], "exclude_patterns": []}'
+      dry_run:
+        description: 'Dry run mode (only show what would be merged)'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Configure Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Set up branch filters
+      id: filters
+      run: |
+        if [ "${{ github.event.inputs.branch_filters }}" != "" ]; then
+          FILTERS='${{ github.event.inputs.branch_filters }}'
+        else
+          FILTERS='{"exclude": ["main", "master"], "include_patterns": [".*"], "exclude_patterns": []}'
+        fi
+        echo "filters=$FILTERS" >> $GITHUB_OUTPUT
+        echo "dry_run=${{ github.event.inputs.dry_run || 'false' }}" >> $GITHUB_OUTPUT
+
+    - name: Discover and filter branches
+      id: branches
+      run: |
+        # Get all remote branches
+        git fetch --all
+        ALL_BRANCHES=$(git branch -r | grep -v 'HEAD' | sed 's/origin\///' | tr '\n' ' ')
+        echo "All remote branches: $ALL_BRANCHES"
+
+        # Parse filters
+        FILTERS='${{ steps.filters.outputs.filters }}'
+        EXCLUDE_LIST=$(echo "$FILTERS" | jq -r '.exclude[]?' 2>/dev/null || echo "")
+        INCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.include_patterns[]?' 2>/dev/null || echo ".*")
+        EXCLUDE_PATTERNS=$(echo "$FILTERS" | jq -r '.exclude_patterns[]?' 2>/dev/null || echo "")
+
+        # Filter branches
+        FILTERED_BRANCHES=""
+        for branch in $ALL_BRANCHES; do
+          # Skip if in exclude list
+          SKIP=false
+          for exclude in $EXCLUDE_LIST; do
+            if [ "$branch" = "$exclude" ]; then
+              SKIP=true
+              break
+            fi
+          done
+
+          if [ "$SKIP" = "true" ]; then
+            echo "Excluding branch: $branch (in exclude list)"
+            continue
+          fi
+
+          # Check include patterns
+          INCLUDE=false
+          for pattern in $INCLUDE_PATTERNS; do
+            if echo "$branch" | grep -qE "$pattern"; then
+              INCLUDE=true
+              break
+            fi
+          done
+
+          if [ "$INCLUDE" = "false" ]; then
+            echo "Excluding branch: $branch (doesn't match include patterns)"
+            continue
+          fi
+
+          # Check exclude patterns
+          EXCLUDE=false
+          for pattern in $EXCLUDE_PATTERNS; do
+            if [ -n "$pattern" ] && echo "$branch" | grep -qE "$pattern"; then
+              EXCLUDE=true
+              break
+            fi
+          done
+
+          if [ "$EXCLUDE" = "true" ]; then
+            echo "Excluding branch: $branch (matches exclude pattern)"
+            continue
+          fi
+
+          FILTERED_BRANCHES="$FILTERED_BRANCHES $branch"
+        done
+
+        echo "Filtered branches for merging: $FILTERED_BRANCHES"
+        echo "branches=$FILTERED_BRANCHES" >> $GITHUB_OUTPUT
+
+    - name: Merge main to branches
+      id: merge
+      run: |
+        BRANCHES="${{ steps.branches.outputs.branches }}"
+        DRY_RUN="${{ steps.filters.outputs.dry_run }}"
+
+        SUCCESSFUL_MERGES=""
+        FAILED_MERGES=""
+        UP_TO_DATE_BRANCHES=""
+
+        echo "Starting merge process..."
+        echo "Dry run mode: $DRY_RUN"
+
+        for branch in $BRANCHES; do
+          echo "\n=== Processing branch: $branch ==="
+
+          # Check if branch exists
+          if ! git show-ref --verify --quiet refs/remotes/origin/$branch; then
+            echo "Branch $branch does not exist remotely, skipping..."
+            continue
+          fi
+
+          # Checkout the target branch
+          git checkout -B $branch origin/$branch
+
+          # Check if branch is already up to date
+          if git merge-base --is-ancestor origin/main HEAD; then
+            echo "Branch $branch is already up to date with main"
+            UP_TO_DATE_BRANCHES="$UP_TO_DATE_BRANCHES $branch"
+            continue
+          fi
+
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "[DRY RUN] Would merge main into $branch"
+            # Test merge without committing
+            if git merge --no-commit --no-ff origin/main; then
+              echo "[DRY RUN] Merge would succeed for $branch"
+              git merge --abort
+              SUCCESSFUL_MERGES="$SUCCESSFUL_MERGES $branch"
+            else
+              echo "[DRY RUN] Merge would fail for $branch (conflicts detected)"
+              git merge --abort 2>/dev/null || true
+              FAILED_MERGES="$FAILED_MERGES $branch"
+            fi
+          else
+            # Attempt to merge main into the current branch
+            if git merge origin/main --no-edit; then
+              echo "Successfully merged main into $branch"
+
+              # Push the updated branch
+              if git push origin $branch; then
+                echo "Successfully pushed $branch"
+                SUCCESSFUL_MERGES="$SUCCESSFUL_MERGES $branch"
+              else
+                echo "Failed to push $branch"
+                FAILED_MERGES="$FAILED_MERGES $branch"
+              fi
+            else
+              echo "Merge conflict detected in $branch"
+              git merge --abort
+              FAILED_MERGES="$FAILED_MERGES $branch"
+            fi
+          fi
+        done
+
+        echo "successful_merges=$SUCCESSFUL_MERGES" >> $GITHUB_OUTPUT
+        echo "failed_merges=$FAILED_MERGES" >> $GITHUB_OUTPUT
+        echo "up_to_date_branches=$UP_TO_DATE_BRANCHES" >> $GITHUB_OUTPUT
+
+    - name: Create summary
+      run: |
+        echo "\n=== MERGE SUMMARY ==="
+        echo "Successful merges: ${{ steps.merge.outputs.successful_merges }}"
+        echo "Failed merges (conflicts): ${{ steps.merge.outputs.failed_merges }}"
+        echo "Up-to-date branches: ${{ steps.merge.outputs.up_to_date_branches }}"
+
+        # Create job summary
+        echo "## Auto-Merge Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Trigger:** Push to main branch" >> $GITHUB_STEP_SUMMARY
+        echo "**Dry Run:** ${{ steps.filters.outputs.dry_run }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        if [ -n "${{ steps.merge.outputs.successful_merges }}" ]; then
+          echo "### ✅ Successful Merges" >> $GITHUB_STEP_SUMMARY
+          for branch in ${{ steps.merge.outputs.successful_merges }}; do
+            echo "- $branch" >> $GITHUB_STEP_SUMMARY
+          done
+          echo "" >> $GITHUB_STEP_SUMMARY
+        fi
+
+        if [ -n "${{ steps.merge.outputs.up_to_date_branches }}" ]; then
+          echo "### ℹ️ Up-to-Date Branches" >> $GITHUB_STEP_SUMMARY
+          for branch in ${{ steps.merge.outputs.up_to_date_branches }}; do
+            echo "- $branch" >> $GITHUB_STEP_SUMMARY
+          done
+          echo "" >> $GITHUB_STEP_SUMMARY
+        fi
+
+        if [ -n "${{ steps.merge.outputs.failed_merges }}" ]; then
+          echo "### ❌ Failed Merges (Conflicts)" >> $GITHUB_STEP_SUMMARY
+          for branch in ${{ steps.merge.outputs.failed_merges }}; do
+            echo "- $branch" >> $GITHUB_STEP_SUMMARY
+          done
+        fi
+
+    - name: Create issue for conflicts
+      if: steps.merge.outputs.failed_merges != '' && steps.filters.outputs.dry_run == 'false'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const failedBranches = '${{ steps.merge.outputs.failed_merges }}'.trim().split(' ').filter(b => b);
+
+          if (failedBranches.length > 0) {
+            const issueBody = `
+          ## Auto-Merge Conflicts Detected
+
+          The automatic merge from \`main\` to the following branches failed due to conflicts:
+
+          ${failedBranches.map(branch => `- \`${branch}\``).join('\n')}
+
+          ### Next Steps:
+          1. Manually resolve conflicts for each branch
+          2. For each conflicted branch:
+             \`\`\`bash
+             git checkout ${failedBranches[0]}
+             git merge main
+             # Resolve conflicts
+             git commit
+             git push origin ${failedBranches[0]}
+             \`\`\`
+
+          ### Workflow Details:
+          - **Commit:** ${{ github.sha }}
+          - **Triggered by:** ${{ github.actor }}
+          - **Timestamp:** ${new Date().toISOString()}
+
+          This issue was automatically created by the auto-merge workflow.
+          `;
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Auto-merge conflicts detected (${failedBranches.length} branches)`,
+              body: issueBody,
+              labels: ['auto-merge', 'conflicts', 'needs-attention']
+            });
+          }
