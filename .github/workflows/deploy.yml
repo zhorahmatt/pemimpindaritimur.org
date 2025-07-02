@@ -26,6 +26,12 @@ jobs:
         node-version: '18'
         cache: 'npm'
 
+    # Add this step before composer install
+    - name: Create SQLite database file
+      run: |
+        mkdir -p database
+        touch database/database.sqlite
+
     - name: Install Composer dependencies
       run: composer install --optimize-autoloader --no-dev
 
