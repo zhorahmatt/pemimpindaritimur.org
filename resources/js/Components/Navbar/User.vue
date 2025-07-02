@@ -4,16 +4,16 @@
         <div class="container">
             <div class="d-flex align-items-center justify-content-between gap-4">
                 <div class="d-flex align-items-center flex-equal">
-                    <button class="btn btn-icon btn-myicon ms-n3 me-3 d-flex d-lg-none" id="kt_landing_menu_toggle">
+                    <button class="btn btn-icon btn-myicon ms-n3 me-1 d-flex d-lg-none" id="kt_landing_menu_toggle">
                         <i class="ri-menu-line fs-1"></i>
                     </button>
                     <a v-if="$page.url === '/'" href="#home" data-kt-scroll-toggle="true">
                         <img alt="Logo" :src="`/storage/${profile.logo}`"
-                            class="logo-default d-none d-lg-block h-30px h-lg-45px" />
+                            class="logo-default d-block h-40px h-lg-45px" />
                     </a>
                     <Link v-else href="/">
                         <img alt="Logo" :src="`/storage/${profile.logo}`"
-                            class="logo-default d-none d-lg-block h-30px h-lg-45px" />
+                            class="logo-default d-block h-40px h-lg-45px" />
                     </Link>
                 </div>
                 <div class="d-lg-block" id="kt_header_nav_wrapper">

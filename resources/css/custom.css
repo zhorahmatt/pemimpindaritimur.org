@@ -124,7 +124,7 @@ body {
     display: inline-block;
 }
 
-.btn-link-myprimary:hover i {
+.btn-link-icon:hover i {
     transform: translateX(4px) !important;
     transition: transform 0.2s ease !important;
 }

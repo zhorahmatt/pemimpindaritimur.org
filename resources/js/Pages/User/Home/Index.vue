@@ -159,7 +159,7 @@
                             </Link>
                         </div>
                     </div>
-                    <Link href="/activities" class="btn-link-myprimary fw-bold fs-4">Lihat semua kegiatan internal <i
+                    <Link href="/activities" class="btn-link-myprimary btn-link-icon fw-bold fs-4">Lihat semua kegiatan internal <i
                         class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i></Link>
                 </div>
             </section>
@@ -226,7 +226,7 @@
                             </Link>
                         </div>
                     </div>
-                    <Link href="/programs" class="btn-link-myprimary fw-bold fs-4">
+                    <Link href="/programs" class="btn-link-myprimary btn-link-icon fw-bold fs-4">
                         Lihat semua program amal 
                         <i class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i></Link>
                 </div>
@@ -287,7 +287,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <Link href="/blogs" class="btn-link-myprimary fw-bold fs-4">
+                        <Link href="/blogs" class="btn-link-myprimary btn-link-icon fw-bold fs-4">
                             Lihat semua blog 
                             <i class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i>
                         </Link>

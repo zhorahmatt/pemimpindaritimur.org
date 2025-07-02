@@ -6,7 +6,7 @@
 
     <form @submit.prevent="submit" class="form w-100" id="kt_sign_in_form">
         <div class="text-center mb-11">
-            <h1 class="text-dark fs-2hx fw-bold mb-4">Hello Admin 👋</h1>
+            <h1 class="text-dark fs-2hx fw-bolder mb-4">Hello Admin 👋</h1>
             <div class="text-gray-600 fw-semibold fs-4">Masuk untuk mengelola halaman GLP INDTIM</div>
         </div>
         <div class="fv-row mb-4">
