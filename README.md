@@ -1,58 +1,107 @@
-## About Laravel
+# Website GLP-INDTIM
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Graduate Leadership Program Indonesia Timur**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.3-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![Inertia.js](https://img.shields.io/badge/Inertia.js-4A5568?style=for-the-badge&logo=inertia&logoColor=white)
+![Vue 3](https://img.shields.io/badge/Vue-3-42B883?style=for-the-badge&logo=vue.js&logoColor=white)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Persyaratan Sistem
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Pastikan Anda memiliki versi berikut terinstal di sistem Anda:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   **Composer:** `2.8.4`
+-   **PHP:** `8.3.15`
+-   **MySQL:** `8.0.30`
+-   **Node.js** & **npm**
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Instalasi & Setup Project
 
-### Premium Partners
+Ikuti langkah-langkah mudah ini untuk menjalankan proyek secara lokal:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1.  **Clone Repositori**
 
-## Contributing
+    Pertama, clone repository ini ke mesin lokal Anda:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    ```bash
+    git clone [https://github.com/Afila-Media-Karya/glp-indtim.git]
+    ```
 
-## Code of Conduct
+2.  **Instal Dependensi**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    Masuk ke folder proyek yang telah Anda clone dan instal dependensi PHP dengan Composer serta dependensi frontend dengan npm:
+    
+    ```bash
+    composer install
+    npm install
+    ```
 
-## Security Vulnerabilities
+3.  **Siapkan Konfigurasi:**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    Salin file `.env.example` menjadi `.env` dan buat key aplikasi:
 
-## License
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-Test change
+    **Penting:** Edit file `.env` dan atur detail koneksi database Anda (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`). Pastikan database yang Anda tentukan sudah dibuat di MySQL.
+
+5.  **Migrasi Database dan Seed Data:**
+
+    Jalankan perintah berikut untuk menyiapkan struktur tabel di database dan mengisi data awal:
+    
+    ```bash
+    php artisan migrate:fresh --seed
+    ```
+
+    Perintah ini akan menghapus semua tabel yang ada, melakukan migrasi ulang, dan mengisi data awal yang telah dikonfigurasi.
+
+6.  **Optimalkan Aplikasi:**
+
+    Setelah migrasi dan seeding selesai, jalankan perintah berikut untuk mengoptimalkan aplikasi Laravel:
+
+    ```bash
+    php artisan optimize
+    ```
+
+    Perintah ini akan membersihkan dan mempercepat berbagai cache yang digunakan oleh Laravel, termasuk cache konfigurasi, rute, dan view.
+
+7.  **Buat Storage Link:**
+
+    Jalankan perintah berikut untuk membuat symbolic link ke folder `public/storage`:
+
+    ```bash
+    php artisan storage:link
+    ```
+
+8.  **Menjalankan Development Server:**
+
+    Setelah semua dependensi terinstal, jalankan server pengembangan untuk frontend:
+
+    ```bash
+    npm run dev
+    ```
+
+    Aplikasi sekarang akan berjalan di `http://localhost:3000` dan akan terhubung ke backend Laravel yang berjalan di `http://127.0.0.1:8000`.
+
+9.  **Jalankan Aplikasi Laravel:**
+
+    Setelah frontend siap, jalankan aplikasi Laravel dengan perintah artisan:
+
+    ```bash
+    php artisan serve
+    ```
+    
+    Aplikasi Laravel Anda sekarang berjalan di `http://127.0.0.1:8000` dan frontend di `http://localhost:3000`.
+
+---

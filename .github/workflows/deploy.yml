@@ -26,8 +26,21 @@ jobs:
         node-version: '18'
         cache: 'npm'
 
-    - name: Install Composer dependencies
-      run: composer install --optimize-autoloader --no-dev
+    # Add these steps before composer install
+    - name: Create SQLite database and run migrations
+      run: |
+        mkdir -p database
+        touch database/database.sqlite
+        # Create a minimal .env file for the build process
+        echo "APP_KEY=base64:$(openssl rand -base64 32)" > .env
+        echo "DB_CONNECTION=sqlite" >> .env
+        echo "DB_DATABASE=database/database.sqlite" >> .env
+        # Install composer dependencies without scripts first
+        composer install --optimize-autoloader --no-dev --no-scripts
+        # Run migrations to create tables
+        php artisan migrate --force
+        # Now run the post-autoload scripts
+        composer run-script post-autoload-dump
 
     - name: Install NPM dependencies
       run: npm ci
