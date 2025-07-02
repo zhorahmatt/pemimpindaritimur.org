@@ -21,9 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $profile_logo = Profile::first()->logo;
-        Inertia::share([
-            'profile_logo' => $profile_logo,
-        ]);
+        //
     }
 }
