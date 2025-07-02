@@ -2,13 +2,13 @@
     <div id="kt_app_header" class="app-header bg-white">
         <div class="container-fluid d-flex align-items-stretch justify-content-between">
             <div class="d-flex align-items-center d-lg-none ms-n3 me-2" title="Show sidebar menu">
-                <div class="btn btn-icon btn-active-color-primary w-35px h-35px" id="kt_app_sidebar_mobile_toggle">
-                    <i class="bi bi-list fs-1"></i>
+                <div class="btn btn-icon btn-myicon w-35px h-35px" id="kt_app_sidebar_mobile_toggle">
+                    <i class="ri-menu-line fs-2"></i>
                 </div>
             </div>
             <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
                 <a href="#" class="d-lg-none">
-                    <img alt="Logo" src="/assets/media/logos/tojuara-default.svg" class="h-30px" />
+                    <img alt="Logo" src="/assets/media/logos/glp-indtim-logo.png" class="h-35px" />
                 </a>
             </div>
             <div class="d-flex align-items-center justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
@@ -39,7 +39,7 @@
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5">
-                            <Link href="/admin/logout" method="POST" as="button"
+                            <Link href="/logout" method="POST" as="button"
                                 class="px-5 btn btn-mydanger w-100 text-start">Keluar</Link>
                         </div>
                     </div>

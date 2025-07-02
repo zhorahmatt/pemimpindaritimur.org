@@ -4,18 +4,18 @@
             <div class="d-flex flex-column flex-lg-row flex-column-fluid">
                 <div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10 order-2 order-lg-1 justify-content-center align-items-center h-100">
                     <div class="d-flex flex-center flex-column flex-lg-row-fluid">
-                        <div class="w-lg-450px">
+                        <div class="w-lg-400px">
                             <slot />
                         </div>
                     </div>
                     <div class="d-flex flex-center flex-wrap px-5 btn-link-myprimary pt-10">
-						<a href="https://www.instagram.com/tride.dev/" class="btn-link-myprimary fs-5 fw-semibold" target="_blank">
+						<a href="https://www.instagram.com/glpindtim/" class="btn-link-myprimary fs-5 fw-semibold" target="_blank">
                             <i class="bi bi-instagram fs-5 me-1"></i>
-                            tride.dev
+                            glpindtim
                         </a>
 					</div>
                 </div>
-                <div class="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center order-1 order-lg-2" style="background-image: url(/assets/media/illustrations/bss-bg.png)"></div>
+                <div class="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center order-1 order-lg-2" style="background-image: url(/assets/media/illustrations/landing-hero.jpg)"></div>
             </div>
         </div>
     </section>

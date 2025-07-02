@@ -30,7 +30,7 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'       => 'required',
+            'title'       => 'required|unique:blogs,title',
             'slug'        => 'required',
             'category'    => 'required',
             'image'       => 'required|image|mimes:jpg,jpeg,png|max:10240',
@@ -38,12 +38,13 @@ class BlogController extends Controller
             'status'      => 'required',
             'is_featured' => 'required',
         ], [
+            'title.unique'     => 'Judul sudah digunakan. Gunakan judul lain.',
             'content.required' => 'Konten tidak boleh kosong.',
             'status.required'  => 'Status tidak boleh kosong.',
             'image.required'   => 'Gambar tidak boleh kosong.',
-            'image.image' => 'Gambar blog harus berupa file gambar.',
-            'image.mimes' => 'Gambar blog harus berekstensi jpg, jpeg, atau png.',
-            'image.max'   => 'Ukuran gambar blog maksimal 10MB.',
+            'image.image'      => 'Gambar blog harus berupa file gambar.',
+            'image.mimes'      => 'Gambar blog harus berekstensi jpg, jpeg, atau png.',
+            'image.max'        => 'Ukuran gambar blog maksimal 10MB.',
         ]);
 
         $path_image = $request->file('image')->store('blogs', 'public');
@@ -75,7 +76,7 @@ class BlogController extends Controller
     public function update(Request $request, Blog $blog)
     {
         $request->validate([
-            'title'       => 'required',
+            'title'       => 'required|unique:blogs,title,' . $blog->id,
             'slug'        => 'required',
             'category'    => 'required',
             'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
@@ -83,6 +84,7 @@ class BlogController extends Controller
             'status'      => 'required',
             'is_featured' => 'required',
         ], [
+            'title.unique'     => 'Judul sudah digunakan. Gunakan judul lain.',
             'content.required' => 'Konten tidak boleh kosong.',
             'status.required'  => 'Status tidak boleh kosong.',
             'image.image' => 'Gambar blog harus berupa file gambar.',

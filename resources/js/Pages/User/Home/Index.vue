@@ -12,7 +12,7 @@
                 <div class="bgi-no-repeat bgi-size-cover bgi-position-center bg-dark position-relative min-vh-100"
                     style="background-image: url(assets/media/illustrations/landing-hero.jpg);">
                     <div class="position-absolute top-0 start-0 end-0 z-index-2">
-                        <Navbar />
+                        <Navbar :profile="profile" />
                     </div>
                     <div
                         class="d-flex flex-column justify-content-center align-items-center min-vh-100 text-center px-5">
@@ -28,8 +28,8 @@
             </section>
 
             <!-- About Section -->
-            <section id="about" class="mt-20 py-20">
-                <div class="container d-flex flex-column justify-content-center align-items-center text-center">
+            <section id="about" class="pt-20">
+                <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <p class="fw-semibold text-gray-500 fs-4 text-uppercase mb-4" style="letter-spacing: 0.08em;">
                         Tentang Kami
                     </p>
@@ -116,26 +116,12 @@
                             Indonesia
                         </h3>
                     </div>
-
-                    <div v-for="(program, index) in programs" :key="index">
-                        <a href="#" class="d-block overlay position-relative"
-                            @click.prevent="openLightbox(`/storage/${program.image}`)">
-                            <img :src="`/storage/${program.image}`" :alt="program.title"
-                                class="overlay-wrapper rounded-4 mh-175px" />
-                            <div class="overlay-layer position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-25 rounded-4">
-                                <i class="ri-eye-fill text-white fs-3x"></i>
-                            </div>
-                        </a>
-                    </div>
-
-                    <FsLightbox :toggler="lightboxToggler" :slide="currentIndex" :sources="lightboxSources" />
-
                 </div>
             </section>
 
             <!-- Activities Section -->
-            <section id="activities" class="py-20" v-if="activities.length > 0">
-                <div class="container text-center">
+            <section id="activities" class="pt-20" v-if="activities.length > 0">
+                <div class="container pt-20 text-center">
                     <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
                         Bersama Menyatukan Langkah 🚀
                     </h1>
@@ -173,14 +159,14 @@
                             </Link>
                         </div>
                     </div>
-                    <Link href="/activities" class="btn-link-myprimary fw-bold fs-4">Lihat semua kegiatan internal <i
+                    <Link href="/activities" class="btn-link-myprimary btn-link-icon fw-bold fs-4">Lihat semua kegiatan internal <i
                         class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i></Link>
                 </div>
             </section>
 
             <!-- Partners Section -->
-            <section id="partners" class="py-20" v-if="partners.length > 0">
-                <div class="container text-center">
+            <section id="partners" class="pt-20" v-if="partners.length > 0">
+                <div class="container pt-20 text-center">
                     <p class="fw-semibold text-gray-600 fs-2 mb-12">
                         Dipercaya oleh mereka yang menyebar <span class="fw-bolder text-mydanger">cahaya harapan
                             ✨</span>
@@ -199,8 +185,8 @@
             </section>
 
             <!-- Programs Section -->
-            <section id="programs" class="py-20" v-if="programs.length > 0">
-                <div class="container text-center">
+            <section id="programs" class="pt-20" v-if="programs.length > 0">
+                <div class="container pt-20 text-center">
                     <p class="fw-semibold text-myprimary fs-4 text-uppercase mb-3 px-4 py-1 d-inline-block rounded-pill bg-myprimary-light"
                         style="letter-spacing: 0.08em;">
                         #DariTimurBeriDampak
@@ -240,15 +226,15 @@
                             </Link>
                         </div>
                     </div>
-                    <Link href="/programs" class="btn-link-myprimary fw-bold fs-4">
+                    <Link href="/programs" class="btn-link-myprimary btn-link-icon fw-bold fs-4">
                         Lihat semua program amal 
                         <i class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i></Link>
                 </div>
             </section>
 
             <!-- Quote Section -->
-            <section id="quote" class="py-20">
-                <div class="container">
+            <section id="quote" class="pt-20">
+                <div class="container pt-20">
                     <div class="p-14 bg-gradient-myprimary rounded-4">
                         <p class="custom-flex-text text-white opacity-60 fs-4 text-uppercase mb-8"
                             style="letter-spacing: 0.08em;">
@@ -266,8 +252,8 @@
             </section>
 
             <!-- Blogs Section -->
-            <section id="blogs" class="mb-20 py-20" v-if="blogs.length > 0">
-                <div class="container">
+            <section id="blogs" class="pt-20" v-if="blogs.length > 0">
+                <div class="container pt-20">
                     <p class="fw-semibold text-myprimary fs-4 text-uppercase mb-3 px-4 py-1 d-inline-block rounded-pill bg-myprimary-light"
                         style="letter-spacing: 0.08em;">
                         #CeritaDariTimur
@@ -283,9 +269,9 @@
                         <div v-for="(blog, index) in blogs" :key="index">
                             <Link :href="`/blogs/${blog.slug}`" class="d-flex flex-row gap-5 gap-sm-6 gap-md-7 text-start" id="blog-card">
                                 <div
-                                    class="overflow-hidden position-relative rounded-4 w-125px w-md-200px order-3 order-md-0 flex-shrink-0">
+                                    class="overflow-hidden position-relative rounded-4 mw-125px mw-md-200px ratio ratio-4x3 order-3 order-md-0 flex-shrink-0">
                                     <img :src="`/storage/${blog.image}`"
-                                        class="img-blog img-fluid object-fit-cover h-md-100 mt-9 mt-md-0 ratio ratio-4x3" alt="" />
+                                        class="img-blog img-fluid object-fit-cover h-md-100 mt-9 mt-md-0" alt="" />
                                 </div>
                                 <div class="d-flex flex-column justify-content-between flex-grow-1">
                                     <div class="flex-grow-1">
@@ -301,7 +287,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <Link href="/blogs" class="btn-link-myprimary fw-bold fs-4">
+                        <Link href="/blogs" class="btn-link-myprimary btn-link-icon fw-bold fs-4">
                             Lihat semua blog 
                             <i class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i>
                         </Link>
@@ -310,50 +296,52 @@
             </section>
 
             <!-- Testimonials Section -->
-            <section id="testimonials" class="bg-myprimary py-0" v-if="testimonials.length > 0">
-                <div class="container d-flex flex-row justify-content-center align-items-center ">
-                    <div class="row align-items-center">
-                        <div class="col-12 col-md-6 mb-20 mb-md-0 mt-20 pt-20 mt-md-0 pt-md-0">
-                            <h1 class="fw-bolder text-white lh-base fs-3x fs-md-3x mb-3 text-center text-md-start">
-                                <span class="d-none d-md-inline">Jejak Kebaikan, <br>Suara dari Hati 🤍</span>
-                                <span class="d-inline d-md-none">Jejak Kebaikan, Suara dari Hati 🤍</span>
-                            </h1>
-                            <p class="fw-medium text-white opacity-75 fs-2 mb-0 text-center text-md-start">
-                                <span class="d-none d-md-inline">Dari tangan yang memberi <br>hingga yang
-                                    menerima.</span>
-                                <span class="d-inline d-md-none">Dari tangan yang memberi hingga yang menerima.</span>
-                            </p>
-                        </div>
-                        <div class="testimonial-cards col-12 col-md-6 position-relative overflow-hidden h-700px">
-                            <div class="testimonial-scroll d-flex flex-column gap-5 gap-lg-10">
-                                <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4"
-                                    v-for="(testimonial, index) in testimonials" :key="index">
-                                    <img src="/assets/media/elements/quotation_marks.png" class="w-45px"
-                                        alt="" />
-                                    <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                        <p class="text-dark fs-4 mb-0 fw-semibold">{{ testimonial.testimonial }}</p>
-                                        <div class="d-flex flex-row gap-5 mt-5 align-items-center">
-                                            <img :src="`/storage/${testimonial.photo}`"
-                                                class="object-fit-cover w-50px h-50px rounded-pill" alt="" />
-                                            <div>
-                                                <p class="text-dark fs-4 fw-bolder mb-0">{{ testimonial.name }}</p>
-                                                <p class="text-gray-600 fs-6 mb-0">{{ testimonial.title }}</p>
+            <section id="testimonials" class="mt-20 pt-20">
+                <div class="bg-myprimary pt-20 pt-md-0" v-if="testimonials.length > 0">
+                    <div class="container d-flex flex-row justify-content-center align-items-center ">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-md-6 py-20 py-md-0">
+                                <h1 class="fw-bolder text-white lh-base fs-3x fs-md-3x mb-3 text-center text-md-start">
+                                    <span class="d-none d-md-inline">Jejak Kebaikan, <br>Suara dari Hati 🤍</span>
+                                    <span class="d-inline d-md-none">Jejak Kebaikan, Suara dari Hati 🤍</span>
+                                </h1>
+                                <p class="fw-medium text-white opacity-75 fs-2 mb-0 text-center text-md-start">
+                                    <span class="d-none d-md-inline">Dari tangan yang memberi <br>hingga yang
+                                        menerima.</span>
+                                    <span class="d-inline d-md-none">Dari tangan yang memberi hingga yang menerima.</span>
+                                </p>
+                            </div>
+                            <div class="testimonial-cards col-12 col-md-6 position-relative overflow-hidden h-700px">
+                                <div class="testimonial-scroll d-flex flex-column gap-5 gap-lg-10">
+                                    <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4"
+                                        v-for="(testimonial, index) in testimonials" :key="index">
+                                        <img src="/assets/media/elements/quotation_marks.png" class="w-45px"
+                                            alt="" />
+                                        <div class="d-flex flex-column justify-content-between flex-grow-1">
+                                            <p class="text-dark fs-4 mb-0 fw-semibold">{{ testimonial.testimonial }}</p>
+                                            <div class="d-flex flex-row gap-5 mt-5 align-items-center">
+                                                <img :src="`/storage/${testimonial.photo}`"
+                                                    class="object-fit-cover w-50px h-50px rounded-pill" alt="" />
+                                                <div>
+                                                    <p class="text-dark fs-4 fw-bolder mb-0">{{ testimonial.name }}</p>
+                                                    <p class="text-gray-600 fs-6 mb-0">{{ testimonial.title }}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4"
-                                    v-for="(testimonial, index) in testimonials" :key="index">
-                                    <img src="/assets/media/elements/quotation_marks.png" class="w-45px"
-                                        alt="" />
-                                    <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                        <p class="text-dark fs-4 mb-0 fw-semibold">{{ testimonial.testimonial }}</p>
-                                        <div class="d-flex flex-row gap-5 mt-5 align-items-center">
-                                            <img :src="`/storage/${testimonial.photo}`"
-                                                class="object-fit-cover w-50px h-50px rounded-pill" alt="" />
-                                            <div>
-                                                <p class="text-dark fs-4 fw-bolder mb-0">{{ testimonial.name }}</p>
-                                                <p class="text-gray-600 fs-6 mb-0">{{ testimonial.title }}</p>
+                                    <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4"
+                                        v-for="(testimonial, index) in testimonials" :key="index">
+                                        <img src="/assets/media/elements/quotation_marks.png" class="w-45px"
+                                            alt="" />
+                                        <div class="d-flex flex-column justify-content-between flex-grow-1">
+                                            <p class="text-dark fs-4 mb-0 fw-semibold">{{ testimonial.testimonial }}</p>
+                                            <div class="d-flex flex-row gap-5 mt-5 align-items-center">
+                                                <img :src="`/storage/${testimonial.photo}`"
+                                                    class="object-fit-cover w-50px h-50px rounded-pill" alt="" />
+                                                <div>
+                                                    <p class="text-dark fs-4 fw-bolder mb-0">{{ testimonial.name }}</p>
+                                                    <p class="text-gray-600 fs-6 mb-0">{{ testimonial.title }}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -365,8 +353,8 @@
             </section>
 
             <!-- Donate Section -->
-            <section id="donate" class="mt-20 pt-20">
-                <div class="container d-flex flex-column justify-content-center align-items-center text-center">
+            <section id="donate" class="pt-20">
+                <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <h3 class="fw-bolder text-dark lh-base fs-3x fs-md-2x mb-3 mb-md-0">
                         <span class="d-none d-md-inline">Jadi Bagian dari Kebaikan 👋</span>
                         <span class="d-inline d-md-none">Jadi Bagian <br>dari Kebaikan 👋</span>
@@ -409,92 +397,25 @@
             </section>
 
             <!-- Footer Section -->
-            <section id="footer">
-                <div class="bg-myprimary py-10">
-                    <div class="container">
-                        <div class="row g-10">
-                            <div class="col-12 col-md-6 d-flex flex-column gap-5 justify-content-between">
-                                <div class="d-flex align-items-center gap-4">
-                                    <img alt="Logo" :src="`/storage/${profile.logo}`"
-                                        class="logo-default h-55px" />
-                                    <p class="fw-semibold text-white fs-4 mb-0">Graduate Leadership Program
-                                        <br>Indonesia Timur</p>
-                                </div>
-                                <p class="text-white opacity-75 fs-4 mb-0">{{ profile.address }}</p>
-                            </div>
-                            <div class="col-12 col-md-6 d-flex flex-row gap-15 gap-xl-20 justify-content-md-end">
-                                <div class="d-flex flex-column gap-4">
-                                    <p class="text-white opacity-50 fs-4 mb-0 text-uppercase"
-                                        style="letter-spacing: 0.08em;">Navigasi</p>
-                                    <div class="d-flex flex-column gap-2">
-                                        <a href="#home" class="fw-semibold text-white fs-4">Beranda</a>
-                                        <a href="#about" class="fw-semibold text-white fs-4">Galeri Kami</a>
-                                        <a href="#activities" class="fw-semibold text-white fs-4">Kegiatan
-                                            Internal</a>
-                                        <a href="#programs" class="fw-semibold text-white fs-4">Program Amal</a>
-                                        <a href="#testimonials" class="fw-semibold text-white fs-4">Testimoni</a>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-column gap-4">
-                                    <p class="text-white opacity-50 fs-4 mb-0 text-uppercase"
-                                        style="letter-spacing: 0.08em;">Sosial Media</p>
-                                    <div class="d-flex flex-column gap-2">
-                                        <a :href="`https://facebook.com/${profile.facebook}`" target="_blank"
-                                            class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
-                                            <i class="ri-facebook-box-fill fs-3 text-white"></i>
-                                            {{ profile.facebook }}
-                                        </a>
-                                        <a :href="`https://instagram.com/${profile.instagram}`" target="_blank"
-                                            class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
-                                            <i class="ri-instagram-line fs-3 text-white"></i>
-                                            {{ profile.instagram }}
-                                        </a>
-                                        <a :href="`https://wa.me/${profile.whatsapp}`" target="_blank"
-                                            class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
-                                            <i class="ri-whatsapp-fill fs-3 text-white"></i>
-                                            {{ formatWhatsapp(profile.whatsapp) }}
-                                        </a>
-                                        <a :href="`mailto:${profile.email}`" target="_blank"
-                                            class="d-flex flex-row align-items-center gap-2 fs-4 text-white">
-                                            <i class="ri-mail-line fs-3 text-white"></i>
-                                            {{ profile.email }}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="py-5" style="background-color: var(--bs-myprimary-600);">
-                    <div class="container d-flex flex-column flex-md-row gap-3 justify-content-between">
-                        <p class="text-white opacity-50 fs-4 mb-0">2025 © GLPINDTIM, All Right Reserved</p>
-                        <div class="d-flex flex-column flex-sm-row gap-1 gap-sm-5 gap-md-10">
-                            <p class="fw-semibold text-white opacity-75 fs-4 mb-0 text-uppercase"
-                                style="letter-spacing: 0.08em;">#PemimpinDariTimur</p>
-                            <p class="fw-semibold text-white opacity-75 fs-4 mb-0 text-uppercase"
-                                style="letter-spacing: 0.08em;">#DariTimurBeriDampak</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Footer :profile="profile" />
         </div>
     </main>
 </template>
 
 <script>
     import Navbar from "../../../Components/Navbar/User.vue";
+    import Footer from "../../../Components/Footer.vue";
     import { Head, Link } from '@inertiajs/vue3';
     import VanillaTilt from "vanilla-tilt";
     import { tns } from "tiny-slider";
     import Swal from 'sweetalert2';
-    import FsLightbox from "fslightbox-vue";
 
     export default {
         components: {
             Head,
             Link,
             Navbar,
-            FsLightbox
+            Footer
         },
 
         props: {
@@ -523,13 +444,6 @@
             document.getElementById('copy-icon').addEventListener('click', this.copyToClipboard);
         },
 
-        data() {
-            return {
-                lightboxToggler: false,
-                lightboxSources: [],
-            };
-        },
-
         methods: {
             formatTagline(text) {
                 const parts = text.match(/[A-Z][a-z]+|#[A-Z][a-z]+/g);
@@ -537,12 +451,6 @@
 
                 const lastWord = parts.pop();
                 return parts.join('') + '<br>' + lastWord;
-            },
-
-            openLightbox(clickedImageUrl) {
-                this.lightboxSources = this.programs.map(p => `/storage/${p.image}`);
-                this.currentIndex = this.lightboxSources.indexOf(clickedImageUrl) + 1;
-                this.lightboxToggler = !this.lightboxToggler;
             },
 
             initSlider(container) {
@@ -626,18 +534,6 @@
                     });
                 });
             },
-
-            formatWhatsapp(number) {
-                if (!number.startsWith('62') || number.length < 10) return number;
-
-                const prefix = '+62';
-                const main = number.slice(2);
-                const part1 = main.slice(0, 3);
-                const part2 = main.slice(3, 7);
-                const part3 = main.slice(7);
-
-                return `${prefix} ${part1} ${part2} ${part3}`;
-            }
         }
     };
 </script>

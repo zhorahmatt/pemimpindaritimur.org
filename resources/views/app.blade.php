@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{-- <link rel="icon" href="{{ asset('assets/media/logos/bss-parking-single.png') }}" type="image/svg+xml" /> --}}
+    <meta name="color-scheme" content="light only">
+    <link rel="icon" href="{{ asset('assets/media/logos/glp-indtim-logo.png') }}" type="image/svg+xml" />
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />

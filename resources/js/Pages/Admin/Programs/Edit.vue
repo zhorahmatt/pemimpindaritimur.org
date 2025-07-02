@@ -121,7 +121,7 @@
                                                 <i class="ri-image-add-line text-myprimary fs-3x"></i>
                                                 <div>
                                                     <h3 class="fs-5 fw-bold text-gray-900 mb-2">Jatuhkan file di sini / klik untuk mengunggah.</h3>
-                                                    <span class="fs-7 fw-semibold text-gray-400">Maksimal 10 MB</span>
+                                                    <span class="fs-7 fw-semibold text-gray-400">Maks. 10 MB • Rasio 4:3</span>
                                                 </div>
                                             </div>
                                         </div>

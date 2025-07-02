@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard', App\Http\Controllers\Admin\DashboardController::class)->name('admin.dashboard');
+        Route::resource('/galleries', \App\Http\Controllers\Admin\GalleryController::class, ['as' => 'admin']);
         Route::resource('/activities', \App\Http\Controllers\Admin\ActivityController::class, ['as' => 'admin']);
         Route::resource('/programs', \App\Http\Controllers\Admin\ProgramController::class, ['as' => 'admin']);
         Route::resource('/blogs', \App\Http\Controllers\Admin\BlogController::class, ['as' => 'admin']);
@@ -22,3 +23,4 @@ Route::get('/programs', \App\Http\Controllers\User\ProgramController::class)->na
 Route::get('/programs/{slug}', [\App\Http\Controllers\User\ProgramController::class, 'show'])->name('user.program.show');
 Route::get('/blogs', \App\Http\Controllers\User\BlogController::class)->name('user.blog');
 Route::get('/blogs/{slug}', [\App\Http\Controllers\User\BlogController::class, 'show'])->name('user.blog.show');
+Route::get('/galleries', \App\Http\Controllers\User\GalleryController::class)->name('user.gallery');
