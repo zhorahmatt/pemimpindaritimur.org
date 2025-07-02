@@ -28,37 +28,33 @@
                             <div class="menu-item">
                                 <a v-if="$page.url === '/'" href="#home" class="menu-link nav-link py-3 px-4 px-xxl-6 active"
                                     data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Beranda</a>
-                                <Link v-else href="/" class="menu-link nav-link py-3 px-4 px-xxl-6">Beranda</Link>
+                                <a v-else href="/" class="menu-link nav-link py-3 px-4 px-xxl-6" data-kt-drawer-dismiss="true">Beranda</a>
                             </div>
                             <div class="menu-item">
                                 <a v-if="$page.url === '/'" href="#about" class="menu-link nav-link py-3 px-4 px-xxl-6"
                                     data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Tentang</a>
-                                <Link v-else @click.prevent="goToSection('about')" class="menu-link nav-link py-3 px-4 px-xxl-6"
-                                    data-kt-scroll-toggle="true">Tentang</Link>
                             </div>
                             <div class="menu-item">
                                 <a v-if="$page.url === '/'" href="#activities" class="menu-link nav-link py-3 px-4 px-xxl-6"
                                     data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Kegiatan</a>
-                                <Link v-else-if="$page.url.startsWith('/activities')" href="/activities" class="menu-link nav-link py-3 px-4 px-xxl-6 active">Kegiatan</Link>
-                                <Link v-else href="/activities" class="menu-link nav-link py-3 px-4 px-xxl-6">Kegiatan</Link>
+                                <Link v-else-if="$page.url.startsWith('/activities')" href="/activities" class="menu-link nav-link py-3 px-4 px-xxl-6 active" data-kt-drawer-dismiss="true">Kegiatan</Link>
+                                <Link v-else href="/activities" class="menu-link nav-link py-3 px-4 px-xxl-6" data-kt-drawer-dismiss="true">Kegiatan</Link>
                             </div>
                             <div class="menu-item">
                                 <a v-if="$page.url === '/'" href="#programs" class="menu-link nav-link py-3 px-4 px-xxl-6"
                                     data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Program</a>
-                                <Link v-else-if="$page.url.startsWith('/programs')" href="/programs" class="menu-link nav-link py-3 px-4 px-xxl-6 active">Program</Link>
-                                <Link v-else href="/programs" class="menu-link nav-link py-3 px-4 px-xxl-6">Program</Link>
+                                <Link v-else-if="$page.url.startsWith('/programs')" href="/programs" class="menu-link nav-link py-3 px-4 px-xxl-6 active" data-kt-drawer-dismiss="true">Program</Link>
+                                <Link v-else href="/programs" class="menu-link nav-link py-3 px-4 px-xxl-6" data-kt-drawer-dismiss="true">Program</Link>
                             </div>
                             <div class="menu-item">
                                 <a v-if="$page.url === '/'" href="#blogs" class="menu-link nav-link py-3 px-4 px-xxl-6" 
                                     data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Blog</a>
-                                <Link v-else-if="$page.url.startsWith('/blogs')" href="/blogs" class="menu-link nav-link py-3 px-4 px-xxl-6 active">Blog</Link>
-                                <Link v-else href="/blogs" class="menu-link nav-link py-3 px-4 px-xxl-6">Blog</Link>
+                                <Link v-else-if="$page.url.startsWith('/blogs')" href="/blogs" class="menu-link nav-link py-3 px-4 px-xxl-6 active" data-kt-drawer-dismiss="true">Blog</Link>
+                                <Link v-else href="/blogs" class="menu-link nav-link py-3 px-4 px-xxl-6" data-kt-drawer-dismiss="true">Blog</Link>
                             </div>
                             <div class="menu-item">
                                 <a v-if="$page.url === '/'" href="#testimonials" class="menu-link nav-link py-3 px-4 px-xxl-6"
                                     data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Testimoni</a>
-                                <Link v-else @click.prevent="goToSection('testimonials')" class="menu-link nav-link py-3 px-4 px-xxl-6"
-                                    data-kt-scroll-toggle="true">Testimoni</Link>
                             </div>
                         </div>
                     </div>
@@ -99,37 +95,6 @@
                     window.KTDrawer.createInstances();
                 }
             },
-
-            resetDrawer() {
-                const drawerElement = document.querySelector('[data-kt-drawer="on"]');
-                if (drawerElement) {
-                    drawerElement.setAttribute('data-kt-drawer', 'off');
-                }
-            },
-
-            goToSection(sectionId) {
-                this.$inertia.visit('/', {
-                    onFinish: () => {
-                        this.resetDrawer();
-                        this.initDrawer();
-                        setTimeout(() => {
-                            const el = document.getElementById(sectionId);
-                            if (el) {
-                                el.scrollIntoView({ behavior: 'smooth' });
-                            }
-                        }, 100);
-                    }
-                });
-            }
-        },
-
-        watch: {
-            '$page.url'(newVal, oldVal) {
-                this.$nextTick(() => {
-                    this.resetDrawer();
-                    this.initDrawer();
-                });
-            }
         }
 
     }

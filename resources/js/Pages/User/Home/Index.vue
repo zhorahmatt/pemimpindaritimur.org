@@ -297,7 +297,7 @@
 
             <!-- Testimonials Section -->
             <section id="testimonials" class="mt-20 pt-20">
-                <div class="bg-myprimary py-0" v-if="testimonials.length > 0">
+                <div class="bg-myprimary pt-20 pt-md-0" v-if="testimonials.length > 0">
                     <div class="container d-flex flex-row justify-content-center align-items-center ">
                         <div class="row align-items-center">
                             <div class="col-12 col-md-6 py-20 py-md-0">

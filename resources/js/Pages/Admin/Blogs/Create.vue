@@ -48,9 +48,10 @@
                                             <label class="required form-label fs-6">Kategori</label>
                                             <select class="form-select fs-5" required v-model="form.category"
                                                 :class="{ 'is-invalid': errors.category }">
-                                                <option value="Lorem">Lorem</option>
-                                                <option value="Ipsum">Ipsum</option>
-                                                <option value="Dolor">Dolor</option>
+                                                <option value="Berita">Berita</option>
+                                                <option value="Edukasi">Edukasi</option>
+                                                <option value="Informasi">Informasi</option>
+                                                <option value="Inspiratif">Inspiratif</option>
                                             </select>
                                             <div v-if="errors.category" class="text-mydanger mt-2">
                                                 {{ errors . category }}

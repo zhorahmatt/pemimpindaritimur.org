@@ -30,7 +30,7 @@ class ProgramController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'       => 'required',
+            'title'       => 'required|unique:programs,title',
             'slug'        => 'required',
             'phase'       => 'required',
             'image'       => 'required|image|mimes:jpg,jpeg,png|max:10240',
@@ -38,6 +38,7 @@ class ProgramController extends Controller
             'status'      => 'required',
             'is_featured' => 'required',
         ], [
+            'title.unique'     => 'Judul sudah digunakan. Gunakan judul lain.',
             'content.required' => 'Konten tidak boleh kosong.',
             'status.required'  => 'Status tidak boleh kosong.',
             'image.required'   => 'Gambar tidak boleh kosong.',
@@ -75,7 +76,7 @@ class ProgramController extends Controller
     public function update(Request $request, Program $program)
     {
         $request->validate([
-            'title'       => 'required',
+            'title'       => 'required|unique:programs,title,' . $program->id,
             'slug'        => 'required',
             'phase'       => 'required',
             'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
@@ -83,6 +84,7 @@ class ProgramController extends Controller
             'status'      => 'required',
             'is_featured' => 'required',
         ], [
+            'title.unique'     => 'Judul sudah digunakan. Gunakan judul lain.',
             'content.required' => 'Konten tidak boleh kosong.',
             'status.required'  => 'Status tidak boleh kosong.',
             'image.image' => 'Gambar program harus berupa file gambar.',
