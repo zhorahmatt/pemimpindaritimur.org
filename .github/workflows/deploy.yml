@@ -26,7 +26,10 @@ jobs:
         node-version: '18'
         cache: 'npm'
 
-    # Add these steps before composer install
+    # Add this step to install composer dependencies
+    - name: Install Composer dependencies
+      run: |
+        composer install --optimize-autoloader --no-dev
 
     - name: Install NPM dependencies
       run: npm ci
