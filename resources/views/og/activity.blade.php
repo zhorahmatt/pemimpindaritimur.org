@@ -9,7 +9,7 @@
     <meta name="description" content="{{ Str::limit(strip_tags($activity->content), 160) }}">
     
     <!-- Open Graph Meta Tags for Facebook, WhatsApp, etc. -->
-    <meta property="og:type" content="article">
+    <meta property="og:type" content="website">
     <meta property="og:title" content="{{ $activity->title }}">
     <meta property="og:description" content="{{ Str::limit(strip_tags($activity->content), 160) }}">
     <meta property="og:image" content="{{ asset('storage/' . $activity->image) }}">

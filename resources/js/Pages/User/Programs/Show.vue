@@ -3,7 +3,7 @@
         <title>Detail Program - GLP INDTIM</title>
         <meta name="description" :content="metaDescription">
 
-        <meta property="og:type" content="program">
+        <meta property="og:type" content="website">
         <meta property="og:title" :content="program.title">
         <meta property="og:description" :content="metaDescription">
         <meta property="og:image" :content="programImageUrl">

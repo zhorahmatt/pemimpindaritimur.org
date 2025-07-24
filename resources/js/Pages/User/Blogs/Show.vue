@@ -4,7 +4,7 @@
         <meta name="description" :content="metaDescription">
         
         <!-- Open Graph Meta Tags -->
-        <meta property="og:type" content="blog">
+        <meta property="og:type" content="website">
         <meta property="og:title" :content="blog.title">
         <meta property="og:description" :content="metaDescription">
         <meta property="og:image" :content="blogImageUrl">
