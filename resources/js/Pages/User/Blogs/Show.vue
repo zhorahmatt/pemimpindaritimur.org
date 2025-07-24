@@ -1,6 +1,30 @@
 <template>
     <Head>
-        <title>Detail Blog - GLP INDTIM</title>
+        <title>{{ blog.title }} - GLP INDTIM</title>
+        <meta name="description" :content="metaDescription">
+        
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:type" content="article">
+        <meta property="og:title" :content="blog.title">
+        <meta property="og:description" :content="metaDescription">
+        <meta property="og:image" :content="blogImageUrl">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:url" :content="currentUrl">
+        <meta property="og:site_name" content="GLP INDTIM">
+        <meta property="article:author" content="GLP INDTIM">
+        <meta property="article:published_time" :content="blog.created_at">
+        <meta property="article:section" :content="blog.category">
+        
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" :content="blog.title">
+        <meta name="twitter:description" :content="metaDescription">
+        <meta name="twitter:image" :content="blogImageUrl">
+        
+        <!-- Additional Meta Tags -->
+        <meta name="author" content="GLP INDTIM">
+        <link rel="canonical" :href="currentUrl">
     </Head>
 
     <main id="kt_body" class="bg-light position-relative app-blank" data-kt-name="metronic" data-bs-spy="scroll"
@@ -75,6 +99,17 @@
         data() {
             return {
                 currentUrl: window.location.href
+            }
+        },
+
+        computed: {
+            metaDescription() {
+                // Strip HTML tags and limit to 160 characters for SEO
+                const plainText = this.blog.content.replace(/<[^>]*>/g, '');
+                return plainText.length > 160 ? plainText.substring(0, 160) + '...' : plainText;
+            },
+            blogImageUrl() {
+                return window.location.origin + '/storage/' + this.blog.image;
             }
         },
 
