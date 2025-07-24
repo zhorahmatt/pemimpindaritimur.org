@@ -62,7 +62,7 @@ body {
 }
 
 .bg-gradient-myprimary {
-    background: #5462F6;
+    background: var(--bs-myprimary-500);
     background: linear-gradient(45deg, rgba(84, 98, 246, 1) 0%, rgba(84, 98, 246, 1) 50%, rgba(84, 98, 246, 0.5) 100%);
 }
 
