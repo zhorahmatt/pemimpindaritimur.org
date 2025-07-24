@@ -36,7 +36,7 @@
     <link rel="icon" href="{{ url('assets/media/logos/glp-indtim-logo.png') }}" type="image/png">
     
     <!-- Redirect to actual activity page after a short delay -->
-    <meta http-equiv="refresh" content="0;url={{ url('/activities/' . $activity->slug) }}">
+    {{-- <meta http-equiv="refresh" content="0;url={{ url('/activities/' . $activity->slug) }}"> --}}
 </head>
 <body>
     <!-- Fallback content for crawlers that don't follow redirects -->

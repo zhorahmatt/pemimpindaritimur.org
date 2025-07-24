@@ -36,7 +36,7 @@
     <link rel="icon" href="{{ url('assets/media/logos/glp-indtim-logo.png') }}" type="image/png">
     
     <!-- Redirect to actual program page after a short delay -->
-    <meta http-equiv="refresh" content="0;url={{ url('/programs/' . $program->slug) }}">
+    {{-- <meta http-equiv="refresh" content="0;url={{ url('/programs/' . $program->slug) }}"> --}}
 </head>
 <body>
     <!-- Fallback content for crawlers that don't follow redirects -->
