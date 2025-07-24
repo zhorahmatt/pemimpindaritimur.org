@@ -416,7 +416,7 @@ body {
 }
 
 .img-blog {
-    border-radius: 6px !important;
+    border-radius: 1rem !important;
 }
 
 .partners-wrapper::before,

@@ -1,7 +1,7 @@
 <template>
 
     <Head>
-        <title>Administrator - BSS Parking</title>
+        <title>Administrator - GLP INDTIM</title>
     </Head>
 
     <form @submit.prevent="submit" class="form w-100" id="kt_sign_in_form">
