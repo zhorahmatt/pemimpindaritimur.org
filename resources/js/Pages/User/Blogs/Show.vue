@@ -4,12 +4,12 @@
         <meta name="description" :content="metaDescription">
         
         <!-- Open Graph Meta Tags -->
-        <meta property="og:type" content="article">
+        <meta property="og:type" content="blog">
         <meta property="og:title" :content="blog.title">
         <meta property="og:description" :content="metaDescription">
         <meta property="og:image" :content="blogImageUrl">
-        <meta property="og:image:width" content="1200">
-        <meta property="og:image:height" content="630">
+        <meta property="og:image:width" content="800">
+        <meta property="og:image:height" content="800">
         <meta property="og:url" :content="currentUrl">
         <meta property="og:site_name" content="GLP INDTIM">
         <meta property="article:author" content="GLP INDTIM">
