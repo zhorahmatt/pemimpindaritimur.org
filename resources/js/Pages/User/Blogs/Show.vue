@@ -104,9 +104,8 @@
 
         computed: {
             metaDescription() {
-                // Strip HTML tags and limit to 160 characters for SEO
                 const plainText = this.blog.content.replace(/<[^>]*>/g, '');
-                return plainText.length > 160 ? plainText.substring(0, 160) + '...' : plainText;
+                return plainText.length > 150 ? plainText.substring(0, 150) + '...' : plainText;
             },
             blogImageUrl() {
                 return window.location.origin + '/storage/' + this.blog.image;

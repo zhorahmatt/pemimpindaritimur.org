@@ -1,13 +1,28 @@
 <template>
     <Head>
         <title>Detail Program - GLP INDTIM</title>
-        <!-- Open Graph Metadata -->
-        <meta property="og:title" :content="program.title" />
-        <meta property="og:description" :content="program.content.slice(0, 150) + '... Baca selengkapnya di ' + currentUrl" />
-        <meta property="og:image" :content="`https://pemimpindaritimur.org/storage/${program.image}`" />
-        <meta property="og:url" :content="currentUrl" />
-        <meta property="og:type" content="programs" />
-        <meta property="og:site_name" content="GLP INDTIM" />
+        <meta name="description" :content="metaDescription">
+
+        <meta property="og:type" content="program">
+        <meta property="og:title" :content="program.title">
+        <meta property="og:description" :content="metaDescription">
+        <meta property="og:image" :content="programImageUrl">
+        <meta property="og:image:width" content="800">
+        <meta property="og:image:height" content="800">
+        <meta property="og:url" :content="currentUrl">
+        <meta property="og:site_name" content="GLP INDTIM">
+        <meta property="article:author" content="GLP INDTIM">
+        <meta property="article:published_time" :content="program.created_at">
+        
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" :content="program.title">
+        <meta name="twitter:description" :content="metaDescription">
+        <meta name="twitter:image" :content="programImageUrl">
+        
+        <!-- Additional Meta Tags -->
+        <meta name="author" content="GLP INDTIM">
+        <link rel="canonical" :href="currentUrl">
     </Head>
 
     <main id="kt_body" class="bg-light position-relative app-blank" data-kt-name="metronic" data-bs-spy="scroll"
@@ -20,7 +35,7 @@
                     <div class="container mw-md-750px mw-lg-900px pt-8">
                         <div class="overflow-hidden position-relative rounded-4 ratio ratio-4x3">
                             <img :src="`/storage/${program.image}`"
-                                class="img-fluid object-fit-cover mw-100" alt="Gambar Blog" />
+                                class="img-fluid object-fit-cover mw-100" alt="Gambar Program Amal" />
                         </div>
                         <h1 class="fw-bold text-dark text-center lh-base fs-3x pt-8 pt-md-10 mb-0">
                             {{ program.title }}
@@ -86,6 +101,16 @@
         data() {
             return {
                 currentUrl: window.location.href
+            }
+        },
+
+        computed: {
+            metaDescription() {
+                const plainText = this.program.content.replace(/<[^>]*>/g, '');
+                return plainText.length > 150 ? plainText.substring(0, 150) + '...' : plainText;
+            },
+            programImageUrl() {
+                return window.location.origin + '/storage/' + this.program.image;
             }
         },
 
