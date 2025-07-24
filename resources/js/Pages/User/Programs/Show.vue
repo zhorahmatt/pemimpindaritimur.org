@@ -1,6 +1,12 @@
 <template>
     <Head>
         <title>Detail Program - GLP INDTIM</title>
+        <meta property="og:title" content="{{ program.title }}" />
+        <meta property="og:description" content="{{ program.content.slice(0, 150) }}... Baca selengkapnya di {{ currentUrl }}" />
+        <meta property="og:image" content="{{ `https://pemimpindaritimur.org/storage/${program.image}` }}" />
+        <meta property="og:url" content="{{ currentUrl }}" />
+        <meta property="og:type" content="programs" />
+        <meta property="og:site_name" content="GLP INDTIM" />
     </Head>
 
     <main id="kt_body" class="bg-light position-relative app-blank" data-kt-name="metronic" data-bs-spy="scroll"
@@ -62,23 +68,8 @@
     import Footer from "../../../Components/Footer.vue";
     import { Head, Link, router } from '@inertiajs/vue3';
     import Swal from 'sweetalert2';
-    import VueMeta from 'vue-meta';
 
     export default {
-        metaInfo() {
-            return {
-            title: this.program.title,
-            meta: [
-                { property: 'og:title', content: this.program.title },
-                { property: 'og:description', content: `${this.program.content.slice(0, 150)}... Baca selengkapnya di ${this.currentUrl}` },
-                { property: 'og:image', content: `https://pemimpindaritimur.org/storage/${this.program.image}` },
-                { property: 'og:url', content: this.currentUrl },
-                { property: 'og:type', content: 'website' },
-                { property: 'og:site_name', content: 'GLP INDTIM' }
-            ]
-            };
-        },
-
         components: {
             Head,
             Link,

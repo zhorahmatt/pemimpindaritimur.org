@@ -33,9 +33,19 @@ class BlogController extends Controller
             ->where('status', 'published')
             ->firstOrFail();
 
+        if ($this->isCrawler()) {
+            return view('og.blog', compact('blog'));
+        }
+
         return inertia('User/Blogs/Show', [
             'profile' => $profile,
             'blog' => $blog,
         ]);
+    }
+
+    private function isCrawler()
+    {
+        $agent = request()->header('User-Agent');
+        return preg_match('/facebook|twitter|linkedin|whatsapp|discordbot|telegrambot|bot|crawler|spider/i', $agent);
     }
 }
