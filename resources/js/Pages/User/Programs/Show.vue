@@ -1,10 +1,11 @@
 <template>
     <Head>
         <title>Detail Program - GLP INDTIM</title>
-        <meta property="og:title" content="{{ program.title }}" />
-        <meta property="og:description" content="{{ program.content.slice(0, 150) }}... Baca selengkapnya di {{ currentUrl }}" />
-        <meta property="og:image" content="{{ `https://pemimpindaritimur.org/storage/${program.image}` }}" />
-        <meta property="og:url" content="{{ currentUrl }}" />
+        <!-- Open Graph Metadata -->
+        <meta property="og:title" :content="program.title" />
+        <meta property="og:description" :content="ogDescription" />
+        <meta property="og:image" :content="`https://pemimpindaritimur.org/storage/${program.image}`" />
+        <meta property="og:url" :content="currentUrl" />
         <meta property="og:type" content="programs" />
         <meta property="og:site_name" content="GLP INDTIM" />
     </Head>
