@@ -33,9 +33,19 @@ class ProgramController extends Controller
             ->where('status', 'published')
             ->firstOrFail();
 
+        if ($this->isCrawler()) {
+            return view('og.program', compact('program'));
+        }
+
         return inertia('User/Programs/Show', [
             'profile' => $profile,
             'program' => $program,
         ]);
+    }
+
+    private function isCrawler()
+    {
+        $agent = request()->header('User-Agent');
+        return preg_match('/facebook|twitter|linkedin|whatsapp|discordbot|telegrambot|bot|crawler|spider/i', $agent);
     }
 }
