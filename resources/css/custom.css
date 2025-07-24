@@ -622,6 +622,9 @@ img.object-fit-cover {
     background-color: var(--bs-myprimary-500) !important;
 }
 
+#activity-dropzone .dz-size,
+#program-dropzone .dz-size,
+#blog-dropzone .dz-size,
 #gallery-dropzone .dz-size,
 #testimonial-dropzone .dz-size,
 #partner-dropzone .dz-size {

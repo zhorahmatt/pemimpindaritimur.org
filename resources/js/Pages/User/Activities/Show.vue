@@ -1,6 +1,27 @@
 <template>
     <Head>
         <title>Detail Kegiatan - GLP INDTIM</title>
+
+        <meta property="og:type" content="activity">
+        <meta property="og:title" :content="activity.title">
+        <meta property="og:description" :content="metaDescription">
+        <meta property="og:image" :content="activityImageUrl">
+        <meta property="og:image:width" content="800">
+        <meta property="og:image:height" content="800">
+        <meta property="og:url" :content="currentUrl">
+        <meta property="og:site_name" content="GLP INDTIM">
+        <meta property="article:author" content="GLP INDTIM">
+        <meta property="article:published_time" :content="activity.created_at">
+        
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" :content="activity.title">
+        <meta name="twitter:description" :content="metaDescription">
+        <meta name="twitter:image" :content="activityImageUrl">
+        
+        <!-- Additional Meta Tags -->
+        <meta name="author" content="GLP INDTIM">
+        <link rel="canonical" :href="currentUrl">
     </Head>
 
     <main id="kt_body" class="bg-light position-relative app-blank" data-kt-name="metronic" data-bs-spy="scroll"
@@ -79,6 +100,16 @@
         data() {
             return {
                 currentUrl: window.location.href
+            }
+        },
+
+        computed: {
+            metaDescription() {
+                const plainText = this.activity.content.replace(/<[^>]*>/g, '');
+                return plainText.length > 150 ? plainText.substring(0, 150) + '...' : plainText;
+            },
+            activityImageUrl() {
+                return window.location.origin + '/storage/' + this.activity.image;
             }
         },
 

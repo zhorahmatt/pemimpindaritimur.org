@@ -33,9 +33,19 @@ class ActivityController extends Controller
             ->where('status', 'published')
             ->firstOrFail();
 
+        if ($this->isCrawler()) {
+            return view('og.activity', compact('activity'));
+        }
+
         return inertia('User/Activities/Show', [
             'profile' => $profile,
             'activity' => $activity,
         ]);
+    }
+
+    private function isCrawler()
+    {
+        $agent = request()->header('User-Agent');
+        return preg_match('/facebook|twitter|linkedin|whatsapp|discordbot|telegrambot|bot|crawler|spider/i', $agent);
     }
 }

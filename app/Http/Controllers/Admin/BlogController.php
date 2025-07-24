@@ -66,7 +66,6 @@ class BlogController extends Controller
     {
         $blog = Blog::findOrFail($id);
         $blog->image_name = basename($blog->image);
-        $blog->image_size = Storage::disk('public')->size($blog->image);
 
         return inertia('Admin/Blogs/Edit', [
             'blog' => $blog,

@@ -66,7 +66,6 @@ class ActivityController extends Controller
     {
         $activity = Activity::findOrFail($id);
         $activity->image_name = basename($activity->image);
-        $activity->image_size = Storage::disk('public')->size($activity->image);
 
         return inertia('Admin/Activities/Edit', [
             'activity' => $activity,

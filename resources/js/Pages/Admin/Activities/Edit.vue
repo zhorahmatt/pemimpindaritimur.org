@@ -237,7 +237,6 @@
                         if (props.activity.image) {
                             const mockFile = {
                                 name: props.activity.image_name ?? 'Gambar Kegiatan',
-                                size: props.activity.image_size ?? 12345
                             };
                             this.emit('addedfile', mockFile);
                             this.emit('thumbnail', mockFile, `/storage/${props.activity.image}`);

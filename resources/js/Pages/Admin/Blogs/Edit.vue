@@ -237,7 +237,6 @@
                         if (props.blog.image) {
                             const mockFile = {
                                 name: props.blog.image_name ?? 'Gambar Blog',
-                                size: props.blog.image_size ?? 12345
                             };
                             this.emit('addedfile', mockFile);
                             this.emit('thumbnail', mockFile, `/storage/${props.blog.image}`);
