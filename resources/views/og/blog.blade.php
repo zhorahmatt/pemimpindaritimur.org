@@ -13,8 +13,8 @@
     <meta property="og:title" content="{{ $blog->title }}">
     <meta property="og:description" content="{{ Str::limit(strip_tags($blog->content), 160) }}">
     <meta property="og:image" content="{{ url('storage/' . $blog->image) }}">
-    <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="800">
+    {{-- <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="800"> --}}
     <meta property="og:url" content="{{ url('/blogs/' . $blog->slug) }}">
     <meta property="og:site_name" content="GLP INDTIM">
     <meta property="article:author" content="GLP INDTIM">

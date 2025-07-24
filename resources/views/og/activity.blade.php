@@ -13,8 +13,8 @@
     <meta property="og:title" content="{{ $activity->title }}">
     <meta property="og:description" content="{{ Str::limit(strip_tags($activity->content), 160) }}">
     <meta property="og:image" content="{{ url('storage/' . $activity->image) }}">
-    <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="800">
+    {{-- <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="800"> --}}
     <meta property="og:url" content="{{ url('/activities/' . $activity->slug) }}">
     <meta property="og:site_name" content="GLP INDTIM">
     <meta property="article:author" content="GLP INDTIM">
