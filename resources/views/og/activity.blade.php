@@ -13,8 +13,8 @@
     <meta property="og:title" content="{{ $activity->title }}">
     <meta property="og:description" content="{{ Str::limit(strip_tags($activity->content), 160) }}">
     <meta property="og:image" content="{{ url('storage/' . $activity->image) }}">
-    {{-- <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="800"> --}}
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="800">
     <meta property="og:url" content="{{ url('/activities/' . $activity->slug) }}">
     <meta property="og:site_name" content="GLP INDTIM">
     <meta property="article:author" content="GLP INDTIM">
@@ -43,7 +43,6 @@
     <h1>{{ $activity->title }}</h1>
     <img src="{{ url('storage/' . $activity->image) }}" alt="{{ $activity->title }}" style="max-width: 100%; height: auto;">
     <p>{{ Str::limit(strip_tags($activity->content), 300) }}</p>
-    <p><strong>Category:</strong> {{ $activity->category }}</p>
     <p><strong>Published:</strong> {{ $activity->created_at->format('F j, Y') }}</p>
     <a href="{{ url('/activities/' . $activity->slug) }}">Read full article</a>
 </body>

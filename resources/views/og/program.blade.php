@@ -13,8 +13,8 @@
     <meta property="og:title" content="{{ $program->title }}">
     <meta property="og:description" content="{{ Str::limit(strip_tags($program->content), 160) }}">
     <meta property="og:image" content="{{ url('storage/' . $program->image) }}">
-    {{-- <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="800"> --}}
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="800">
     <meta property="og:url" content="{{ url('/programs/' . $program->slug) }}">
     <meta property="og:site_name" content="GLP INDTIM">
     <meta property="article:author" content="GLP INDTIM">
@@ -43,7 +43,6 @@
     <h1>{{ $program->title }}</h1>
     <img src="{{ url('storage/' . $program->image) }}" alt="{{ $program->title }}" style="max-width: 100%; height: auto;">
     <p>{{ Str::limit(strip_tags($program->content), 300) }}</p>
-    <p><strong>Category:</strong> {{ $program->category }}</p>
     <p><strong>Published:</strong> {{ $program->created_at->format('F j, Y') }}</p>
     <a href="{{ url('/programs/' . $program->slug) }}">Read full article</a>
 </body>
