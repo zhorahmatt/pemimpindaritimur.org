@@ -9,10 +9,10 @@
     <meta name="description" content="{{ Str::limit(strip_tags($program->content), 160) }}">
     
     <!-- Open Graph Meta Tags for Facebook, WhatsApp, etc. -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
     <meta property="og:title" content="{{ $program->title }}">
     <meta property="og:description" content="{{ Str::limit(strip_tags($program->content), 160) }}">
-    <meta property="og:image" content="{{ asset('storage/' . $program->image) }}">
+    <meta property="og:image" content="{{ url('storage/' . $program->image) }}">
     <meta property="og:image:width" content="800">
     <meta property="og:image:height" content="800">
     <meta property="og:url" content="{{ url('/programs/' . $program->slug) }}">
@@ -25,7 +25,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $program->title }}">
     <meta name="twitter:description" content="{{ Str::limit(strip_tags($program->content), 160) }}">
-    <meta name="twitter:image" content="{{ asset('storage/' . $program->image) }}">
+    <meta name="twitter:image" content="{{ url('storage/' . $program->image) }}">
     
     <!-- Additional Meta Tags -->
     <meta name="author" content="GLP INDTIM">
@@ -33,7 +33,7 @@
     <link rel="canonical" href="{{ url('/programs/' . $program->slug) }}">
     
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('assets/media/logos/glp-indtim-logo.png') }}" type="image/png">
+    <link rel="icon" href="{{ url('assets/media/logos/glp-indtim-logo.png') }}" type="image/png">
     
     <!-- Redirect to actual program page after a short delay -->
     <meta http-equiv="refresh" content="0;url={{ url('/programs/' . $program->slug) }}">
@@ -41,7 +41,7 @@
 <body>
     <!-- Fallback content for crawlers that don't follow redirects -->
     <h1>{{ $program->title }}</h1>
-    <img src="{{ asset('storage/' . $program->image) }}" alt="{{ $program->title }}" style="max-width: 100%; height: auto;">
+    <img src="{{ url('storage/' . $program->image) }}" alt="{{ $program->title }}" style="max-width: 100%; height: auto;">
     <p>{{ Str::limit(strip_tags($program->content), 300) }}</p>
     <p><strong>Category:</strong> {{ $program->category }}</p>
     <p><strong>Published:</strong> {{ $program->created_at->format('F j, Y') }}</p>

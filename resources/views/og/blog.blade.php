@@ -9,10 +9,10 @@
     <meta name="description" content="{{ Str::limit(strip_tags($blog->content), 160) }}">
     
     <!-- Open Graph Meta Tags for Facebook, WhatsApp, etc. -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
     <meta property="og:title" content="{{ $blog->title }}">
     <meta property="og:description" content="{{ Str::limit(strip_tags($blog->content), 160) }}">
-    <meta property="og:image" content="{{ asset('storage/' . $blog->image) }}">
+    <meta property="og:image" content="{{ url('storage/' . $blog->image) }}">
     <meta property="og:image:width" content="800">
     <meta property="og:image:height" content="800">
     <meta property="og:url" content="{{ url('/blogs/' . $blog->slug) }}">
@@ -25,7 +25,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $blog->title }}">
     <meta name="twitter:description" content="{{ Str::limit(strip_tags($blog->content), 160) }}">
-    <meta name="twitter:image" content="{{ asset('storage/' . $blog->image) }}">
+    <meta name="twitter:image" content="{{ url('storage/' . $blog->image) }}">
     
     <!-- Additional Meta Tags -->
     <meta name="author" content="GLP INDTIM">
@@ -33,7 +33,7 @@
     <link rel="canonical" href="{{ url('/blogs/' . $blog->slug) }}">
     
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('assets/media/logos/glp-indtim-logo.png') }}" type="image/png">
+    <link rel="icon" href="{{ url('assets/media/logos/glp-indtim-logo.png') }}" type="image/png">
     
     <!-- Redirect to actual blog page after a short delay -->
     <meta http-equiv="refresh" content="0;url={{ url('/blogs/' . $blog->slug) }}">
@@ -41,7 +41,7 @@
 <body>
     <!-- Fallback content for crawlers that don't follow redirects -->
     <h1>{{ $blog->title }}</h1>
-    <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }}" style="max-width: 100%; height: auto;">
+    <img src="{{ url('storage/' . $blog->image) }}" alt="{{ $blog->title }}" style="max-width: 100%; height: auto;">
     <p>{{ Str::limit(strip_tags($blog->content), 300) }}</p>
     <p><strong>Category:</strong> {{ $blog->category }}</p>
     <p><strong>Published:</strong> {{ $blog->created_at->format('F j, Y') }}</p>

@@ -2,7 +2,7 @@
     <Head>
         <title>Detail Kegiatan - GLP INDTIM</title>
 
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
         <meta property="og:title" :content="activity.title">
         <meta property="og:description" :content="metaDescription">
         <meta property="og:image" :content="activityImageUrl">
