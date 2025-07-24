@@ -66,7 +66,6 @@ class ProgramController extends Controller
     {
         $program = Program::findOrFail($id);
         $program->image_name = basename($program->image);
-        $program->image_size = Storage::disk('public')->size($program->image);
 
         return inertia('Admin/Programs/Edit', [
             'program' => $program,
