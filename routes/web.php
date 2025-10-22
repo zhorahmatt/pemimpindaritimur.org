@@ -24,3 +24,6 @@ Route::get('/programs/{slug}', [\App\Http\Controllers\User\ProgramController::cl
 Route::get('/blogs', \App\Http\Controllers\User\BlogController::class)->name('user.blog');
 Route::get('/blogs/{slug}', [\App\Http\Controllers\User\BlogController::class, 'show'])->name('user.blog.show');
 Route::get('/galleries', \App\Http\Controllers\User\GalleryController::class)->name('user.gallery');
+
+// Lainnya
+Route::get('/ilmu-keuangan', \App\Http\Controllers\User\OtherController::class)->name('user.other');

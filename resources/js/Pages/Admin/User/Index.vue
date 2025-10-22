@@ -74,7 +74,7 @@
                                             placeholder="Masukkan kata sandi lama disini..." v-model="form.current_password"
                                             :class="{ 'is-invalid': errors.current_password }" />
                                         <div v-if="errors.current_password" class="text-danger mt-2">
-                                            {{ errors.current_password }}
+                                            {{ errors.current_parssword }}
                                         </div>
                                     </div>
                                     <div class="mb-5 fv-row">

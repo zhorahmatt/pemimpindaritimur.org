@@ -300,7 +300,7 @@
                 <div class="bg-myprimary pt-20 pt-md-0" v-if="testimonials.length > 0">
                     <div class="container d-flex flex-row justify-content-center align-items-center ">
                         <div class="row align-items-center">
-                            <div class="col-12 col-md-6 py-20 py-md-0">
+                            <div class="col-12 col-md-6 pt-20 pb-16 py-md-0">
                                 <h1 class="fw-bolder text-white lh-base fs-3x fs-md-3x mb-3 text-center text-md-start">
                                     <span class="d-none d-md-inline">Jejak Kebaikan, <br>Suara dari Hati 🤍</span>
                                     <span class="d-inline d-md-none">Jejak Kebaikan, Suara dari Hati 🤍</span>

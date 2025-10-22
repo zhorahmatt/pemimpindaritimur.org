@@ -230,7 +230,6 @@ body {
     color: #7E8299 !important;
 }
 
-
 .btn-mylight:hover,
 .btn-mylight:hover i {
     background-color: #E4E6EF !important;
@@ -249,6 +248,17 @@ body {
 .page-item:not(.active):not(.offset):not(.disabled) .page-link-myprimary:hover {
     background-color: #EFF2F5 !important;
     color: #5E6278 !important;
+}
+
+.btn-mywhite,
+.btn-mywhite i {
+    background-color: #FFFFFF !important;
+    color: var(--bs-myprimary-500) !important;
+}
+
+.btn-mywhite:hover,
+.btn-mywhite:hover i {
+    color: var(--bs-myprimary-600) !important;
 }
 
 .page-item:not(.disabled) .page-link-myprimary i {

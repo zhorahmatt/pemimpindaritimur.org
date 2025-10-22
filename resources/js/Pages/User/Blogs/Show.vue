@@ -131,7 +131,7 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Link blog berhasil disalin!',
-                        text: 'Terima kasih telah membantu menyebarkan informasi ini 🙌',
+                        text: 'Terima kasih telah membantu menyebarkan informasi ini',
                         timer: 3000,
                         timerProgressBar: true,
                         showConfirmButton: false,
