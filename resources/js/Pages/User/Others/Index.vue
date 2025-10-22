@@ -39,99 +39,277 @@
                 </div>
             </section>
 
-            <!-- About Section -->
-            <section id="about" class="pt-20">
-                <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
-                    <p class="fw-semibold text-gray-500 fs-4 text-uppercase mb-4" style="letter-spacing: 0.08em;">
-                        Tentang Kami
-                    </p>
-                    <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
-                        {{ profile.name }}
-                    </h1>
-                    <p class="fw-semibold text-gray-600 fs-2 mb-0">
-                        didirikan sebagai <span class="fw-bolder text-mydanger">wadah kolabrasi</span> 🤝 dan
-                        <span class="fw-bolder text-mydanger">kontribusi nyata</span> 🚀 dari para lulusan program
-                        kepemimpinan yang memiliki visi besar untuk
-                        <span class="fw-bolder text-mydanger">membangun Indonesia dari wilayah timur</span>.
-                    </p>
-
-                    <!-- Statistics Section -->
-                    <div class="row g-8 w-100 my-8 px-xl-20">
-                        <div class="col-6 col-sm-3 d-flex flex-column justify-content-center">
-                            <p class="fs-2 fw-bold text-dark mb-0 mb-md-n2">Berdiri Sejak</p>
-                            <h1 class="fw-boldest text-myprimary lh-base fs-4x fs-md-4x mb-0" data-kt-countup="true"
-                                data-kt-countup-duration="3" :data-kt-countup-value="profile.year" data-kt-countup-separator="">
-                                0
-                            </h1>
-                        </div>
-                        <div class="col-6 col-sm-3 d-flex flex-column justify-content-center">
-                            <p class="fs-2 fw-bold text-dark mb-0 mb-md-n2">Anggota</p>
-                            <h1 class="fw-boldest text-myprimary lh-base fs-4x fs-md-4x mb-0" data-kt-countup="true"
-                                data-kt-countup-duration="3" :data-kt-countup-value="profile.members">
-                                0
-                            </h1>
-                        </div>
-                        <div class="col-6 col-sm-3 d-flex flex-column justify-content-center">
-                            <p class="fs-2 fw-bold text-dark mb-0 mb-md-n2">Kegiatan Internal</p>
-                            <h1 class="fw-boldest text-myprimary lh-base fs-4x fs-md-4x mb-0" data-kt-countup="true"
-                                data-kt-countup-duration="3" :data-kt-countup-value="total_activities">
-                                0
-                            </h1>
-                        </div>
-                        <div class="col-6 col-sm-3 d-flex flex-column justify-content-center">
-                            <p class="fs-2 fw-bold text-dark mb-0 mb-md-n2">Program Amal</p>
-                            <h1 class="fw-boldest text-myprimary lh-base fs-4x fs-md-4x mb-0" data-kt-countup="true"
-                                data-kt-countup-duration="3" :data-kt-countup-value="total_programs">
-                                0
-                            </h1>
-                        </div>
-                    </div>
-
-                    <!-- Mission Statement Section -->
-                    <div class="d-flex flex-column flex-lg-row gap-5 gap-lg-10 mt-2">
-                        <p class="fw-semibold text-gray-600 text-center text-lg-end fs-4 mb-0 flex-grow-1"
-                            style="line-height: 1.75">
-                            Yayasan ini lahir dari semangat dan keyakinan bahwa perubahan positif dimulai dari pemimpin
-                            yang hadir, peduli, dan bertindak. Kami percaya bahwa potensi Indonesia Timur sangat besar
-                            dan perlu terus didorong melalui pendekatan yang berkelanjutan dan berdampak. Karena itu,
-                            kami berfokus pada tiga pilar utama:
-                        </p>
-                        <div
-                            class="d-inline-flex flex-column flex-md-row flex-lg-column gap-1 gap-md-6 gap-lg-1 align-self-center align-self-lg-start text-center text-lg-start text-nowrap">
-                            <p class="fw-bold fs-2 mb-0 text-dark">
-                                <span class="fw-bolder text-mydanger d-inline-block w-lg-40px text-end me-3">01.</span>
-                                Kegiatan Sosial
+            <section id="who" class="pt-20">
+                <div class="container pt-20">
+                    <div class="row g-10">
+                        <div class="col-lg-6 text-center text-lg-start align-self-center pe-lg-10 pe-xl-20">
+                            <p class="fw-semibold text-myprimary fs-4 text-uppercase mb-6 px-4 py-1 d-inline-block rounded-pill bg-myprimary-light"
+                                style="letter-spacing: 0.08em;">
+                                Ilmu Keuangan
                             </p>
-                            <p class="fw-bold fs-2 mb-0 text-dark">
-                                <span class="fw-bolder text-mydanger d-inline-block w-lg-40px text-end me-3">02.</span>
-                                Keagamaan
-                            </p>
-                            <p class="fw-bold fs-2 mb-0 text-dark">
-                                <span class="fw-bolder text-mydanger d-inline-block w-lg-40px text-end me-3">03.</span>
-                                Pemberdayaan Masyarakat
+                            <h1 class="fw-bolder text-dark fs-3x fs-lg-2hx mb-5">
+                                Bisnis yang Tangguh Dimulai dari Keputusan yang Tepat!
+                            </h1>
+                            <p class="fw-semibold text-gray-600 fs-2 fs-lg-3 fs-xl-2 mb-0 me-xl-10">
+                                Workshop ini membantu Anda memahami risiko di balik setiap keputusan bisnis dan membangun roadmap finansial yang aman.
                             </p>
                         </div>
-                    </div>
-
-                    <!-- Vision Statement Section -->
-                    <div class="mt-10 p-14 bg-gradient-myprimary rounded-4">
-                        <p class="custom-flex-text text-white opacity-60 fs-4 text-uppercase mb-4"
-                            style="letter-spacing: 0.08em;">
-                            Kami Berupaya Menciptakan Ruang-Ruang Perubahan, Memperkuat Kapasitas Lokal, Serta
-                            Menumbuhkan Semangat Kepemimpinan yang Melayani
-                        </p>
-                        <h3 class="fw-bolder text-white opacity-100 lh-base fs-3x fs-md-2x mb-0">
-                            Yayasan Pemimpin dari Timur <span class="fw-normal opacity-75">hadir bukan hanya sebagai
-                                organisasi, tetapi sebagai</span> gerakan untuk menyalakan lilin harapan <span
-                                class="fw-normal opacity-75">dan</span> mewujudkan masa depan <span
-                                class="fw-normal opacity-75">yang lebih baik dari</span> timur Indonesia—untuk seluruh
-                            Indonesia
-                        </h3>
+                        <div class="col-lg-6">
+                            <div class="row g-3 g-md-5 g-lg-3">
+                                <div class="col-4 position-relative">
+                                    <img src="/assets/media/illustrations/img-1.png" class="rounded-4 w-100" alt="" />
+                                    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
+                                        style="letter-spacing: 0.08em;">
+                                        Business Owner
+                                    </p>
+                                </div>
+                                <div class="col-4 position-relative">
+                                    <img src="/assets/media/illustrations/img-2.png" class="rounded-4 w-100" alt="" />
+                                    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
+                                        style="letter-spacing: 0.08em;">
+                                        CEO
+                                    </p>
+                                </div>
+                                <div class="col-4 position-relative">
+                                    <img src="/assets/media/illustrations/img-3.png" class="rounded-4 w-100" alt="" />
+                                    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
+                                        style="letter-spacing: 0.08em;">
+                                        Finance Manager
+                                    </p>
+                                </div>
+                                <div class="col-4 position-relative">
+                                    <img src="/assets/media/illustrations/img-4.png" class="rounded-4 w-100" alt="" />
+                                    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
+                                        style="letter-spacing: 0.08em;">
+                                        Business Couch
+                                    </p>
+                                </div>
+                                <div class="col-4 position-relative">
+                                    <img src="/assets/media/illustrations/img-5.png" class="rounded-4 w-100" alt="" />
+                                    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
+                                        style="letter-spacing: 0.08em;">
+                                        Investor
+                                    </p>
+                                </div>
+                                <div class="col-4 position-relative">
+                                    <img src="/assets/media/illustrations/img-6.png" class="rounded-4 w-100" alt="" />
+                                    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
+                                        style="letter-spacing: 0.08em;">
+                                        You!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Activities Section -->
+            <section id="why" class="pt-20">
+                <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
+                    <p class="fw-semibold text-gray-500 fs-4 text-uppercase mb-4" style="letter-spacing: 0.08em;">
+                        Kenapa Harus Ikut
+                    </p>
+                    <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
+                        Smart Financial Map
+                    </h1>
+                    <p class="fw-semibold text-gray-600 fs-2 mb-10 mb-lg-12 mx-md-20 mx-lg-0">
+                        Semua yang Anda butuhkan untuk <span class="fw-bolder text-mydanger">memahami</span>, <span class="fw-bolder text-mydanger">menganalisa</span> dan 
+                        <span class="fw-bolder text-mydanger">menumbuhkan</span> bisnis.
+                    </p>
+                    <div class="row g-4 g-md-6 justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card card-hover h-100 p-7 p-md-8 align-items-start text-start rounded-4 border border-gray-300 shadow-none">
+                                <h4 class="fs-2 fw-bolder mb-5 lh-base">Valuasi dan Pendanaan Perusahaan  🧮</h4>
+                                <div class="d-flex flex-column gap-2">
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-funds-box-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menghitung nilai perusahaan berdasarkan industri dan model bisnis dengan beberapa metode
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-calculator-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menentukan kebutuhan pendanaan perusahaan
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-exchange-dollar-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menentukan tipe pendanaan yang tepat bagi perusahaan. apakah loan atau equity
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-bar-chart-2-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana membuat feasibility sebuah bisnis atau proyek
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-shield-check-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menganalisa resiko dan membuat bisnis menjadi sustain
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-slideshow-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menganalisa sensitivity bagi perusahaan
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-bank-card-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menganalisa kredit untuk kebutuhan pendanaan
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-dashboard-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana membuat dashboard keuangan untuk pengambilan keputusan dibisnis
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-more-fill"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Dan masih banyak lagi....
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-hover h-100 p-7 p-md-8 align-items-start text-start rounded-4 border border-gray-300 shadow-none">
+                                <h4 class="fs-2 fw-bolder mb-5 lh-base">Perencanaan, Forecasting & Ekspansi  📈</h4>
+                                <div class="d-flex flex-column gap-2">
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-clipboard-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana membuat perencanaan bisnis yang terukur
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-road-map-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana membuat road map bisnis sampai 5 tahun kedepan
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-bar-chart-box-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana membuat proyeksi keuangan yang lengkap dan mudah dimengerti oleh investor atau kreditur anda
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-function-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana membuat forecast penjualan yang akurat dengan beberapa metode statistik
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-global-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana analisa faktor faktor ekonomi yang akan berpengaruh terhadap keuangan perusahaan
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-price-tag-3-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menentukan harga jual dan memproyeksi kenaikan harga berdasarkan inflasi
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-building-2-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana membuat rencana CAPEX untuk ekspansi bisnis
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-more-fill"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Dan masih banyak lagi....
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-lg-8 col-xl-7">
+                            <div class="card card-hover h-100 p-7 p-md-8 align-items-start text-start rounded-4 border border-gray-300 shadow-none">
+                                <h4 class="fs-2 fw-bolder mb-5 lh-base">Analisis Laporan Keuangan  📊</h4>
+                                <div class="d-flex flex-column gap-2">
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-file-chart-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana membaca laporan Laba dan rugi
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-exchange-funds-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana membaca laporan arus kas
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-scales-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana membaca laporan neraca dan perubahan modal
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-line-chart-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menganalisa penjualan dan faktor pertumbuhan penjualan
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-pie-chart-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menganalisa struktur biaya dan membuatnya menjadi lebih efesien dan efektif
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-rocket-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menentukan agar profit perusahaan semakin besar
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-arrow-up-circle-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menentukan agar perusahaan memiliki arus kas yang positif
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-equalizer-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menganalisa rasio vertikal dan horisontal bagi perusahaan
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-compass-3-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana menentukan strategi bisnis yang tepat dengan data laporan keuangan
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-wallet-3-line"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bagaimana membuat anggaran
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-myprimary ri-more-fill"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Dan masih banyak lagi....
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section id="activities" class="pt-20" v-if="activities.length > 0">
                 <div class="container pt-20 text-center">
                     <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
@@ -193,54 +371,6 @@
                             </a>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Programs Section -->
-            <section id="programs" class="pt-20" v-if="programs.length > 0">
-                <div class="container pt-20 text-center">
-                    <p class="fw-semibold text-myprimary fs-4 text-uppercase mb-3 px-4 py-1 d-inline-block rounded-pill bg-myprimary-light"
-                        style="letter-spacing: 0.08em;">
-                        #DariTimurBeriDampak
-                    </p>
-                    <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
-                        Bersama Menebar Manfaat 🌟
-                    </h1>
-                    <p class="fw-semibold text-gray-600 fs-2 mb-10">
-                        Program dan kegiatan yang <span class="fw-bolder text-mydanger">tumbuh dari hati</span>,
-                        demi aksi nyata <span class="fw-bolder text-mydanger">penuh arti</span>.
-                    </p>
-
-                    <div class="programs-slider mb-10">
-                        <div v-for="(program, index) in programs" :key="index">
-                            <Link :href="`/programs/${program.slug}`" class="d-flex flex-column gap-4 text-start m-5" id="program-card">
-                                <div class="ribbon ribbon-start ribbon-clip">
-                                    <div class="ribbon-label fs-6">
-                                        {{ program.phase }}
-                                        <span class="ribbon-inner"
-                                            :class="{
-                                                'bg-mywarning': program.phase === 'Akan Datang',
-                                                'bg-mysuccess': program.phase === 'Dibuka',
-                                                'bg-mydanger': program.phase === 'Ditutup',
-                                                'bg-myprimary': program.phase === 'Terlaksana'
-                                            }"
-                                        ></span>
-                                    </div>
-                                    <div class="overflow-hidden position-relative rounded-4 ratio ratio-4x3">
-                                        <img :src="`/storage/${program.image}`" class="img-fluid object-fit-cover mw-100"
-                                            alt="Gambar Program Amal" />
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">{{ program.title }}</p>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-3">{{ stripTags(program.content) }}</p>
-                                </div>
-                            </Link>
-                        </div>
-                    </div>
-                    <Link href="/programs" class="btn-link-myprimary btn-link-icon fw-bold fs-4">
-                        Lihat semua program amal 
-                        <i class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i></Link>
                 </div>
             </section>
 
