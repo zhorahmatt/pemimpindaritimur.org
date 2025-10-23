@@ -25,11 +25,12 @@
                             <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0">27 - 28 November 2025</p>
                         </div>
                         <div class="d-flex flex-wrap justify-content-center gap-5">
-                            <button class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
+                            <a href="#register" data-kt-scroll-toggle
+                                class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
                                 <i class="ri-user-add-fill fs-2"></i>
                                 Daftar Sekarang
-                            </button>
-                            <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
+                            </a>
+                            <a :href="`https://wa.me/6281232040682?text=${encodeURIComponent('Halo Admin Yanti, Mohon info Workshop Smart Financial Map')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
                                 <i class="ri-whatsapp-fill fs-2"></i>
                                 Hubungi Kami
                             </a>
@@ -516,72 +517,12 @@
                         <span class="fw-bolder text-mydanger">transformasi finansial</span> mereka. 
                     </p>
                     <div class="row g-3 g-md-5">
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-1.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-2.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-3.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-4.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-5.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-6.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-7.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-8.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-9.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-10.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-11.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-12.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-13.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-14.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-15.jpg" alt="" />
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <img class="w-100 rounded-4"
-                                src="/assets/media/illustrations/doc-16.jpg" alt="" />
+                        <div v-for="(img, index) in lightboxSourcesGallery" :key="index" 
+                            class="col-6 col-md-4 col-lg-3 cursor-pointer" @click="openLightboxGallery(index)">
+                            <img class="w-100 rounded-4 img-gallery" :src="img" alt="" />
                         </div>
                     </div>
-                    <FsLightbox :toggler="lightboxToggler" :slide="currentIndex" :sources="lightboxSources" />
+                    <FsLightbox :toggler="lightboxTogglerGallery" :slide="currentIndexGallery" :sources="lightboxSourcesGallery" />
                 </div>
             </section>
 
@@ -592,41 +533,31 @@
                     </h1>
                     <div class="container px-0 px-md-12 w-lg-800px w-xl-1000px position-relative">
                         <swiper
-                                :loop="true"
-                                :slides-per-view="1"    
-                                :space-between="20"
-                                :navigation="{ prevEl: '.my-prev', nextEl: '.my-next' }"
-                                :autoplay="{
-                                    delay: 5000,
-                                    disableOnInteraction: false,
-                                }"
-                                :modules="modules">
-                            <swiper-slide>
+                            :loop="true"
+                            :slides-per-view="1"    
+                            :space-between="20"
+                            :navigation="{ prevEl: '.my-prev', nextEl: '.my-next' }"
+                            :autoplay="{
+                                delay: 5000,
+                                disableOnInteraction: false,
+                            }"
+                            :modules="modules">
+                            <swiper-slide v-for="(item, index) in testimonials" :key="index">
                                 <div class="d-flex flex-column flex-md-row gap-10 gap-md-12 align-items-center align-items-md-start px-0 px-md-6">
-                                    <img class="w-150px bg-white p-3 rounded border border-gray-300"
-                                        src="/assets/media/illustrations/img-1.png" alt="" style="transform: rotate(2.5deg);">
-                                    <div class="d-flex flex-column gap-5 w-100">
-                                        <p class="order-2 order-md-1 text-dark text-center text-md-start fw-medium fs-3">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
-                                        <div class="order-1 order-md-2 d-flex flex-column flex-center flex-md-start">
-                                            <h4 class="text-dark text-start lh-sm fs-2qx fs-md-2 mb-1">dsaads</h4>
-                                            <p class="text-gray-600 text-start fs-5 mb-0">dsadasdsa</p>
-                                        </div>
+                                    <div class="position-relative d-inline-block cursor-pointer"
+                                        @click="openLightboxTesti(index)">
+                                        <img class="w-175px bg-white p-3 rounded border border-gray-300"
+                                            :src="item.image" alt="Foto Testimoni" style="transform: rotate(2.5deg);">
+                                        <img class="w-50px position-absolute top-50 start-50 translate-middle"
+                                            src="/assets/media/elements/icon_play.png" alt="play">
                                     </div>
-                                </div>
-                            </swiper-slide>
-                            <swiper-slide>
-                                <div class="d-flex flex-column flex-md-row gap-10 gap-md-12 align-items-center align-items-md-start px-0 px-md-6">
-                                    <img class="w-150px bg-white p-3 rounded border border-gray-300"
-                                        src="/assets/media/illustrations/img-1.png" alt="" style="transform: rotate(2.5deg);">
                                     <div class="d-flex flex-column gap-5 w-100">
                                         <p class="order-2 order-md-1 text-dark text-center text-md-start fw-medium fs-3">
-                                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur
+                                            {{ item.text }}
                                         </p>
                                         <div class="order-1 order-md-2 d-flex flex-column flex-center flex-md-start">
-                                            <h4 class="text-dark text-start lh-sm fs-2qx fs-md-2 mb-1">dsaads</h4>
-                                            <p class="text-gray-600 text-start fs-5 mb-0">dsadasdsa</p>
+                                            <h4 class="text-dark text-start lh-sm fs-2qx fs-md-2 mb-2">{{ item.name }}</h4>
+                                            <p class="text-gray-600 text-start fs-4 mb-0">{{ item.business }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -638,6 +569,7 @@
                         <button class="my-next btn btn-icon btn-sm btn-mysecondary rounded-pill position-absolute top-50 translate-middle-y z-3">
                             <i class="ri-arrow-right-s-line fs-1"></i>
                         </button>
+                        <FsLightbox :toggler="lightboxTogglerTesti" :slide="currentIndexTesti" :sources="testimonials.map(t => t.youtube)" />
                     </div>  
                 </div>
             </section>
@@ -675,6 +607,7 @@
 
 <script>
     import { Head, Link } from '@inertiajs/vue3';
+    import { ref } from 'vue'
     import Swal from 'sweetalert2';
     import FsLightbox from "fslightbox-vue";
     import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -693,8 +626,87 @@
         },
 
         setup() {
+            const lightboxTogglerGallery = ref(false)
+            const currentIndexGallery = ref(0)
+            const lightboxSourcesGallery = [
+                '/assets/media/illustrations/doc-1.jpg',
+                '/assets/media/illustrations/doc-2.jpg',
+                '/assets/media/illustrations/doc-3.jpg',
+                '/assets/media/illustrations/doc-4.jpg',
+                '/assets/media/illustrations/doc-5.jpg',
+                '/assets/media/illustrations/doc-6.jpg',
+                '/assets/media/illustrations/doc-7.jpg',
+                '/assets/media/illustrations/doc-8.jpg',
+                '/assets/media/illustrations/doc-9.jpg',
+                '/assets/media/illustrations/doc-10.jpg',
+                '/assets/media/illustrations/doc-11.jpg',
+                '/assets/media/illustrations/doc-12.jpg',
+                '/assets/media/illustrations/doc-13.jpg',
+                '/assets/media/illustrations/doc-14.jpg',
+                '/assets/media/illustrations/doc-15.jpg',
+                '/assets/media/illustrations/doc-16.jpg'
+            ]
+
+            const lightboxTogglerTesti = ref(false)
+            const currentIndexTesti = ref(0)
+            const testimonials = [
+                {
+                    image: '/assets/media/illustrations/testi-1.png',
+                    name: 'Aditya',
+                    business: 'Media & Marketing, Jakarta',
+                    youtube: 'https://www.youtube.com/watch?v=c6CYblRSVEU',
+                    text: 'Bisnis saya bergerak di bidang media dan marketing. Menurut saya, pembahasannya jujur, realistis, dan membantu saya dalam menentukan arah atau keputusan-keputusan strategis di bisnis saya. Kalau teman-teman suka pembelajaran tentang bisnis, strategic partnership, atau investasi keuangan, saya rasa menarik untuk mengikuti Smart Financial Map, karena bagi saya itu sangat membantu.'
+                },
+                {
+                    image: '/assets/media/illustrations/testi-1.png',
+                    name: 'Aditya',
+                    business: 'Media & Marketing, Jakarta',
+                    youtube: 'https://www.youtube.com/watch?v=c6CYblRSVEU',
+                    text: 'Bisnis saya bergerak di bidang media dan marketing. Menurut saya, pembahasannya jujur, realistis, dan membantu saya dalam menentukan arah atau keputusan-keputusan strategis di bisnis saya. Kalau teman-teman suka pembelajaran tentang bisnis, strategic partnership, atau investasi keuangan, saya rasa menarik untuk mengikuti Smart Financial Map, karena bagi saya itu sangat membantu.'
+                },
+                {
+                    image: '/assets/media/illustrations/testi-1.png',
+                    name: 'Aditya',
+                    business: 'Media & Marketing, Jakarta',
+                    youtube: 'https://www.youtube.com/watch?v=c6CYblRSVEU',
+                    text: 'Bisnis saya bergerak di bidang media dan marketing. Menurut saya, pembahasannya jujur, realistis, dan membantu saya dalam menentukan arah atau keputusan-keputusan strategis di bisnis saya. Kalau teman-teman suka pembelajaran tentang bisnis, strategic partnership, atau investasi keuangan, saya rasa menarik untuk mengikuti Smart Financial Map, karena bagi saya itu sangat membantu.'
+                },
+                {
+                    image: '/assets/media/illustrations/testi-1.png',
+                    name: 'Aditya',
+                    business: 'Media & Marketing, Jakarta',
+                    youtube: 'https://www.youtube.com/watch?v=c6CYblRSVEU',
+                    text: 'Bisnis saya bergerak di bidang media dan marketing. Menurut saya, pembahasannya jujur, realistis, dan membantu saya dalam menentukan arah atau keputusan-keputusan strategis di bisnis saya. Kalau teman-teman suka pembelajaran tentang bisnis, strategic partnership, atau investasi keuangan, saya rasa menarik untuk mengikuti Smart Financial Map, karena bagi saya itu sangat membantu.'
+                },
+                {
+                    image: '/assets/media/illustrations/testi-1.png',
+                    name: 'Aditya',
+                    business: 'Media & Marketing, Jakarta',
+                    youtube: 'https://www.youtube.com/watch?v=c6CYblRSVEU',
+                    text: 'Bisnis saya bergerak di bidang media dan marketing. Menurut saya, pembahasannya jujur, realistis, dan membantu saya dalam menentukan arah atau keputusan-keputusan strategis di bisnis saya. Kalau teman-teman suka pembelajaran tentang bisnis, strategic partnership, atau investasi keuangan, saya rasa menarik untuk mengikuti Smart Financial Map, karena bagi saya itu sangat membantu.'
+                },
+            ]
+
+            const openLightboxGallery = (index) => {
+                currentIndexGallery.value = index + 1 
+                lightboxTogglerGallery.value = !lightboxTogglerGallery.value
+            }
+
+            const openLightboxTesti = (index) => {
+                currentIndexTesti.value = index + 1 
+                lightboxTogglerTesti.value = !lightboxTogglerTesti.value
+            }
+
             return {
                 modules: [Autoplay, Pagination, Navigation],
+                lightboxTogglerGallery,
+                currentIndexGallery,
+                lightboxSourcesGallery,
+                lightboxTogglerTesti,
+                currentIndexTesti,
+                testimonials,
+                openLightboxGallery,
+                openLightboxTesti,
             }
         }
     };
@@ -708,8 +720,16 @@
         background-position: center;
     }
 
-    .my-prev { left: 7.5%; top: 27.5% !important; }
-    .my-next { right: 7.5%; top: 27.5% !important;}
+    .my-prev { left: 2.5%; top: 18% !important; }
+    .my-next { right: 2.5%; top: 18% !important; }
+
+    .img-gallery {
+        transition: transform 0.3s ease;
+    }
+
+    .img-gallery:hover {
+        transform: scale(1.025);
+    }
 
     @media (max-width: 768px) {
         .bg-landing-sfm {
@@ -722,8 +742,8 @@
             left: 1.75rem;
         }
 
-        .my-prev { left: 0; top: 85px !important; }
-        .my-next { right: 0; top: 85px !important; }
+        .my-prev { left: 0; top: 100px !important; }
+        .my-next { right: 0; top: 100px !important; }
     }
 
     @media (min-width: 992px) {
