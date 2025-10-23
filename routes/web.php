@@ -28,6 +28,6 @@ Route::get('/galleries', \App\Http\Controllers\User\GalleryController::class)->n
 // Lainnya
 Route::get('/ilmu-keuangan', \App\Http\Controllers\User\OtherController::class)->name('user.other');
 Route::post('/ilmu-keuangan', [\App\Http\Controllers\User\OtherController::class, 'store'])->name('user.other.store');
-Route::get('/data-ilmu-keuangan', [\App\Http\Controllers\User\OtherController::class, 'show'])->name('user.other.show');
-Route::put('/data-ilmu-keuangan/{data}', [\App\Http\Controllers\User\OtherController::class, 'update'])->name('user.other.update');
-Route::delete('/data-ilmu-keuangan/{data}', [\App\Http\Controllers\User\OtherController::class, 'destroy'])->name('user.other.destroy');
+Route::get('/ilmu-keuangan/dashboard', [\App\Http\Controllers\User\OtherController::class, 'show'])->name('user.other.show');
+Route::put('/ilmu-keuangan/dashboard/{data}', [\App\Http\Controllers\User\OtherController::class, 'update'])->name('user.other.update');
+Route::delete('/ilmu-keuangan/dashboard/{data}', [\App\Http\Controllers\User\OtherController::class, 'destroy'])->name('user.other.destroy');

@@ -329,7 +329,7 @@
             const search = ref('' || (new URL(document.location)).searchParams.get('q'));
 
             const handleSearch = () => {
-                router.get('/data-ilmu-keuangan', {
+                router.get('/ilmu-keuangan/dashboard', {
                     q: search.value,
                 });
             }
@@ -380,7 +380,7 @@
                 payload.append('_method', 'PUT');
                 payload.append('status', status);
 
-                router.post(`/data-ilmu-keuangan/${selectedData.value.id}`, payload, {
+                router.post(`/ilmu-keuangan/dashboard/${selectedData.value.id}`, payload, {
                     onSuccess: () => {
                         Swal.fire({
                             icon: 'success',
@@ -433,7 +433,7 @@
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        router.delete(`/data-ilmu-keuangan/${id}`);
+                        router.delete(`/ilmu-keuangan/dashboard/${id}`);
                         Swal.fire({
                             icon: 'success',
                             title: 'Dihapus!',
