@@ -64,8 +64,17 @@ class OtherController extends Controller
 
         $datas->appends(['q' => request()->q]);
 
+        $total_all     = IlmuKeuangan::count();
+        $total_deny    = IlmuKeuangan::where('status', 'deny')->count();
+        $total_pending = IlmuKeuangan::where('status', 'pending')->count();
+        $total_accept  = IlmuKeuangan::where('status', 'accept')->count();
+
         return inertia('User/Others/Show', [
-            'datas' => $datas,
+            'datas'         => $datas,
+            'total_all'     => $total_all,
+            'total_deny'    => $total_deny,
+            'total_pending' => $total_pending,
+            'total_accept'  => $total_accept,
         ]);
     }
 }

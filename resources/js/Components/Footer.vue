@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <div class="py-5" style="background-color: var(--bs-myprimary-600);">
+        <div class="py-5" style="background-color: var(--bs-myprimary-700);">
             <div class="container d-flex flex-column flex-md-row gap-3 justify-content-between">
                 <p class="text-white opacity-50 fs-4 mb-0">2025 © GLPINDTIM, All Right Reserved</p>
                 <div class="d-flex flex-column flex-sm-row gap-1 gap-sm-5 gap-md-10">

@@ -21,6 +21,64 @@
             </section>
 
             <section id="data-table" class="container py-10 py-md-20">
+                <div class="row g-6 pb-6">
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <div class="card border border-gray-300 h-100">
+                            <div class="card-body d-flex align-items-center gap-5 p-6">
+                                <div
+                                    class="p-6 bg-myprimary rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="ri-team-fill text-white fs-2hx"></i>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <p class="fs-4 fw-semibold text-gray-800 mb-1">Total Pendaftar</p>
+                                    <h1 class="fs-2hx mb-0">{{ total_all }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <div class="card border border-gray-300 h-100">
+                            <div class="card-body d-flex align-items-center gap-5 p-6">
+                                <div
+                                    class="p-6 bg-mysuccess-light rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="ri-hand-heart-fill text-mysuccess fs-2hx"></i>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <p class="fs-4 fw-semibold text-gray-800 mb-1">Disetujui</p>
+                                    <h1 class="fs-2hx mb-0">{{ total_accept }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <div class="card border border-gray-300 h-100">
+                            <div class="card-body d-flex align-items-center gap-5 p-6">
+                                <div
+                                    class="p-6 bg-mydanger-light rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="ri-article-fill text-mydanger fs-2hx"></i>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <p class="fs-4 fw-semibold text-gray-800 mb-1">Ditolak</p>
+                                    <h1 class="fs-2hx mb-0">{{ total_deny }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <div class="card border border-gray-300 h-100">
+                            <div class="card-body d-flex align-items-center gap-5 p-6">
+                                <div
+                                    class="p-6 bg-mywarning-light rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="ri-article-fill text-mywarning fs-2hx"></i>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <p class="fs-4 fw-semibold text-gray-800 mb-1">Pending</p>
+                                    <h1 class="fs-2hx mb-0">{{ total_pending }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card border border-gray-300">
                     <div class="card-header border-0 py-5 px-6 d-flex flex-wrap gap-3">
                         <form @submit.prevent="handleSearch"
@@ -84,7 +142,7 @@
                                                 class="badge text-capitalize fs-7 px-3 py-2"
                                                 :class="{
                                                     'bg-mysecondary text-mysecondary': data.status === 'accept',
-                                                    'bg-mywarning-light text-mywarning-badge': data.status === 'pending',
+                                                    'bg-mywarning-light text-mywarning': data.status === 'pending',
                                                     'bg-mydanger-light text-mydanger': data.status === 'deny'
                                                 }"
                                             >
@@ -100,7 +158,7 @@
                                                 class="btn btn-sm btn-icon btn-mysecondary me-2">
                                                 <i class="ri-eye-fill fs-3"></i></button>
                                             <button @click.prevent="destroy(data.id)"
-                                                class="btn btn-sm btn-icon btn-mydanger">
+                                                class="btn btn-sm btn-icon btn-mydanger-solid">
                                                 <i class="ri-delete-bin-fill fs-3"></i></button>
                                         </td>
                                     </tr>
@@ -206,7 +264,7 @@
                                         </div>
                                         <div class="d-flex flex-column gap-2">
                                             <p class="fs-5 text-gray-600 mb-0">Bukti Pembayaran</p>
-                                            <a href="#" target="_blank"
+                                            <a :href="`/storage/${selectedData?.image}`" target="_blank"
                                                 class="fs-5 btn-link-myprimary fw-bold mb-0">
                                                 <i class="fs-4 fw-semibold ri-eye-line me-1"></i>
                                                 Lihat Bukti Pembayaran
@@ -215,9 +273,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex gap-4">
+                            <!-- <div class="d-flex gap-4">
                                 <button type="button" id="kt_drawer_deny_button"
-                                    class="btn btn-sm btn-mydanger-solid flex-fill fs-5"
+                                    class="btn btn-sm btn-mydanger flex-fill fs-5"
                                     :disabled="selectedData?.status === 'deny'"
                                     @click="denyData()">
                                     <span class="indicator-label">
@@ -228,7 +286,7 @@
                                     </span>
                                 </button>
                                 <button type="submit" id="kt_drawer_submit_button"
-                                    class="btn btn-sm btn-myprimary flex-fill fs-5"
+                                    class="btn btn-sm btn-mysuccess-solid flex-fill fs-5"
                                     :disabled="selectedData?.status === 'accept'">
                                     <span class="indicator-label">
                                         {{ selectedData?.status === 'accept' ? 'Disetujui' : 'Setujui' }}
@@ -237,7 +295,7 @@
                                         Mohon Tunggu... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                     </span>
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -262,6 +320,10 @@
         props: {
             errors: Object,
             datas: Object,
+            total_all: Number,
+            total_deny: Number,
+            total_pending: Number,
+            total_accept: Number,
         },
 
         setup() {

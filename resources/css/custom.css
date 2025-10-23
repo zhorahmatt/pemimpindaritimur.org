@@ -1,28 +1,28 @@
 @charset "UTF-8";
 :root {
-    --bs-myprimary-50: #edf3ff;
-    --bs-myprimary-100: #dfe8ff;
-    --bs-myprimary-200: #c5d5ff;
-    --bs-myprimary-300: #a2b8ff;
-    --bs-myprimary-400: #7c90fd;
-    --bs-myprimary-500: #5462f6;
-    --bs-myprimary-600: #4041eb;
-    --bs-myprimary-700: #3432d0;
-    --bs-myprimary-800: #2c2da7;
-    --bs-myprimary-900: #2b2e84;
-    --bs-myprimary-950: #19194d;
+    --bs-myprimary-50: #fff0f0;
+    --bs-myprimary-100: #ffdddd;
+    --bs-myprimary-200: #ffc0c0;
+    --bs-myprimary-300: #ff9494;
+    --bs-myprimary-400: #ff5757;
+    --bs-myprimary-500: #ff2323;
+    --bs-myprimary-600: #ff1818;
+    --bs-myprimary-700: #d70000;
+    --bs-myprimary-800: #b10303;
+    --bs-myprimary-900: #920a0a;
+    --bs-myprimary-950: #500000;
 
-    --bs-mydanger-50: #fef2f2;
-    --bs-mydanger-100: #fee2e2;
-    --bs-mydanger-200: #fecaca;
-    --bs-mydanger-300: #fca5a5;
-    --bs-mydanger-400: #f87171;
-    --bs-mydanger-500: #ef4444;
-    --bs-mydanger-600: #dc2626;
-    --bs-mydanger-700: #b91c1c;
-    --bs-mydanger-800: #991b1b;
-    --bs-mydanger-900: #7f1d1d;
-    --bs-mydanger-950: #450a0a;
+    --bs-mydanger-50: #fff0f0;
+    --bs-mydanger-100: #ffdddd;
+    --bs-mydanger-200: #ffc0c0;
+    --bs-mydanger-300: #ff9494;
+    --bs-mydanger-400: #ff5757;
+    --bs-mydanger-500: #ff2323;
+    --bs-mydanger-600: #ff1818;
+    --bs-mydanger-700: #d70000;
+    --bs-mydanger-800: #b10303;
+    --bs-mydanger-900: #920a0a;
+    --bs-mydanger-950: #500000;
 
     --bs-mysuccess-50: #f0fdf4;
     --bs-mysuccess-100: #dcfce7;
@@ -62,8 +62,8 @@ body {
 }
 
 .bg-gradient-myprimary {
-    background: var(--bs-myprimary-500);
-    background: linear-gradient(45deg, rgba(84, 98, 246, 1) 0%, rgba(84, 98, 246, 1) 50%, rgba(84, 98, 246, 0.5) 100%);
+    background: var(--bs-myprimary-600);
+    background: linear-gradient(45deg, rgba(255, 24, 24, 1) 0%, rgba(255, 24, 24, 1) 50%, rgba(255, 24, 24, 0.5) 100%);
 }
 
 [data-kt-sticky-landing-header="on"] .landing-header .menu .menu-link.active,
@@ -73,7 +73,7 @@ body {
 .menu-state-title-primary .menu-item .menu-link.active,
 .menu-state-title-primary .menu-item .menu-link:hover {
     background-color: unset !important;
-    color: var(--bs-myprimary-500) !important;
+    color: var(--bs-myprimary-700) !important;
     font-weight: 600
 }
 
@@ -92,32 +92,32 @@ body {
 
 [data-kt-sticky-landing-header="on"] .btn-myicon:hover i,
 #hero .landing-header .btn-myicon:hover i {
-    color: var(--bs-myprimary-500) !important;
+    color: var(--bs-myprimary-600) !important;
 }
 
 .btn-myprimary,
 .btn-myprimary i,
 .active .page-link-myprimary,
 .flatpickr-day.selected {
-    background-color: var(--bs-myprimary-500) !important;
+    background-color: var(--bs-myprimary-600) !important;
     color: var(--bs-white) !important;
 }
 
 .btn-myprimary:hover,
 .btn-myprimary:hover i,
 .active .page-link-myprimary:hover {
-    background-color: var(--bs-myprimary-600) !important;
+    background-color: var(--bs-myprimary-700) !important;
 }
 
 .text-myprimary,
 .btn-link-myprimary,
 .btn-link-myprimary i {
-    color: var(--bs-myprimary-500) !important;
+    color: var(--bs-myprimary-600) !important;
 }
 
 .btn-link-myprimary:hover,
 .btn-link-myprimary:hover i {
-    color: var(--bs-myprimary-600) !important;
+    color: var(--bs-myprimary-700) !important;
 }
 
 .btn-link-myprimary i {
@@ -132,73 +132,69 @@ body {
 .text-mysuccess,
 .btn-link-mysuccess,
 .btn-link-mysuccess i {
-    color: var(--bs-mysuccess-500) !important;
+    color: var(--bs-mysuccess-600) !important;
 }
 
 .btn-link-mysuccess:hover,
 .btn-link-mysuccess:hover i {
-    color: var(--bs-mysuccess-600) !important;
+    color: var(--bs-mysuccess-700) !important;
 }
 
 .text-mydanger,
 .btn-link-mydanger,
 .btn-link-mydanger i {
-    color: var(--bs-mydanger-500) !important;
+    color: var(--bs-mydanger-600) !important;
 }
 
 .btn-link-mydanger:hover,
 .btn-link-mydanger:hover i {
-    color: var(--bs-mydanger-600) !important;
+    color: var(--bs-mydanger-700) !important;
 }
 
 .text-mywarning,
 .btn-link-mywarning,
 .btn-link-mywarning i {
-    color: var(--bs-mywarning-500) !important;
-}
-
-.text-mywarning-badge {
     color: var(--bs-mywarning-600) !important;
 }
 
 .btn-link-mywarning:hover,
 .btn-link-mywarning:hover i {
-    color: var(--bs-mywarning-600) !important;
+    color: var(--bs-mywarning-700) !important;
 }
 
 .btn-mysecondary,
 .btn-mysecondary i {
     background-color: var(--bs-myprimary-100) !important;
-    color: var(--bs-myprimary-700) !important;
+    color: var(--bs-myprimary-600) !important;
 }
 
 .btn-mysecondary:hover,
 .btn-mysecondary:hover i {
     background-color: var(--bs-myprimary-200) !important;
-    color: var(--bs-myprimary-800) !important;
+    color: var(--bs-myprimary-700) !important;
 }
 
 .btn-mydanger,
 .btn-mydanger i {
-    background-color: #FEE2E2 !important;
-    color: #B91C1C !important;
+    background-color: var(--bs-mydanger-100) !important;
+    color: var(--bs-mydanger-600) !important;
 }
 
 .btn-mydanger:hover,
 .btn-mydanger:hover i {
-    background-color: #FECACA !important;
-    color: #991B1B !important;
+    background-color: var(--bs-mydanger-200) !important;
+    color: var(--bs-mydanger-700) !important;
 }
 
 .btn-mydanger-solid,
 .btn-mydanger-solid i {
-    background-color: #EF4444 !important;
+    background-color: var(--bs-mydanger-600) !important;
     color: #FFFFFF !important;
 }
 
 .btn-mydanger-solid:hover,
 .btn-mydanger-solid:hover i {
-    background-color: #DC2626 !important;
+    background-color: var(--bs-mydanger-700) !important;
 }
 
 .text-mydanger-light {
@@ -219,13 +215,13 @@ body {
 
 .btn-mysuccess-solid,
 .btn-mysuccess-solid i {
-    background-color: #22C55E !important;
+    background-color: var(--bs-mysuccess-500) !important;
     color: #FFFFFF !important;
 }
 
 .btn-mysuccess-solid:hover,
 .btn-mysuccess-solid:hover i {
-    background-color: #16A34A !important;
+    background-color: var(--bs-mysuccess-600) !important;
 }
 
 .btn-mylight,
@@ -257,12 +253,12 @@ body {
 .btn-mywhite,
 .btn-mywhite i {
     background-color: #FFFFFF !important;
-    color: var(--bs-myprimary-500) !important;
+    color: var(--bs-myprimary-600) !important;
 }
 
 .btn-mywhite:hover,
 .btn-mywhite:hover i {
-    color: var(--bs-myprimary-600) !important;
+    color: var(--bs-myprimary-700) !important;
 }
 
 .page-item:not(.disabled) .page-link-myprimary i {
@@ -275,7 +271,7 @@ body {
 
 
 .bg-myprimary {
-    background-color: var(--bs-myprimary-500) !important;
+    background-color: var(--bs-myprimary-600) !important;
 }
 
 .bg-mysecondary {
@@ -283,15 +279,15 @@ body {
 }
 
 .bg-mydanger {
-    background-color: var(--bs-mydanger-500) !important;
+    background-color: var(--bs-mydanger-600) !important;
 }
 
 .bg-mysuccess {
-    background-color: var(--bs-mysuccess-500) !important;
+    background-color: var(--bs-mysuccess-600) !important;
 }
 
 .bg-mywarning {
-    background-color: var(--bs-mywarning-500) !important;
+    background-color: var(--bs-mywarning-600) !important;
 }
 
 .bg-myprimary-light {
@@ -426,7 +422,7 @@ body {
     padding: 0;
 }
 .tns-nav>.tns-nav-active {
-    background-color: var(--bs-myprimary-500) !important;
+    background-color: var(--bs-myprimary-600) !important;
 }
 
 .img-blog {
@@ -510,7 +506,7 @@ body {
         height: 150px;
         z-index: 1;
         pointer-events: none;
-        background: linear-gradient(to bottom, var(--bs-myprimary-500), transparent);
+        background: linear-gradient(to bottom, var(--bs-myprimary-600), transparent);
     }
 }
 
@@ -527,8 +523,8 @@ body {
 
 .swal-custom-icon .swal2-icon.swal2-question,
 .swal-custom-icon .swal2-icon.swal2-info {
-    border-color: var(--bs-myprimary-500); 
-    color: var(--bs-myprimary-500);
+    border-color: var(--bs-myprimary-600); 
+    color: var(--bs-myprimary-600);
 }
 
 .swal-custom-icon .swal2-icon.swal2-error {
@@ -558,7 +554,7 @@ body {
 .form-control:focus,
 .form-select:focus {
     color: var(--bs-dark);
-    border-color: var(--bs-myprimary-500);
+    border-color: var(--bs-myprimary-600);
 }
 
 img.object-fit-cover {
@@ -568,8 +564,8 @@ img.object-fit-cover {
 
 .btn.btn-active-myprimary.active,
 .btn.btn-active-myprimary:hover.active:hover {
-    border-color: var(--bs-myprimary-500) !important;
-    background-color: var(--bs-myprimary-500) !important;
+    border-color: var(--bs-myprimary-600) !important;
+    background-color: var(--bs-myprimary-600) !important;
     color: var(--bs-white) !important;
 }
 
@@ -581,7 +577,7 @@ img.object-fit-cover {
 }
 
 .form-check-custom.form-check-solid .form-check-input:checked {
-    background-color: var(--bs-myprimary-500);
+    background-color: var(--bs-myprimary-600);
 }
 
 .dropzone {
@@ -589,7 +585,7 @@ img.object-fit-cover {
 }
 
 .border-myprimary {
-    border-color: var(--bs-myprimary-500) !important;
+    border-color: var(--bs-myprimary-600) !important;
 }
 
 .dropzone .dz-image img {
@@ -599,7 +595,7 @@ img.object-fit-cover {
 }
 
 .dropzone .dz-remove:hover::after {
-    background-color: var(--bs-myprimary-500);
+    background-color: var(--bs-myprimary-600);
 }
 
 .tox .tox-tbtn:hover {
@@ -612,7 +608,7 @@ img.object-fit-cover {
 .tox .tox-tbtn--enabled:focus,
 .tox .tox-tbtn--enabled:hover {
     color: white !important;
-    background: var(--bs-myprimary-500) !important;
+    background: var(--bs-myprimary-600) !important;
 }
 
 .tox .tox-tbtn--active svg,
@@ -629,11 +625,11 @@ img.object-fit-cover {
 
 .tox .tox-edit-area::before {
     margin: 1px;
-    border: 1px solid var(--bs-myprimary-500) !important;
+    border: 1px solid var(--bs-myprimary-600) !important;
 }
 
 .tox .tox-collection--list .tox-collection__item--active:not(.tox-collection__item--state-disabled) {
-    background-color: var(--bs-myprimary-500) !important;
+    background-color: var(--bs-myprimary-600) !important;
 }
 
 #activity-dropzone .dz-size,
@@ -659,11 +655,11 @@ img.object-fit-cover {
 }
 
 #content-editor a {
-    color: var(--bs-myprimary-500);
+    color: var(--bs-myprimary-600);
 }
 
 #content-editor a:hover {
-    color: var(--bs-myprimary-600);
+    color: var(--bs-myprimary-700);
 }
 
 #content-editor h2 {

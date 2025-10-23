@@ -507,7 +507,7 @@
                 </div>
             </section>
 
-            <section id="event" class="mt-20 pt-20">
+            <section id="event" class="d-none mt-20 pt-20">
                 <div class="bg-myprimary pt-20 pt-md-0">
                     <div class="container py-20">
                         <div class="row g-8 py-20">
@@ -689,7 +689,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-5 fv-row">
-                                                    <label class="required form-label fs-6">Ukuran Jaket</label>
+                                                    <label class="required form-label fs-6">Ukuran Baju/Jaket</label>
                                                     <div class="input-group">
                                                         <span class="input-group-text" id="basic-addon2">
                                                             <i class="ri-shirt-fill fs-3"></i>
@@ -799,7 +799,9 @@
                                                     <span class="input-group-text" id="basic-addon2">
                                                         <i class="ri-suitcase-fill fs-3"></i>
                                                     </span>
-                                                    <select class="form-select fs-5" required
+                                                    <input type="text" class="form-control fs-5" placeholder="Masukkan sumber disini..."
+                                                        required v-model="form.from" :class="{ 'is-invalid': errors.from }"/>
+                                                    <!-- <select class="form-select fs-5" required
                                                         v-model="form.from"
                                                         :class="[
                                                             { 'is-invalid': errors.from },
@@ -812,7 +814,7 @@
                                                         <option class="text-dark" value="Youtube @ilmukeuangan">Youtube @ilmukeuangan</option>
                                                         <option class="text-dark" value="Youtube @kasisolusi">Youtube @kasisolusi</option>
                                                         <option class="text-dark" value="Teman / Relasi / Client">Teman / Relasi / Client</option>
-                                                    </select>
+                                                    </select> -->
                                                     <div v-if="errors.from" class="text-mydanger mt-2">
                                                         {{ errors . from }}
                                                     </div>
