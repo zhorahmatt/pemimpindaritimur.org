@@ -39,7 +39,7 @@
                 </div>
             </section>
 
-            <section id="who" class="pt-20">
+            <section class="pt-20">
                 <div class="container pt-20">
                     <div class="row g-10">
                         <div class="col-lg-6 text-center text-lg-start align-self-center pe-lg-10 pe-xl-20">
@@ -104,7 +104,7 @@
                 </div>
             </section>
 
-            <section id="why" class="pt-20">
+            <section class="pt-20">
                 <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <p class="fw-semibold text-gray-500 fs-4 text-uppercase mb-4" style="letter-spacing: 0.08em;">
                         Kenapa Harus Ikut
@@ -118,7 +118,7 @@
                     </p>
                     <div class="row g-4 g-md-6 justify-content-center">
                         <div class="col-md-6">
-                            <div class="card card-hover h-100 p-7 p-md-8 align-items-start text-start rounded-4 border border-gray-300 shadow-none">
+                            <div class="card h-100 p-7 p-md-8 align-items-start text-start rounded-4 border border-gray-300 shadow-none">
                                 <h4 class="fs-2 fw-bolder mb-5 lh-base">Valuasi dan Pendanaan Perusahaan  🧮</h4>
                                 <div class="d-flex flex-column gap-2">
                                     <div class="d-flex align-items-start gap-3">
@@ -179,7 +179,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card card-hover h-100 p-7 p-md-8 align-items-start text-start rounded-4 border border-gray-300 shadow-none">
+                            <div class="card h-100 p-7 p-md-8 align-items-start text-start rounded-4 border border-gray-300 shadow-none">
                                 <h4 class="fs-2 fw-bolder mb-5 lh-base">Perencanaan, Forecasting & Ekspansi  📈</h4>
                                 <div class="d-flex flex-column gap-2">
                                     <div class="d-flex align-items-start gap-3">
@@ -234,7 +234,7 @@
                             </div>
                         </div>
                         <div class="col-md-9 col-lg-8 col-xl-7">
-                            <div class="card card-hover h-100 p-7 p-md-8 align-items-start text-start rounded-4 border border-gray-300 shadow-none">
+                            <div class="card h-100 p-7 p-md-8 align-items-start text-start rounded-4 border border-gray-300 shadow-none">
                                 <h4 class="fs-2 fw-bolder mb-5 lh-base">Analisis Laporan Keuangan  📊</h4>
                                 <div class="d-flex flex-column gap-2">
                                     <div class="d-flex align-items-start gap-3">
@@ -310,373 +310,295 @@
                 </div>
             </section>
 
-            <section id="activities" class="pt-20" v-if="activities.length > 0">
-                <div class="container pt-20 text-center">
-                    <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
-                        Bersama Menyatukan Langkah 🚀
-                    </h1>
-                    <p class="fw-semibold text-gray-600 fs-2 mb-10">
-                        Tempat jiwa-jiwa <span class="fw-bolder text-mydanger">bertumbuh</span>,
-                        <span class="fw-bolder text-mydanger">berbagi ilmu</span> dan
-                        <span class="fw-bolder text-mydanger">semangat</span> dalam
-                        <span class="fw-bolder text-mydanger">harmoni kebersamaan</span>.
-                    </p>
-
-                    <div class="activities-slider mb-10">
-                        <div v-for="(activity, index) in activities" :key="index">
-                            <Link :href="`/activities/${activity.slug}`" class="d-flex flex-column gap-4 text-start m-5" id="activity-card">
-                                <div class="ribbon ribbon-start ribbon-clip">
-                                    <div class="ribbon-label fs-6">
-                                        {{ activity.phase }}
-                                        <span class="ribbon-inner"
-                                            :class="{
-                                                'bg-mywarning': activity.phase === 'Akan Datang',
-                                                'bg-mysuccess': activity.phase === 'Dibuka',
-                                                'bg-mydanger': activity.phase === 'Ditutup',
-                                                'bg-myprimary': activity.phase === 'Terlaksana'
-                                            }"
-                                        ></span>
-                                    </div>
-                                    <div class="overflow-hidden position-relative rounded-4 ratio ratio-4x3">
-                                        <img :src="`/storage/${activity.image}`" class="img-fluid object-fit-cover mw-100"
-                                            alt="Gambar Kegiatan Internal" />
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">{{ activity.title }}</p>
-                                    <p class="text-gray-600 fs-4 mb-0 text-truncate-3">{{ stripTags(activity.content) }}</p>
-                                </div>
-                            </Link>
-                        </div>
-                    </div>
-                    <Link href="/activities" class="btn-link-myprimary btn-link-icon fw-bold fs-4">Lihat semua kegiatan internal <i
-                        class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i></Link>
-                </div>
-            </section>
-
-            <!-- Partners Section -->
-            <section id="partners" class="pt-20" v-if="partners.length > 0">
-                <div class="container pt-20 text-center">
-                    <p class="fw-semibold text-gray-600 fs-2 mb-12">
-                        Dipercaya oleh mereka yang menyebar <span class="fw-bolder text-mydanger">cahaya harapan
-                            ✨</span>
-                    </p>
-                    <div class="partners-wrapper overflow-hidden position-relative w-100">
-                        <div class="partners-content">
-                            <a v-for="(partner, index) in partners" :key="index" :href="partner.link" target="_blank" rel="noopener">
-                                <img class="me-12 h-50px" :src="`/storage/${partner.logo}`" :alt="partner.name" />
-                            </a>
-                            <a v-for="(partner, index) in partners" :key="index" :href="partner.link" target="_blank" rel="noopener">
-                                <img class="me-12 h-50px" :src="`/storage/${partner.logo}`" :alt="partner.name" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Quote Section -->
-            <section id="quote" class="pt-20">
-                <div class="container pt-20">
-                    <div class="p-14 bg-gradient-myprimary rounded-4">
-                        <p class="custom-flex-text text-white opacity-60 fs-4 text-uppercase mb-8"
-                            style="letter-spacing: 0.08em;">
-                            #PemimpinDariTimur
+            <section class="container mt-20 pt-20">
+                <div class="bg-gradient-myprimary rounded-4 px-8 pt-8 p-md-12 p-lg-14 w-100 d-flex flex-column flex-md-row align-items-center align-items-md-start position-relative">
+                    <div class="d-none d-md-block w-50 w-impact"></div>
+                    <div class="w-100 w-md-50 text-center d-flex flex-column flex-center flex-md-start text-md-start">
+                        <p class="text-white fs-4 mb-6 opacity-75">
+                            Dibawakan langsung oleh
                         </p>
-                        <h3 class="fw-bolder text-white opacity-100 lh-base fs-3x fs-md-2x mb-0">
-                            Pemimpin sejati <span class="fw-normal opacity-75">adalah</span> cahaya
-                            <span class="fw-normal opacity-75">yang tak hanya menuntun, tapi juga</span> tangan
-                            <span class="fw-normal opacity-75">yang</span> merangkul,
-                            <span class="fw-normal opacity-75">mengangkat</span> jiwa-jiwa
-                            <span class="fw-normal opacity-75">bersama dalam</span> satu langkah 🤝
-                        </h3>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Blogs Section -->
-            <section id="blogs" class="pt-20" v-if="blogs.length > 0">
-                <div class="container pt-20">
-                    <p class="fw-semibold text-myprimary fs-4 text-uppercase mb-3 px-4 py-1 d-inline-block rounded-pill bg-myprimary-light"
-                        style="letter-spacing: 0.08em;">
-                        #CeritaDariTimur
-                    </p>
-                    <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
-                        Catatan Kebaikan ✍️
-                    </h1>
-                    <p class="fw-semibold text-gray-600 fs-2 mb-15">
-                        Kisah, refleksi, dan inspirasi dari perjalanan kami
-                        <span class="fw-bolder text-mydanger">menebar kebaikan</span>.
-                    </p>
-                    <div class="d-flex flex-column gap-10 mb-15">
-                        <div v-for="(blog, index) in blogs" :key="index">
-                            <Link :href="`/blogs/${blog.slug}`" class="d-flex flex-row gap-5 gap-sm-6 gap-md-7 text-start" id="blog-card">
-                                <div
-                                    class="overflow-hidden position-relative rounded-4 mw-125px mw-md-200px ratio ratio-4x3 order-3 order-md-0 flex-shrink-0">
-                                    <img :src="`/storage/${blog.image}`"
-                                        class="img-blog img-fluid object-fit-cover h-md-100 mt-9 mt-md-0" alt="" />
-                                </div>
-                                <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                    <div class="flex-grow-1">
-                                        <p class="fw-bold text-myprimary fs-5 mb-1 text-uppercase"
-                                            style="letter-spacing: 0.06em;">{{ blog.category }}</p>
-                                        <p class="fw-bold text-dark fs-2 mb-2 text-truncate-2">{{ blog.title }}</p>
-                                        <p class="text-gray-600 fs-4 mb-0 text-truncate-2">{{ stripTags(blog.content) }}</p>
-                                    </div>
-                                    <p class="fw-semibold text-gray-500 fs-6 mb-0 mt-8 text-uppercase"
-                                        style="letter-spacing: 0.04em;">{{ formatDate(blog.created_at) }}</p>
-                                </div>
-                            </Link>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <Link href="/blogs" class="btn-link-myprimary btn-link-icon fw-bold fs-4">
-                            Lihat semua blog 
-                            <i class="fw-normal ms-1 ri-arrow-right-s-line fs-3"></i>
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Testimonials Section -->
-            <section id="testimonials" class="mt-20 pt-20">
-                <div class="bg-myprimary pt-20 pt-md-0" v-if="testimonials.length > 0">
-                    <div class="container d-flex flex-row justify-content-center align-items-center ">
-                        <div class="row align-items-center">
-                            <div class="col-12 col-md-6 pt-20 pb-16 py-md-0">
-                                <h1 class="fw-bolder text-white lh-base fs-3x fs-md-3x mb-3 text-center text-md-start">
-                                    <span class="d-none d-md-inline">Jejak Kebaikan, <br>Suara dari Hati 🤍</span>
-                                    <span class="d-inline d-md-none">Jejak Kebaikan, Suara dari Hati 🤍</span>
-                                </h1>
-                                <p class="fw-medium text-white opacity-75 fs-2 mb-0 text-center text-md-start">
-                                    <span class="d-none d-md-inline">Dari tangan yang memberi <br>hingga yang
-                                        menerima.</span>
-                                    <span class="d-inline d-md-none">Dari tangan yang memberi hingga yang menerima.</span>
+                        <h2 class="text-white lh-sm fs-3tx fw-bolder fs-md-2tx mb-2 me-xl-20 pe-xxl-20">
+                            Yuszak M. Yahya
+                        </h2>
+                        <p class="text-white fs-4 mb-5 fw-semibold">
+                            Praktisi Bisnis & Financial Expert
+                        </p>
+                        <div class="d-flex flex-column gap-2 text-start mb-8 mb-md-0">
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fs-4 mt-1 text-white ri-verified-badge-line"></i>
+                                <p class="text-white fs-5 mb-0 opacity-75">
+                                    CEO and founder of Serasa Food
                                 </p>
                             </div>
-                            <div class="testimonial-cards col-12 col-md-6 position-relative overflow-hidden h-700px">
-                                <div class="testimonial-scroll d-flex flex-column gap-5 gap-lg-10">
-                                    <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4"
-                                        v-for="(testimonial, index) in testimonials" :key="index">
-                                        <img src="/assets/media/elements/quotation_marks.png" class="w-45px"
-                                            alt="" />
-                                        <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                            <p class="text-dark fs-4 mb-0 fw-semibold">{{ testimonial.testimonial }}</p>
-                                            <div class="d-flex flex-row gap-5 mt-5 align-items-center">
-                                                <img :src="`/storage/${testimonial.photo}`"
-                                                    class="object-fit-cover w-50px h-50px rounded-pill" alt="" />
-                                                <div>
-                                                    <p class="text-dark fs-4 fw-bolder mb-0">{{ testimonial.name }}</p>
-                                                    <p class="text-gray-600 fs-6 mb-0">{{ testimonial.title }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-column gap-8 text-start bg-white p-10 rounded-4"
-                                        v-for="(testimonial, index) in testimonials" :key="index">
-                                        <img src="/assets/media/elements/quotation_marks.png" class="w-45px"
-                                            alt="" />
-                                        <div class="d-flex flex-column justify-content-between flex-grow-1">
-                                            <p class="text-dark fs-4 mb-0 fw-semibold">{{ testimonial.testimonial }}</p>
-                                            <div class="d-flex flex-row gap-5 mt-5 align-items-center">
-                                                <img :src="`/storage/${testimonial.photo}`"
-                                                    class="object-fit-cover w-50px h-50px rounded-pill" alt="" />
-                                                <div>
-                                                    <p class="text-dark fs-4 fw-bolder mb-0">{{ testimonial.name }}</p>
-                                                    <p class="text-gray-600 fs-6 mb-0">{{ testimonial.title }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fs-4 mt-1 text-white ri-verified-badge-line"></i>
+                                <p class="text-white fs-5 mb-0 opacity-75">
+                                    Co Founder Smart Business Map
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fs-4 mt-1 text-white ri-verified-badge-line"></i>
+                                <p class="text-white fs-5 mb-0 opacity-75">
+                                    Founder Smart Financial Map
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fs-4 mt-1 text-white ri-verified-badge-line"></i>
+                                <p class="text-white fs-5 mb-0 opacity-75">
+                                    Business Advisor in several companies
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fs-4 mt-1 text-white ri-verified-badge-line"></i>
+                                <p class="text-white fs-5 mb-0 opacity-75">
+                                    International Certified Financial Modeler and valuation analyst
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fs-4 mt-1 text-white ri-verified-badge-line"></i>
+                                <p class="text-white fs-5 mb-0 opacity-75">
+                                    Financial Expert at Foodizz & Biznis.id
+                                </p>
                             </div>
                         </div>
                     </div>
+                    <img class="img-impact position-md-absolute h-auto w-100 mw-325px mw-350px bottom-0"
+                        src="/assets/media/illustrations/pemateri.png" alt="Pemateri Smart Financial Map" />
                 </div>
             </section>
 
-            <!-- Donate Section -->
-            <section id="donate" class="pt-20">
+            <section class="pt-20">
                 <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
-                    <h3 class="fw-bolder text-dark lh-base fs-3x fs-md-2x mb-3 mb-md-0">
-                        <span class="d-none d-md-inline">Jadi Bagian dari Kebaikan 👋</span>
-                        <span class="d-inline d-md-none">Jadi Bagian <br>dari Kebaikan 👋</span>
-                    </h3>
-                    <h1 class="donate-number fw-boldest text-myprimary mb-6 mb-md-2" data-kt-countup="true"
-                        data-kt-countup-duration="3" data-kt-countup-value="100000" data-kt-countup-suffix="+">
-                        0
-                    </h1>
-                    <p class="fw-semibold text-gray-600 fs-2 mb-0">
-                        Orang telah berkontribusi dalam <span class="fw-bolder text-myprimary">aksi kebaikan</span> ini
+                    <p class="fw-semibold text-gray-500 fs-4 text-uppercase mb-4" style="letter-spacing: 0.08em;">
+                        Bukan Sekadar Workshop
                     </p>
-
-
-                    <div class="position-relative d-flex justify-content-center mt-15">
-                        <img src="/assets/media/elements/mockup-phone.png" class="w-75 w-sm-325px" alt="" />
-
-                        <!-- Bank Account Card -->
-                        <div
-                            class="bank-card mt-10 p-10 bg-gradient-myprimary text-start w-100 w-sm-400px position-absolute z-index-1">
-                            <div class="d-flex align-items-center gap-3 mb-10">
-                                <h1 class="fw-bolder text-white lh-base fs-4x fs-md-3x mb-0">
-                                    {{ profile.bank_name }}
-                                </h1>
-                                <p class="custom-flex-text text-white opacity-75 fs-8 mt-1 text-uppercase mb-0"
-                                    style="letter-spacing: 0.08em;" v-html="formattedBankName()"></p>
+                    <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-10 mb-lg-12">
+                        Kunci Bisnis Lebih Kuat  🚀
+                    </h1>
+                    <div class="row g-6 g-lg-8 justify-content-center">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="d-flex flex-column h-100">
+                                <img class="w-100 rounded-4 mb-5"
+                                    src="/assets/media/illustrations/key-1.png" alt="" />
+                                <h4 class="fs-2 fw-bolder mb-2 lh-base">PRAKTISI BISNIS</h4>
+                                <p class="text-gray-600 fs-5 mb-0">
+                                    Pembicara adalah seorang pakar keuangan dan juga praktisi bisnis. jadi mengetahui bagaimana menerapkan ilmu keuangan dibisnis
+                                </p>
                             </div>
-                            <div class="d-flex align-items-center gap-3">
-                                <h3 id="bank-number"
-                                    class="fw-bolder text-white opacity-100 lh-base fs-3x fs-md-2hx mb-0 text-truncate">
-                                    {{ profile.bank_number }}
-                                </h3>
-                                <i id="copy-icon" class="ri-file-copy-2-line text-white fs-1 cursor-pointer"></i>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="d-flex flex-column h-100">
+                                <img class="w-100 rounded-4 mb-5"
+                                    src="/assets/media/illustrations/key-2.png" alt="" />
+                                <h4 class="fs-2 fw-bolder mb-2 lh-base">MUDAH DIPAHAMI</h4>
+                                <p class="text-gray-600 fs-5 mb-0">
+                                    Materi akan dibawakan dengan bahasa yang sederhana dan banyak contoh kasus. sehingga peserta dengan mudah menerima
+                                </p>
                             </div>
-                            <p class="text-white opacity-75 fs-4 mb-0">
-                                a.n {{ profile.bank_account }}
-                            </p>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="d-flex flex-column h-100">
+                                <img class="w-100 rounded-4 mb-5"
+                                    src="/assets/media/illustrations/key-3.png" alt="" />
+                                <h4 class="fs-2 fw-bolder mb-2 lh-base">GROUP NETWORKING</h4>
+                                <p class="text-gray-600 fs-5 mb-0">
+                                    Setelah ikut workshop SFM , Anda dapat bergabung dan networking bersama sesama alumni SFM
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="d-flex flex-column h-100">
+                                <img class="w-100 rounded-4 mb-5"
+                                    src="/assets/media/illustrations/key-4.png" alt="" />
+                                <h4 class="fs-2 fw-bolder mb-2 lh-base">PROVEN!</h4>
+                                <p class="text-gray-600 fs-5 mb-0">
+                                    Workshop Smart Financial Map diikuti oleh ratusan pemilik bisnis dan pengelola bisnis. Bisnis mereka mulai tertata rapi sejak mengikuti workshop ini.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="d-flex flex-column h-100">
+                                <img class="w-100 rounded-4 mb-5"
+                                    src="/assets/media/illustrations/key-5.png" alt="" />
+                                <h4 class="fs-2 fw-bolder mb-2 lh-base">100% MONEY BACK GUARANTEE</h4>
+                                <p class="text-gray-600 fs-5 mb-0">
+                                    Jika setelah workshop Anda kecewa dan tidak mendapatkan manfaat apapun, 100% uang dikembalikan, tanpa rumit
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Footer Section -->
-            <Footer :profile="profile" />
+            <section class="container mt-20 pt-20">
+                <div class="bg-gradient-myprimary rounded-4 p-10 p-md-12 p-lg-14">
+                    <p class="text-white fs-4 text-uppercase mb-6 mb-md-8"
+                        style="letter-spacing: 0.08em;">
+                        Basic hingga advance 🌟🌟🌟
+                    </p>
+                    <h3 class="fw-bolder text-white opacity-100 lh-base fs-2tx fs-md-2x mb-0">
+                        <span class="fw-normal opacity-75">Sebagai</span> praktisi bisnis
+                        <span class="fw-normal opacity-75">dan</span> financial expert.
+                        <span class="fw-normal opacity-75">Narasumber tidak hanya mengajarkan</span> teori keuangan,
+                        <span class="fw-normal opacity-75">tetapi bagaimana</span> implementasi
+                        <span class="fw-normal opacity-75">ke</span> bisnis
+                        <span class="fw-normal opacity-75">dengan</span> bahasa
+                        <span class="fw-normal opacity-75">yang</span> mudah dimengerti
+                        <span class="fw-normal opacity-75">dan banyak</span> contoh kasus
+                    </h3>
+                </div>
+            </section>
+
+            <section class="pt-20">
+                <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
+                    <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
+                        Fasilitas yang Didapatkan
+                    </h1>
+                    <p class="fw-semibold text-gray-600 fs-2 mb-10 mb-lg-12 mx-md-20 mx-lg-0">
+                        Kami siapkan semua agar pengalaman belajar Anda 
+                        <span class="fw-bolder text-mydanger">nyaman</span>, 
+                        <span class="fw-bolder text-mydanger">efektif</span> dan 
+                        <span class="fw-bolder text-mydanger">bermakna</span>. 
+                    </p>
+                    <div class="row g-4 g-md-6 justify-content-center">
+                        <div class="col-6 col-md-4">
+                            <div class="card h-100 p-8 p-lg-10 px-xxl-16 align-items-center text-center rounded-4 border border-gray-300 shadow-none">
+                                <i class="ri-git-repository-fill text-myprimary fs-3x bg-mysecondary rounded-pill p-6 mb-6"></i>
+                                <p class="text-dark fw-bold fs-5 fs-md-4 fs-xl-3 mb-0">
+                                    Print Out Modul Materi Workshop
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card h-100 p-8 p-lg-10 px-xxl-16 align-items-center text-center rounded-4 border border-gray-300 shadow-none">
+                                <i class="ri-team-fill text-myprimary fs-3x bg-mysecondary rounded-pill p-6 mb-6"></i>
+                                <p class="text-dark fw-bold fs-5 fs-md-4 fs-xl-3 mb-0">
+                                    Free Akses ke Grup Networking
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card h-100 p-8 p-lg-10 px-xxl-16 align-items-center text-center rounded-4 border border-gray-300 shadow-none">
+                                <i class="ri-bar-chart-box-ai-fill text-myprimary fs-3x bg-mysecondary rounded-pill p-6 mb-6"></i>
+                                <p class="text-dark fw-bold fs-5 fs-md-4 fs-xl-3 mb-0">
+                                    Tools Dashboard Keuangan & Financial Projection
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card h-100 p-8 p-lg-10 px-xxl-16 align-items-center text-center rounded-4 border border-gray-300 shadow-none">
+                                <i class="ri-shirt-fill text-myprimary fs-3x bg-mysecondary rounded-pill p-6 mb-6"></i>
+                                <p class="text-dark fw-bold fs-5 fs-md-4 fs-xl-3 mb-0">
+                                    Jaket SFM Akan Dapatkan di Venue
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card h-100 p-8 p-lg-10 px-xxl-16 align-items-center text-center rounded-4 border border-gray-300 shadow-none">
+                                <i class="ri-service-fill text-myprimary fs-3x bg-mysecondary rounded-pill p-6 mb-6"></i>
+                                <p class="text-dark fw-bold fs-5 fs-md-4 fs-xl-3 mb-0">
+                                    Free Konsultasi dengan Team Ilmu Keuangan
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pt-20">
+                <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
+                    <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
+                        Jejak Perjalanan SFM  📸
+                    </h1>
+                    <p class="fw-semibold text-gray-600 fs-2 mb-10 mb-lg-12 mx-md-20 mx-lg-0">
+                        Cuplikan momen
+                        <span class="fw-bolder text-mydanger">batch</span> sebelumnya dalam 
+                        <span class="fw-bolder text-mydanger">transformasi finansial</span> mereka. 
+                    </p>
+                    <div class="row g-3 g-md-5">
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-1.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-2.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-3.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-4.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-5.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-6.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-7.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-8.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-9.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-10.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-11.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-12.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-13.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-14.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-15.jpg" alt="" />
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <img class="w-100 rounded-4"
+                                src="/assets/media/illustrations/doc-16.jpg" alt="" />
+                        </div>
+                    </div>
+                    <FsLightbox :toggler="lightboxToggler" :slide="currentIndex" :sources="lightboxSources" />
+                </div>
+            </section>
         </div>
     </main>
 </template>
 
 <script>
-    import Navbar from "../../../Components/Navbar/User.vue";
-    import Footer from "../../../Components/Footer.vue";
     import { Head, Link } from '@inertiajs/vue3';
-    import VanillaTilt from "vanilla-tilt";
-    import { tns } from "tiny-slider";
     import Swal from 'sweetalert2';
+    import FsLightbox from "fslightbox-vue";
 
     export default {
         components: {
             Head,
             Link,
-            Navbar,
-            Footer
+            FsLightbox,
         },
-
-        props: {
-            profile: Object,
-            total_activities: Number,
-            activities: Array,
-            total_programs: Number,
-            programs: Array,
-            blogs: Array,
-            partners: Array,
-            testimonials: Array,
-        },
-
-        mounted() {
-            const elements = document.querySelectorAll('.bg-gradient-myprimary');
-            VanillaTilt.init(elements, {
-                max: 4,
-                speed: 800,
-                glare: true,
-                "max-glare": 0.2,
-            });
-
-            this.initSlider('.activities-slider');
-            this.initSlider('.programs-slider');
-
-            document.getElementById('copy-icon').addEventListener('click', this.copyToClipboard);
-        },
-
-        methods: {
-            formatTagline(text) {
-                const parts = text.match(/[A-Z][a-z]+|#[A-Z][a-z]+/g);
-                if (!parts || parts.length < 2) return text;
-
-                const lastWord = parts.pop();
-                return parts.join('') + '<br>' + lastWord;
-            },
-
-            initSlider(container) {
-                const element = document.querySelector(container);
-                if (!element) return;
-
-                tns({
-                    container: container,
-                    items: 1,
-                    mouseDrag: true,
-                    autoplay: true,
-                    autoplayTimeout: 3000,
-                    controls: false,
-                    autoplayButtonOutput: false,
-                    responsive: {
-                        768: {
-                            items: 2
-                        },
-                        1200: {
-                            items: 3
-                        }
-                    }
-                });
-            },
-
-            stripTags(html) {
-                const div = document.createElement("div");
-                div.innerHTML = html;
-                return div.textContent || div.innerText || "";
-            },
-
-            formatDate(dateStr) {
-                const date = new Date(dateStr);
-                return new Intl.DateTimeFormat('id-ID', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric',
-                }).format(date);
-            },
-
-            formattedBankName() {
-                const map = {
-                    BCA: 'Bank Central<br>Asia',
-                    BRI: 'Bank Rakyat<br>Indonesia',
-                    BNI: 'Bank Negara<br>Indonesia',
-                    BTN: 'Bank Tabungan<br>Negara',
-                    BSI: 'Bank Syariah<br>Indonesia',
-                    Mandiri: ' ',
-                };
-
-                const name = this.profile.bank_name;
-                return map[name] || this.profile.bank_name;
-            },
-
-            copyToClipboard() {
-                const bankNumber = document.getElementById('bank-number').innerText;
-
-                navigator.clipboard.writeText(bankNumber).then(() => {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Nomor rekening berhasil disalin!',
-                        text: 'Setiap langkah kebaikan yang Anda berikan, menjadi bagian dari perjalanan bersama ✨',
-                        timer: 3000,
-                        timerProgressBar: true,
-                        showConfirmButton: false,
-                        customClass: {
-                            popup: 'swal-custom-icon',
-                        }
-                    });
-                }).catch(err => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal Menyalin!',
-                        text: 'Silakan coba lagi.',
-                        timer: 2000,
-                        timerProgressBar: true,
-                        showConfirmButton: false,
-                        customClass: {
-                            popup: 'swal-custom-icon',
-                        }
-                    });
-                });
-            },
-        }
     };
 </script>
 
@@ -693,4 +615,34 @@
             background-position: right center;
         }
     }
+
+    @media (min-width: 768px) {
+        .img-impact {
+            left: 1.75rem;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .w-impact {
+            width: 45% !important;
+        }
+
+        .img-impact {
+            left: 2.5rem;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .img-impact {
+            left: 7rem;
+            max-width: 336px !important;
+        }
+    }
+
+    @media (min-width: 1400px) {
+        .img-impact {
+            left: 14rem;
+        }
+    }
+
 </style>
