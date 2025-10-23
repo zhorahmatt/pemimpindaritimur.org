@@ -3,53 +3,56 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Profile;
-use App\Models\Activity;
-use App\Models\Program;
-use App\Models\Blog;
-use App\Models\Partner;
-use App\Models\Testimonial;
+use App\Models\IlmuKeuangan;
 use Illuminate\Http\Request;
 
 class OtherController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        $profile = Profile::find(1);
+        return inertia('User/Others/Index', []);
+    }
 
-        $total_activities = Activity::where('status', 'published')->count();
-        $activities = Activity::where('status', 'published')
-            ->orderByDesc('is_featured')
-            ->latest()
-            ->take(6)
-            ->get();
-
-        $total_programs = Program::where('status', 'published')->count();
-        $programs = Program::where('status', 'published')
-            ->orderByDesc('is_featured')
-            ->latest()
-            ->take(6)
-            ->get();
-
-        $blogs = Blog::where('status', 'published')
-            ->orderByDesc('is_featured')
-            ->latest()
-            ->take(3)
-            ->get();
-
-        $partners = Partner::all();
-
-        $testimonials = Testimonial::all();
-
-        return inertia('User/Others/Index', [
-            'profile' => $profile,
-            'total_activities' => $total_activities,
-            'activities' => $activities,
-            'total_programs' => $total_programs,
-            'programs' => $programs,
-            'blogs' => $blogs,
-            'partners' => $partners,
-            'testimonials' => $testimonials,
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name'           => 'required',
+            'email'          => 'required|unique:ilmu_keuangans,email',
+            'whatsapp'       => 'required',
+            'city'           => 'required',
+            'size'           => 'required',
+            'business_name'  => 'required',
+            'business_field' => 'required',
+            'position'       => 'required',
+            'problem'        => 'required',
+            'hope'           => 'required',
+            'from'           => 'required',
+            'image'          => 'required|image|mimes:jpg,jpeg,png|max:10240',
+        ], [
+            'email.unique'   => 'Email yang Anda masukkan telah terdaftar.',
+            'image.required' => 'Bukti transfer tidak boleh kosong.',
+            'image.image'    => 'Bukti transfer blog harus berupa file gambar.',
+            'image.mimes'    => 'Bukti transfer harus berekstensi jpg, jpeg, atau png.',
+            'image.max'      => 'Ukuran bukti transfer maksimal 10MB.',
         ]);
+
+        $path_image = $request->file('image')->store('others', 'public');
+
+        IlmuKeuangan::create([
+            'name'           => $request->name,
+            'email'          => $request->email,
+            'whatsapp'       => $request->whatsapp,
+            'city'           => $request->city,
+            'size'           => $request->size,
+            'business_name'  => $request->business_name,
+            'business_field' => $request->business_field,
+            'position'       => $request->position,
+            'problem'        => $request->problem,
+            'hope'           => $request->hope,
+            'from'           => $request->from,
+            'image'          => $path_image,
+        ]);
+
+        return redirect()->route('user.other');
     }
 }

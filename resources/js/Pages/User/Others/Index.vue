@@ -1,6 +1,7 @@
 <template>
     <Head>
         <title>Smart Financial Map</title>
+        <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/abd792_d2396960b539400081a5ba95b65f311a~mv2.png/v1/fill/w_500,h_500,al_c/abd792_d2396960b539400081a5ba95b65f311a~mv2.png">
     </Head>
 
     <main id="kt_body" class="bg-light position-relative app-blank" data-kt-name="metronic" data-bs-spy="scroll"
@@ -513,7 +514,7 @@
                     </h1>
                     <p class="fw-semibold text-gray-600 fs-2 mb-10 mb-lg-12 mx-md-20 mx-lg-0">
                         Cuplikan momen
-                        <span class="fw-bolder text-mydanger">batch</span> sebelumnya dalam 
+                        <span class="fw-bolder text-mydanger">batch sebelumnya</span> dalam 
                         <span class="fw-bolder text-mydanger">transformasi finansial</span> mereka. 
                     </p>
                     <div class="row g-3 g-md-5">
@@ -596,6 +597,7 @@
                         <span class="fw-bolder text-myprimary">Advance</span> Business FInance.
                     </p>
                     <button data-bs-toggle="modal" data-bs-target="#kt_modal_register"  
+                        @click="() => { resetForm(); }"
                         class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
                         <i class="ri-user-add-fill fs-2"></i>
                         Daftar Sekarang
@@ -607,177 +609,229 @@
                                     <h2 class="modal-title text-start">
                                         Smart Financial Map Workshop
                                     </h2>
-                                    <div class="btn btn-sm btn-icon btn-mylighten rounded-pill" data-bs-dismiss="modal">
+                                    <div id="close-modal" 
+                                        class="btn btn-sm btn-icon btn-mylighten rounded-pill" data-bs-dismiss="modal">
                                         <i class="bi bi-x-lg fs-3"></i>
                                     </div>
                                 </div>
                                 <div class="modal-body p-0 align-items-start text-start">
-                                    <p class="fs-5 px-6 py-4 mb-0 bg-gray-200 text-gray-700 fw-bold">Informasi Pribadi</p>
-                                    <div class="p-6">
-                                        <div class="mb-5 fv-row">
-                                            <label class="required form-label fs-6">Nama Lengkap</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon2">
-                                                    <i class="ri-user-fill fs-3"></i>
-                                                </span>
-                                                <input type="text" class="form-control fs-5" placeholder="Masukkan nama lengkap disini..."
-                                                    required />
-                                            </div>
-                                        </div>
-                                        <div class="mb-5 fv-row">
-                                            <label class="required form-label fs-6">Alamat Email</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon2">
-                                                    <i class="ri-mail-fill fs-3"></i>
-                                                </span>
-                                                <input type="email" class="form-control fs-5" placeholder="Masukkan alamat email disini..."
-                                                    required />
-                                            </div>
-                                        </div>
-                                        <div class="mb-5 fv-row">
-                                            <label class="required form-label fs-6">No. WhatsApp</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon2">
-                                                    <i class="ri-whatsapp-fill fs-3"></i>
-                                                </span>
-                                                <input type="number" class="form-control fs-5" placeholder="Masukkan no. whatsapp disini..."
-                                                    required />
-                                            </div>
-                                        </div>
-                                        <div class="row g-5">
-                                            <div class="col-7 fv-row">
-                                                <label class="required form-label fs-6">Asal Kab/Kota</label>
+                                    <form @submit.prevent="submit">
+                                        <p class="fs-5 px-6 py-4 mb-0 bg-gray-200 text-gray-700 fw-bold">Informasi Pribadi</p>
+                                        <div class="p-6">
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label fs-6">Nama Lengkap</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon2">
-                                                        <i class="ri-global-fill fs-3"></i>
+                                                        <i class="ri-user-fill fs-3"></i>
                                                     </span>
-                                                    <input type="text" class="form-control fs-5" placeholder="Masukkan asal kab/kota disini..."
-                                                        required />
+                                                    <input type="text" class="form-control fs-5" placeholder="Masukkan nama lengkap disini..."
+                                                        required v-model="form.name" :class="{ 'is-invalid': errors.name }"/>
+                                                    <div v-if="errors.name" class="text-mydanger mt-2">
+                                                        {{ errors . name }}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-5 fv-row">
-                                                <label class="required form-label fs-6">Ukuran Jaket</label>
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label fs-6">Alamat Email</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon2">
-                                                        <i class="ri-shirt-fill fs-3"></i>
+                                                        <i class="ri-mail-fill fs-3"></i>
                                                     </span>
-                                                    <select class="form-select fs-5" required>
-                                                        <option value="M">M</option>
-                                                        <option value="L">L</option>
-                                                        <option value="XL">XL</option>
-                                                        <option value="XXL">XXL</option>
-                                                        <option value="XXXL">XXXL</option>
-                                                    </select>
+                                                    <input type="email" class="form-control fs-5" placeholder="Masukkan alamat email disini..."
+                                                        required v-model="form.email" :class="{ 'is-invalid': errors.email }"/>
+                                                    <div v-if="errors.email" class="text-mydanger mt-2">
+                                                        {{ errors . email }}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <p class="fs-5 px-6 py-4 mb-0 bg-gray-200 text-gray-700 fw-bold">Informasi Usaha</p>
-                                    <div class="p-6">
-                                        <div class="mb-5 fv-row">
-                                            <label class="required form-label fs-6">Nama Usaha/Brand</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon2">
-                                                    <i class="ri-store-2-fill fs-3"></i>
-                                                </span>
-                                                <input type="text" class="form-control fs-5" placeholder="Masukkan nama lengkap disini..."
-                                                    required />
-                                            </div>
-                                        </div>
-                                        <div class="row g-5">
-                                            <div class="col-lg-6 fv-row">
-                                                <label class="required form-label fs-6">Bidang Usaha</label>
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label fs-6">No. WhatsApp</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon2">
-                                                        <i class="ri-suitcase-fill fs-3"></i>
+                                                        <i class="ri-whatsapp-fill fs-3"></i>
                                                     </span>
-                                                    <select class="form-select fs-5" required>
-                                                        <option value="M">M</option>
-                                                        <option value="L">L</option>
-                                                        <option value="XL">XL</option>
-                                                        <option value="XXL">XXL</option>
-                                                        <option value="XXXL">XXXL</option>
-                                                    </select>
+                                                    <input type="number" class="form-control fs-5" placeholder="Masukkan no. whatsapp disini..."
+                                                        required v-model="form.whatsapp" :class="{ 'is-invalid': errors.whatsapp }"/>
+                                                    <div v-if="errors.whatsapp" class="text-mydanger mt-2">
+                                                        {{ errors . whatsapp }}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 fv-row">
-                                                <label class="required form-label fs-6">Jabatan</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-text" id="basic-addon2">
-                                                        <i class="ri-user-settings-fill fs-3"></i>
-                                                    </span>
-                                                    <input type="text" class="form-control fs-5" placeholder="Masukkan jabatan disini..."
-                                                        required />
+                                            <div class="row g-5">
+                                                <div class="col-7 fv-row">
+                                                    <label class="required form-label fs-6">Asal Kab/Kota</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" id="basic-addon2">
+                                                            <i class="ri-global-fill fs-3"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control fs-5" placeholder="Masukkan asal kab/kota disini..."
+                                                            required v-model="form.city" :class="{ 'is-invalid': errors.city }" />
+                                                        <div v-if="errors.city" class="text-mydanger mt-2">
+                                                            {{ errors . city }}
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="fs-5 px-6 py-4 mb-0 bg-gray-200 text-gray-700 fw-bold">Informasi Lainnya</p>
-                                    <div class="p-6">
-                                        <div class="mb-5 fv-row">
-                                            <label class="required form-label fs-6">Masalah Keuangan Bisnis</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon2">
-                                                    <i class="ri-mail-fill fs-3"></i>
-                                                </span>
-                                                <textarea class="form-control fs-5" data-kt-autosize="true" rows="1"
-                                                    required placeholder="Masukkan masalah yang dialami seputar keuangan bisnis disini...">
-                                                </textarea>
-                                            </div>
-                                        </div>
-                                        <div class="mb-5 fv-row">
-                                            <label class="required form-label fs-6">Harapan Setelah Workshop</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon2">
-                                                    <i class="ri-mail-fill fs-3"></i>
-                                                </span>
-                                                <textarea class="form-control fs-5" data-kt-autosize="true" rows="1"
-                                                    required placeholder="Masukkan harapan setelah mengikuti workshop SFM disini...">
-                                                </textarea>
-                                            </div>
-                                        </div>
-                                        <div class="mb-5 fv-row">
-                                            <label class="required form-label fs-6">Darimana Mendapatkan Informasi Ini?</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon2">
-                                                    <i class="ri-suitcase-fill fs-3"></i>
-                                                </span>
-                                                <select class="form-select fs-5" required>
-                                                    <option value="M">M</option>
-                                                    <option value="L">L</option>
-                                                    <option value="XL">XL</option>
-                                                    <option value="XXL">XXL</option>
-                                                    <option value="XXXL">XXXL</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="fv-row">
-                                            <label class="required form-label fs-6">Bukti Transfer</label>
-                                            <div id="blog-dropzone" class="dropzone border-dashed border-myprimary rounded p-5 text-center">
-                                                <div class="dz-message needsclick flex-column text-center gap-5 p-5">
-                                                    <i class="ri-image-add-line text-myprimary fs-3x"></i>
-                                                    <div>
-                                                        <h3 class="fs-5 fw-bold text-gray-900 mb-2">Jatuhkan file di sini / klik untuk mengunggah.</h3>
-                                                        <span class="fs-7 fw-semibold text-gray-400">Maks. 10 MB • Rasio 4:3</span>
+                                                <div class="col-5 fv-row">
+                                                    <label class="required form-label fs-6">Ukuran Jaket</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" id="basic-addon2">
+                                                            <i class="ri-shirt-fill fs-3"></i>
+                                                        </span>
+                                                        <select class="form-select fs-5" required
+                                                            v-model="form.size" 
+                                                            :class="[
+                                                                { 'is-invalid': errors.size },
+                                                                !form.size ? 'text-gray-400' : 'text-dark'
+                                                            ]">
+                                                            <option disabled value="">Pilih ukuran disini...</option>
+                                                            <option class="text-dark" value="M">M</option>
+                                                            <option class="text-dark" value="L">L</option>
+                                                            <option class="text-dark" value="XL">XL</option>
+                                                            <option class="text-dark" value="XXL">XXL</option>
+                                                            <option class="text-dark" value="XXXL">XXXL</option>
+                                                        </select>
+                                                        <div v-if="errors.size" class="text-mydanger mt-2">
+                                                            {{ errors . size }}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="d-flex justify-content-end p-6 pt-0">
-                                        <button type="reset" class="btn btn-sm btn-mylight fs-5 me-3"
-                                            id="kt_modal_example_advanced_close">Batal</button>
-                                        <button type="submit" id="kt_modal_submit_button"
-                                            class="btn btn-sm btn-myprimary fs-5">
-                                            <span class="indicator-label">
-                                                Daftar Smart Financial Map
-                                            </span>
-                                            <span class="indicator-progress">
-                                                Mohon Tunggu... <span
-                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                            </span>
-                                        </button>
-                                    </div>
+                                        <p class="fs-5 px-6 py-4 mb-0 bg-gray-200 text-gray-700 fw-bold">Informasi Usaha</p>
+                                        <div class="p-6">
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label fs-6">Nama Usaha/Brand</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon2">
+                                                        <i class="ri-store-2-fill fs-3"></i>
+                                                    </span>
+                                                    <input type="text" class="form-control fs-5" placeholder="Masukkan nama lengkap disini..."
+                                                        required v-model="form.business_name" :class="{ 'is-invalid': errors.business_name }" />
+                                                    <div v-if="errors.business_name" class="text-mydanger mt-2">
+                                                        {{ errors . business_name }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-5">
+                                                <div class="col-lg-6 fv-row">
+                                                    <label class="required form-label fs-6">Bidang Usaha</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" id="basic-addon2">
+                                                            <i class="ri-suitcase-fill fs-3"></i>
+                                                        </span>
+                                                        <!-- <select class="form-select fs-5" required>
+                                                            <option value="Lorem">Lorem</option>
+                                                        </select> -->
+                                                        <input type="text" class="form-control fs-5" placeholder="Masukkan bidang usaha disini..."
+                                                            required v-model="form.business_field" :class="{ 'is-invalid': errors.business_field }"/>
+                                                        <div v-if="errors.business_field" class="text-mydanger mt-2">
+                                                            {{ errors . business_field }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 fv-row">
+                                                    <label class="required form-label fs-6">Jabatan</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" id="basic-addon2">
+                                                            <i class="ri-user-settings-fill fs-3"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control fs-5" placeholder="Masukkan jabatan disini..."
+                                                            required v-model="form.position" :class="{ 'is-invalid': errors.position }"/>
+                                                        <div v-if="errors.position" class="text-mydanger mt-2">
+                                                            {{ errors . position }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="fs-5 px-6 py-4 mb-0 bg-gray-200 text-gray-700 fw-bold">Informasi Lainnya</p>
+                                        <div class="p-6">
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label fs-6">Masalah Keuangan Bisnis</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon2">
+                                                        <i class="ri-mail-fill fs-3"></i>
+                                                    </span>
+                                                    <textarea class="form-control fs-5" data-kt-autosize="true" rows="2"
+                                                        required v-model="form.problem" :class="{ 'is-invalid': errors.problem }"
+                                                        placeholder="Masukkan masalah yang dialami seputar keuangan bisnis disini...">
+                                                    </textarea>
+                                                    <div v-if="errors.problem" class="text-mydanger mt-2">
+                                                        {{ errors . problem }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label fs-6">Harapan Setelah Workshop</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon2">
+                                                        <i class="ri-mail-fill fs-3"></i>
+                                                    </span>
+                                                    <textarea class="form-control fs-5" data-kt-autosize="true" rows="2"
+                                                        required v-model="form.hope" :class="{ 'is-invalid': errors.hope }" 
+                                                        placeholder="Masukkan harapan setelah mengikuti workshop SFM disini...">
+                                                    </textarea>
+                                                    <div v-if="errors.hope" class="text-mydanger mt-2">
+                                                        {{ errors . hope }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label fs-6">Darimana Mendapatkan Informasi Ini?</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon2">
+                                                        <i class="ri-suitcase-fill fs-3"></i>
+                                                    </span>
+                                                    <select class="form-select fs-5" required
+                                                        v-model="form.from"
+                                                        :class="[
+                                                            { 'is-invalid': errors.from },
+                                                            !form.from ? 'text-gray-400' : 'text-dark'
+                                                        ]">
+                                                        <option disabled value="">Pilih sumber disini...</option>
+                                                        <option class="text-dark" value="Instagram @ilmukeuangan">Instagram @ilmukeuangan</option>
+                                                        <option class="text-dark" value="Instagram Coach @yuszakmyahya">Instagram Coach @yuszakmyahya</option>
+                                                        <option class="text-dark" value="Kelas CFO / BFM / Alumni">Kelas CFO / BFM / Alumni</option>
+                                                        <option class="text-dark" value="Youtube @ilmukeuangan">Youtube @ilmukeuangan</option>
+                                                        <option class="text-dark" value="Youtube @kasisolusi">Youtube @kasisolusi</option>
+                                                        <option class="text-dark" value="Teman / Relasi / Client">Teman / Relasi / Client</option>
+                                                    </select>
+                                                    <div v-if="errors.from" class="text-mydanger mt-2">
+                                                        {{ errors . from }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fv-row">
+                                                <label class="required form-label fs-6">Bukti Transfer</label>
+                                                <div id="proof-dropzone" class="dropzone border-dashed border-myprimary rounded p-5 text-center">
+                                                    <div class="dz-message needsclick flex-column text-center gap-5 p-5">
+                                                        <i class="ri-image-add-line text-myprimary fs-3x"></i>
+                                                        <div>
+                                                            <h3 class="fs-5 fw-bold text-gray-900 mb-2">Jatuhkan file di sini / klik untuk mengunggah.</h3>
+                                                            <span class="fs-7 fw-semibold text-gray-400">Maksimal 10 MB</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div v-if="errors.image" class="text-mydanger mt-2">
+                                                    {{ errors . image }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-end p-6 border-top border-gray-300">
+                                            <button type="reset" class="btn btn-sm btn-mylight fs-5 me-3"
+                                                data-bs-dismiss="modal">Batal</button>
+                                            <button type="submit" id="submit_button"
+                                                class="btn btn-sm btn-myprimary fs-5">
+                                                <span class="indicator-label">
+                                                    Daftar Smart Financial Map
+                                                </span>
+                                                <span class="indicator-progress">
+                                                    Mohon Tunggu... <span
+                                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -789,8 +843,9 @@
 </template>
 
 <script>
-    import { Head, Link } from '@inertiajs/vue3';
-    import { ref } from 'vue'
+    import { Head, Link, router } from '@inertiajs/vue3';
+    import { ref, reactive, onMounted } from 'vue'
+    import Dropzone from 'dropzone';
     import Swal from 'sweetalert2';
     import FsLightbox from "fslightbox-vue";
     import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -808,7 +863,57 @@
             SwiperSlide,
         },
 
+        props: {
+            errors: Object,
+        },
+
         setup() {
+            const form = reactive({
+                name: '',
+                email: '',
+                whatsapp: '',
+                city: '',
+                size: '',
+                business_name: '',
+                business_field: '',
+                position: '',
+                problem: '',
+                hope: '',
+                from: '',
+                image: null,
+            });
+
+            onMounted(() => {
+                const link = document.querySelector("link[rel~='icon']")
+                if (link) {
+                    link.href = "https://static.wixstatic.com/media/abd792_d2396960b539400081a5ba95b65f311a~mv2.png/v1/fill/w_500,h_500,al_c/abd792_d2396960b539400081a5ba95b65f311a~mv2.png"
+                } else {
+                    const newLink = document.createElement("link")
+                    newLink.rel = "icon"
+                    newLink.href = "https://static.wixstatic.com/media/abd792_d2396960b539400081a5ba95b65f311a~mv2.png/v1/fill/w_500,h_500,al_c/abd792_d2396960b539400081a5ba95b65f311a~mv2.png"
+                    document.head.appendChild(newLink)
+                }
+
+                const dz = new Dropzone('#proof-dropzone', {
+                    url: '/', 
+                    paramName: 'image',
+                    maxFiles: 1,
+                    maxFilesize: 10,
+                    acceptedFiles: 'image/jpeg,image/png',
+                    autoProcessQueue: false,
+                    addRemoveLinks: true,
+                    dictRemoveFile: 'Hapus',
+                    init: function () {
+                        this.on('addedfile', function (file) {
+                            form.image = file;
+                        });
+                        this.on('removedfile', function () {
+                            form.image = null;
+                        });
+                    },
+                });
+            });
+
             const lightboxTogglerGallery = ref(false)
             const currentIndexGallery = ref(0)
             const lightboxSourcesGallery = [
@@ -880,6 +985,78 @@
                 lightboxTogglerTesti.value = !lightboxTogglerTesti.value
             }
 
+            const resetForm = () => {
+                form.name = '';
+                form.email = '';
+                form.whatsapp = '';
+                form.city = '';
+                form.size = '';
+                form.business_name = '';
+                form.business_field = '';
+                form.position = '';
+                form.problem = '';
+                form.hope = '';
+                form.from = '';
+                form.image = null;
+
+                if (dropzoneRef.value) {
+                    dropzoneRef.value.removeAllFiles(true);
+                }
+            };
+
+            const submit = () => {
+                const submitBtn = document.querySelector('#submit_button');
+                if (submitBtn) {
+                    submitBtn.setAttribute('data-kt-indicator', 'on');
+                    submitBtn.setAttribute('disabled', true);
+                }
+
+                const payload = new FormData();
+                payload.append('name', form.name);
+                payload.append('email', form.email);
+                payload.append('whatsapp', form.whatsapp);
+                payload.append('city', form.city);
+                payload.append('size', form.size);
+                payload.append('business_name', form.business_name);
+                payload.append('business_field', form.business_field);
+                payload.append('position', form.position);
+                payload.append('problem', form.problem);
+                payload.append('hope', form.hope);
+                payload.append('from', form.from);
+                if (form.image && (form.image instanceof File || form.image instanceof Blob)) {
+                    payload.append('image', form.image);
+                }
+
+                const cleanup = () => {
+                    if (submitBtn) {
+                        submitBtn.removeAttribute('data-kt-indicator');
+                        submitBtn.removeAttribute('disabled');
+                    }
+                };
+
+                router.post('/ilmu-keuangan', payload, {
+                    onSuccess: () => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Pendaftaran Berhasil!',
+                            text: 'Terima kasih telah mendaftar di Smart Financial Map Workshop Batch #33. Tim kami akan segera menghubungi Anda untuk informasi selanjutnya.',
+                            timer: 5000,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            customClass: {
+                                popup: 'swal-custom-icon',
+                            }
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                        const modalCloseBtn = document.querySelector('#close-modal');
+                        if (modalCloseBtn) modalCloseBtn.click();
+                        resetForm();
+                    },
+                    onFinish: cleanup
+                });
+            }
+
             return {
                 modules: [Autoplay, Pagination, Navigation],
                 lightboxTogglerGallery,
@@ -890,6 +1067,9 @@
                 testimonials,
                 openLightboxGallery,
                 openLightboxTesti,
+                form,
+                submit,
+                resetForm
             }
         }
     };

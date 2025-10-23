@@ -27,3 +27,4 @@ Route::get('/galleries', \App\Http\Controllers\User\GalleryController::class)->n
 
 // Lainnya
 Route::get('/ilmu-keuangan', \App\Http\Controllers\User\OtherController::class)->name('user.other');
+Route::post('/ilmu-keuangan', [\App\Http\Controllers\User\OtherController::class, 'store'])->name('user.other.store');
