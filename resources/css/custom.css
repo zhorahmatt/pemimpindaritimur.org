@@ -157,6 +157,10 @@ body {
     color: var(--bs-mywarning-500) !important;
 }
 
+.text-mywarning-badge {
+    color: var(--bs-mywarning-600) !important;
+}
+
 .btn-link-mywarning:hover,
 .btn-link-mywarning:hover i {
     color: var(--bs-mywarning-600) !important;

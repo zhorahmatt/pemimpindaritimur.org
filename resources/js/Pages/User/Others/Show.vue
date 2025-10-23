@@ -10,7 +10,7 @@
 
             <!-- Hero Section -->
             <section id="hero" class="bg-white border-bottom border-gray-300 py-0">
-                <div class="container d-flex flex-column align-items-center text-center py-20">
+                <div class="container d-flex flex-column align-items-center text-center py-10 py-md-20">
                     <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
                         Smart Financial Map Workshop Chapter Makassar
                     </h1>
@@ -20,89 +20,347 @@
                 </div>
             </section>
 
-
-            <section id="who" class="pt-20">
-                <div class="container pt-20">
-                    <div class="row g-10">
-                        <div class="col-lg-6 text-center text-lg-start align-self-center pe-lg-10 pe-xl-20">
-                            <p class="fw-semibold text-myprimary fs-4 text-uppercase mb-6 px-4 py-1 d-inline-block rounded-pill bg-myprimary-light"
-                                style="letter-spacing: 0.08em;">
-                                Ilmu Keuangan
-                            </p>
-                            <h1 class="fw-bolder text-dark fs-3x fs-lg-2hx mb-5">
-                                Bisnis yang Tangguh Dimulai dari Keputusan yang Tepat!
-                            </h1>
-                            <p class="fw-semibold text-gray-600 fs-2 fs-lg-3 fs-xl-2 mb-0 me-xl-10">
-                                Workshop ini membantu Anda memahami risiko di balik setiap keputusan bisnis dan membangun roadmap finansial yang aman.
-                            </p>
+            <section id="data-table" class="container py-10 py-md-20">
+                <div class="card border border-gray-300">
+                    <div class="card-header border-0 py-5 px-6 d-flex flex-wrap gap-3">
+                        <form @submit.prevent="handleSearch"
+                            class="d-flex align-items-center position-relative my-1 flex-grow-1 flex-sm-grow-0 w-100 w-sm-300px">
+                            <i class="bi bi-search position-absolute ms-5 fs-4"></i>
+                            <input type="text" class="form-control form-control-solid ps-13 fs-5"
+                                placeholder="Cari nama peserta di sini..." v-model="search" />
+                        </form>
+                        <div class="card-toolbar m-0 flex-grow-1 flex-sm-grow-0">
+                            <Link href="/ilmu-keuangan" type="button" 
+                                class="d-flex align-items-center justify-content-center btn btn-sm btn-myprimary fs-5 w-100">
+                                Ke Halaman Utama
+                            </Link>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="row g-3 g-md-5 g-lg-3">
-                                <div class="col-4 position-relative">
-                                    <img src="/assets/media/illustrations/img-1.png" class="rounded-4 w-100" alt="" />
-                                    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
-                                        style="letter-spacing: 0.08em;">
-                                        Business Owner
-                                    </p>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table id="kt_datatable_horizontal_scroll"
+                                class="table align-middle table-row-bordered fs-5 gy-5 border-bottom border-gray-300 mb-0">
+                                <thead>
+                                    <tr class="text-start text-gray-600 fw-bold fs-7 text-uppercase gs-0">
+                                        <th class="w-20px ps-6 pe-5 bg-secondary" style="letter-spacing: 0.04em;">#</th>
+                                        <th class="bg-secondary min-w-200px" style="letter-spacing: 0.04em;">Nama Peserta</th>
+                                        <th class="bg-secondary min-w-150px" style="letter-spacing: 0.04em;">No. WhatsApp</th>
+                                        <th class="bg-secondary min-w-150px" style="letter-spacing: 0.04em;">Usaha / Brand</th>
+                                        <th class="bg-secondary min-w-100px" style="letter-spacing: 0.04em;">Status</th>
+                                        <th class="bg-secondary pe-6 min-w-125px" style="letter-spacing: 0.04em;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="fw-semibold text-gray-600">
+                                    <tr v-if="datas.data.length === 0">
+                                        <td colspan="7" class="text-center py-10">
+                                            <img src="/assets/media/illustrations/empty.png"
+                                                alt="Tidak ada data" class="mh-300px">
+                                            <h2 class="text-gray-800 mb-4">Peserta Tidak Ditemukan</h2>
+                                            <p class="text-gray-600 fs-4">Belum ada peserta atau pencarian tidak sesuai.</p>
+                                        </td>
+                                    </tr>
+                                    <tr v-else v-for="(data, index) in datas.data" :key="index">
+                                        <td class="ps-6">
+                                            {{ ++index + (datas . current_page - 1) * datas . per_page }}
+                                        </td>
+                                        <td class="d-flex align-items-center gap-3">
+                                            <div class="symbol symbol-45px symbol-circle">
+                                                <div class="symbol-label fs-4 fw-semibold bg-myprimary text-white">{{ getInitials (data . name) }}</div>
+                                            </div>
+                                            <div>
+                                                <p class="text-dark fw-bold mb-1">{{ data . name }}</p>
+                                                <a :href="`mailto:${data.email}`" class="btn-link-myprimary fw-bold fs-7 mb-0">{{ data . email }}</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a :href="`https://wa.me/${data.whatsapp.replace(/^0/, '62')}`" target="_blank"
+                                                class="btn-link-myprimary fw-bold">
+                                                {{ data . whatsapp }}
+                                            </a>
+                                        </td>
+                                        <td>{{ data . business_name }}</td>
+                                        <td>
+                                            <span
+                                                class="badge text-capitalize fs-7 px-3 py-2"
+                                                :class="{
+                                                    'bg-mysecondary text-mysecondary': data.status === 'accept',
+                                                    'bg-mywarning-light text-mywarning-badge': data.status === 'pending',
+                                                    'bg-mydanger-light text-mydanger': data.status === 'deny'
+                                                }"
+                                            >
+                                                {{ 
+                                                    data.status === 'accept' ? 'Diterima' : 
+                                                    data.status === 'pending' ? 'Pending' : 
+                                                    data.status === 'deny' ? 'Ditolak' : data.status 
+                                                }}
+                                            </span>
+                                        </td>
+                                        <td class="text-end pe-6">
+                                            <button @click="editData(data)"
+                                                class="btn btn-sm btn-icon btn-mysecondary me-2">
+                                                <i class="ri-eye-fill fs-3"></i></button>
+                                            <button @click.prevent="destroy(data.id)"
+                                                class="btn btn-sm btn-icon btn-mydanger">
+                                                <i class="ri-delete-bin-fill fs-3"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <Pagination :links="datas.links" align="end" class="py-5 px-6" />
+                    </div>
+                </div>
+            </section>
+            <form @submit.prevent="submit">
+                <div id="kt_drawer_example_advanced" class="bg-body" style="overflow-x: hidden;" data-kt-drawer="true" data-kt-drawer-activate="true"
+                    data-kt-drawer-toggle="#kt_drawer_example_advanced_button"
+                    data-kt-drawer-close="#kt_drawer_example_advanced_close" data-kt-drawer-name="docs"
+                    data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'100%', 'md': '500px'}"
+                    data-kt-drawer-direction="end">
+                    <div class="card w-100 rounded-0">
+                        <div class="card-header ps-6 pe-3 h-60px border-bottom border-gray-300 h-60px h-lg-70px">
+                            <div class="card-title">
+                                <h2>Data Peserta</h2>
+                            </div>
+                            <div class="card-toolbar" id="kt_drawer_example_advanced_close">
+                                <div class="btn btn-sm btn-icon btn-mylighten rounded-pill">
+                                    <i class="bi bi-x-lg fs-3"></i>
                                 </div>
-                                <div class="col-4 position-relative">
-                                    <img src="/assets/media/illustrations/img-2.png" class="rounded-4 w-100" alt="" />
-                                    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
-                                        style="letter-spacing: 0.08em;">
-                                        CEO
-                                    </p>
+                            </div>
+                        </div>
+                        <div class="card-body bg-light p-6 d-flex flex-column gap-7">
+                            <div class="flex-grow-1">
+                                <div class="card rounded-4 border border-gray-300">
+                                    <div class="card-header h-auto p-6 border-bottom border-gray-300"
+                                        style="min-height: unset;">
+                                        <div class="card-title m-0">
+                                            <h3>Informasi Pribadi</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-6 d-flex flex-column gap-3">
+                                        <div class="d-flex justify-content-between gap-6">
+                                            <p class="fs-5 text-gray-600 mb-0">Nama Peserta</p>
+                                            <p class="fs-5 text-end text-dark fw-bold mb-0">{{ selectedData?.name }}</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between gap-6">
+                                            <p class="fs-5 text-gray-600 mb-0">Alamat Email</p>
+                                            <a :href="`mailto:${selectedData?.email}`"
+                                                class="fs-5 text-end btn-link-myprimary fw-bold mb-0">{{ selectedData?.email }}</a>
+                                        </div>
+                                        <div class="d-flex justify-content-between gap-6">
+                                            <p class="fs-5 text-gray-600 mb-0">No. WhatsApp</p>
+                                            <a :href="`https://wa.me/${selectedData?.whatsapp.replace(/^0/, '62')}`" target="_blank"
+                                                class="fs-5 text-end btn-link-myprimary fw-bold mb-0">{{ selectedData?.whatsapp }}</a>
+                                        </div>
+                                        <div class="d-flex justify-content-between gap-6">
+                                            <p class="fs-5 text-gray-600 mb-0">Asal Kab/Kota</p>
+                                            <p class="fs-5 text-end text-dark fw-bold mb-0">{{ selectedData?.city }}</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between gap-6">
+                                            <p class="fs-5 text-gray-600 mb-0">Ukuran Jaket</p>
+                                            <p class="fs-5 text-end text-dark fw-bold mb-0">{{ selectedData?.size }}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-4 position-relative">
-                                    <img src="/assets/media/illustrations/img-3.png" class="rounded-4 w-100" alt="" />
-                                    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
-                                        style="letter-spacing: 0.08em;">
-                                        Finance Manager
-                                    </p>
+                                <div class="card rounded-4 border border-gray-300 mt-6">
+                                    <div class="card-header h-auto p-6 border-bottom border-gray-300"
+                                        style="min-height: unset;">
+                                        <div class="card-title m-0">
+                                            <h3>Informasi Usaha</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-6 d-flex flex-column gap-3">
+                                        <div class="d-flex justify-content-between gap-6">
+                                            <p class="fs-5 text-gray-600 mb-0">Nama Usaha/Brand</p>
+                                            <p class="fs-5 text-end text-dark fw-bold mb-0">{{ selectedData?.business_name }}</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between gap-6">
+                                            <p class="fs-5 text-gray-600 mb-0">Bidang Usaha</p>
+                                            <p class="fs-5 text-end text-dark fw-bold mb-0">{{ selectedData?.business_field }}</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between gap-6">
+                                            <p class="fs-5 text-gray-600 mb-0">Jabatan</p>
+                                            <p class="fs-5 text-end text-dark fw-bold mb-0">{{ selectedData?.position }}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-4 position-relative">
-                                    <img src="/assets/media/illustrations/img-4.png" class="rounded-4 w-100" alt="" />
-                                    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
-                                        style="letter-spacing: 0.08em;">
-                                        Business Couch
-                                    </p>
+                                <div class="card rounded-4 border border-gray-300 mt-6">
+                                    <div class="card-header h-auto p-6 border-bottom border-gray-300"
+                                        style="min-height: unset;">
+                                        <div class="card-title m-0">
+                                            <h3>Informasi Lainnya</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-6 d-flex flex-column gap-5">
+                                        <div class="d-flex flex-column gap-2">
+                                            <p class="fs-5 text-gray-600 mb-0">Masalah Keuangan Bisnis</p>
+                                            <p class="fs-5 text-dark fw-bold mb-0">{{ selectedData?.problem }}</p>
+                                        </div>
+                                        <div class="d-flex flex-column gap-2">
+                                            <p class="fs-5 text-gray-600 mb-0">Harapan Setelah Workshop</p>
+                                            <p class="fs-5 text-dark fw-bold mb-0">{{ selectedData?.hope }}</p>
+                                        </div>
+                                        <div class="d-flex flex-column gap-2">
+                                            <p class="fs-5 text-gray-600 mb-0">Darimana Mendapatkan Informasi Ini?</p>
+                                            <p class="fs-5 text-dark fw-bold mb-0">{{ selectedData?.from }}</p>
+                                        </div>
+                                        <div class="d-flex flex-column gap-2">
+                                            <p class="fs-5 text-gray-600 mb-0">Bukti Pembayaran</p>
+                                            <a href="#" target="_blank"
+                                                class="fs-5 btn-link-myprimary fw-bold mb-0">
+                                                <i class="fs-4 fw-semibold ri-eye-line me-1"></i>
+                                                Lihat Bukti Pembayaran
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-4 position-relative">
-                                    <img src="/assets/media/illustrations/img-5.png" class="rounded-4 w-100" alt="" />
-                                    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
-                                        style="letter-spacing: 0.08em;">
-                                        Investor
-                                    </p>
-                                </div>
-                                <div class="col-4 position-relative">
-                                    <img src="/assets/media/illustrations/img-6.png" class="rounded-4 w-100" alt="" />
-                                    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
-                                        style="letter-spacing: 0.08em;">
-                                        You!
-                                    </p>
-                                </div>
+                            </div>
+                            <div class="d-flex gap-4">
+                                <button type="button" id="kt_drawer_deny_button"
+                                    class="btn btn-sm btn-mydanger-solid flex-fill fs-5"
+                                    :disabled="selectedData?.status === 'deny'"
+                                    @click="denyData()">
+                                    <span class="indicator-label">
+                                        {{ selectedData?.status === 'deny' ? 'Ditolak' : 'Tolak' }}
+                                    </span>
+                                    <span class="indicator-progress">
+                                        Mohon Tunggu... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
+                                <button type="submit" id="kt_drawer_submit_button"
+                                    class="btn btn-sm btn-myprimary flex-fill fs-5"
+                                    :disabled="selectedData?.status === 'accept'">
+                                    <span class="indicator-label">
+                                        {{ selectedData?.status === 'accept' ? 'Disetujui' : 'Setujui' }}
+                                    </span>
+                                    <span class="indicator-progress">
+                                        Mohon Tunggu... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </form>
         </div>
     </main>
 </template>
 
 <script>
+    import Pagination from '../../../Components/Pagination.vue';
     import { Head, Link, router } from '@inertiajs/vue3';
-    import { ref, reactive, onMounted } from 'vue'
+    import { ref, reactive, nextTick } from 'vue'
     import Swal from 'sweetalert2';
 
     export default {
         components: {
             Head,
             Link,
+            Pagination
         },
 
         props: {
             errors: Object,
+            datas: Object,
         },
+
+        setup() {
+            const search = ref('' || (new URL(document.location)).searchParams.get('q'));
+
+            const handleSearch = () => {
+                router.get('/data-ilmu-keuangan', {
+                    q: search.value,
+                });
+            }
+
+            const openDrawer = async () => {
+                await nextTick();
+
+                const drawerEl = document.querySelector('#kt_drawer_example_advanced');
+                if (drawerEl && window.KTDrawer) {
+                    const drawer = KTDrawer.getInstance(drawerEl) || new KTDrawer(drawerEl);
+                    drawer.show();
+                }
+            };
+
+            const form = reactive({
+                data: '',
+            });
+
+            const selectedData = ref(null);  
+            const isEditMode = ref(false);
+
+            const resetForm = () => {
+                form.data = '';
+                isEditMode.value = false;
+                selectedData.value = null;
+
+                const drawerCloseBtn = document.querySelector('#kt_drawer_example_advanced_close');
+                if (drawerCloseBtn) drawerCloseBtn.click();
+            };
+
+            const editData = (data) => {
+                isEditMode.value = true;
+                selectedData.value = { ...data };
+                form.data = data.data || '';
+                openDrawer();
+            };
+
+            const destroy = (id) => {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Apakah Anda yakin?',
+                    text: "Anda tidak akan dapat mengembalikan ini!",
+                    showCancelButton: true,
+                    confirmButtonText: "Hapus",
+                    cancelButtonText: "Batal",
+                    customClass: {
+                        popup: 'swal-custom-icon',
+                        confirmButton: "btn btn-sm btn-myprimary",
+                        cancelButton: "btn btn-sm btn-mydanger"
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        router.delete(`/data-ilmu-keuangan/${id}`);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Dihapus!',
+                            text: 'Data Peserta Berhasil Dihapus!',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            customClass: {
+                                popup: 'swal-custom-icon',
+                            }
+                        });
+                    }
+                })
+            };
+
+            const getInitials = (name) => {
+                if (!name) return '';
+                return name
+                    .split(' ')               
+                    .map(word => word[0])   
+                    .join('') 
+                    .substring(0, 2)              
+                    .toUpperCase();          
+            };
+
+            return {
+                search,
+                handleSearch,
+                form,
+                // submit,
+                destroy,
+                resetForm,
+                editData,
+                getInitials,
+                isEditMode,
+                openDrawer,
+                selectedData,
+            }
+        }
     };
 </script>
 

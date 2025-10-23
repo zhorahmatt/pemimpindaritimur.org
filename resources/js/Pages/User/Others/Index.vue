@@ -31,7 +31,7 @@
                                 <i class="ri-user-add-fill fs-2"></i>
                                 Daftar Sekarang
                             </a>
-                            <a :href="`https://wa.me/6281232040682?text=${encodeURIComponent('Halo Admin Yanti, Mohon info Smart Financial Map Workshop Chapter Makassar')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
+                            <a :href="`https://wa.me/6282191295089?text=${encodeURIComponent('Halo Admin Yanti, Mohon info Smart Financial Map Workshop Chapter Makassar')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
                                 <i class="ri-whatsapp-fill fs-2"></i>
                                 Hubungi Kami
                             </a>
@@ -507,6 +507,23 @@
                 </div>
             </section>
 
+            <section id="event" class="mt-20 pt-20">
+                <div class="bg-myprimary pt-20 pt-md-0">
+                    <div class="container py-20">
+                        <div class="row g-8 py-20">
+                            <div class="col-12 col-md-6">
+                                <h1 class="fw-bolder text-white lh-base fs-3x fs-md-3x mb-3">
+                                    Sampai Jumpa di <br> Kota Daeng, Makassar! 🤝
+                                </h1>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div id="map" class="w-100 rounded-4 h-400px overflow-hidden"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section id="galleries" class="pt-20">
                 <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
@@ -853,6 +870,8 @@
     import 'swiper/css/pagination';
     import 'swiper/css/navigation';
     import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+    import L from 'leaflet';
+    import 'leaflet/dist/leaflet.css';
 
     export default {
         components: {
@@ -893,6 +912,14 @@
                     newLink.href = "https://static.wixstatic.com/media/abd792_d2396960b539400081a5ba95b65f311a~mv2.png/v1/fill/w_500,h_500,al_c/abd792_d2396960b539400081a5ba95b65f311a~mv2.png"
                     document.head.appendChild(newLink)
                 }
+
+                const map = L.map('map').setView([-5.162884, 119.436556], 17);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+                }).addTo(map);
+                const marker = L.marker([-5.162884, 119.436556]).addTo(map);
+                marker.bindPopup('<b>Four Points by Sheraton Makassar</b><br>Jl. Andi Djemma No.130, Makassar').openPopup();
 
                 const dz = new Dropzone('#proof-dropzone', {
                     url: '/', 
