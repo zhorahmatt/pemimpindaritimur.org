@@ -55,4 +55,17 @@ class OtherController extends Controller
 
         return redirect()->route('user.other');
     }
+
+    public function show()
+    {
+        $datas = IlmuKeuangan::when(request()->q, function ($datas) {
+            $datas = $datas->where('name', 'like', '%' . request()->q . '%');
+        })->latest()->paginate(10);
+
+        $datas->appends(['q' => request()->q]);
+
+        return inertia('User/Others/Show', [
+            'datas' => $datas,
+        ]);
+    }
 }

@@ -15,7 +15,7 @@
                     <div
                         class="container d-flex flex-column justify-content-center align-items-center align-items-lg-start min-vh-100 text-center text-lg-start px-5">
                         <h1 class="fw-bolder text-white lh-base fs-3hx fs-md-3tx mb-8">
-                            Smart Financial Map <br> Workshop Batch #33
+                            Smart Financial Map <br> Workshop Chapter Makassar
                         </h1>
                         <div class="d-flex align-items-center gap-3 mb-4">
                             <i class="text-white ri-map-pin-fill fs-2"></i>
@@ -31,7 +31,7 @@
                                 <i class="ri-user-add-fill fs-2"></i>
                                 Daftar Sekarang
                             </a>
-                            <a :href="`https://wa.me/6281232040682?text=${encodeURIComponent('Halo Admin Yanti, Mohon info Workshop Smart Financial Map')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
+                            <a :href="`https://wa.me/6281232040682?text=${encodeURIComponent('Halo Admin Yanti, Mohon info Smart Financial Map Workshop Chapter Makassar')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
                                 <i class="ri-whatsapp-fill fs-2"></i>
                                 Hubungi Kami
                             </a>
@@ -545,7 +545,7 @@
                             :modules="modules">
                             <swiper-slide v-for="(item, index) in testimonials" :key="index">
                                 <div class="d-flex flex-column flex-md-row gap-10 gap-md-12 align-items-center align-items-md-start px-0 px-md-6">
-                                    <div class="position-relative d-inline-block cursor-pointer"
+                                    <div class="position-relative d-inline-block cursor-pointer mt-1"
                                         @click="openLightboxTesti(index)">
                                         <img class="w-175px bg-white p-3 rounded border border-gray-300"
                                             :src="item.image" alt="Foto Testimoni" style="transform: rotate(2.5deg);">
@@ -1039,7 +1039,7 @@
                         Swal.fire({
                             icon: 'success',
                             title: 'Pendaftaran Berhasil!',
-                            text: 'Terima kasih telah mendaftar di Smart Financial Map Workshop Batch #33. Tim kami akan segera menghubungi Anda untuk informasi selanjutnya.',
+                            text: 'Terima kasih telah mendaftar di Smart Financial Map Workshop Chapter Makassar. Tim kami akan segera menghubungi Anda untuk informasi selanjutnya.',
                             timer: 5000,
                             timerProgressBar: true,
                             showConfirmButton: false,

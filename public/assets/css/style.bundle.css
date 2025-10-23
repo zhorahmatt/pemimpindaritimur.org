@@ -5331,6 +5331,8 @@ fieldset:disabled .btn {
   overflow-x: hidden;
   overflow-y: auto;
   outline: 0;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important; 
 }
 .modal-dialog {
   position: relative;
@@ -5392,7 +5394,7 @@ fieldset:disabled .btn {
   z-index: var(--bs-backdrop-zindex);
   width: 100vw;
   height: 100vh;
-  background-color: var(--bs-backdrop-bg);
+  background-color: var(--bs-backdrop-bg)
 }
 .modal-backdrop.fade {
   opacity: 0;
