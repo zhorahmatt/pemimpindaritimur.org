@@ -39,7 +39,7 @@
                 </div>
             </section>
 
-            <section class="pt-20">
+            <section id="who" class="pt-20">
                 <div class="container pt-20">
                     <div class="row g-10">
                         <div class="col-lg-6 text-center text-lg-start align-self-center pe-lg-10 pe-xl-20">
@@ -104,7 +104,7 @@
                 </div>
             </section>
 
-            <section class="pt-20">
+            <section id="why" class="pt-20">
                 <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <p class="fw-semibold text-gray-500 fs-4 text-uppercase mb-4" style="letter-spacing: 0.08em;">
                         Kenapa Harus Ikut
@@ -310,7 +310,7 @@
                 </div>
             </section>
 
-            <section class="container mt-20 pt-20">
+            <section id="profile" class="container mt-20 pt-20">
                 <div class="bg-gradient-myprimary rounded-4 px-8 pt-8 p-md-12 p-lg-14 w-100 d-flex flex-column flex-md-row align-items-center align-items-md-start position-relative">
                     <div class="d-none d-md-block w-50 w-impact"></div>
                     <div class="w-100 w-md-50 text-center d-flex flex-column flex-center flex-md-start text-md-start">
@@ -367,7 +367,7 @@
                 </div>
             </section>
 
-            <section class="pt-20">
+            <section id="usps" class="pt-20">
                 <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <p class="fw-semibold text-gray-500 fs-4 text-uppercase mb-4" style="letter-spacing: 0.08em;">
                         Bukan Sekadar Workshop
@@ -430,7 +430,7 @@
                 </div>
             </section>
 
-            <section class="container mt-20 pt-20">
+            <section id="statement" class="container mt-20 pt-20">
                 <div class="bg-gradient-myprimary rounded-4 p-10 p-md-12 p-lg-14">
                     <p class="text-white fs-4 text-uppercase mb-6 mb-md-8"
                         style="letter-spacing: 0.08em;">
@@ -449,7 +449,7 @@
                 </div>
             </section>
 
-            <section class="pt-20">
+            <section id="facilities" class="pt-20">
                 <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
                         Fasilitas yang Didapatkan
@@ -505,7 +505,7 @@
                 </div>
             </section>
 
-            <section class="pt-20">
+            <section id="galleries" class="pt-20">
                 <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
                         Jejak Perjalanan SFM  📸
@@ -584,6 +584,91 @@
                     <FsLightbox :toggler="lightboxToggler" :slide="currentIndex" :sources="lightboxSources" />
                 </div>
             </section>
+
+            <section id="testimonials" class="pt-20">
+                <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
+                    <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-10 mb-lg-12 ">
+                        Apa Kata Mereka?  💬
+                    </h1>
+                    <div class="container px-0 px-md-12 w-lg-800px w-xl-1000px position-relative">
+                        <swiper
+                                :loop="true"
+                                :slides-per-view="1"    
+                                :space-between="20"
+                                :navigation="{ prevEl: '.my-prev', nextEl: '.my-next' }"
+                                :autoplay="{
+                                    delay: 5000,
+                                    disableOnInteraction: false,
+                                }"
+                                :modules="modules">
+                            <swiper-slide>
+                                <div class="d-flex flex-column flex-md-row gap-10 gap-md-12 align-items-center align-items-md-start px-0 px-md-6">
+                                    <img class="w-150px bg-white p-3 rounded border border-gray-300"
+                                        src="/assets/media/illustrations/img-1.png" alt="" style="transform: rotate(2.5deg);">
+                                    <div class="d-flex flex-column gap-5 w-100">
+                                        <p class="order-2 order-md-1 text-dark text-center text-md-start fw-medium fs-3">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        </p>
+                                        <div class="order-1 order-md-2 d-flex flex-column flex-center flex-md-start">
+                                            <h4 class="text-dark text-start lh-sm fs-2qx fs-md-2 mb-1">dsaads</h4>
+                                            <p class="text-gray-600 text-start fs-5 mb-0">dsadasdsa</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </swiper-slide>
+                            <swiper-slide>
+                                <div class="d-flex flex-column flex-md-row gap-10 gap-md-12 align-items-center align-items-md-start px-0 px-md-6">
+                                    <img class="w-150px bg-white p-3 rounded border border-gray-300"
+                                        src="/assets/media/illustrations/img-1.png" alt="" style="transform: rotate(2.5deg);">
+                                    <div class="d-flex flex-column gap-5 w-100">
+                                        <p class="order-2 order-md-1 text-dark text-center text-md-start fw-medium fs-3">
+                                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur
+                                        </p>
+                                        <div class="order-1 order-md-2 d-flex flex-column flex-center flex-md-start">
+                                            <h4 class="text-dark text-start lh-sm fs-2qx fs-md-2 mb-1">dsaads</h4>
+                                            <p class="text-gray-600 text-start fs-5 mb-0">dsadasdsa</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </swiper-slide>
+                        </swiper>
+                        <button class="my-prev btn btn-icon btn-sm btn-mysecondary rounded-pill position-absolute top-50 translate-middle-y z-3">
+                            <i class="ri-arrow-left-s-line fs-1"></i>
+                        </button>
+                        <button class="my-next btn btn-icon btn-sm btn-mysecondary rounded-pill position-absolute top-50 translate-middle-y z-3">
+                            <i class="ri-arrow-right-s-line fs-1"></i>
+                        </button>
+                    </div>  
+                </div>
+            </section>
+
+            <section id="register" class="py-20">
+                <div class="container py-20 d-flex flex-column justify-content-center align-items-center text-center">
+                    <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-4 mb-md-2">
+                        Anda Cukup <br> Membayar <span class="text-gray-500"><del>Rp7.5jt</del></span> 
+                    </h1>
+                    <div class="d-flex gap-2 mb-5">
+                        <h1 class="fw-boldest text-myprimary lh-base fs-3tx my-1 my-md-5">
+                            Rp
+                        </h1>
+                        <h1 class="donate-number fw-boldest text-myprimary mb-0" data-kt-countup="true"
+                            data-kt-countup-duration="4" data-kt-countup-value="6500000" data-kt-countup-separator=".">
+                            0
+                        </h1>
+                    </div>
+                    <p class="fw-semibold text-gray-600 w-100 mw-800px fs-2 mb-10 mx-md-20 mx-lg-0">
+                        Workshop
+                        <span class="fw-bolder text-myprimary">Smart Financial Map</span> Mempelajari 
+                        <span class="fw-bolder text-myprimary">Basic</span>, 
+                        <span class="fw-bolder text-myprimary">Intermediate</span>, Hingga
+                        <span class="fw-bolder text-myprimary">Advance</span> Business FInance.
+                    </p>
+                    <button class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
+                        <i class="ri-user-add-fill fs-2"></i>
+                        Daftar Sekarang
+                    </button>
+                </div>
+            </section>
         </div>
     </main>
 </template>
@@ -592,13 +677,26 @@
     import { Head, Link } from '@inertiajs/vue3';
     import Swal from 'sweetalert2';
     import FsLightbox from "fslightbox-vue";
+    import { Swiper, SwiperSlide } from 'swiper/vue';
+    import 'swiper/css';
+    import 'swiper/css/pagination';
+    import 'swiper/css/navigation';
+    import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
     export default {
         components: {
             Head,
             Link,
             FsLightbox,
+            Swiper,
+            SwiperSlide,
         },
+
+        setup() {
+            return {
+                modules: [Autoplay, Pagination, Navigation],
+            }
+        }
     };
 </script>
 
@@ -610,6 +708,9 @@
         background-position: center;
     }
 
+    .my-prev { left: 7.5%; top: 27.5% !important; }
+    .my-next { right: 7.5%; top: 27.5% !important;}
+
     @media (max-width: 768px) {
         .bg-landing-sfm {
             background-position: right center;
@@ -620,6 +721,9 @@
         .img-impact {
             left: 1.75rem;
         }
+
+        .my-prev { left: 0; top: 85px !important; }
+        .my-next { right: 0; top: 85px !important; }
     }
 
     @media (min-width: 992px) {
@@ -630,6 +734,9 @@
         .img-impact {
             left: 2.5rem;
         }
+
+        .my-prev { left: -24px; }
+        .my-next { right: -24px; }
     }
 
     @media (min-width: 1200px) {
