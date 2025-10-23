@@ -41,7 +41,7 @@
                             <div class="card-body d-flex align-items-center gap-5 p-6">
                                 <div
                                     class="p-6 bg-mysuccess-light rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="ri-hand-heart-fill text-mysuccess fs-2hx"></i>
+                                    <i class="ri-verified-badge-fill text-mysuccess fs-2hx"></i>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <p class="fs-4 fw-semibold text-gray-800 mb-1">Disetujui</p>
@@ -55,7 +55,7 @@
                             <div class="card-body d-flex align-items-center gap-5 p-6">
                                 <div
                                     class="p-6 bg-mydanger-light rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="ri-article-fill text-mydanger fs-2hx"></i>
+                                    <i class="ri-close-circle-fill text-mydanger fs-2hx"></i>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <p class="fs-4 fw-semibold text-gray-800 mb-1">Ditolak</p>
@@ -69,7 +69,7 @@
                             <div class="card-body d-flex align-items-center gap-5 p-6">
                                 <div
                                     class="p-6 bg-mywarning-light rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="ri-article-fill text-mywarning fs-2hx"></i>
+                                    <i class="ri-time-fill text-mywarning fs-2hx"></i>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <p class="fs-4 fw-semibold text-gray-800 mb-1">Pending</p>
@@ -95,7 +95,13 @@
                         </div>
                     </div>
                     <div class="card-body p-0">
-                        <div class="table-responsive">
+                        <div class="text-center border-top border-bottom border-gray-300 py-10 px-6" v-if="datas.data.length === 0">
+                            <img src="/assets/media/illustrations/empty.png"
+                                alt="Tidak ada data" class="mh-300px img-fluid">
+                            <h2 class="text-dark mb-4">Peserta Tidak Ditemukan</h2>
+                            <p class="text-gray-600 fs-4 mb-0">Belum ada peserta atau pencarian tidak sesuai.</p>
+                        </div>
+                        <div class="table-responsive" v-else>
                             <table id="kt_datatable_horizontal_scroll"
                                 class="table align-middle table-row-bordered fs-5 gy-5 border-bottom border-gray-300 mb-0">
                                 <thead>
@@ -109,15 +115,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
-                                    <tr v-if="datas.data.length === 0">
-                                        <td colspan="7" class="text-center py-10">
-                                            <img src="/assets/media/illustrations/empty.png"
-                                                alt="Tidak ada data" class="mh-300px">
-                                            <h2 class="text-gray-800 mb-4">Peserta Tidak Ditemukan</h2>
-                                            <p class="text-gray-600 fs-4">Belum ada peserta atau pencarian tidak sesuai.</p>
-                                        </td>
-                                    </tr>
-                                    <tr v-else v-for="(data, index) in datas.data" :key="index">
+                                    <tr v-for="(data, index) in datas.data" :key="index">
                                         <td class="ps-6">
                                             {{ ++index + (datas . current_page - 1) * datas . per_page }}
                                         </td>
@@ -141,7 +139,7 @@
                                             <span
                                                 class="badge text-capitalize fs-7 px-3 py-2"
                                                 :class="{
-                                                    'bg-mysecondary text-mysecondary': data.status === 'accept',
+                                                    'bg-mysuccess-light text-mysuccess': data.status === 'accept',
                                                     'bg-mywarning-light text-mywarning': data.status === 'pending',
                                                     'bg-mydanger-light text-mydanger': data.status === 'deny'
                                                 }"
@@ -273,11 +271,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="d-flex gap-4">
+                            <div class="d-flex gap-4">
                                 <button type="button" id="kt_drawer_deny_button"
-                                    class="btn btn-sm btn-mydanger flex-fill fs-5"
+                                    class="btn btn-sm btn-mydanger-solid flex-fill fs-5"
                                     :disabled="selectedData?.status === 'deny'"
-                                    @click="denyData()">
+                                    @click="submit('deny')">
                                     <span class="indicator-label">
                                         {{ selectedData?.status === 'deny' ? 'Ditolak' : 'Tolak' }}
                                     </span>
@@ -285,9 +283,10 @@
                                         Mohon Tunggu... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                     </span>
                                 </button>
-                                <button type="submit" id="kt_drawer_submit_button"
+                                <button type="button" id="kt_drawer_accept_button"
                                     class="btn btn-sm btn-mysuccess-solid flex-fill fs-5"
-                                    :disabled="selectedData?.status === 'accept'">
+                                    :disabled="selectedData?.status === 'accept'"
+                                    @click="submit('accept')">
                                     <span class="indicator-label">
                                         {{ selectedData?.status === 'accept' ? 'Disetujui' : 'Setujui' }}
                                     </span>
@@ -295,7 +294,7 @@
                                         Mohon Tunggu... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                     </span>
                                 </button>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -361,6 +360,57 @@
                 if (drawerCloseBtn) drawerCloseBtn.click();
             };
 
+            const submit = (status) => {
+                const buttonId = status === 'accept' ? '#kt_drawer_accept_button' : '#kt_drawer_deny_button';
+                const submitBtn = document.querySelector(buttonId);
+
+                if (submitBtn) {
+                    submitBtn.setAttribute('data-kt-indicator', 'on');
+                    submitBtn.setAttribute('disabled', true);
+                }
+
+                const cleanup = () => {
+                    if (submitBtn) {
+                        submitBtn.removeAttribute('data-kt-indicator');
+                        submitBtn.removeAttribute('disabled');
+                    }
+                };
+
+                const payload = new FormData();
+                payload.append('_method', 'PUT');
+                payload.append('status', status);
+
+                router.post(`/data-ilmu-keuangan/${selectedData.value.id}`, payload, {
+                    onSuccess: () => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil!',
+                            text: status === 'accept'
+                                ? 'Data peserta berhasil disetujui.'
+                                : 'Data peserta berhasil ditolak.',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            customClass: { popup: 'swal-custom-icon' }
+                        });
+                        resetForm();
+                    },
+                    onError: () => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: 'Tidak dapat mengubah status. Coba lagi.',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            customClass: { popup: 'swal-custom-icon' }
+                        });
+                    },
+                    onFinish: cleanup,
+                    preserveScroll: true,
+                });
+            };
+
             const editData = (data) => {
                 isEditMode.value = true;
                 selectedData.value = { ...data };
@@ -413,7 +463,7 @@
                 search,
                 handleSearch,
                 form,
-                // submit,
+                submit,
                 destroy,
                 resetForm,
                 editData,

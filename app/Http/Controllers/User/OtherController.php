@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\IlmuKeuangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class OtherController extends Controller
 {
@@ -31,7 +32,7 @@ class OtherController extends Controller
         ], [
             'email.unique'   => 'Email yang Anda masukkan telah terdaftar.',
             'image.required' => 'Bukti transfer tidak boleh kosong.',
-            'image.image'    => 'Bukti transfer blog harus berupa file gambar.',
+            'image.image'    => 'Bukti transfer harus berupa file gambar.',
             'image.mimes'    => 'Bukti transfer harus berekstensi jpg, jpeg, atau png.',
             'image.max'      => 'Ukuran bukti transfer maksimal 10MB.',
         ]);
@@ -76,5 +77,31 @@ class OtherController extends Controller
             'total_pending' => $total_pending,
             'total_accept'  => $total_accept,
         ]);
+    }
+
+    public function update(Request $request, IlmuKeuangan $data)
+    {
+        $request->validate([
+            'status' => 'required',
+        ]);
+
+        $data->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('user.other.show');
+    }
+
+    public function destroy($id)
+    {
+        $data = IlmuKeuangan::findOrFail($id);
+
+        if ($data->image && Storage::disk('public')->exists($data->image)) {
+            Storage::disk('public')->delete($data->image);
+        }
+
+        $data->delete();
+
+        return redirect()->route('user.other.show');
     }
 }

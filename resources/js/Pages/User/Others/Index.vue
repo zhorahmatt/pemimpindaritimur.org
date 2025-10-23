@@ -31,7 +31,7 @@
                                 <i class="ri-user-add-fill fs-2"></i>
                                 Daftar Sekarang
                             </a>
-                            <a :href="`https://wa.me/6282191295089?text=${encodeURIComponent('Halo Admin Yanti, Mohon info Smart Financial Map Workshop Chapter Makassar')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
+                            <a :href="`https://wa.me/6282191295089?text=${encodeURIComponent('Halo Admin, Mohon info Smart Financial Map Workshop Chapter Makassar')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
                                 <i class="ri-whatsapp-fill fs-2"></i>
                                 Hubungi Kami
                             </a>
@@ -867,6 +867,7 @@
     import Dropzone from 'dropzone';
     import Swal from 'sweetalert2';
     import FsLightbox from "fslightbox-vue";
+    import VanillaTilt from "vanilla-tilt";
     import { Swiper, SwiperSlide } from 'swiper/vue';
     import 'swiper/css';
     import 'swiper/css/pagination';
@@ -886,6 +887,16 @@
 
         props: {
             errors: Object,
+        },
+
+        mounted() {
+            const elements = document.querySelectorAll('.bg-gradient-myprimary');
+            VanillaTilt.init(elements, {
+                max: 4,
+                speed: 800,
+                glare: true,
+                "max-glare": 0.2,
+            });
         },
 
         setup() {
@@ -971,36 +982,50 @@
                     image: '/assets/media/illustrations/testi-1.png',
                     name: 'Aditya',
                     business: 'Media & Marketing, Jakarta',
-                    youtube: 'https://www.youtube.com/watch?v=c6CYblRSVEU',
-                    text: 'Bisnis saya bergerak di bidang media dan marketing. Menurut saya, pembahasannya jujur, realistis, dan membantu saya dalam menentukan arah atau keputusan-keputusan strategis di bisnis saya. Kalau teman-teman suka pembelajaran tentang bisnis, strategic partnership, atau investasi keuangan, saya rasa menarik untuk mengikuti Smart Financial Map, karena bagi saya itu sangat membantu.'
+                    youtube: 'https://www.youtube.com/watch?v=i-EutfPJohE',
+                    text: 'Menurut saya, pembahasan di Smart Financial Map by Coach Yuszak sangat realistis dan membantu saya dalam menentukan arah serta keputusan strategis bisnis. Bagi teman-teman yang tertarik dengan pembelajaran bisnis, strategic partnership, atau investasi keuangan, acara ini sangat direkomendasikan.'
                 },
                 {
-                    image: '/assets/media/illustrations/testi-1.png',
-                    name: 'Aditya',
-                    business: 'Media & Marketing, Jakarta',
-                    youtube: 'https://www.youtube.com/watch?v=c6CYblRSVEU',
-                    text: 'Bisnis saya bergerak di bidang media dan marketing. Menurut saya, pembahasannya jujur, realistis, dan membantu saya dalam menentukan arah atau keputusan-keputusan strategis di bisnis saya. Kalau teman-teman suka pembelajaran tentang bisnis, strategic partnership, atau investasi keuangan, saya rasa menarik untuk mengikuti Smart Financial Map, karena bagi saya itu sangat membantu.'
+                    image: '/assets/media/illustrations/testi-2.png',
+                    name: 'Roy',
+                    business: 'Petal Consultant, Jakarta',
+                    youtube: 'https://www.youtube.com/watch?v=5QmYf4Jx52E',
+                    text: 'Bagi saya, SFM adalah salah satu training paling aplikatif. Tidak hanya membahas sisi marketing, tapi juga sisi finansial. Salah satu hal paling berkesan adalah kata Coach Yuszak: “Marketing is dream, finance is reality.” Saya tambahkan sedikit, “Sales is daily life.” Keren banget! Terima kasih!'
                 },
                 {
-                    image: '/assets/media/illustrations/testi-1.png',
-                    name: 'Aditya',
-                    business: 'Media & Marketing, Jakarta',
-                    youtube: 'https://www.youtube.com/watch?v=c6CYblRSVEU',
-                    text: 'Bisnis saya bergerak di bidang media dan marketing. Menurut saya, pembahasannya jujur, realistis, dan membantu saya dalam menentukan arah atau keputusan-keputusan strategis di bisnis saya. Kalau teman-teman suka pembelajaran tentang bisnis, strategic partnership, atau investasi keuangan, saya rasa menarik untuk mengikuti Smart Financial Map, karena bagi saya itu sangat membantu.'
+                    image: '/assets/media/illustrations/testi-3.png',
+                    name: 'Debra Maria',
+                    business: 'Taman Air Spa, Bali',
+                    youtube: 'https://www.youtube.com/watch?v=dGVwo6WkLJM',
+                    text: 'Selama dua hari mengikuti Smart Financial Map, saya merasa materinya sangat detail. Sebelumnya saya ikut CFO class yang lebih strategis, tapi SFM ini lebih dalam dan praktikal. Saya bahkan meminta finance manager saya untuk melupakan dulu ilmu lamanya agar bisa menerima insight baru. Banyak parameter tersembunyi yang ternyata penting untuk pengambilan keputusan CEO. SFM ini benar-benar wajib diikuti para business owner bersama tim finance-nya agar tidak kacamata kuda dalam memutuskan sesuatu. Terima kasih banyak!'
                 },
                 {
-                    image: '/assets/media/illustrations/testi-1.png',
-                    name: 'Aditya',
-                    business: 'Media & Marketing, Jakarta',
-                    youtube: 'https://www.youtube.com/watch?v=c6CYblRSVEU',
-                    text: 'Bisnis saya bergerak di bidang media dan marketing. Menurut saya, pembahasannya jujur, realistis, dan membantu saya dalam menentukan arah atau keputusan-keputusan strategis di bisnis saya. Kalau teman-teman suka pembelajaran tentang bisnis, strategic partnership, atau investasi keuangan, saya rasa menarik untuk mengikuti Smart Financial Map, karena bagi saya itu sangat membantu.'
+                    image: '/assets/media/illustrations/testi-4.png',
+                    name: 'Gusti Sananta',
+                    business: 'Sananta Group, Cibubur',
+                    youtube: 'https://www.youtube.com/watch?v=tuYxnuSR8XM',
+                    text: 'Setelah dua hari mengikuti workshop Coach Yuszak, saya mendapatkan banyak insight baru. Sebagai business owner, kita harus belajar keuangan karena ilmunya sangat bermanfaat. Pesertanya juga antusias dan suasananya positif sekali. Saran saya cuma satu: jangan tunggu lagi, segera daftar dan ikut workshop ini bersama Coach Yuszak!'
                 },
                 {
-                    image: '/assets/media/illustrations/testi-1.png',
-                    name: 'Aditya',
-                    business: 'Media & Marketing, Jakarta',
-                    youtube: 'https://www.youtube.com/watch?v=c6CYblRSVEU',
-                    text: 'Bisnis saya bergerak di bidang media dan marketing. Menurut saya, pembahasannya jujur, realistis, dan membantu saya dalam menentukan arah atau keputusan-keputusan strategis di bisnis saya. Kalau teman-teman suka pembelajaran tentang bisnis, strategic partnership, atau investasi keuangan, saya rasa menarik untuk mengikuti Smart Financial Map, karena bagi saya itu sangat membantu.'
+                    image: '/assets/media/illustrations/testi-5.png',
+                    name: 'Nelson',
+                    business: 'Firemount Living & Fairmont Hardware',
+                    youtube: 'https://www.youtube.com/watch?v=CSh52WLCaw4',
+                    text: 'Workshop ini sangat membantu saya sebagai business owner dan CEO. Di sini kita tidak hanya belajar membaca laporan keuangan, tapi juga memahami berbagai insight dari sudut pandang yang berbeda. Sangat membuka wawasan untuk menentukan strategi bisnis ke depan bersama tim finance. Terima kasih!'
+                },
+                {
+                    image: '/assets/media/illustrations/testi-6.png',
+                    name: 'Vincent',
+                    business: 'Atur Kuliner',
+                    youtube: 'https://www.youtube.com/watch?v=dLP0SuOQfq0',
+                    text: 'Selama dua hari mengikuti Smart Financial Map, jujur saya banyak belajar. Banyak hal praktikal yang dibagikan oleh Coach Yuszak — mulai dari angka-angka penting yang perlu diperhatikan dalam laporan keuangan hingga metrik-metrik yang harus dijaga. Misalnya revenue per employee dan metrik lainnya yang bisa kita analisis dari laporan keuangan. Keren banget sejauh ini! Ayo putus asa, jangan semangat deh pokoknya 😄',
+                },
+                {
+                    image: '/assets/media/illustrations/testi-7.png',
+                    name: 'Nina Damayanti',
+                    business: 'PT. Gunung Subur Sejahtera',
+                    youtube: 'https://www.youtube.com/watch?v=ug6xfXu2hKc',
+                    text: 'Kesan saya terhadap acara Smart Financial Map ini sangat bermanfaat, terutama bagi saya yang awam di bidang keuangan. Banyak keputusan pekerjaan yang ternyata harus mempertimbangkan sisi finansial. Terima kasih banyak, ilmunya sangat membuka wawasan!'
                 },
             ]
 
