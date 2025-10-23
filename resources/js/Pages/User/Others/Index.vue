@@ -584,7 +584,7 @@
                             Rp
                         </h1>
                         <h1 class="donate-number fw-boldest text-myprimary mb-0" data-kt-countup="true"
-                            data-kt-countup-duration="4" data-kt-countup-value="6500000" data-kt-countup-separator=".">
+                            data-kt-countup-duration="5" data-kt-countup-value="6500000" data-kt-countup-separator=".">
                             0
                         </h1>
                     </div>
@@ -595,10 +595,193 @@
                         <span class="fw-bolder text-myprimary">Intermediate</span>, Hingga
                         <span class="fw-bolder text-myprimary">Advance</span> Business FInance.
                     </p>
-                    <button class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
+                    <button data-bs-toggle="modal" data-bs-target="#kt_modal_register"  
+                        class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
                         <i class="ri-user-add-fill fs-2"></i>
                         Daftar Sekarang
                     </button>
+                    <div class="modal fade" id="kt_modal_register" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered justify-content-center">
+                            <div class="modal-content rounded-4 mw-700px w-md-800px">
+                                <div class="modal-header ps-6 pe-3 border-bottom border-gray-300 h-60px h-lg-70px">
+                                    <h2 class="modal-title text-start">
+                                        Smart Financial Map Workshop
+                                    </h2>
+                                    <div class="btn btn-sm btn-icon btn-mylighten rounded-pill" data-bs-dismiss="modal">
+                                        <i class="bi bi-x-lg fs-3"></i>
+                                    </div>
+                                </div>
+                                <div class="modal-body p-0 align-items-start text-start">
+                                    <p class="fs-5 px-6 py-4 mb-0 bg-gray-200 text-gray-700 fw-bold">Informasi Pribadi</p>
+                                    <div class="p-6">
+                                        <div class="mb-5 fv-row">
+                                            <label class="required form-label fs-6">Nama Lengkap</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon2">
+                                                    <i class="ri-user-fill fs-3"></i>
+                                                </span>
+                                                <input type="text" class="form-control fs-5" placeholder="Masukkan nama lengkap disini..."
+                                                    required />
+                                            </div>
+                                        </div>
+                                        <div class="mb-5 fv-row">
+                                            <label class="required form-label fs-6">Alamat Email</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon2">
+                                                    <i class="ri-mail-fill fs-3"></i>
+                                                </span>
+                                                <input type="email" class="form-control fs-5" placeholder="Masukkan alamat email disini..."
+                                                    required />
+                                            </div>
+                                        </div>
+                                        <div class="mb-5 fv-row">
+                                            <label class="required form-label fs-6">No. WhatsApp</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon2">
+                                                    <i class="ri-whatsapp-fill fs-3"></i>
+                                                </span>
+                                                <input type="number" class="form-control fs-5" placeholder="Masukkan no. whatsapp disini..."
+                                                    required />
+                                            </div>
+                                        </div>
+                                        <div class="row g-5">
+                                            <div class="col-7 fv-row">
+                                                <label class="required form-label fs-6">Asal Kab/Kota</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon2">
+                                                        <i class="ri-global-fill fs-3"></i>
+                                                    </span>
+                                                    <input type="text" class="form-control fs-5" placeholder="Masukkan asal kab/kota disini..."
+                                                        required />
+                                                </div>
+                                            </div>
+                                            <div class="col-5 fv-row">
+                                                <label class="required form-label fs-6">Ukuran Jaket</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon2">
+                                                        <i class="ri-shirt-fill fs-3"></i>
+                                                    </span>
+                                                    <select class="form-select fs-5" required>
+                                                        <option value="M">M</option>
+                                                        <option value="L">L</option>
+                                                        <option value="XL">XL</option>
+                                                        <option value="XXL">XXL</option>
+                                                        <option value="XXXL">XXXL</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="fs-5 px-6 py-4 mb-0 bg-gray-200 text-gray-700 fw-bold">Informasi Usaha</p>
+                                    <div class="p-6">
+                                        <div class="mb-5 fv-row">
+                                            <label class="required form-label fs-6">Nama Usaha/Brand</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon2">
+                                                    <i class="ri-store-2-fill fs-3"></i>
+                                                </span>
+                                                <input type="text" class="form-control fs-5" placeholder="Masukkan nama lengkap disini..."
+                                                    required />
+                                            </div>
+                                        </div>
+                                        <div class="row g-5">
+                                            <div class="col-lg-6 fv-row">
+                                                <label class="required form-label fs-6">Bidang Usaha</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon2">
+                                                        <i class="ri-suitcase-fill fs-3"></i>
+                                                    </span>
+                                                    <select class="form-select fs-5" required>
+                                                        <option value="M">M</option>
+                                                        <option value="L">L</option>
+                                                        <option value="XL">XL</option>
+                                                        <option value="XXL">XXL</option>
+                                                        <option value="XXXL">XXXL</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 fv-row">
+                                                <label class="required form-label fs-6">Jabatan</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon2">
+                                                        <i class="ri-user-settings-fill fs-3"></i>
+                                                    </span>
+                                                    <input type="text" class="form-control fs-5" placeholder="Masukkan jabatan disini..."
+                                                        required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="fs-5 px-6 py-4 mb-0 bg-gray-200 text-gray-700 fw-bold">Informasi Lainnya</p>
+                                    <div class="p-6">
+                                        <div class="mb-5 fv-row">
+                                            <label class="required form-label fs-6">Masalah Keuangan Bisnis</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon2">
+                                                    <i class="ri-mail-fill fs-3"></i>
+                                                </span>
+                                                <textarea class="form-control fs-5" data-kt-autosize="true" rows="1"
+                                                    required placeholder="Masukkan masalah yang dialami seputar keuangan bisnis disini...">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="mb-5 fv-row">
+                                            <label class="required form-label fs-6">Harapan Setelah Workshop</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon2">
+                                                    <i class="ri-mail-fill fs-3"></i>
+                                                </span>
+                                                <textarea class="form-control fs-5" data-kt-autosize="true" rows="1"
+                                                    required placeholder="Masukkan harapan setelah mengikuti workshop SFM disini...">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="mb-5 fv-row">
+                                            <label class="required form-label fs-6">Darimana Mendapatkan Informasi Ini?</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon2">
+                                                    <i class="ri-suitcase-fill fs-3"></i>
+                                                </span>
+                                                <select class="form-select fs-5" required>
+                                                    <option value="M">M</option>
+                                                    <option value="L">L</option>
+                                                    <option value="XL">XL</option>
+                                                    <option value="XXL">XXL</option>
+                                                    <option value="XXXL">XXXL</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="fv-row">
+                                            <label class="required form-label fs-6">Bukti Transfer</label>
+                                            <div id="blog-dropzone" class="dropzone border-dashed border-myprimary rounded p-5 text-center">
+                                                <div class="dz-message needsclick flex-column text-center gap-5 p-5">
+                                                    <i class="ri-image-add-line text-myprimary fs-3x"></i>
+                                                    <div>
+                                                        <h3 class="fs-5 fw-bold text-gray-900 mb-2">Jatuhkan file di sini / klik untuk mengunggah.</h3>
+                                                        <span class="fs-7 fw-semibold text-gray-400">Maks. 10 MB • Rasio 4:3</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end p-6 pt-0">
+                                        <button type="reset" class="btn btn-sm btn-mylight fs-5 me-3"
+                                            id="kt_modal_example_advanced_close">Batal</button>
+                                        <button type="submit" id="kt_modal_submit_button"
+                                            class="btn btn-sm btn-myprimary fs-5">
+                                            <span class="indicator-label">
+                                                Daftar Smart Financial Map
+                                            </span>
+                                            <span class="indicator-progress">
+                                                Mohon Tunggu... <span
+                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
