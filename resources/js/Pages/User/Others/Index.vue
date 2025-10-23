@@ -19,7 +19,7 @@
                         </h1>
                         <div class="d-flex align-items-center gap-3 mb-4">
                             <i class="text-white ri-map-pin-fill fs-2"></i>
-                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0">Afila Media Karya Hotel, Makassar</p>
+                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0">Four Points by Sheraton, Makassar</p>
                         </div>
                         <div class="d-flex align-items-center gap-3 mb-12">
                             <i class="text-white ri-calendar-event-fill fs-2"></i>
