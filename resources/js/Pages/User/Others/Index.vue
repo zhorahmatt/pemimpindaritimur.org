@@ -14,6 +14,7 @@
                     style="background-image: url(assets/media/illustrations/landing-sfm.png);">
                     <div
                         class="container d-flex flex-column justify-content-center align-items-center align-items-lg-start min-vh-100 text-center text-lg-start px-5">
+                        <img src="/assets/media/logos/glp-indtim-logo.png" class="w-50px w-md-75px mb-16" alt="" />
                         <h1 class="fw-bolder text-white lh-base fs-3hx fs-md-3tx mb-8">
                             Smart Financial Map <br> Workshop Chapter Makassar
                         </h1>
