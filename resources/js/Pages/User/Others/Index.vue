@@ -794,7 +794,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="mb-5 fv-row">
+                                            <div class="fv-row">
                                                 <label class="required form-label fs-6">Darimana Mendapatkan Informasi Ini?</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon2">
@@ -821,7 +821,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="fv-row">
+                                            <!-- <div class="fv-row">
                                                 <label class="required form-label fs-6">Bukti Transfer</label>
                                                 <div id="proof-dropzone" class="dropzone border-dashed border-myprimary rounded p-5 text-center">
                                                     <div class="dz-message needsclick flex-column text-center gap-5 p-5">
@@ -835,7 +835,7 @@
                                                 <div v-if="errors.image" class="text-mydanger mt-2">
                                                     {{ errors . image }}
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="d-flex justify-content-end p-6 border-top border-gray-300">
                                             <button type="reset" class="btn btn-sm btn-mylight fs-5 me-3"
@@ -865,7 +865,7 @@
 <script>
     import { Head, Link, router } from '@inertiajs/vue3';
     import { ref, reactive, onMounted } from 'vue'
-    import Dropzone from 'dropzone';
+    // import Dropzone from 'dropzone';
     import Swal from 'sweetalert2';
     import FsLightbox from "fslightbox-vue";
     import VanillaTilt from "vanilla-tilt";
@@ -913,7 +913,7 @@
                 problem: '',
                 hope: '',
                 from: '',
-                image: null,
+                // image: null,
             });
 
             onMounted(() => {
@@ -935,24 +935,24 @@
                 const marker = L.marker([-5.162884, 119.436556]).addTo(map);
                 marker.bindPopup('<b>Four Points by Sheraton Makassar</b><br>Jl. Andi Djemma No.130, Makassar').openPopup();
 
-                const dz = new Dropzone('#proof-dropzone', {
-                    url: '/', 
-                    paramName: 'image',
-                    maxFiles: 1,
-                    maxFilesize: 10,
-                    acceptedFiles: 'image/jpeg,image/png',
-                    autoProcessQueue: false,
-                    addRemoveLinks: true,
-                    dictRemoveFile: 'Hapus',
-                    init: function () {
-                        this.on('addedfile', function (file) {
-                            form.image = file;
-                        });
-                        this.on('removedfile', function () {
-                            form.image = null;
-                        });
-                    },
-                });
+                // const dz = new Dropzone('#proof-dropzone', {
+                //     url: '/', 
+                //     paramName: 'image',
+                //     maxFiles: 1,
+                //     maxFilesize: 10,
+                //     acceptedFiles: 'image/jpeg,image/png',
+                //     autoProcessQueue: false,
+                //     addRemoveLinks: true,
+                //     dictRemoveFile: 'Hapus',
+                //     init: function () {
+                //         this.on('addedfile', function (file) {
+                //             form.image = file;
+                //         });
+                //         this.on('removedfile', function () {
+                //             form.image = null;
+                //         });
+                //     },
+                // });
             });
 
             const lightboxTogglerGallery = ref(false)
@@ -1052,11 +1052,11 @@
                 form.problem = '';
                 form.hope = '';
                 form.from = '';
-                form.image = null;
+                // form.image = null;
 
-                if (dropzoneRef.value) {
-                    dropzoneRef.value.removeAllFiles(true);
-                }
+                // if (dropzoneRef.value) {
+                //     dropzoneRef.value.removeAllFiles(true);
+                // }
             };
 
             const submit = () => {
@@ -1078,9 +1078,9 @@
                 payload.append('problem', form.problem);
                 payload.append('hope', form.hope);
                 payload.append('from', form.from);
-                if (form.image && (form.image instanceof File || form.image instanceof Blob)) {
-                    payload.append('image', form.image);
-                }
+                // if (form.image && (form.image instanceof File || form.image instanceof Blob)) {
+                //     payload.append('image', form.image);
+                // }
 
                 const cleanup = () => {
                     if (submitBtn) {

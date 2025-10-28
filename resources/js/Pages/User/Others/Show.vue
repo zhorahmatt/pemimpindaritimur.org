@@ -260,14 +260,14 @@
                                             <p class="fs-5 text-gray-600 mb-0">Darimana Mendapatkan Informasi Ini?</p>
                                             <p class="fs-5 text-dark fw-bold mb-0">{{ selectedData?.from }}</p>
                                         </div>
-                                        <div class="d-flex flex-column gap-2">
+                                        <!-- <div class="d-flex flex-column gap-2">
                                             <p class="fs-5 text-gray-600 mb-0">Bukti Pembayaran</p>
                                             <a :href="`/storage/${selectedData?.image}`" target="_blank"
                                                 class="fs-5 btn-link-myprimary fw-bold mb-0">
                                                 <i class="fs-4 fw-semibold ri-eye-line me-1"></i>
                                                 Lihat Bukti Pembayaran
                                             </a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
