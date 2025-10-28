@@ -593,8 +593,8 @@
                 </div>
             </section>
 
-            <section id="register" class="py-20">
-                <div class="container py-20 d-flex flex-column justify-content-center align-items-center text-center">
+            <section id="register" class="pt-20">
+                <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-4 mb-md-2">
                         Anda Cukup <br> Membayar <span class="text-gray-500"><del>Rp7.5jt</del></span> 
                     </h1>
@@ -620,6 +620,33 @@
                         <i class="ri-user-add-fill fs-2"></i>
                         Daftar Sekarang
                     </button>
+                    <div class="position-relative d-flex justify-content-center mt-15">
+                        <img src="/assets/media/elements/mockup-phone.png" class="w-75 w-sm-325px" alt="" />
+
+                        <!-- Bank Account Card -->
+                        <div
+                            class="bank-card mt-10 p-10 bg-gradient-myprimary text-start w-100 w-sm-400px position-absolute z-index-1">
+                            <div class="d-flex align-items-center gap-3 mb-10">
+                                <h1 class="fw-bolder text-white lh-base fs-4x fs-md-3x mb-0">
+                                    BSI
+                                </h1>
+                                <p class="custom-flex-text text-white opacity-75 fs-8 mt-1 text-uppercase mb-0"
+                                    style="letter-spacing: 0.08em;">
+                                    Bank Syariah <br> Indonesia
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <h3 id="bank-number"
+                                    class="fw-bolder text-white opacity-100 lh-base fs-3x fs-md-2hx mb-0 text-truncate">
+                                    9998080441
+                                </h3>
+                                <i id="copy-icon" class="ri-file-copy-2-line text-white fs-1 cursor-pointer"></i>
+                            </div>
+                            <p class="text-white opacity-75 fs-4 mb-0">
+                                a.n Yayasan Pemimpin dari Timur
+                            </p>
+                        </div>
+                    </div>
                     <div class="modal fade" id="kt_modal_register" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered justify-content-center">
                             <div class="modal-content rounded-4 mw-700px w-md-800px">
@@ -794,7 +821,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="fv-row">
+                                            <div class="mb-5 fv-row">
                                                 <label class="required form-label fs-6">Darimana Mendapatkan Informasi Ini?</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon2">
@@ -821,7 +848,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- <div class="fv-row">
+                                            <div class="fv-row">
                                                 <label class="required form-label fs-6">Bukti Transfer</label>
                                                 <div id="proof-dropzone" class="dropzone border-dashed border-myprimary rounded p-5 text-center">
                                                     <div class="dz-message needsclick flex-column text-center gap-5 p-5">
@@ -835,7 +862,8 @@
                                                 <div v-if="errors.image" class="text-mydanger mt-2">
                                                     {{ errors . image }}
                                                 </div>
-                                            </div> -->
+                                                <p class="mb-0 fs-6 text-gray-600 mt-2">Silahkan transfer ke Rekening <span class="fw-bold text-dark">BSI 9998080441</span> a.n <span class="fw-bold text-dark">Yayasan Pemimpin dari Timur</span></p>
+                                            </div>
                                         </div>
                                         <div class="d-flex justify-content-end p-6 border-top border-gray-300">
                                             <button type="reset" class="btn btn-sm btn-mylight fs-5 me-3"
@@ -865,7 +893,7 @@
 <script>
     import { Head, Link, router } from '@inertiajs/vue3';
     import { ref, reactive, onMounted } from 'vue'
-    // import Dropzone from 'dropzone';
+    import Dropzone from 'dropzone';
     import Swal from 'sweetalert2';
     import FsLightbox from "fslightbox-vue";
     import VanillaTilt from "vanilla-tilt";
@@ -898,6 +926,40 @@
                 glare: true,
                 "max-glare": 0.2,
             });
+
+            document.getElementById('copy-icon').addEventListener('click', this.copyToClipboard);
+        },
+
+        methods: {
+            copyToClipboard() {
+                const bankNumber = document.getElementById('bank-number').innerText;
+
+                navigator.clipboard.writeText(bankNumber).then(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Nomor rekening berhasil disalin!',
+                        text: 'Silahkan melakukan transfer ke Bank Syariah Indonesia a.n Yayasan Pemimpin dari Timur ✨',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        customClass: {
+                            popup: 'swal-custom-icon',
+                        }
+                    });
+                }).catch(err => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal Menyalin!',
+                        text: 'Silakan coba lagi.',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        customClass: {
+                            popup: 'swal-custom-icon',
+                        }
+                    });
+                });
+            },
         },
 
         setup() {
@@ -913,7 +975,7 @@
                 problem: '',
                 hope: '',
                 from: '',
-                // image: null,
+                image: null,
             });
 
             onMounted(() => {
@@ -935,24 +997,24 @@
                 const marker = L.marker([-5.162884, 119.436556]).addTo(map);
                 marker.bindPopup('<b>Four Points by Sheraton Makassar</b><br>Jl. Andi Djemma No.130, Makassar').openPopup();
 
-                // const dz = new Dropzone('#proof-dropzone', {
-                //     url: '/', 
-                //     paramName: 'image',
-                //     maxFiles: 1,
-                //     maxFilesize: 10,
-                //     acceptedFiles: 'image/jpeg,image/png',
-                //     autoProcessQueue: false,
-                //     addRemoveLinks: true,
-                //     dictRemoveFile: 'Hapus',
-                //     init: function () {
-                //         this.on('addedfile', function (file) {
-                //             form.image = file;
-                //         });
-                //         this.on('removedfile', function () {
-                //             form.image = null;
-                //         });
-                //     },
-                // });
+                const dz = new Dropzone('#proof-dropzone', {
+                    url: '/', 
+                    paramName: 'image',
+                    maxFiles: 1,
+                    maxFilesize: 10,
+                    acceptedFiles: 'image/jpeg,image/png',
+                    autoProcessQueue: false,
+                    addRemoveLinks: true,
+                    dictRemoveFile: 'Hapus',
+                    init: function () {
+                        this.on('addedfile', function (file) {
+                            form.image = file;
+                        });
+                        this.on('removedfile', function () {
+                            form.image = null;
+                        });
+                    },
+                });
             });
 
             const lightboxTogglerGallery = ref(false)
@@ -1052,11 +1114,11 @@
                 form.problem = '';
                 form.hope = '';
                 form.from = '';
-                // form.image = null;
+                form.image = null;
 
-                // if (dropzoneRef.value) {
-                //     dropzoneRef.value.removeAllFiles(true);
-                // }
+                if (dropzoneRef.value) {
+                    dropzoneRef.value.removeAllFiles(true);
+                }
             };
 
             const submit = () => {
@@ -1078,9 +1140,9 @@
                 payload.append('problem', form.problem);
                 payload.append('hope', form.hope);
                 payload.append('from', form.from);
-                // if (form.image && (form.image instanceof File || form.image instanceof Blob)) {
-                //     payload.append('image', form.image);
-                // }
+                if (form.image && (form.image instanceof File || form.image instanceof Blob)) {
+                    payload.append('image', form.image);
+                }
 
                 const cleanup = () => {
                     if (submitBtn) {
