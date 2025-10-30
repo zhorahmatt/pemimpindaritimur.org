@@ -28,16 +28,16 @@ class OtherController extends Controller
             'problem'        => 'required',
             'hope'           => 'required',
             'from'           => 'required',
-            'image'          => 'required|image|mimes:jpg,jpeg,png|max:10240',
+            // 'image'          => 'required|image|mimes:jpg,jpeg,png|max:10240',
         ], [
             'email.unique'   => 'Email yang Anda masukkan telah terdaftar.',
-            'image.required' => 'Bukti transfer tidak boleh kosong.',
-            'image.image'    => 'Bukti transfer harus berupa file gambar.',
-            'image.mimes'    => 'Bukti transfer harus berekstensi jpg, jpeg, atau png.',
-            'image.max'      => 'Ukuran bukti transfer maksimal 10MB.',
+            // 'image.required' => 'Bukti transfer tidak boleh kosong.',
+            // 'image.image'    => 'Bukti transfer harus berupa file gambar.',
+            // 'image.mimes'    => 'Bukti transfer harus berekstensi jpg, jpeg, atau png.',
+            // 'image.max'      => 'Ukuran bukti transfer maksimal 10MB.',
         ]);
 
-        $path_image = $request->file('image')->store('others', 'public');
+        // $path_image = $request->file('image')->store('others', 'public');
 
         IlmuKeuangan::create([
             'name'           => $request->name,
@@ -51,7 +51,7 @@ class OtherController extends Controller
             'problem'        => $request->problem,
             'hope'           => $request->hope,
             'from'           => $request->from,
-            'image'          => $path_image,
+            // 'image'          => $path_image,
         ]);
 
         return redirect()->route('user.other');

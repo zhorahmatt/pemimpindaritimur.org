@@ -821,7 +821,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="mb-5 fv-row">
+                                            <div class="fv-row">
                                                 <label class="required form-label fs-6">Darimana Mendapatkan Informasi Ini?</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon2">
@@ -848,7 +848,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="fv-row">
+                                            <!-- <div class="fv-row">
                                                 <label class="required form-label fs-6">Bukti Transfer</label>
                                                 <div id="proof-dropzone" class="dropzone border-dashed border-myprimary rounded p-5 text-center">
                                                     <div class="dz-message needsclick flex-column text-center gap-5 p-5">
@@ -863,7 +863,7 @@
                                                     {{ errors . image }}
                                                 </div>
                                                 <p class="mb-0 fs-6 text-gray-600 mt-2">Silahkan transfer ke Rekening <span class="fw-bold text-dark">BSI 9998080441</span> a.n <span class="fw-bold text-dark">Yayasan Pemimpin dari Timur</span></p>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="d-flex justify-content-end p-6 border-top border-gray-300">
                                             <button type="reset" class="btn btn-sm btn-mylight fs-5 me-3"
