@@ -2,6 +2,11 @@
     <Head>
         <title>Smart Financial Map</title>
         <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/abd792_d2396960b539400081a5ba95b65f311a~mv2.png/v1/fill/w_500,h_500,al_c/abd792_d2396960b539400081a5ba95b65f311a~mv2.png">
+        <!-- Meta Pixel Code -->
+        <noscript><img height="1" width="1" style="display:none" 
+        src="https://www.facebook.com/tr?id=1160233339025474&ev=PageView&noscript=1" 
+        /></noscript>
+        <!-- End Meta Pixel Code -->
     </Head>
 
     <main id="kt_body" class="bg-light position-relative app-blank" data-kt-name="metronic" data-bs-spy="scroll"
@@ -979,6 +984,18 @@
             });
 
             onMounted(() => {
+                // Meta Pixel Code
+                !function(f,b,e,v,n,t,s)
+                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)}(window, document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', '1160233339025474');
+                fbq('track', 'PageView');
+
                 const link = document.querySelector("link[rel~='icon']")
                 if (link) {
                     link.href = "https://static.wixstatic.com/media/abd792_d2396960b539400081a5ba95b65f311a~mv2.png/v1/fill/w_500,h_500,al_c/abd792_d2396960b539400081a5ba95b65f311a~mv2.png"
