@@ -155,9 +155,9 @@
                                             <button @click="editData(data)"
                                                 class="btn btn-sm btn-icon btn-mysecondary me-2">
                                                 <i class="ri-eye-fill fs-3"></i></button>
-                                            <button @click.prevent="destroy(data.id)"
+                                            <!-- <button @click.prevent="destroy(data.id)"
                                                 class="btn btn-sm btn-icon btn-mydanger-solid">
-                                                <i class="ri-delete-bin-fill fs-3"></i></button>
+                                                <i class="ri-delete-bin-fill fs-3"></i></button> -->
                                         </td>
                                     </tr>
                                 </tbody>
