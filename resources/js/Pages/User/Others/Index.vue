@@ -497,7 +497,7 @@
                             <div class="card h-100 p-8 p-lg-10 px-xxl-16 align-items-center text-center rounded-4 border border-gray-300 shadow-none">
                                 <i class="ri-shirt-fill text-myprimary fs-3x bg-mysecondary rounded-pill p-6 mb-6"></i>
                                 <p class="text-dark fw-bold fs-5 fs-md-4 fs-xl-3 mb-0">
-                                    Jaket SFM Akan Dapatkan di Venue
+                                    Baju SFM Akan Dapatkan di Venue
                                 </p>
                             </div>
                         </div>
@@ -722,7 +722,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-5 fv-row">
-                                                    <label class="required form-label fs-6">Ukuran Baju/Jaket</label>
+                                                    <label class="required form-label fs-6">Ukuran Baju</label>
                                                     <div class="input-group">
                                                         <span class="input-group-text" id="basic-addon2">
                                                             <i class="ri-shirt-fill fs-3"></i>
