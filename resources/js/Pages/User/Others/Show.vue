@@ -155,9 +155,10 @@
                                             <button @click="editData(data)"
                                                 class="btn btn-sm btn-icon btn-mysecondary me-2">
                                                 <i class="ri-eye-fill fs-3"></i></button>
-                                            <!-- <button @click.prevent="destroy(data.  id)"
+                                            <button v-if="canDelete"
+                                                @click.prevent="destroy(data.  id)"
                                                 class="btn btn-sm btn-icon btn-mydanger-solid">
-                                                <i class="ri-delete-bin-fill fs-3"></i></button> -->
+                                                <i class="ri-delete-bin-fill fs-3"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -349,6 +350,10 @@
                 data: '',
             });
 
+            const canDelete = ref(
+                (new URL(document.location)).searchParams.get('can-delete') === 'true'
+            );
+
             const selectedData = ref(null);  
             const isEditMode = ref(false);
 
@@ -472,6 +477,7 @@
                 isEditMode,
                 openDrawer,
                 selectedData,
+                canDelete
             }
         }
     };
