@@ -62,7 +62,7 @@ class OtherController extends Controller
         $datas = IlmuKeuangan::when(request()->q, function ($datas) {
             $datas->where('name', 'like', '%' . request()->q . '%');
         })
-            ->orderByRaw("FIELD(status, 'accept', 'pending', 'deny')")
+            ->orderByRaw("FIELD(status, 'pending', 'accept', 'deny')")
             ->paginate(100);
 
         $datas->appends(['q' => request()->q]);
