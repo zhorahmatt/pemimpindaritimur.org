@@ -1,6 +1,8 @@
 <?php
 
+use App\Exports\IlmuKeuanganExport;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => ['auth']], function () {
@@ -31,3 +33,6 @@ Route::post('/ilmu-keuangan', [\App\Http\Controllers\User\OtherController::class
 Route::get('/ilmu-keuangan/dashboard', [\App\Http\Controllers\User\OtherController::class, 'show'])->name('user.other.show');
 Route::put('/ilmu-keuangan/dashboard/{data}', [\App\Http\Controllers\User\OtherController::class, 'update'])->name('user.other.update');
 Route::delete('/ilmu-keuangan/dashboard/{data}', [\App\Http\Controllers\User\OtherController::class, 'destroy'])->name('user.other.destroy');
+Route::get('/ilmu-keuangan/dashboard/export', function () {
+    return Excel::download(new \App\Exports\IlmuKeuanganExport, 'ilmu_keuangan.xlsx');
+})->name('user.other.export');

@@ -183,13 +183,12 @@
                                     <option value="deny">Ditolak</option>
                                 </select>
                             </div>
-                            <Link
-                                href="/ilmu-keuangan"
-                                type="button"
+                            <a
+                                :href="`/ilmu-keuangan/dashboard/export?q=${search}&status=${selectedStatus}`"
                                 class="w-100 w-md-auto d-flex align-items-center text-nowrap justify-content-center btn btn-sm btn-myprimary fs-5"
                             >
-                                Ke Halaman Utama
-                            </Link>
+                                Export Excel
+                            </a>
                         </div>
                     </div>
                     <div class="card-body p-0">
