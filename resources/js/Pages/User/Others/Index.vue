@@ -89,7 +89,7 @@
                                     <img src="/assets/media/illustrations/img-4.png" class="rounded-4 w-100" alt="" />
                                     <p class="position-absolute bottom-0 start-50 translate-middle-x fw-semibold fs-8 fs-sm-3 fs-lg-6 text-center text-uppercase mb-4 mb-sm-7 mb-lg-4 mb-xl-5 text-white"
                                         style="letter-spacing: 0.08em;">
-                                        Business Couch
+                                        Business Coach
                                     </p>
                                 </div>
                                 <div class="col-4 position-relative">
