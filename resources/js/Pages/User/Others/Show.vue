@@ -146,11 +146,11 @@
                 </div>
                 <div class="card border border-gray-300">
                     <div
-                        class="card-header border-0 py-5 px-6 d-flex flex-wrap gap-3"
+                        class="border-0 py-5 px-6 d-flex align-items-center flex-column justify-content-between flex-md-row gap-3"
                     >
                         <form
                             @submit.prevent="handleSearch"
-                            class="d-flex align-items-center position-relative my-1 flex-grow-1 flex-sm-grow-0 w-100 w-sm-300px"
+                            class="d-flex align-items-center position-relative my-1 flex-grow-1 flex-sm-grow-0 w-100 w-md-300px"
                         >
                             <i
                                 class="bi bi-search position-absolute ms-5 fs-4"
@@ -163,12 +163,30 @@
                             />
                         </form>
                         <div
-                            class="card-toolbar m-0 flex-grow-1 flex-sm-grow-0"
+                            class="d-flex flex-column gap-3 w-100 w-md-auto flex-sm-row"
                         >
+                            <div class="input-group w-100 w-md-auto">
+                                <span
+                                    class="input-group-text"
+                                    id="basic-addon2"
+                                >
+                                    Status
+                                </span>
+                                <select
+                                    class="form-select fs-5"
+                                    v-model="selectedStatus"
+                                    @change="handleStatusChange"
+                                >
+                                    <option value="all">Semua</option>
+                                    <option value="accept">Disetujui</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="deny">Ditolak</option>
+                                </select>
+                            </div>
                             <Link
                                 href="/ilmu-keuangan"
                                 type="button"
-                                class="d-flex align-items-center justify-content-center btn btn-sm btn-myprimary fs-5 w-100"
+                                class="w-100 w-md-auto d-flex align-items-center text-nowrap justify-content-center btn btn-sm btn-myprimary fs-5"
                             >
                                 Ke Halaman Utama
                             </Link>
@@ -656,17 +674,33 @@ export default {
         total_deny: Number,
         total_pending: Number,
         total_accept: Number,
+        current_status: String,
     },
 
-    setup() {
+    setup(props) {
+        const selectedStatus = ref("" || props.current_status || "all");
+
         const search = ref(
             "" || new URL(document.location).searchParams.get("q")
         );
 
+        const applyFilter = () => {
+            router.get(
+                "/ilmu-keuangan/dashboard",
+                {
+                    q: search.value,
+                    status: selectedStatus.value,
+                },
+                { preserveState: true }
+            );
+        };
+
         const handleSearch = () => {
-            router.get("/ilmu-keuangan/dashboard", {
-                q: search.value,
-            });
+            applyFilter();
+        };
+
+        const handleStatusChange = () => {
+            applyFilter();
         };
 
         const openDrawer = async () => {
@@ -814,6 +848,8 @@ export default {
         return {
             search,
             handleSearch,
+            handleStatusChange,
+            selectedStatus,
             form,
             submit,
             destroy,

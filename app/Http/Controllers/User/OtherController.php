@@ -59,13 +59,23 @@ class OtherController extends Controller
 
     public function show()
     {
-        $datas = IlmuKeuangan::when(request()->q, function ($datas) {
-            $datas->where('name', 'like', '%' . request()->q . '%');
-        })
-            ->orderByRaw("FIELD(status, 'pending', 'accept', 'deny')")
-            ->paginate(100);
+        $query_q = request()->q;
+        $query_status = request()->status;
 
-        $datas->appends(['q' => request()->q]);
+        $datas = IlmuKeuangan::when($query_q, function ($datas) use ($query_q) {
+            $datas->where('name', 'like', '%' . $query_q . '%');
+        })
+            ->when($query_status, function ($datas) use ($query_status) {
+                if ($query_status !== 'all') {
+                    $datas->where('status', $query_status);
+                }
+            })
+            ->latest()->paginate(100);
+
+        $datas->appends([
+            'q' => $query_q,
+            'status' => $query_status
+        ]);
 
         $total_all     = IlmuKeuangan::count();
         $total_deny    = IlmuKeuangan::where('status', 'deny')->count();
@@ -78,6 +88,7 @@ class OtherController extends Controller
             'total_deny'    => $total_deny,
             'total_pending' => $total_pending,
             'total_accept'  => $total_accept,
+            'current_status' => $query_status ?? 'all',
         ]);
     }
 
