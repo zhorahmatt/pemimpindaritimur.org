@@ -11,9 +11,14 @@ use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class IlmuKeuanganExport implements FromCollection, WithHeadings, WithMapping, WithStyles, WithCustomStartCell, WithEvents
+class IlmuKeuanganExport implements
+    FromCollection,
+    WithHeadings,
+    WithMapping,
+    WithStyles,
+    WithCustomStartCell,
+    WithEvents
 {
     protected $counter = 0;
 
@@ -32,9 +37,16 @@ class IlmuKeuanganExport implements FromCollection, WithHeadings, WithMapping, W
         return [
             'No',
             'Nama Peserta',
-            'Email',
-            'No. WhatsApp',
-            'Usaha / Brand',
+            // 'Email',
+            // 'WhatsApp',
+            'Asal Kab/Kota',
+            'Ukuran Usaha',
+            'Nama Usaha/Brand',
+            'Bidang Usaha',
+            'Jabatan',
+            'Masalah Keuangan Bisnis',
+            'Harapan Setelah Workshop',
+            'Sumber Informasi',
             'Status',
             'Waktu Daftar',
         ];
@@ -43,18 +55,26 @@ class IlmuKeuanganExport implements FromCollection, WithHeadings, WithMapping, W
     public function map($row): array
     {
         $this->counter++;
+
         $statusMap = [
-            'accept' => 'Disetujui',
+            'accept'  => 'Disetujui',
             'pending' => 'Pending',
-            'deny' => 'Ditolak',
+            'deny'    => 'Ditolak',
         ];
 
         return [
             $this->counter,
             $row->name,
-            $row->email,
-            $row->whatsapp,
+            // $row->email,
+            // $row->whatsapp,
+            $row->city,
+            $row->size,
             $row->business_name,
+            $row->business_field,
+            $row->position,
+            $row->problem,
+            $row->hope,
+            $row->from,
             $statusMap[$row->status] ?? $row->status,
             $row->created_at->format('Y-m-d H:i'),
         ];
@@ -62,25 +82,45 @@ class IlmuKeuanganExport implements FromCollection, WithHeadings, WithMapping, W
 
     public function styles(Worksheet $sheet)
     {
-        $highestRow = $sheet->getHighestRow();
+        $highestRow    = $sheet->getHighestRow();
         $highestColumn = $sheet->getHighestColumn();
 
+        // Judul
         $sheet->setCellValue('A1', 'Data Peserta Smart Financial Map Workshop Chapter Makassar');
         $sheet->mergeCells("A1:{$highestColumn}1");
         $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(16);
         $sheet->getStyle('A1')->getAlignment()->setHorizontal('center');
 
+        // Header tabel
         $sheet->getStyle('A3:' . $highestColumn . '3')->getFont()->setBold(true);
-        $sheet->getStyle('A3:' . $highestColumn . $highestRow)
-            ->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
 
-        $sheet->getColumnDimension('A')->setWidth(5);
-        $sheet->getColumnDimension('B')->setWidth(25);
-        $sheet->getColumnDimension('C')->setWidth(25);
-        $sheet->getColumnDimension('D')->setWidth(18);
-        $sheet->getColumnDimension('E')->setWidth(25);
-        $sheet->getColumnDimension('F')->setWidth(15);
-        $sheet->getColumnDimension('G')->setWidth(20);
+        // Border semua data
+        $sheet->getStyle('A3:' . $highestColumn . $highestRow)
+            ->getBorders()->getAllBorders()->setBorderStyle(
+                \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN
+            );
+
+        // Lebar kolom
+        $columnWidths = [
+            'A' => 5,
+            'B' => 25,
+            // 'C' => 25,
+            // 'D' => 20,
+            'C' => 20,
+            'D' => 15,
+            'E' => 25,
+            'F' => 20,
+            'G' => 15,
+            'H' => 30,
+            'I' => 30,
+            'J' => 25,
+            'K' => 15,
+            'L' => 20,
+        ];
+
+        foreach ($columnWidths as $col => $width) {
+            $sheet->getColumnDimension($col)->setWidth($width);
+        }
 
         return [];
     }
@@ -89,17 +129,19 @@ class IlmuKeuanganExport implements FromCollection, WithHeadings, WithMapping, W
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $sheet = $event->sheet->getDelegate();
+                $sheet      = $event->sheet->getDelegate();
                 $highestRow = $sheet->getHighestRow();
 
-                $sheet->getStyle('D4:D' . $highestRow)
-                    ->getNumberFormat()
-                    ->setFormatCode(NumberFormat::FORMAT_TEXT);
+                // $sheet->getStyle('D4:D' . $highestRow)
+                //     ->getNumberFormat()
+                //     ->setFormatCode(NumberFormat::FORMAT_TEXT);
 
-                $sheet->getStyle('A3:G3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-                    ->getStartColor()->setARGB('FFDDDD');
+                $sheet->getStyle('A3:L3')
+                    ->getFill()
+                    ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+                    ->getStartColor()->setARGB('FFFFDDDD');
 
-                $sheet->getStyle('A3:G3')->getFont()->setBold(true);
+                $sheet->getStyle('A3:L3')->getFont()->setBold(true);
             },
         ];
     }
