@@ -157,7 +157,7 @@
 
         props: {
             errors: Object,
-            galleries: Object,
+            galleries: Object,  
         },
 
         data() {

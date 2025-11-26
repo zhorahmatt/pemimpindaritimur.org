@@ -737,8 +737,8 @@
                                                             <option class="text-dark" value="M">M</option>
                                                             <option class="text-dark" value="L">L</option>
                                                             <option class="text-dark" value="XL">XL</option>
-                                                            <option class="text-dark" value="XXL">XXL</option>
-                                                            <option class="text-dark" value="XXXL">XXXL</option>
+                                                            <!-- <option class="text-dark" value="XXL">XXL</option>
+                                                            <option class="text-dark" value="XXXL">XXXL</option> -->
                                                         </select>
                                                         <div v-if="errors.size" class="text-mydanger mt-2">
                                                             {{ errors . size }}
