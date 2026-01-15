@@ -16,7 +16,7 @@
             <!-- Hero Section -->
             <section id="home" class="py-0">
                 <div class="bg-landing-sfm bgi-no-repeat bgi-size-cover bgi-position-center bg-dark position-relative min-vh-100"
-                    style="background-image: url(assets/media/illustrations/landing-sfm.png);">
+                    style="background-image: url(https://pusin.ppm-manajemen.ac.id/template/default/img/4.jpg);">
                     <div
                         class="container d-flex flex-column justify-content-center align-items-center align-items-lg-start min-vh-100 text-center text-lg-start px-5">
                         <img src="/assets/media/logos/glp-indtim-logo.png" class="w-50px w-md-75px mb-16" alt="" />
@@ -232,7 +232,7 @@
                 </div>
             </section>
 
-            <section id="profile" class="container mt-20 pt-20">
+            <!-- <section id="profile" class="container mt-20 pt-20">
                 <div class="bg-gradient-myprimary rounded-4 px-8 pt-8 p-md-12 p-lg-14 w-100 d-flex flex-column flex-md-row align-items-center align-items-md-start position-relative">
                     <div class="d-none d-md-block w-50 w-impact"></div>
                     <div class="w-100 w-md-50 text-center d-flex flex-column flex-center flex-md-start text-md-start">
@@ -272,9 +272,9 @@
                     <img class="img-impact position-md-absolute h-auto w-100 mw-325px mw-350px bottom-0"
                         src="/assets/media/illustrations/pemateri.png" alt="Minaut Indonesia Program" />
                 </div>
-            </section>
+            </section> -->
 
-            <section id="usps" class="pt-20">
+            <!-- <section id="usps" class="pt-20">
                 <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <p class="fw-semibold text-gray-500 fs-4 text-uppercase mb-4" style="letter-spacing: 0.08em;">
                         Bukan Sekadar Workshop
@@ -335,7 +335,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
             <section id="statement" class="container mt-20 pt-20">
                 <div class="bg-gradient-myprimary rounded-4 p-10 p-md-12 p-lg-14">
@@ -418,7 +418,7 @@
                 </div>
             </section>
 
-            <section id="galleries" class="pt-20">
+            <!-- <section id="galleries" class="pt-20">
                 <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-3">
                         Jejak Perjalanan SFM  📸
@@ -436,9 +436,9 @@
                     </div>
                     <FsLightbox :toggler="lightboxTogglerGallery" :slide="currentIndexGallery" :sources="lightboxSourcesGallery" />
                 </div>
-            </section>
+            </section> -->
 
-            <section id="testimonials" class="pt-20">
+            <!-- <section id="testimonials" class="pt-20">
                 <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-10 mb-lg-12 ">
                         Apa Kata Mereka?  💬
@@ -484,7 +484,7 @@
                         <FsLightbox :toggler="lightboxTogglerTesti" :slide="currentIndexTesti" :sources="testimonials.map(t => t.youtube)" />
                     </div>  
                 </div>
-            </section>
+            </section> -->
 
             <section id="register" class="pt-20">
                 <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
