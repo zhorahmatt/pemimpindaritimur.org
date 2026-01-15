@@ -39,33 +39,36 @@
             <section id="home" class="py-0">
                 <div class="bg-landing-sfm bgi-no-repeat bgi-size-cover bgi-position-center bg-dark position-relative min-vh-100"
                     style="background-image: url(https://pusin.ppm-manajemen.ac.id/template/default/img/4.jpg);">
+                    <!-- Dark Overlay for better text readability -->
+                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.6) 100%);"></div>
+                    
                     <div
-                        class="container d-flex flex-column justify-content-center align-items-center align-items-lg-start min-vh-100 text-center text-lg-start px-5">
+                        class="container d-flex flex-column justify-content-center align-items-center align-items-lg-start min-vh-100 text-center text-lg-start px-5 position-relative" style="z-index: 2;">
                         <div class="d-flex align-items-center gap-5 gap-md-8 mb-16">
-                            <img src="/assets/media/logos/glp-indtim-logo.png" class="w-50px w-md-75px" alt="GLP Indtim" />
-                            <img src="https://www.ppm-manajemen.ac.id/wp-content/uploads/2021/08/Asset-10@1000px-2048x697.png" class="h-30px h-md-50px" alt="PPM Manajemen" style="object-fit: contain;" />
+                            <img src="/assets/media/logos/glp-indtim-logo.png" class="w-50px w-md-75px" alt="GLP Indtim" style="filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));" />
+                            <img src="https://www.ppm-manajemen.ac.id/wp-content/uploads/2021/08/Asset-10@1000px-2048x697.png" class="h-30px h-md-50px" alt="PPM Manajemen" style="object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));" />
                         </div>
-                        <h1 class="fw-bolder text-white lh-base fs-3hx fs-md-3tx mb-8">
+                        <h1 class="fw-bolder text-white lh-base fs-3hx fs-md-3tx mb-8" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6);">
                             Minaut Indonesia: <br> Problem Solving and Decision Making
                         </h1>
-                        <p class="text-white fs-4 fs-lg-3 fw-semibold mb-8 opacity-75">
+                        <p class="text-white fs-4 fs-lg-3 fw-semibold mb-8" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">
                             "Making Rational Decisions with Confidence and Accountability"
                         </p>
                         <div class="d-flex align-items-center gap-3 mb-4">
-                            <i class="text-white ri-map-pin-fill fs-2"></i>
-                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0">Makassar</p>
+                            <i class="text-white ri-map-pin-fill fs-2" style="filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.8));"></i>
+                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">Makassar</p>
                         </div>
                         <div class="d-flex align-items-center gap-3 mb-12">
-                            <i class="text-white ri-calendar-event-fill fs-2"></i>
-                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0">2 - 4 Februari 2026</p>
+                            <i class="text-white ri-calendar-event-fill fs-2" style="filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.8));"></i>
+                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">2 - 4 Februari 2026</p>
                         </div>
                         <div class="d-flex flex-wrap justify-content-center gap-5">
                             <a href="#register" data-kt-scroll-toggle
-                                class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
+                                class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap shadow-lg">
                                 <i class="ri-user-add-fill fs-2"></i>
                                 Daftar Sekarang
                             </a>
-                            <a :href="`https://wa.me/6282191295089?text=${encodeURIComponent('Halo Admin, Mohon info Minaut Indonesia: Problem Solving and Decision Making Workshop Chapter Makassar')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
+                            <a :href="`https://wa.me/6282191295089?text=${encodeURIComponent('Halo Admin, Mohon info Minaut Indonesia: Problem Solving and Decision Making Workshop Chapter Makassar')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap shadow-lg">
                                 <i class="ri-whatsapp-fill fs-2"></i>
                                 Hubungi Kami
                             </a>
