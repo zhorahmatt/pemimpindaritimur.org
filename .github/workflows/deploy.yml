@@ -109,6 +109,14 @@ jobs:
             sudo cp -r /var/www/code/glp-indtim /var/www/code/glp-indtim-backup-$(date +%Y%m%d-%H%M%S)
           fi
 
+          # Backup storage/app/public (uploaded files) BEFORE extraction
+          echo "Backing up uploaded files..."
+          if [ -d "/var/www/code/glp-indtim/storage/app/public" ]; then
+            sudo mkdir -p /tmp/storage-backup
+            sudo cp -r /var/www/code/glp-indtim/storage/app/public /tmp/storage-backup/
+            echo "Storage backup completed"
+          fi
+
           # Extract new deployment
           cd /var/www/code
           sudo rm -rf glp-indtim-new
@@ -128,6 +136,14 @@ jobs:
           sudo mkdir -p /var/www/code/glp-indtim-new/storage/logs
           sudo mkdir -p /var/www/code/glp-indtim-new/storage/app/public
           sudo mkdir -p /var/www/code/glp-indtim-new/bootstrap/cache
+
+          # Restore uploaded files from backup
+          echo "Restoring uploaded files..."
+          if [ -d "/tmp/storage-backup/public" ]; then
+            sudo rm -rf /var/www/code/glp-indtim-new/storage/app/public
+            sudo cp -r /tmp/storage-backup/public /var/www/code/glp-indtim-new/storage/app/
+            echo "Storage restore completed"
+          fi
 
           # Set proper permissions
           sudo chown -R www-data:www-data /var/www/code/glp-indtim-new
@@ -164,8 +180,9 @@ jobs:
           sudo -u www-data php artisan storage:link
           sudo -u www-data php artisan optimize
 
-          # Clean up old version
+          # Clean up old version and temp backup
           sudo rm -rf /var/www/code/glp-indtim-old
+          sudo rm -rf /tmp/storage-backup
 
           # Restart web server
           sudo systemctl reload nginx
