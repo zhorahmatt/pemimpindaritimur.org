@@ -166,4 +166,65 @@ class OtherController extends Controller
 
         return redirect()->route('minaut.index');
     }
+
+    public function showDashboardMinaut()
+    {
+        $query_q = request()->q;
+        $query_status = request()->status;
+
+        $datas = Minaut::when($query_q, function ($datas) use ($query_q) {
+            $datas->where('name', 'like', '%' . $query_q . '%');
+        })
+            ->when($query_status, function ($datas) use ($query_status) {
+                if ($query_status !== 'all') {
+                    $datas->where('status', $query_status);
+                }
+            })
+            ->latest()->paginate(100);
+
+        $datas->appends([
+            'q' => $query_q,
+            'status' => $query_status
+        ]);
+
+        $total_all = Minaut::count();
+        $total_deny = Minaut::where('status', 'deny')->count();
+        $total_pending = Minaut::where('status', 'pending')->count();
+        $total_accept = Minaut::where('status', 'accept')->count();
+
+        return inertia('User/Others/Minaut/Show', [
+            'datas' => $datas,
+            'total_all' => $total_all,
+            'total_deny' => $total_deny,
+            'total_pending' => $total_pending,
+            'total_accept' => $total_accept,
+            'current_status' => $query_status ?? 'all',
+        ]);
+    }
+
+    public function updateDashboardMinaut(Request $request, Minaut $data)
+    {
+        $request->validate([
+            'status' => 'required',
+        ]);
+
+        $data->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('minaut.show');
+    }
+
+    public function destroyDashboardMinaut($id)
+    {
+        $data = Minaut::findOrFail($id);
+
+        if ($data->image && Storage::disk('public')->exists($data->image)) {
+            Storage::disk('public')->delete($data->image);
+        }
+
+        $data->delete();
+
+        return redirect()->route('minaut.show');
+    }
 }

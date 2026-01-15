@@ -1,6 +1,7 @@
 <?php
 
 use App\Exports\IlmuKeuanganExport;
+use App\Exports\MinautExport;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -40,3 +41,9 @@ Route::get('/ilmu-keuangan/dashboard/export', function () {
 //minaut-indonesia
 Route::get('/minaut-indonesia', [\App\Http\Controllers\User\OtherController::class, 'getMinaut'])->name('minaut.index');
 Route::post('/minaut-indonesia', [\App\Http\Controllers\User\OtherController::class, 'registNewMinaut'])->name('minaut.index');
+Route::get('/minaut-indonesia/dashboard', [\App\Http\Controllers\User\OtherController::class, 'showDashboardMinaut'])->name('minaut.show');
+Route::put('/minaut-indonesia/dashboard/{data}', [\App\Http\Controllers\User\OtherController::class, 'updateDashboardMinaut'])->name('minaut.update');
+Route::delete('/minaut-indonesia/dashboard/{data}', [\App\Http\Controllers\User\OtherController::class, 'destroyDashboardMinaut'])->name('minaut.destroy');
+Route::get('/minaut-indonesia/dashboard/export', function () {
+    return Excel::download(new \App\Exports\MinautExport, 'minaut.xlsx');
+})->name('minaut.export');
