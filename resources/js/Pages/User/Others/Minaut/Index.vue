@@ -2,6 +2,28 @@
     <Head>
         <title>Minaut Indonesia: Problem Solving and Decision Making</title>
         <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/abd792_d2396960b539400081a5ba95b65f311a~mv2.png/v1/fill/w_500,h_500,al_c/abd792_d2396960b539400081a5ba95b65f311a~mv2.png">
+        
+        <!-- Meta Description -->
+        <meta name="description" content="Workshop Minaut Indonesia: Problem Solving and Decision Making di Makassar, 2-4 Februari 2026. Program Executive Development untuk meningkatkan kemampuan analisis dan pengambilan keputusan strategis.">
+        
+        <!-- Open Graph / Facebook / WhatsApp -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://glp-indtim.com/minaut-indonesia">
+        <meta property="og:title" content="Minaut Indonesia: Problem Solving and Decision Making Workshop">
+        <meta property="og:description" content="Workshop Executive Development Program di Makassar, 2-4 Februari 2026. Tingkatkan kemampuan analisis dan pengambilan keputusan dengan metode terstruktur. Investasi: Rp 6.500.000">
+        <meta property="og:image" content="https://pusin.ppm-manajemen.ac.id/template/default/img/4.jpg">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:site_name" content="GLP Indtim">
+        <meta property="og:locale" content="id_ID">
+        
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:url" content="https://glp-indtim.com/minaut-indonesia">
+        <meta name="twitter:title" content="Minaut Indonesia: Problem Solving and Decision Making Workshop">
+        <meta name="twitter:description" content="Workshop Executive Development Program di Makassar, 2-4 Februari 2026. Tingkatkan kemampuan analisis dan pengambilan keputusan dengan metode terstruktur.">
+        <meta name="twitter:image" content="https://pusin.ppm-manajemen.ac.id/template/default/img/4.jpg">
+        
         <!-- Meta Pixel Code -->
         <noscript><img height="1" width="1" style="display:none" 
         src="https://www.facebook.com/tr?id=1160233339025474&ev=PageView&noscript=1" 
