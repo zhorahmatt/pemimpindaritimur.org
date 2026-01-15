@@ -68,7 +68,7 @@
                                 <i class="ri-user-add-fill fs-2"></i>
                                 Daftar Sekarang
                             </a>
-                            <a :href="`https://wa.me/6282191295089?text=${encodeURIComponent('Halo Admin, Mohon info Minaut Indonesia: Problem Solving and Decision Making Workshop Chapter Makassar')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap shadow-lg">
+                            <a :href="`https://wa.me/6282199448180?text=${encodeURIComponent('Halo Admin, Mohon info Minaut Indonesia: Problem Solving and Decision Making Workshop Chapter Makassar')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap shadow-lg">
                                 <i class="ri-whatsapp-fill fs-2"></i>
                                 Hubungi Kami
                             </a>
