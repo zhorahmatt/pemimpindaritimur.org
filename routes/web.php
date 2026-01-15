@@ -36,3 +36,7 @@ Route::delete('/ilmu-keuangan/dashboard/{data}', [\App\Http\Controllers\User\Oth
 Route::get('/ilmu-keuangan/dashboard/export', function () {
     return Excel::download(new \App\Exports\IlmuKeuanganExport, 'ilmu_keuangan.xlsx');
 })->name('user.other.export');
+
+//minaut-indonesia
+Route::get('/minaut-indonesia', [\App\Http\Controllers\User\OtherController::class, 'getMinaut'])->name('minaut.index');
+Route::post('/minaut-indonesia', [\App\Http\Controllers\User\OtherController::class, 'registNewMinaut'])->name('minaut.index');
