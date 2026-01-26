@@ -46,7 +46,7 @@
                         class="container d-flex flex-column justify-content-center align-items-center align-items-lg-start min-vh-100 text-center text-lg-start px-5 position-relative" style="z-index: 2;">
                         <div class="d-flex align-items-center gap-5 gap-md-8 mb-16">
                             <img src="/assets/media/logos/glp-indtim-logo.png" class="w-50px w-md-75px" alt="GLP Indtim" style="filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));" />
-                            <img src="https://www.ppm-manajemen.ac.id/wp-content/uploads/2021/08/Asset-10@1000px-2048x697.png" class="h-30px h-md-50px" alt="PPM Manajemen" style="object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));" />
+                            <img src="https://www.ppm-manajemen.ac.id/wp-content/uploads/2023/10/photo_2023-10-23_10-46-31R-1.jpg" class="h-30px h-md-50px" alt="PPM Manajemen" style="object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));" />
                         </div>
                         <h1 class="fw-bolder text-white lh-base fs-3hx fs-md-3tx mb-8" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6);">
                             Minaut Indonesia: <br> Problem Solving and Decision Making
