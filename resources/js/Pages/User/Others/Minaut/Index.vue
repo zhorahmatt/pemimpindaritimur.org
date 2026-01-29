@@ -60,7 +60,7 @@
                         </div>
                         <div class="d-flex align-items-center gap-3 mb-12">
                             <i class="text-white ri-calendar-event-fill fs-2" style="filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.8));"></i>
-                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">2 - 4 Februari 2026</p>
+                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">9 - 11 Februari 2026</p>
                         </div>
                         <div class="d-flex flex-wrap justify-content-center gap-5">
                             <a href="#register" data-kt-scroll-toggle

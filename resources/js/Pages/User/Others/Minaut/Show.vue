@@ -1,6 +1,6 @@
 <template>
     <Head>
-        <title>Smart Financial Map</title>
+        <title>Minaut Indonesia : Problem Solving and Decision Making</title>
         <link
             rel="icon"
             type="image/png"
@@ -546,7 +546,7 @@
                                     >
                                         <div class="d-flex flex-column gap-2">
                                             <p class="fs-5 text-gray-600 mb-0">
-                                                Masalah Keuangan Bisnis
+                                                Masalah Dalam Pengambilan Keputusan
                                             </p>
                                             <p
                                                 class="fs-5 text-dark fw-bold mb-0"
@@ -556,7 +556,7 @@
                                         </div>
                                         <div class="d-flex flex-column gap-2">
                                             <p class="fs-5 text-gray-600 mb-0">
-                                                Harapan Setelah Workshop
+                                                Harapan Setelah Mengikuti Workshop Minaut
                                             </p>
                                             <p
                                                 class="fs-5 text-dark fw-bold mb-0"
