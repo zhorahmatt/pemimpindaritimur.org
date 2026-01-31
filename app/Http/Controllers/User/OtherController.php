@@ -121,11 +121,31 @@ class OtherController extends Controller
 
     public function getMinaut()
     {
-        return inertia('User/Others/Minaut/Index', []);
+        $registrationLimit = 30;
+        $currentRegistrations = Minaut::count();
+        $remainingSlots = max(0, $registrationLimit - $currentRegistrations);
+        $isRegistrationOpen = $currentRegistrations < $registrationLimit;
+
+        return inertia('User/Others/Minaut/Index', [
+            'registration_limit' => $registrationLimit,
+            'current_registrations' => $currentRegistrations,
+            'remaining_slots' => $remainingSlots,
+            'is_registration_open' => $isRegistrationOpen,
+        ]);
     }
 
     public function registNewMinaut(Request $request)
     {
+        // Check registration limit
+        $registrationLimit = 30;
+        $currentRegistrations = Minaut::count();
+
+        if ($currentRegistrations >= $registrationLimit) {
+            return back()->withErrors([
+                'limit' => 'Mohon maaf, kuota pendaftaran sudah penuh (30 peserta). Silakan hubungi admin untuk informasi lebih lanjut.',
+            ]);
+        }
+
         $request->validate([
             'name' => 'required',
             'email' => 'required|unique:ilmu_keuangans,email',

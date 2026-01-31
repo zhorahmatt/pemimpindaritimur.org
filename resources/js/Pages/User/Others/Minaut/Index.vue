@@ -534,12 +534,40 @@
                         <span class="fw-bolder text-myprimary">analisis</span> dan 
                         <span class="fw-bolder text-myprimary">pengambilan keputusan</span> Anda.
                     </p>
-                    <button data-bs-toggle="modal" data-bs-target="#kt_modal_register"  
+                    
+                    <!-- Registration Status Badge -->
+                    <div class="mb-6">
+                        <span v-if="is_registration_open" class="badge badge-lg bg-mysecondary text-myprimary fw-bold fs-5 px-5 py-3">
+                            <i class="ri-group-fill me-2"></i>
+                            Sisa {{ remaining_slots }} dari {{ registration_limit }} Kursi
+                        </span>
+                        <span v-else class="badge badge-lg bg-danger text-white fw-bold fs-5 px-5 py-3">
+                            <i class="ri-close-circle-fill me-2"></i>
+                            KUOTA PENUH
+                        </span>
+                    </div>
+                    
+                    <button 
+                        v-if="is_registration_open"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#kt_modal_register"  
                         @click="() => { resetForm(); }"
                         class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
                         <i class="ri-user-add-fill fs-2"></i>
                         Daftar Sekarang
                     </button>
+                    <div v-else class="d-flex flex-column align-items-center gap-4">
+                        <button disabled class="btn btn-sm btn-secondary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
+                            <i class="ri-close-circle-fill fs-2"></i>
+                            Pendaftaran Ditutup
+                        </button>
+                        <a :href="`https://wa.me/6282199448180?text=${encodeURIComponent('Halo Admin, Saya ingin bertanya mengenai kuota Minaut Indonesia: Problem Solving and Decision Making Workshop Chapter Makassar yang sudah penuh')}`" 
+                           target="_blank" 
+                           class="btn btn-sm btn-light-success rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
+                            <i class="ri-whatsapp-fill fs-2"></i>
+                            Hubungi Admin untuk Waiting List
+                        </a>
+                    </div>
                     <div class="position-relative d-flex justify-content-center mt-15">
                         <img src="/assets/media/elements/mockup-phone.png" class="w-75 w-sm-325px" alt="" />
 
@@ -580,6 +608,14 @@
                                     </div>
                                 </div>
                                 <div class="modal-body p-0 align-items-start text-start">
+                                    <!-- Limit Error Alert -->
+                                    <div v-if="errors.limit" class="alert alert-danger rounded-0 mb-0 d-flex align-items-center gap-3">
+                                        <i class="ri-error-warning-fill fs-1 text-danger"></i>
+                                        <div>
+                                            <strong>Kuota Penuh!</strong>
+                                            <p class="mb-0">{{ errors.limit }}</p>
+                                        </div>
+                                    </div>
                                     <form @submit.prevent="submit">
                                         <p class="fs-5 px-6 py-4 mb-0 bg-gray-200 text-gray-700 fw-bold">Informasi Pribadi</p>
                                         <div class="p-6">
@@ -836,6 +872,22 @@
 
         props: {
             errors: Object,
+            registration_limit: {
+                type: Number,
+                default: 30
+            },
+            current_registrations: {
+                type: Number,
+                default: 0
+            },
+            remaining_slots: {
+                type: Number,
+                default: 30
+            },
+            is_registration_open: {
+                type: Boolean,
+                default: true
+            },
         },
 
         mounted() {
