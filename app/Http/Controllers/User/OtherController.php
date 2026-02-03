@@ -148,7 +148,7 @@ class OtherController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:ilmu_keuangans,email',
+            'email' => 'required|unique:minauts,email',
             'whatsapp' => 'required',
             'city' => 'required',
             'size' => 'required',
