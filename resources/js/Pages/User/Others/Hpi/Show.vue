@@ -31,7 +31,7 @@
                         class="fw-semibold text-gray-600 fs-2 mb-0 mx-md-20 mx-lg-0"
                     >
                         Daftar peserta
-                        <span class="fw-bolder text-mydanger">High Performing Individual</span> — Batch 11, Kemang, Jakarta Selatan.
+                        <span class="fw-bolder text-mydanger">High Performing Individual</span> — Batch 11, Makassar (To Be Confirmed).
                     </p>
                 </div>
             </section>
