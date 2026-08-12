@@ -15,7 +15,7 @@
 
 ## Persyaratan Sistem
 
-Pastikan Anda memiliki versi berikut terinstal di sistem Anda:
+Pastikan Anda memiliki versi berikut terinstal di sistem Anda:f
 
 -   **Composer:** `2.8.4`
 -   **PHP:** `8.3.15`
