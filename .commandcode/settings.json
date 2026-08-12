@@ -7,7 +7,10 @@
       "Shell(for:*)",
       "Shell(do:*)",
       "Shell(done:*)",
-      "Shell(npm:*)"
+      "Shell(npm:*)",
+      "Shell(ls -la public/assets/media/logos/ 2>/dev/null; echo \"---illustrations---\"; ls public/assets/media/illustrations/ 2>/dev/null | grep -iE 'logo|pemimpin|timur|glp')",
+      "Shell(ls -la public/hpi_soon.png 2>&1; echo \"--- APP_URL ---\"; grep -E \"^APP_URL\" .env 2>/dev/null || echo \"(no .env APP_URL)\")",
+      "Shell(sips:*)"
     ],
     "deny": [],
     "defaultMode": "default"

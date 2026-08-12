@@ -4,25 +4,25 @@
         <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/c94795_78a4ae59fcc2452faf186eb882124bbd%7Emv2.jpg/v1/fill/w_192%2Ch_192%2Clg_1%2Cusm_0.66_1.00_0.01/c94795_78a4ae59fcc2452faf186eb882124bbd%7Emv2.jpg">
 
         <!-- Meta Description -->
-        <meta name="description" content="High Performing Individual (HPI) — Exclusive Training untuk Upgrade Sistem Operasi Diri Anda. Kemang, Jakarta Selatan, 12-13 September 2026. Dibawakan oleh Syaikh Sy Ali Muhammad Jawdi & Dr. Indrawan Nugroho.">
+        <meta name="description" content="High Performing Individual (HPI) — Exclusive Training untuk Upgrade Sistem Operasi Diri Anda. Makassar (To Be Confirmed), 3-4 September 2026. Dibawakan oleh Syaikh Sy Ali Muhammad Jawdi & Dr. Indrawan Nugroho.">
 
         <!-- Open Graph / Facebook / WhatsApp -->
         <meta property="og:type" content="website">
-        <meta property="og:url" content="https://www.miqala.com/hpi">
+        <meta property="og:url" content="https://pemimpindaritimur.org/hpi">
         <meta property="og:title" content="High Performing Individual (HPI) | Miqala">
-        <meta property="og:description" content="Exclusive Training untuk Upgrade Sistem Operasi Diri Anda. Kemang, Jakarta Selatan, 12-13 September 2026. Investasi: Rp 5.450.000 (Early Bird).">
-        <meta property="og:image" content="https://static.wixstatic.com/media/b7bab3_fca5b1f7a0ec437a82413f33af25e022%7Emv2.png/v1/fit/w_2500,h_1330,al_c/b7bab3_fca5b1f7a0ec437a82413f33af25e022%7Emv2.png">
-        <meta property="og:image:width" content="1200">
-        <meta property="og:image:height" content="630">
+        <meta property="og:description" content="Exclusive Training untuk Upgrade Sistem Operasi Diri Anda. Makassar (To Be Confirmed), 3-4 September 2026. Daftar sekarang — kuota terbatas.">
+        <meta property="og:image" content="https://pemimpindaritimur.org/hpi_soon.png">
+        <meta property="og:image:width" content="2246">
+        <meta property="og:image:height" content="1546">
         <meta property="og:site_name" content="Miqala">
         <meta property="og:locale" content="id_ID">
 
         <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:url" content="https://www.miqala.com/hpi">
+        <meta name="twitter:url" content="https://pemimpindaritimur.org/hpi">
         <meta name="twitter:title" content="High Performing Individual (HPI) | Miqala">
-        <meta name="twitter:description" content="Exclusive Training untuk Upgrade Sistem Operasi Diri Anda. Kemang, Jakarta Selatan, 12-13 September 2026.">
-        <meta name="twitter:image" content="https://static.wixstatic.com/media/b7bab3_fca5b1f7a0ec437a82413f33af25e022%7Emv2.png/v1/fit/w_2500,h_1330,al_c/b7bab3_fca5b1f7a0ec437a82413f33af25e022%7Emv2.png">
+        <meta name="twitter:description" content="Exclusive Training untuk Upgrade Sistem Operasi Diri Anda. Makassar (To Be Confirmed), 3-4 September 2026.">
+        <meta name="twitter:image" content="https://pemimpindaritimur.org/hpi_soon.png">
     </Head>
 
     <main id="kt_body" class="bg-light position-relative app-blank" data-kt-name="metronic" data-bs-spy="scroll"
@@ -32,7 +32,7 @@
             <!-- Hero Section -->
             <section id="home" class="py-0">
                 <div class="bgi-no-repeat bgi-size-cover bgi-position-center bg-dark position-relative min-vh-100"
-                    style="background-image: url(https://static.wixstatic.com/media/b7bab3_fca5b1f7a0ec437a82413f33af25e022%7Emv2.png/v1/fit/w_2500,h_1330,al_c/b7bab3_fca5b1f7a0ec437a82413f33af25e022%7Emv2.png);">
+                    style="background-image: url('/hpi_back.webp');">
                     <!-- Dark Overlay for better text readability -->
                     <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.7) 100%);"></div>
 
@@ -40,6 +40,7 @@
                         class="container d-flex flex-column justify-content-center align-items-center align-items-lg-start min-vh-100 text-center text-lg-start px-5 position-relative" style="z-index: 2;">
                         <div class="d-flex align-items-center gap-5 gap-md-8 mb-16">
                             <img src="https://static.wixstatic.com/media/e4dc8a_481b1f63feaf4cf0a709f419e6008fe9~mv2.png/v1/fill/w_517,h_216,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/HPI%20Gold-tanpa%20shadow%20putih%20-%20Copy.png" class="h-50px h-md-75px" alt="HPI" style="object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));" />
+                            <img src="/assets/media/logos/glp-indtim-logo.png" class="w-50px w-md-75px" alt="Yayasan Pemimpin dari Timur" style="object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));" />
                         </div>
                         <p class="fw-semibold text-white opacity-75 fs-4 text-uppercase mb-6" style="letter-spacing: 0.08em; text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">
                             Exclusive Training untuk Upgrade Sistem Operasi Diri Anda.
@@ -52,11 +53,11 @@
                         </p>
                         <div class="d-flex align-items-center gap-3 mb-4">
                             <i class="text-white ri-map-pin-fill fs-2" style="filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.8));"></i>
-                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">Learning Atelier, Kemang, Jakarta Selatan</p>
+                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">Makassar (To Be Confirmed)</p>
                         </div>
                         <div class="d-flex align-items-center gap-3 mb-12">
                             <i class="text-white ri-calendar-event-fill fs-2" style="filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.8));"></i>
-                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">Batch 11 · Sabtu–Minggu, 12–13 September 2026</p>
+                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">Batch 11 · Sabtu–Minggu, 3–4 September 2026</p>
                         </div>
                         <div class="d-flex flex-wrap justify-content-center gap-5">
                             <a href="#register" data-kt-scroll-toggle
@@ -64,7 +65,7 @@
                                 <i class="ri-user-add-fill fs-2"></i>
                                 Daftar Sekarang
                             </a>
-                            <a :href="`https://wa.me/6282315159503?text=${encodeURIComponent('Halo Admin Miqala, mohon info High Performing Individual (HPI) training batch 11')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap shadow-lg">
+                            <a :href="`https://wa.me/6285247419525?text=${encodeURIComponent('Halo Admin Miqala, mohon info High Performing Individual (HPI) training batch 11')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap shadow-lg">
                                 <i class="ri-whatsapp-fill fs-2"></i>
                                 Hubungi Kami
                             </a>
@@ -254,20 +255,13 @@
             <section id="register" class="pt-20">
                 <div class="container pt-20 d-flex flex-column justify-content-center align-items-center text-center">
                     <p class="fw-semibold text-myprimary fs-4 text-uppercase mb-4" style="letter-spacing: 0.08em;">
-                        Investasi Pelatihan
+                        Pendaftaran Dibuka
                     </p>
                     <h1 class="fw-bolder text-dark lh-base fs-3x fs-md-3x mb-4 mb-md-2">
-                        Anda Cukup <br> Membayar <span class="text-gray-500"><del>Rp6.950.000</del></span>
+                        Siap Naik Kelas? <br> Daftar Sekarang.
                     </h1>
-                    <div class="d-flex gap-2 mb-5">
-                        <h1 class="fw-boldest text-myprimary lh-base fs-3tx my-1 my-md-5">Rp</h1>
-                        <h1 class="donate-number fw-boldest text-myprimary mb-0" data-kt-countup="true"
-                            data-kt-countup-duration="5" data-kt-countup-value="5450000" data-kt-countup-separator=".">
-                            0
-                        </h1>
-                    </div>
-                    <p class="fw-semibold text-gray-600 fs-4 mb-8">
-                        Early Bird berlaku s.d 15 Agustus 2026
+                    <p class="fw-semibold text-gray-600 w-100 mw-800px fs-4 mb-8 mx-md-20 mx-lg-0">
+                        Investasi pelatihan disesuaikan dengan kebutuhan masing-masing peserta. Tim kami akan menjelaskan detail harga dan opsi diskon via WhatsApp setelah Anda mendaftar.
                     </p>
                     <p class="fw-semibold text-gray-600 w-100 mw-800px fs-2 mb-8 mx-md-20 mx-lg-0">
                         Training <span class="fw-bolder text-myprimary">High Performing Individual</span> untuk meningkatkan
@@ -303,8 +297,8 @@
                         data-bs-toggle="modal"
                         data-bs-target="#kt_modal_register"
                         @click="() => { resetForm(); }"
-                        class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
-                        <i class="ri-user-add-fill fs-2"></i>
+                        class="btn btn-lg btn-myprimary rounded-pill fs-2 px-10 py-4 d-inline-flex align-items-center gap-2 text-nowrap shadow-lg">
+                        <i class="ri-user-add-fill fs-1"></i>
                         Daftar Sekarang
                     </button>
                     <div v-else class="d-flex flex-column align-items-center gap-4">
@@ -312,7 +306,7 @@
                             <i class="ri-close-circle-fill fs-2"></i>
                             Pendaftaran Ditutup
                         </button>
-                        <a :href="`https://wa.me/6282315159503?text=${encodeURIComponent('Halo Admin, saya ingin bertanya mengenai kuota HPI Batch 11 yang sudah penuh')}`"
+                        <a :href="`https://wa.me/6285247419525?text=${encodeURIComponent('Halo Admin, saya ingin bertanya mengenai kuota HPI Batch 11 yang sudah penuh')}`"
                            target="_blank"
                            class="btn btn-sm btn-light-success rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
                             <i class="ri-whatsapp-fill fs-2"></i>
@@ -803,22 +797,42 @@
 
                 router.post('/hpi', payload, {
                     onSuccess: () => {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Pendaftaran Berhasil!',
-                            text: 'Terima kasih telah mendaftar High Performing Individual (HPI) Batch 11. Tim kami akan segera menghubungi Anda untuk informasi selanjutnya.',
-                            timer: 5000,
-                            timerProgressBar: true,
-                            showConfirmButton: false,
-                            customClass: {
-                                popup: 'swal-custom-icon',
-                            }
-                        }).then(() => {
-                            window.location.reload();
-                        });
+                        const waMessage = encodeURIComponent(
+                            `*Pendaftaran HPI Baru*\n\n` +
+                            `Nama: ${form.name}\n` +
+                            `Email: ${form.email}\n` +
+                            `WhatsApp: ${form.whatsapp}\n` +
+                            `Asal: ${form.city}\n` +
+                            `Ukuran Baju: ${form.size}\n` +
+                            `Perusahaan/Organisasi: ${form.business_name}\n` +
+                            `Bidang Industri: ${form.business_field}\n` +
+                            `Jabatan: ${form.position}\n` +
+                            `Tantangan: ${form.problem}\n` +
+                            `Harapan: ${form.hope}\n` +
+                            `Sumber Info: ${form.from}`
+                        );
+                        const waUrl = `https://wa.me/6285247419525?text=${waMessage}`;
+
                         const modalCloseBtn = document.querySelector('#close-modal');
                         if (modalCloseBtn) modalCloseBtn.click();
                         resetForm();
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Pendaftaran Berhasil!',
+                            text: 'Terima kasih telah mendaftar High Performing Individual (HPI) Batch 11. Klik tombol di bawah untuk mengonfirmasi pendaftaran Anda ke Admin via WhatsApp.',
+                            confirmButtonText: 'Kirim WhatsApp ke Admin',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            customClass: {
+                                popup: 'swal-custom-icon',
+                                confirmButton: 'btn btn-sm btn-myprimary rounded-pill',
+                            },
+                            buttonsStyling: false,
+                        }).then(() => {
+                            window.open(waUrl, '_blank');
+                            window.location.reload();
+                        });
                     },
                     onFinish: cleanup
                 });
