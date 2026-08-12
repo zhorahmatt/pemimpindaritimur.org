@@ -1,0 +1,1 @@
+- Prefers saving implementation plans into project files and creating a derived todo list before starting implementation — structured, tracked execution over ad-hoc coding. Confidence: 0.8

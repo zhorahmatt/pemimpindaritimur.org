@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\Profile;
+use App\Support\Rbac\PermissionCatalog;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole(PermissionCatalog::ROLE_SUPER_ADMIN) ? true : null;
+        });
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Support\Rbac\PermissionCatalog;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -37,17 +38,19 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            //
 
-            //session
             'session' => [
-                'status'    => fn() => $request->session()->get('status'),
-                'success'   => fn() => $request->session()->get('success'),
-                'error'     => fn() => $request->session()->get('error'),
+                'status' => fn () => $request->session()->get('status'),
+                'success' => fn () => $request->session()->get('success'),
+                'error' => fn () => $request->session()->get('error'),
             ],
-            //user authenticated
-            'auth'  => [
-                'user'      => fn() => $request->user(),
+
+            'auth' => [
+                'user' => fn () => $request->user(),
+                'roles' => fn () => $request->user()?->getRoleNames()->all() ?? [],
+                'can' => fn () => collect(PermissionCatalog::all())
+                    ->mapWithKeys(fn ($permission) => [$permission => (bool) ($request->user()?->can($permission) ?? false)])
+                    ->all(),
             ],
 
             'TinyMCEApiKey' => config('tinymce.api_key'),

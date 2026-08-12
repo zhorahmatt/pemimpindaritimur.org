@@ -1,7 +1,6 @@
 <template>
-
     <Head>
-        <title>Akun - GLP INDTIM</title>
+        <title>Manajemen Pengguna - GLP INDTIM</title>
     </Head>
 
     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -13,100 +12,72 @@
                             <li class="breadcrumb-item pe-3">
                                 <Link href="/admin/dashboard" class="btn-link-myprimary fw-bold pe-3">Dashboard</Link>
                             </li>
-                            <li class="breadcrumb-item pe-3 text-muted">Akun</li>
+                            <li class="breadcrumb-item pe-3 text-muted">Manajemen Pengguna</li>
                         </ol>
                         <div class="page-heading d-flex align-items-center">
-                            <h1 class="mb-0 me-3">Akun</h1>
-                            <span class="badge bg-myprimary text-white fs-6">Admin</span>
+                            <h1 class="mb-0 me-3">Manajemen Pengguna</h1>
                         </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <Link v-if="$page.props.auth.can['admin.users.invite']" href="/admin/users/invitations" class="btn btn-light btn-sm">Daftar Undangan</Link>
+                        <Link v-if="$page.props.auth.can['admin.users.invite']" href="/admin/users/create" class="btn btn-sm btn-myprimary">Undang Pengguna</Link>
                     </div>
                 </div>
             </div>
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <div id="kt_app_content_container" class="app-container container-xxl px-0">
-                    <form @submit.prevent="submit">
-                        <div class="card border border-gray-300">
-                            <div class="row align-items-start m-0">
-                                <div class="col-md-4 col-xl-3 card-header px-8 py-7 border-0 pb-0">
-                                    <div class="card-title d-flex flex-column m-0">
-                                        <h2>Informasi Akun</h2>
-                                        <p class="fs-5 text-gray-600 mt-3 mb-0 fw-normal">Mengelola data dasar dan
-                                            identitas pengguna
-                                        </p>
+                    <div class="card border border-gray-300 mb-7">
+                        <div class="card-body py-5">
+                            <form @submit.prevent="search">
+                                <div class="d-flex flex-wrap gap-3 align-items-end">
+                                    <div class="flex-grow-1">
+                                        <label class="form-label fs-7">Cari Pengguna</label>
+                                        <input type="text" class="form-control" v-model="filterTerm" placeholder="Nama atau email..." />
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-myprimary btn-sm" type="submit">Cari</button>
                                     </div>
                                 </div>
-                                <div class="col-md-8 col-xl-9 card-body px-8 py-7">
-                                    <div class="mb-5 fv-row">
-                                        <label class="required form-label fs-6">Nama Pengguna</label>
-                                        <input type="text" class="form-control fs-5" required
-                                            placeholder="Masukkan nama pengguna disini..." v-model="form.name"
-                                            :class="{ 'is-invalid': errors.name }" />
-                                        <div v-if="errors.name" class="text-danger mt-2">
-                                            {{ errors . name }}
-                                        </div>
-                                    </div>
-                                    <div class="fv-row">
-                                        <label class="required form-label fs-6">Alamat Email</label>
-                                        <input type="email" class="form-control fs-5" required
-                                            placeholder="Masukkan alamat email disini..." v-model="form.email"
-                                            :class="{ 'is-invalid': errors.email }" />
-                                        <div v-if="errors.email" class="text-danger mt-2">
-                                            {{ errors . email }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </form>
                         </div>
-                        <div class="card border border-gray-300 mt-6 mb-7">
-                            <div class="row align-items-start m-0">
-                                <div class="col-md-4 col-xl-3 card-header px-8 py-7 border-0 pb-0">
-                                    <div class="card-title d-flex flex-column m-0">
-                                        <h2>Kredensial Akun</h2>
-                                        <p class="fs-5 text-gray-600 mt-3 mb-0 fw-normal">Mengatur keamanan akun dengan
-                                            opsi perubahan kata sandi
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 col-xl-9 card-body px-8 py-7">
-                                    <div class="mb-5 fv-row">
-                                        <label class="required form-label fs-6">Kata Sandi Lama</label>
-                                        <input type="password" class="form-control fs-5"
-                                            placeholder="Masukkan kata sandi lama disini..." v-model="form.current_password"
-                                            :class="{ 'is-invalid': errors.current_password }" />
-                                        <div v-if="errors.current_password" class="text-danger mt-2">
-                                            {{ errors.current_parssword }}
-                                        </div>
-                                    </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="required form-label fs-6">Kata Sandi Baru</label>
-                                        <input type="password" class="form-control fs-5"
-                                            placeholder="Masukkan kata sandi baru disini..." v-model="form.password"
-                                            :class="{ 'is-invalid': errors.password }" />
-                                        <div v-if="errors.password" class="text-danger mt-2">
-                                            {{ errors.password }}
-                                        </div>
-                                    </div>
-                                    <div class="fv-row">
-                                        <label class="required form-label fs-6">Konfirmasi Kata Sandi Baru</label>
-                                        <input type="password" class="form-control fs-5"
-                                            placeholder="Masukkan konfirmasi kata sandi baru disini..." v-model="form.password_confirmation" />
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="card border border-gray-300">
+                        <div class="card-body p-0">
+                            <table class="table align-middle table-row-dashed fs-6 gy-4 mb-0">
+                                <thead>
+                                    <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+                                        <th class="ps-5">Nama</th>
+                                        <th>Email</th>
+                                        <th>Peran</th>
+                                        <th>Dibuat</th>
+                                        <th class="text-end pe-5">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-700 fw-semibold">
+                                    <tr v-for="row in users.data" :key="row.id">
+                                        <td class="ps-5">{{ row.name }}</td>
+                                        <td>{{ row.email }}</td>
+                                        <td>
+                                            <span v-for="role in row.roles" :key="role" class="badge bg-light-primary text-primary me-1">{{ role }}</span>
+                                        </td>
+                                        <td>{{ formatDate(row.created_at) }}</td>
+                                        <td class="text-end pe-5">
+                                            <button v-if="$page.props.auth.can['admin.users.update']" class="btn btn-icon btn-light btn-sm me-1" @click="edit(row.id)">
+                                                <i class="ri-pencil-line"></i>
+                                            </button>
+                                            <button v-if="$page.props.auth.can['admin.users.delete']" class="btn btn-icon btn-light btn-sm" @click="confirmDelete(row)">
+                                                <i class="ri-delete-bin-line text-danger"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr v-if="users.data.length === 0">
+                                        <td colspan="5" class="text-center text-muted py-10">Belum ada pengguna.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" id="submit_button"
-                                class="btn btn-sm btn-myprimary fs-5">
-                                <span class="indicator-label">
-                                    Simpan Perubahan
-                                </span>
-                                <span class="indicator-progress">
-                                    Mohon Tunggu... <span
-                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                            </button>
-                        </div>
-                    </form>
+                        <Pagination :links="users.links" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -114,82 +85,50 @@
 </template>
 
 <script>
-    import LayoutAdmin from '../../../Layouts/Admin.vue';
-    import { Head, Link, router } from '@inertiajs/vue3';
-    import { reactive } from 'vue';
-    import Swal from 'sweetalert2';
+import LayoutAdmin from '../../../Layouts/Admin.vue';
+import { Head, Link, router } from '@inertiajs/vue3';
+import Pagination from '../../../Components/Pagination.vue';
+import Swal from 'sweetalert2';
 
-    export default {
-        layout: LayoutAdmin,
-
-        components: {
-            Head,
-            Link,
+export default {
+    layout: LayoutAdmin,
+    components: { Head, Link, Pagination },
+    props: {
+        users: Object,
+        filters: Object,
+        superAdminCount: Number,
+    },
+    data() {
+        return {
+            filterTerm: this.filters?.q ?? '',
+        };
+    },
+    methods: {
+        search() {
+            router.get('/admin/users', { q: this.filterTerm }, { preserveState: true });
         },
-
-        props: {
-            errors: Object,
-            user: Object
+        edit(id) {
+            router.visit(`/admin/users/${id}/edit`);
         },
-
-        setup(props) {
-            const form = reactive({
-                name: props.user.name,
-                email: props.user.email,
-                current_password: '',
-                password: '',
-                password_confirmation: '',
-            });
-
-            const submit = () => {
-                const submitBtn = document.querySelector('#submit_button');
-                if (submitBtn) {
-                    submitBtn.setAttribute('data-kt-indicator', 'on');
-                    submitBtn.setAttribute('disabled', true);
+        formatDate(value) {
+            if (!value) return '—';
+            return new Date(value).toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric' });
+        },
+        confirmDelete(row) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Hapus pengguna?',
+                text: `Pengguna ${row.name} akan dihapus.`,
+                showCancelButton: true,
+                confirmButtonText: 'Hapus',
+                cancelButtonText: 'Batal',
+                confirmButtonColor: '#d33',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    router.delete(`/admin/users/${row.id}`);
                 }
-
-                const cleanup = () => {
-                    if (submitBtn) {
-                        submitBtn.removeAttribute('data-kt-indicator');
-                        submitBtn.removeAttribute('disabled');
-                    }
-                };
-
-                router.put(`/admin/user/${props.user.id}`, {
-                    name: form.name,
-                    email: form.email,
-                    current_password: form.current_password,
-                    password: form.password,
-                    password_confirmation: form.password_confirmation,
-                }, {
-                    onSuccess: () => {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil!',
-                            text: 'Data Admin Berhasil Diperbarui!',
-                            timer: 2000,
-                            timerProgressBar: true,
-                            showConfirmButton: false,
-                            customClass: {
-                                popup: 'swal-custom-icon',
-                            }
-                        });
-                        form.current_password = '';
-                        form.password = '';
-                        form.password_confirmation = '';
-                    },
-                    onFinish: cleanup
-                });
-            }
-
-            return {
-                form,
-                submit,
-            };
-        }
-    }
+            });
+        },
+    },
+};
 </script>
-
-<style>
-
-</style>

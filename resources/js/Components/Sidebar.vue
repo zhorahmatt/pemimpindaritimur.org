@@ -19,7 +19,7 @@
                 data-kt-scroll-save-state="true">
                 <div class="menu menu-column menu-rounded menu-sub-indention px-4" id="#kt_app_sidebar_menu"
                     data-kt-menu="true" data-kt-menu-expand="false">
-                    <div class="menu-item">
+                    <div v-if="$page.props.auth.can['admin.dashboard.view']" class="menu-item">
                         <Link class="menu-link menu-link-mysecondary"
                             :class="{ 'active': $page.url.startsWith('/admin/dashboard') }" href="/admin/dashboard">
                         <span class="menu-icon">
@@ -37,7 +37,7 @@
                             <span class="text-gray-500 fw-semibold text-uppercase fs-7" style="letter-spacing: 0.06em;">Publikasi</span>
                         </div>
                     </div>
-                    <div class="menu-item">
+                    <div v-if="$page.props.auth.can['content.galleries.view']" class="menu-item">
                         <Link class="menu-link menu-link-mysecondary"
                             :class="{ 'active': $page.url.startsWith('/admin/galleries') }" href="/admin/galleries">
                         <span class="menu-icon">
@@ -50,7 +50,7 @@
                             :class="[$page.url.startsWith('/admin/galleries') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Galeri</span>
                         </Link>
                     </div>
-                    <div class="menu-item">
+                    <div v-if="$page.props.auth.can['content.activities.view']" class="menu-item">
                         <Link class="menu-link menu-link-mysecondary"
                             :class="{ 'active': $page.url.startsWith('/admin/activities') }" href="/admin/activities">
                         <span class="menu-icon">
@@ -63,7 +63,7 @@
                             :class="[$page.url.startsWith('/admin/activities') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Kegiatan Internal</span>
                         </Link>
                     </div>
-                    <div class="menu-item">
+                    <div v-if="$page.props.auth.can['content.programs.view']" class="menu-item">
                         <Link class="menu-link menu-link-mysecondary"
                             :class="{ 'active': $page.url.startsWith('/admin/programs') }" href="/admin/programs">
                         <span class="menu-icon">
@@ -76,7 +76,7 @@
                             :class="[$page.url.startsWith('/admin/programs') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Program Amal</span>
                         </Link>
                     </div>
-                    <div class="menu-item">
+                    <div v-if="$page.props.auth.can['content.blogs.view']" class="menu-item">
                         <Link class="menu-link menu-link-mysecondary"
                             :class="{ 'active': $page.url.startsWith('/admin/blogs') }" href="/admin/blogs">
                         <span class="menu-icon">
@@ -87,12 +87,13 @@
                             :class="[$page.url.startsWith('/admin/blogs') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Blog</span>
                         </Link>
                     </div>
-                    <div class="menu-item">
+                    <div v-if="$page.props.auth.can['content.testimonials.view']" class="menu-item">
                         <Link class="menu-link menu-link-mysecondary"
                             :class="{ 'active': $page.url.startsWith('/admin/testimonials') }" href="/admin/testimonials">
                         <span class="menu-icon">
                             <i
-                                :class="[$page.url.startsWith('/admin/testimonials') ? 'ri-chat-quote-fill' : 'ri-chat-quote-line', 'fs-2']"></i>
+                                :class="[$page.url.startsWith('/admin/testimonials') ? 'ri-chat-quote-fill' : 'ri-chat-quote-line', 'fs-2'
+                                ]"></i>
                         </span>
                         <span
                             :class="[$page.url.startsWith('/admin/testimonials') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Testimoni</span>
@@ -103,7 +104,7 @@
                             <span class="text-gray-500 fw-semibold text-uppercase fs-7" style="letter-spacing: 0.06em;">Lainnya</span>
                         </div>
                     </div>
-                    <div class="menu-item">
+                    <div v-if="$page.props.auth.can['content.partners.view']" class="menu-item">
                         <Link class="menu-link menu-link-mysecondary"
                             :class="{ 'active': $page.url.startsWith('/admin/partners') }" href="/admin/partners">
                         <span class="menu-icon">
@@ -116,7 +117,7 @@
                             :class="[$page.url.startsWith('/admin/partners') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Logo Partner</span>
                         </Link>
                     </div>
-                    <div class="menu-item">
+                    <div v-if="$page.props.auth.can['foundation-profile.view']" class="menu-item">
                         <Link class="menu-link menu-link-mysecondary"
                             :class="{ 'active': $page.url.startsWith('/admin/profile') }" href="/admin/profile">
                         <span class="menu-icon">
@@ -129,17 +130,47 @@
                             :class="[$page.url.startsWith('/admin/profile') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Profil Yayasan</span>
                         </Link>
                     </div>
+                    <div v-if="$page.props.auth.can['registrations.ilmu-keuangan.view'] || $page.props.auth.can['registrations.minaut.view']" class="menu-item">
+                        <Link class="menu-link menu-link-mysecondary"
+                            :class="{ 'active': $page.url.startsWith('/ilmu-keuangan/dashboard') || $page.url.startsWith('/minaut-indonesia/dashboard') }"
+                            href="/ilmu-keuangan/dashboard">
+                        <span class="menu-icon">
+                            <i class="ri-database-2-line fs-2"></i>
+                        </span>
+                        <span class="menu-title fs-5 fw-semibold">Pendaftar</span>
+                        </Link>
+                    </div>
+                    <div v-if="$page.props.auth.can['admin.users.view']" class="menu-item">
+                        <Link class="menu-link menu-link-mysecondary"
+                            :class="{ 'active': $page.url.startsWith('/admin/users') }" href="/admin/users">
+                        <span class="menu-icon">
+                            <i class="ri-user-settings-line fs-2"></i>
+                        </span>
+                        <span
+                            :class="[$page.url.startsWith('/admin/users') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Manajemen Pengguna</span>
+                        </Link>
+                    </div>
+                    <div v-if="$page.props.auth.can['admin.roles.view']" class="menu-item">
+                        <Link class="menu-link menu-link-mysecondary"
+                            :class="{ 'active': $page.url.startsWith('/admin/roles') }" href="/admin/roles">
+                        <span class="menu-icon">
+                            <i class="ri-shield-user-line fs-2"></i>
+                        </span>
+                        <span
+                            :class="[$page.url.startsWith('/admin/roles') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Manajemen Peran</span>
+                        </Link>
+                    </div>
                     <div class="menu-item">
                         <Link class="menu-link menu-link-mysecondary"
-                            :class="{ 'active': $page.url.startsWith('/admin/user') }" href="/admin/user">
+                            :class="{ 'active': $page.url.startsWith('/admin/account') }" href="/admin/account">
                         <span class="menu-icon">
                             <i
-                                :class="[$page.url.startsWith('/admin/user') ? 'ri-account-circle-fill' : 'ri-account-circle-line',
+                                :class="[$page.url.startsWith('/admin/account') ? 'ri-account-circle-fill' : 'ri-account-circle-line',
                                     'fs-2'
                                 ]"></i>
                         </span>
                         <span
-                            :class="[$page.url.startsWith('/admin/user') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Akun</span>
+                            :class="[$page.url.startsWith('/admin/account') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Akun Saya</span>
                         </Link>
                     </div>
                 </div>
@@ -149,16 +180,11 @@
 </template>
 
 <script>
-    import {
-        Link
-    } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 
-    export default {
-        components: {
-            Link,
-        },
-
-    }
+export default {
+    components: { Link },
+}
 </script>
 
 <style>

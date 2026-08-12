@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(mkdir:*)",
+      "Shell(cp:*)",
+      "Shell(composer:*)",
+      "Shell(php artisan vendor:publish --provider=Spatie\\Permission\\PermissionServiceProvider --no-interaction 2 >& 1)",
+      "Shell(php artisan migrate --force 2 >& 1)",
+      "Shell(cat:*)",
+      "Shell(touch:*)",
+      "Shell(DB_CONNECTION=sqlite DB_DATABASE=/database/database.sqlite php artisan migrate --force 2 >& 1)",
+      "Shell(DB_CONNECTION=sqlite DB_DATABASE=/database/database.sqlite php artisan db:seed --force 2 >& 1)",
+      "Shell(php artisan test --testsuite=Feature 2 >& 1)",
+      "Shell(php artisan config:clear 2>&1; php artisan test --testsuite=Feature 2>&1 | tail -40)",
+      "Shell(php artisan env --env=testing 2>&1; ls -la /Users/zho/works/AFILA/glp-indtim/bootstrap/cache/ 2>&1)",
+      "Shell(php artisan test --filter test_get_register_route_is_unavailable 2 >& 1)",
+      "Shell(php -r \"require 'vendor/autoload.php'; \\$app = require 'bootstrap/app.php'; \\$app->make('Illuminate\\\\Contracts\\\\Console\\\\Kernel')->bootstrap(); echo 'ENV: ' . env('APP_ENV') . PHP_EOL; echo 'DB: ' . env('DB_CONNECTION') . ' ' . env('DB_DATABASE') . PHP_EOL;\")",
+      "Shell(php -r \"putenv('APP_ENV=testing'); require 'vendor/autoload.php'; \\$app = require 'bootstrap/app.php'; \\$app->make('Illuminate\\\\Contracts\\\\Console\\\\Kernel')->bootstrap(); echo 'ENV: ' . env('APP_ENV') . PHP_EOL; echo 'DB: ' . env('DB_CONNECTION') . ' ' . env('DB_DATABASE') . PHP_EOL;\")",
+      "Shell(php -r \"require 'vendor/autoload.php'; \\$app = require 'bootstrap/app.php'; \\$app->make('Illuminate\\\\Contracts\\\\Console\\\\Kernel')->bootstrap(); echo 'ENV via putenv: ' . getenv('APP_ENV') . PHP_EOL; echo 'ENV via \\\\$_ENV: ' . (\\$_ENV['APP_ENV'] ?? 'unset') . PHP_EOL; echo 'ENV via Env::get: ' . \\\\Illuminate\\\\Support\\\\Env::get('APP_ENV') . PHP_EOL;\")",
+      "Shell(APP_ENV=testing DB_CONNECTION=sqlite DB_DATABASE=:memory: php artisan test --filter test_get_register_route_is_unavailable 2 >& 1)",
+      "Shell(APP_ENV=testing DB_CONNECTION=sqlite DB_DATABASE=:memory: CACHE_STORE=array SESSION_DRIVER=array MAIL_MAILER=array QUEUE_CONNECTION=sync php artisan test --testsuite=Feature 2 >& 1)",
+      "Shell(grep:*)",
+      "Shell(APP_ENV=testing DB_CONNECTION=sqlite DB_DATABASE=:memory: CACHE_STORE=array SESSION_DRIVER=array MAIL_MAILER=array QUEUE_CONNECTION=sync php artisan test --filter admin_can_create_role|admin_cannot_delete_themselves|accepting_invitation|bootstrap_user_is_super_admin|the_application_returns_a_successful 2 >& 1)",
+      "Shell(APP_ENV=testing DB_CONNECTION=sqlite DB_DATABASE=:memory: CACHE_STORE=array SESSION_DRIVER=array MAIL_MAILER=array QUEUE_CONNECTION=sync php artisan test --filter admin_cannot_delete_themselves|super_admin_role_cannot_be_assigned_through_ui|admin_can_create_role|admin_cannot_assign_unknown_permissions|super_admin_role_cannot_be_updated 2 >& 1)",
+      "Shell(APP_ENV=testing DB_CONNECTION=sqlite DB_DATABASE=:memory: CACHE_STORE=array SESSION_DRIVER=array MAIL_MAILER=array QUEUE_CONNECTION=sync php artisan test --filter admin_cannot_delete_themselves 2 >& 1)",
+      "Shell(APP_ENV=testing DB_CONNECTION=sqlite DB_DATABASE=:memory: CACHE_STORE=array SESSION_DRIVER=array MAIL_MAILER=array QUEUE_CONNECTION=sync php artisan test --filter admin_can_create_role|super_admin_role_cannot_be_updated|admin_cannot_assign_unknown_permissions 2 >& 1)",
+      "Shell(./vendor/bin/pint:*)",
+      "Shell(npm:*)",
+      "Shell(APP_ENV=testing DB_CONNECTION=sqlite DB_DATABASE=:memory: CACHE_STORE=array SESSION_DRIVER=array MAIL_MAILER=array QUEUE_CONNECTION=sync php artisan test 2 >& 1)",
+      "Shell(DB_CONNECTION=sqlite DB_DATABASE=/database/database.sqlite php artisan route:list 2 >& 1)"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}
