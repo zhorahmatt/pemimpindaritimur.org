@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Hpi;
 use App\Models\IlmuKeuangan;
 use App\Models\Minaut;
 use Illuminate\Http\Request;
@@ -246,5 +247,126 @@ class OtherController extends Controller
         $data->delete();
 
         return redirect()->route('minaut.show');
+    }
+
+    public function getHpi()
+    {
+        $registrationLimit = 30;
+        $currentRegistrations = Hpi::count();
+        $remainingSlots = max(0, $registrationLimit - $currentRegistrations);
+        $isRegistrationOpen = $currentRegistrations < $registrationLimit;
+
+        return inertia('User/Others/Hpi/Index', [
+            'registration_limit' => $registrationLimit,
+            'current_registrations' => $currentRegistrations,
+            'remaining_slots' => $remainingSlots,
+            'is_registration_open' => $isRegistrationOpen,
+        ]);
+    }
+
+    public function registNewHpi(Request $request)
+    {
+        // Check registration limit
+        $registrationLimit = 30;
+        $currentRegistrations = Hpi::count();
+
+        if ($currentRegistrations >= $registrationLimit) {
+            return back()->withErrors([
+                'limit' => 'Mohon maaf, kuota pendaftaran sudah penuh (30 peserta). Silakan hubungi admin untuk informasi lebih lanjut.',
+            ]);
+        }
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:hpis,email',
+            'whatsapp' => 'required',
+            'city' => 'required',
+            'size' => 'required',
+            'business_name' => 'required',
+            'business_field' => 'required',
+            'position' => 'required',
+            'problem' => 'required',
+            'hope' => 'required',
+            'from' => 'required',
+        ], [
+            'email.unique' => 'Email yang Anda masukkan telah terdaftar.',
+        ]);
+
+        Hpi::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'whatsapp' => $request->whatsapp,
+            'city' => $request->city,
+            'size' => $request->size,
+            'business_name' => $request->business_name,
+            'business_field' => $request->business_field,
+            'position' => $request->position,
+            'problem' => $request->problem,
+            'hope' => $request->hope,
+            'from' => $request->from,
+        ]);
+
+        return redirect()->route('hpi.index');
+    }
+
+    public function showDashboardHpi()
+    {
+        $query_q = request()->q;
+        $query_status = request()->status;
+
+        $datas = Hpi::when($query_q, function ($datas) use ($query_q) {
+            $datas->where('name', 'like', '%' . $query_q . '%');
+        })
+            ->when($query_status, function ($datas) use ($query_status) {
+                if ($query_status !== 'all') {
+                    $datas->where('status', $query_status);
+                }
+            })
+            ->latest()->paginate(100);
+
+        $datas->appends([
+            'q' => $query_q,
+            'status' => $query_status
+        ]);
+
+        $total_all = Hpi::count();
+        $total_deny = Hpi::where('status', 'deny')->count();
+        $total_pending = Hpi::where('status', 'pending')->count();
+        $total_accept = Hpi::where('status', 'accept')->count();
+
+        return inertia('User/Others/Hpi/Show', [
+            'datas' => $datas,
+            'total_all' => $total_all,
+            'total_deny' => $total_deny,
+            'total_pending' => $total_pending,
+            'total_accept' => $total_accept,
+            'current_status' => $query_status ?? 'all',
+        ]);
+    }
+
+    public function updateDashboardHpi(Request $request, Hpi $data)
+    {
+        $request->validate([
+            'status' => 'required',
+        ]);
+
+        $data->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('hpi.show');
+    }
+
+    public function destroyDashboardHpi($id)
+    {
+        $data = Hpi::findOrFail($id);
+
+        if ($data->image && Storage::disk('public')->exists($data->image)) {
+            Storage::disk('public')->delete($data->image);
+        }
+
+        $data->delete();
+
+        return redirect()->route('hpi.show');
     }
 }
