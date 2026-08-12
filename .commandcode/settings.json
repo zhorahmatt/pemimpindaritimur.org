@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(python3 -c \"import json,sys; d=json.load(open('reference/hpi.json')); print(d['results'][0]['markdown'])\" > \"$COMMANDCODE_SCRATCHPAD/hpi-content.md\" 2>&1; wc -c \"$COMMANDCODE_SCRATCHPAD/hpi-content.md\")",
+      "Shell(php artisan migrate:status 2 >& 1)",
+      "Shell(php artisan route:list 2 >& 1)",
+      "Shell(for:*)",
+      "Shell(do:*)",
+      "Shell(done:*)",
+      "Shell(npm:*)"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}

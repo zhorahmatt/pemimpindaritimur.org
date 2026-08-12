@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\HpiExport;
 use App\Exports\IlmuKeuanganExport;
 use App\Exports\MinautExport;
 use Illuminate\Support\Facades\Route;
@@ -45,5 +46,17 @@ Route::get('/minaut-indonesia/dashboard', [\App\Http\Controllers\User\OtherContr
 Route::put('/minaut-indonesia/dashboard/{data}', [\App\Http\Controllers\User\OtherController::class, 'updateDashboardMinaut'])->name('minaut.update');
 Route::delete('/minaut-indonesia/dashboard/{data}', [\App\Http\Controllers\User\OtherController::class, 'destroyDashboardMinaut'])->name('minaut.destroy');
 Route::get('/minaut-indonesia/dashboard/export', function () {
-    return Excel::download(new \App\Exports\MinautExport, 'minaut.xlsx');
+    return Excel::download(new MinautExport, 'minaut.xlsx');
 })->name('minaut.export');
+
+//hpi
+Route::get('/hpi', [\App\Http\Controllers\User\OtherController::class, 'getHpi'])->name('hpi.index');
+Route::post('/hpi', [\App\Http\Controllers\User\OtherController::class, 'registNewHpi'])->name('hpi.index');
+Route::middleware('auth')->group(function () {
+    Route::get('/hpi/dashboard', [\App\Http\Controllers\User\OtherController::class, 'showDashboardHpi'])->name('hpi.show');
+    Route::put('/hpi/dashboard/{data}', [\App\Http\Controllers\User\OtherController::class, 'updateDashboardHpi'])->name('hpi.update');
+    Route::delete('/hpi/dashboard/{data}', [\App\Http\Controllers\User\OtherController::class, 'destroyDashboardHpi'])->name('hpi.destroy');
+    Route::get('/hpi/dashboard/export', function () {
+        return Excel::download(new HpiExport, 'hpi.xlsx');
+    })->name('hpi.export');
+});
