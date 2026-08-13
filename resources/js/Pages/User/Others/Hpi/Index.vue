@@ -72,7 +72,7 @@
                                 <i class="ri-user-add-fill fs-2"></i>
                                 Daftar Sekarang
                             </a>
-                            <a :href="`https://wa.me/6282128279702?text=${encodeURIComponent('Halo Admin Miqala, mohon info High Performing Individual (HPI) training batch 11')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap shadow-lg">
+                            <a :href="`https://wa.me/6282128279702?text=${encodeURIComponent('Assalamualaikum, Mohon info High Performing Individual (HPI) batch Makassar')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap shadow-lg">
                                 <i class="ri-whatsapp-fill fs-2"></i>
                                 Hubungi Kami
                             </a>
