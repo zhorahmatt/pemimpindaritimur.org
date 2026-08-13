@@ -321,19 +321,6 @@
                         </a>
                     </div>
 
-                    <!-- Payment Info Card -->
-                    <div class="mt-12 d-flex justify-content-center">
-                        <div class="bank-card p-10 bg-gradient-myprimary text-start w-100 w-sm-500px rounded-4">
-                            <div class="d-flex align-items-center gap-3 mb-6">
-                                <i class="ri-whatsapp-fill text-white fs-1"></i>
-                                <h3 class="fw-bolder text-white lh-base fs-3x fs-md-2hx mb-0">Konfirmasi Pembayaran</h3>
-                            </div>
-                            <p class="text-white opacity-90 fs-5 mb-0">
-                                Setelah mendaftar, tim kami akan menghubungi Anda via WhatsApp untuk informasi pembayaran dan diskon khusus (hingga 35% untuk daftar bertiga atau pasangan suami-istri).
-                            </p>
-                        </div>
-                    </div>
-
                     <!-- Registration Modal -->
                     <div class="modal fade" id="kt_modal_register" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered justify-content-center">
