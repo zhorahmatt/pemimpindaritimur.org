@@ -10,7 +10,11 @@
       "Shell(npm:*)",
       "Shell(ls -la public/assets/media/logos/ 2>/dev/null; echo \"---illustrations---\"; ls public/assets/media/illustrations/ 2>/dev/null | grep -iE 'logo|pemimpin|timur|glp')",
       "Shell(ls -la public/hpi_soon.png 2>&1; echo \"--- APP_URL ---\"; grep -E \"^APP_URL\" .env 2>/dev/null || echo \"(no .env APP_URL)\")",
-      "Shell(sips:*)"
+      "Shell(sips:*)",
+      "Shell(echo:*)",
+      "Shell(curl -s --max-time 20 https://pemimpindaritimur.org/hpi)",
+      "Shell(grep:*)",
+      "Shell(curl -sI --max-time 20 https://pemimpindaritimur.org/hpi_soon.png)"
     ],
     "deny": [],
     "defaultMode": "default"
