@@ -65,7 +65,7 @@
                                 <i class="ri-user-add-fill fs-2"></i>
                                 Daftar Sekarang
                             </a>
-                            <a :href="`https://wa.me/6285247419525?text=${encodeURIComponent('Halo Admin Miqala, mohon info High Performing Individual (HPI) training batch 11')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap shadow-lg">
+                            <a :href="`https://wa.me/6282128279702?text=${encodeURIComponent('Halo Admin Miqala, mohon info High Performing Individual (HPI) training batch 11')}`" target="_blank" class="btn btn-sm btn-mywhite rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap shadow-lg">
                                 <i class="ri-whatsapp-fill fs-2"></i>
                                 Hubungi Kami
                             </a>
@@ -306,7 +306,7 @@
                             <i class="ri-close-circle-fill fs-2"></i>
                             Pendaftaran Ditutup
                         </button>
-                        <a :href="`https://wa.me/6285247419525?text=${encodeURIComponent('Halo Admin, saya ingin bertanya mengenai kuota HPI Batch 11 yang sudah penuh')}`"
+                        <a :href="`https://wa.me/6282128279702?text=${encodeURIComponent('Halo Admin, saya ingin bertanya mengenai kuota HPI Batch 11 yang sudah penuh')}`"
                            target="_blank"
                            class="btn btn-sm btn-light-success rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap">
                             <i class="ri-whatsapp-fill fs-2"></i>
@@ -811,7 +811,7 @@
                             `Harapan: ${form.hope}\n` +
                             `Sumber Info: ${form.from}`
                         );
-                        const waUrl = `https://wa.me/6285247419525?text=${waMessage}`;
+                        const waUrl = `https://wa.me/6282128279702?text=${waMessage}`;
 
                         const modalCloseBtn = document.querySelector('#close-modal');
                         if (modalCloseBtn) modalCloseBtn.click();
