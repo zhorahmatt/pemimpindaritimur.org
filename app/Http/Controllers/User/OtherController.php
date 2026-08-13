@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 
 class OtherController extends Controller
 {
+    private const HPI_REGISTRATION_LIMIT = 48;
+
     public function __invoke()
     {
         return inertia('User/Others/Index', []);
@@ -251,7 +253,7 @@ class OtherController extends Controller
 
     public function getHpi()
     {
-        $registrationLimit = 30;
+        $registrationLimit = self::HPI_REGISTRATION_LIMIT;
         $currentRegistrations = Hpi::count();
         $remainingSlots = max(0, $registrationLimit - $currentRegistrations);
         $isRegistrationOpen = $currentRegistrations < $registrationLimit;
@@ -267,12 +269,12 @@ class OtherController extends Controller
     public function registNewHpi(Request $request)
     {
         // Check registration limit
-        $registrationLimit = 30;
+        $registrationLimit = self::HPI_REGISTRATION_LIMIT;
         $currentRegistrations = Hpi::count();
 
         if ($currentRegistrations >= $registrationLimit) {
             return back()->withErrors([
-                'limit' => 'Mohon maaf, kuota pendaftaran sudah penuh (30 peserta). Silakan hubungi admin untuk informasi lebih lanjut.',
+                'limit' => "Mohon maaf, kuota pendaftaran sudah penuh ({$registrationLimit} peserta). Silakan hubungi admin untuk informasi lebih lanjut.",
             ]);
         }
 
