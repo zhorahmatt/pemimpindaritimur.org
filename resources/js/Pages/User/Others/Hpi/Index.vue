@@ -45,9 +45,12 @@
                         <p class="fw-semibold text-white opacity-75 fs-4 text-uppercase mb-6" style="letter-spacing: 0.08em; text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">
                             Exclusive Training untuk Upgrade Sistem Operasi Diri Anda.
                         </p>
-                        <h1 class="fw-bolder text-white lh-base fs-3hx fs-md-3tx mb-8" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6);">
+                        <h1 class="fw-bolder text-white lh-base fs-3hx fs-md-3tx mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6);">
                             High Performing Individual
                         </h1>
+                        <h2 class="fw-bold text-white fs-2 fs-lg-1 mb-8" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">
+                            Menang di Dunia yang Kacau dengan Algoritma Ilahi
+                        </h2>
                         <p class="text-white fs-4 fs-lg-3 fw-semibold mb-8 mx-md-20 mx-lg-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">
                             Didesain untuk profesional, pengusaha, dan pemimpin yang ingin tampil pada potensi tertinggi di tengah tekanan, kompleksitas dan ketidakpastian. Bersumber dari Alquran, sains dan sejarah.
                         </p>
@@ -57,7 +60,7 @@
                         </div>
                         <div class="d-flex align-items-center gap-3 mb-12">
                             <i class="text-white ri-calendar-event-fill fs-2" style="filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.8));"></i>
-                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">Batch 11 · Sabtu–Minggu, 3–4 September 2026</p>
+                            <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">Batch Makassar : Kamis - Jumat, 3 - 4 September 2026</p>
                         </div>
                         <div class="d-flex flex-wrap justify-content-center gap-5">
                             <a href="#register" data-kt-scroll-toggle
@@ -543,7 +546,7 @@
                             <i class="ri-user-add-fill fs-2"></i>
                             Daftar Sekarang
                         </a>
-                        <p class="text-white opacity-75 fs-6 mt-8 mb-0">*Tersedia hanya untuk 30 peserta</p>
+                        <p class="text-white opacity-75 fs-6 mt-8 mb-0">*Tersedia hanya untuk 48 kursi/peserta</p>
                     </div>
                 </div>
             </section>

@@ -14,7 +14,8 @@
       "Shell(echo:*)",
       "Shell(curl -s --max-time 20 https://pemimpindaritimur.org/hpi)",
       "Shell(grep:*)",
-      "Shell(curl -sI --max-time 20 https://pemimpindaritimur.org/hpi_soon.png)"
+      "Shell(curl -sI --max-time 20 https://pemimpindaritimur.org/hpi_soon.png)",
+      "Shell(ls -la public/hpi_soon.jpeg 2>&1; echo \"---\"; sips -g pixelWidth -g pixelHeight public/hpi_soon.jpeg 2>/dev/null)"
     ],
     "deny": [],
     "defaultMode": "default"
