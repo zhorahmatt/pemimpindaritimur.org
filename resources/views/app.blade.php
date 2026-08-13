@@ -47,16 +47,20 @@
     <meta property="og:url" content="https://pemimpindaritimur.org/hpi" />
     <meta property="og:title" content="High Performing Individual (HPI) | Miqala" />
     <meta property="og:description" content="Exclusive Training untuk Upgrade Sistem Operasi Diri Anda. Makassar (To Be Confirmed), 3-4 September 2026. Daftar sekarang — kuota terbatas." />
-    <meta property="og:image" content="https://pemimpindaritimur.org/hpi_soon.jpeg" />
-    <meta property="og:image:width" content="1024" />
-    <meta property="og:image:height" content="1280" />
+    <meta property="og:image" content="https://pemimpindaritimur.org/hpi_soon_new.jpeg" />
+    <meta property="og:image:secure_url" content="https://pemimpindaritimur.org/hpi_soon_new.jpeg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="1080" />
+    <meta property="og:image:alt" content="High Performing Individual Exclusive Training di Makassar" />
     <meta property="og:site_name" content="Miqala" />
     <meta property="og:locale" content="id_ID" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://pemimpindaritimur.org/hpi" />
     <meta name="twitter:title" content="High Performing Individual (HPI) | Miqala" />
     <meta name="twitter:description" content="Exclusive Training untuk Upgrade Sistem Operasi Diri Anda. Makassar (To Be Confirmed), 3-4 September 2026." />
-    <meta name="twitter:image" content="https://pemimpindaritimur.org/hpi_soon.jpeg" />
+    <meta name="twitter:image" content="https://pemimpindaritimur.org/hpi_soon_new.jpeg" />
+    <meta name="twitter:image:alt" content="High Performing Individual Exclusive Training di Makassar" />
     @endif
     @inertiaHead
 </head>
