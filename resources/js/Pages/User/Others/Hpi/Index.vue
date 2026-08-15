@@ -14,8 +14,8 @@
         <meta property="og:image" content="https://pemimpindaritimur.org/hpi_soon_new.jpeg">
         <meta property="og:image:secure_url" content="https://pemimpindaritimur.org/hpi_soon_new.jpeg">
         <meta property="og:image:type" content="image/jpeg">
-        <meta property="og:image:width" content="1080">
-        <meta property="og:image:height" content="1080">
+        <meta property="og:image:width" content="1600">
+        <meta property="og:image:height" content="1600">
         <meta property="og:image:alt" content="High Performing Individual Exclusive Training di Makassar">
         <meta property="og:site_name" content="Miqala">
         <meta property="og:locale" content="id_ID">
