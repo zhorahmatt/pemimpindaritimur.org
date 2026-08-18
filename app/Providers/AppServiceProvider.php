@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\Profile;
+use App\Contracts\HpiRegistrationSheet;
+use App\Services\GoogleSheetsHpiRegistrationSheet;
 use Illuminate\Support\ServiceProvider;
-use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(HpiRegistrationSheet::class, GoogleSheetsHpiRegistrationSheet::class);
     }
 
     /**

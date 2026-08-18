@@ -23,5 +23,16 @@ class Hpi extends Model
         'from',
         'image',
         'status',
+        'google_sheet_synced_at',
+        'google_sheet_row',
+        'google_sheet_sync_error',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'google_sheet_synced_at' => 'datetime',
+            'google_sheet_row' => 'integer',
+        ];
+    }
 }

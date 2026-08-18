@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Jobs\SyncHpiRegistrationToGoogleSheet;
 use App\Models\Hpi;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
@@ -27,6 +29,7 @@ class HpiRegistrationCapacityTest extends TestCase
 
     public function test_hpi_registration_accepts_the_48th_participant_and_rejects_the_49th(): void
     {
+        Queue::fake();
         Hpi::query()->insert($this->registrations(47));
 
         $this->post('/hpi', $this->registrationPayload(48))
@@ -42,6 +45,26 @@ class HpiRegistrationCapacityTest extends TestCase
             ]);
 
         $this->assertDatabaseCount('hpis', 48);
+    }
+
+    public function test_successful_registration_queues_google_sheet_sync_once(): void
+    {
+        Queue::fake();
+
+        $this->post('/hpi', $this->registrationPayload(1))
+            ->assertRedirect('/hpi')
+            ->assertSessionHasNoErrors();
+
+        Queue::assertPushed(
+            SyncHpiRegistrationToGoogleSheet::class,
+            fn (SyncHpiRegistrationToGoogleSheet $job) => $job->hpiId === Hpi::query()->sole()->id,
+        );
+
+        $this->from('/hpi')->post('/hpi', $this->registrationPayload(1))
+            ->assertRedirect('/hpi')
+            ->assertSessionHasErrors('email');
+
+        Queue::assertPushed(SyncHpiRegistrationToGoogleSheet::class, 1);
     }
 
     private function registrations(int $count): array

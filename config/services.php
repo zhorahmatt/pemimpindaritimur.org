@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'google_sheets' => [
+        'credentials_base64' => env('GOOGLE_SERVICE_ACCOUNT_JSON_BASE64'),
+        'spreadsheet_id' => env('GOOGLE_SHEETS_SPREADSHEET_ID'),
+        'hpi_sheet' => env('GOOGLE_SHEETS_HPI_SHEET', 'HPI Registrations'),
+    ],
+
 ];
