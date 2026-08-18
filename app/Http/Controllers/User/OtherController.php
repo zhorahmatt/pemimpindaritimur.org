@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SyncHpiRegistrationToGoogleSheet;
 use App\Models\Hpi;
 use App\Models\IlmuKeuangan;
 use App\Models\Minaut;
@@ -67,7 +68,7 @@ class OtherController extends Controller
         $query_status = request()->status;
 
         $datas = IlmuKeuangan::when($query_q, function ($datas) use ($query_q) {
-            $datas->where('name', 'like', '%' . $query_q . '%');
+            $datas->where('name', 'like', '%'.$query_q.'%');
         })
             ->when($query_status, function ($datas) use ($query_status) {
                 if ($query_status !== 'all') {
@@ -78,7 +79,7 @@ class OtherController extends Controller
 
         $datas->appends([
             'q' => $query_q,
-            'status' => $query_status
+            'status' => $query_status,
         ]);
 
         $total_all = IlmuKeuangan::count();
@@ -196,7 +197,7 @@ class OtherController extends Controller
         $query_status = request()->status;
 
         $datas = Minaut::when($query_q, function ($datas) use ($query_q) {
-            $datas->where('name', 'like', '%' . $query_q . '%');
+            $datas->where('name', 'like', '%'.$query_q.'%');
         })
             ->when($query_status, function ($datas) use ($query_status) {
                 if ($query_status !== 'all') {
@@ -207,7 +208,7 @@ class OtherController extends Controller
 
         $datas->appends([
             'q' => $query_q,
-            'status' => $query_status
+            'status' => $query_status,
         ]);
 
         $total_all = Minaut::count();
@@ -294,7 +295,7 @@ class OtherController extends Controller
             'email.unique' => 'Email yang Anda masukkan telah terdaftar.',
         ]);
 
-        Hpi::create([
+        $hpi = Hpi::create([
             'name' => $request->name,
             'email' => $request->email,
             'whatsapp' => $request->whatsapp,
@@ -308,6 +309,8 @@ class OtherController extends Controller
             'from' => $request->from,
         ]);
 
+        SyncHpiRegistrationToGoogleSheet::dispatch($hpi->id)->afterCommit();
+
         return redirect()->route('hpi.index');
     }
 
@@ -317,7 +320,7 @@ class OtherController extends Controller
         $query_status = request()->status;
 
         $datas = Hpi::when($query_q, function ($datas) use ($query_q) {
-            $datas->where('name', 'like', '%' . $query_q . '%');
+            $datas->where('name', 'like', '%'.$query_q.'%');
         })
             ->when($query_status, function ($datas) use ($query_status) {
                 if ($query_status !== 'all') {
@@ -328,7 +331,7 @@ class OtherController extends Controller
 
         $datas->appends([
             'q' => $query_q,
-            'status' => $query_status
+            'status' => $query_status,
         ]);
 
         $total_all = Hpi::count();
