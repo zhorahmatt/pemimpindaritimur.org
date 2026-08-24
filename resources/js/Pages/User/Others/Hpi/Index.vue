@@ -115,8 +115,8 @@
                         <div v-for="(skill, index) in skills" :key="index" class="col-md-6 col-lg-4">
                             <div class="card h-100 p-7 p-md-8 align-items-start rounded-4 border border-gray-300 shadow-none">
                                 <div class="d-flex align-items-center gap-4 mb-5">
-                                    <div class="symbol symbol-60px symbol-circle bg-myprimary-light">
-                                        <img :src="skill.icon" class="w-40px" :alt="skill.title" />
+                                    <div class="w-60px h-60px rounded-circle bg-myprimary-light d-flex align-items-center justify-content-center flex-shrink-0">
+                                        <img :src="skill.icon" class="w-32px h-32px" :alt="skill.title" style="object-fit: contain;" />
                                     </div>
                                     <h4 class="fs-2 fw-bolder lh-base mb-0">{{ skill.title }}</h4>
                                 </div>
