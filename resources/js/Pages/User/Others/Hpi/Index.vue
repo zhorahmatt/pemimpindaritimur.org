@@ -62,28 +62,10 @@
                             <i class="text-white ri-map-pin-fill fs-2" style="filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.8));"></i>
                             <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">Makassar (To Be Confirmed)</p>
                         </div>
-                        <div class="d-flex align-items-center gap-3 mb-8">
+                        <div class="d-flex align-items-center gap-3 mb-12">
                             <i class="text-white ri-calendar-event-fill fs-2" style="filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.8));"></i>
                             <p class="text-white fs-3 fs-lg-2 fw-semibold mb-0" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">Batch Makassar : Kamis - Jumat, 3 - 4 September 2026</p>
                         </div>
-
-                        <!-- Exclusive Training Notice -->
-                        <div class="card bg-dark bg-opacity-50 border border-white border-opacity-25 rounded-4 p-5 mb-8 text-start w-100 mw-lg-750px shadow-sm" style="backdrop-filter: blur(8px);">
-                            <div class="d-flex align-items-start gap-3">
-                                <i class="ri-information-fill text-warning fs-2x mt-1 flex-shrink-0"></i>
-                                <div>
-                                    <p class="text-white fs-5 mb-2 fw-semibold lh-base">
-                                        Mohon maaf, Training HPI batch Makassar ini merupakan <strong>Kerjasama Exclusive Training</strong> yang dikhususkan bagi ekosistem <strong>Yayasan Pemimpin Dari Timur</strong>:
-                                    </p>
-                                    <ul class="text-white text-opacity-75 fs-5 mb-0 ps-5">
-                                        <li><strong class="text-white">GLP (Graduate Leadership Program)</strong></li>
-                                        <li><strong class="text-white">Graduate Advanced Training</strong></li>
-                                        <li><strong class="text-white">Graduate Basic Training</strong></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="d-flex flex-wrap justify-content-center gap-5">
                             <a href="#register" data-kt-scroll-toggle
                                 class="btn btn-sm btn-myprimary rounded-pill fs-5 d-inline-flex align-items-center gap-1 text-nowrap shadow-lg">
