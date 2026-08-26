@@ -23,6 +23,8 @@ class GoogleSheetsHpiRegistrationSheetTest extends TestCase
             'problem' => 'Tantangan uji',
             'hope' => 'Harapan uji',
             'from' => 'Website',
+            'asiaworks_joined' => 'Ya',
+            'asiaworks_training' => 'Leadership Program',
             'status' => 'pending',
         ]);
         $hpi->id = 42;
@@ -43,6 +45,8 @@ class GoogleSheetsHpiRegistrationSheetTest extends TestCase
             'Tantangan uji',
             'Harapan uji',
             'Website',
+            'Ya',
+            'Leadership Program',
             'pending',
         ], GoogleSheetsHpiRegistrationSheet::rowFor($hpi));
     }

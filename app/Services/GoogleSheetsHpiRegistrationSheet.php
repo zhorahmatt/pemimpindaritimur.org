@@ -27,6 +27,8 @@ class GoogleSheetsHpiRegistrationSheet implements HpiRegistrationSheet
         'Problem',
         'Hope',
         'Information Source',
+        'Asiaworks Joined',
+        'Asiaworks Training',
         'Status',
     ];
 
@@ -56,7 +58,7 @@ class GoogleSheetsHpiRegistrationSheet implements HpiRegistrationSheet
         if ($keys === []) {
             $service->spreadsheets_values->update(
                 $spreadsheetId,
-                "{$quotedSheetName}!A1:O1",
+                "{$quotedSheetName}!A1:Q1",
                 new ValueRange(['values' => [self::HEADERS]]),
                 ['valueInputOption' => 'RAW'],
             );
@@ -64,7 +66,7 @@ class GoogleSheetsHpiRegistrationSheet implements HpiRegistrationSheet
 
         $result = $service->spreadsheets_values->append(
             $spreadsheetId,
-            "{$quotedSheetName}!A:O",
+            "{$quotedSheetName}!A:Q",
             new ValueRange(['values' => [self::rowFor($hpi)]]),
             [
                 'insertDataOption' => 'INSERT_ROWS',
@@ -96,6 +98,8 @@ class GoogleSheetsHpiRegistrationSheet implements HpiRegistrationSheet
             $hpi->problem,
             $hpi->hope,
             $hpi->from,
+            $hpi->asiaworks_joined ?? '',
+            $hpi->asiaworks_training ?? '',
             $hpi->status,
         ];
     }

@@ -37,6 +37,8 @@ class HpiExport implements
         return [
             'No',
             'Nama Peserta',
+            'Email',
+            'No. WhatsApp',
             'Asal Kab/Kota',
             'Ukuran Baju',
             'Nama Usaha/Brand',
@@ -45,6 +47,8 @@ class HpiExport implements
             'Masalah/Tantangan yang Dihadapi',
             'Harapan Setelah Mengikuti Training',
             'Sumber Informasi',
+            'Pernah Ikut Pelatihan Asiaworks',
+            'Training Asiaworks yang Diikuti',
             'Status',
             'Waktu Daftar',
         ];
@@ -63,6 +67,8 @@ class HpiExport implements
         return [
             $this->counter,
             $row->name,
+            $row->email,
+            $row->whatsapp,
             $row->city,
             $row->size,
             $row->business_name,
@@ -71,6 +77,8 @@ class HpiExport implements
             $row->problem,
             $row->hope,
             $row->from,
+            $row->asiaworks_joined ?? '-',
+            $row->asiaworks_training ?? '-',
             $statusMap[$row->status] ?? $row->status,
             $row->created_at->format('Y-m-d H:i'),
         ];
@@ -100,16 +108,20 @@ class HpiExport implements
         $columnWidths = [
             'A' => 5,
             'B' => 25,
-            'C' => 20,
-            'D' => 15,
-            'E' => 25,
-            'F' => 20,
-            'G' => 15,
-            'H' => 30,
-            'I' => 30,
-            'J' => 25,
-            'K' => 15,
-            'L' => 20,
+            'C' => 25,
+            'D' => 20,
+            'E' => 20,
+            'F' => 15,
+            'G' => 25,
+            'H' => 20,
+            'I' => 15,
+            'J' => 30,
+            'K' => 30,
+            'L' => 25,
+            'M' => 25,
+            'N' => 25,
+            'O' => 15,
+            'P' => 20,
         ];
 
         foreach ($columnWidths as $col => $width) {
@@ -124,13 +136,14 @@ class HpiExport implements
         return [
             AfterSheet::class => function (AfterSheet $event) {
                 $sheet = $event->sheet->getDelegate();
+                $highestColumn = $sheet->getHighestColumn();
 
-                $sheet->getStyle('A3:L3')
+                $sheet->getStyle("A3:{$highestColumn}3")
                     ->getFill()
                     ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
                     ->getStartColor()->setARGB('FFFFDDDD');
 
-                $sheet->getStyle('A3:L3')->getFont()->setBold(true);
+                $sheet->getStyle("A3:{$highestColumn}3")->getFont()->setBold(true);
             },
         ];
     }
