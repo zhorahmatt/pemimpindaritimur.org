@@ -291,8 +291,12 @@ class OtherController extends Controller
             'problem' => 'required',
             'hope' => 'required',
             'from' => 'required',
+            'asiaworks_joined' => 'required',
+            'asiaworks_training' => 'nullable|required_if:asiaworks_joined,Ya',
         ], [
             'email.unique' => 'Email yang Anda masukkan telah terdaftar.',
+            'asiaworks_joined.required' => 'Pilihan program pelatihan Asiaworks wajib dipilih.',
+            'asiaworks_training.required_if' => 'Pilihan training yang diikuti wajib dipilih jika pernah mengikuti Asiaworks.',
         ]);
 
         $hpi = Hpi::create([
@@ -307,6 +311,8 @@ class OtherController extends Controller
             'problem' => $request->problem,
             'hope' => $request->hope,
             'from' => $request->from,
+            'asiaworks_joined' => $request->asiaworks_joined,
+            'asiaworks_training' => $request->asiaworks_joined === 'Ya' ? $request->asiaworks_training : null,
         ]);
 
         SyncHpiRegistrationToGoogleSheet::dispatch($hpi->id)->afterCommit();
@@ -351,13 +357,28 @@ class OtherController extends Controller
 
     public function updateDashboardHpi(Request $request, Hpi $data)
     {
-        $request->validate([
+        $validated = $request->validate([
             'status' => 'required',
+            'name' => 'sometimes|required',
+            'email' => 'sometimes|required|email|unique:hpis,email,'.$data->id,
+            'whatsapp' => 'sometimes|required',
+            'city' => 'sometimes|required',
+            'size' => 'sometimes|required',
+            'business_name' => 'sometimes|required',
+            'business_field' => 'sometimes|required',
+            'position' => 'sometimes|required',
+            'problem' => 'sometimes|required',
+            'hope' => 'sometimes|required',
+            'from' => 'sometimes|required',
+            'asiaworks_joined' => 'nullable',
+            'asiaworks_training' => 'nullable',
         ]);
 
-        $data->update([
-            'status' => $request->status,
-        ]);
+        if ($request->has('asiaworks_joined') && $request->asiaworks_joined !== 'Ya') {
+            $validated['asiaworks_training'] = null;
+        }
+
+        $data->update($validated);
 
         return redirect()->route('hpi.show');
     }

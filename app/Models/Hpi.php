@@ -21,6 +21,8 @@ class Hpi extends Model
         'problem',
         'hope',
         'from',
+        'asiaworks_joined',
+        'asiaworks_training',
         'image',
         'status',
         'google_sheet_synced_at',

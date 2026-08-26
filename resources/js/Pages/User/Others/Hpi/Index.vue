@@ -484,6 +484,41 @@
                                                     <div v-if="errors.hope" class="text-mydanger mt-2">{{ errors.hope }}</div>
                                                 </div>
                                             </div>
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label fs-6">Pernah Mengikuti Program Pelatihan Asiaworks Indonesia? (Basic/Advance/Leadership Program)</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="ri-award-fill fs-3"></i></span>
+                                                    <select class="form-select fs-5" required
+                                                        v-model="form.asiaworks_joined"
+                                                        :class="[
+                                                            { 'is-invalid': errors.asiaworks_joined },
+                                                            !form.asiaworks_joined ? 'text-gray-400' : 'text-dark'
+                                                        ]">
+                                                        <option disabled value="">Pilih jawaban disini...</option>
+                                                        <option class="text-dark" value="Ya">Ya</option>
+                                                        <option class="text-dark" value="Tidak">Tidak</option>
+                                                    </select>
+                                                    <div v-if="errors.asiaworks_joined" class="text-mydanger mt-2">{{ errors.asiaworks_joined }}</div>
+                                                </div>
+                                            </div>
+                                            <div v-if="form.asiaworks_joined === 'Ya'" class="mb-5 fv-row">
+                                                <label class="required form-label fs-6">Training yang Diikuti</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="ri-book-read-fill fs-3"></i></span>
+                                                    <select class="form-select fs-5" required
+                                                        v-model="form.asiaworks_training"
+                                                        :class="[
+                                                            { 'is-invalid': errors.asiaworks_training },
+                                                            !form.asiaworks_training ? 'text-gray-400' : 'text-dark'
+                                                        ]">
+                                                        <option disabled value="">Pilih training disini...</option>
+                                                        <option class="text-dark" value="Basic">Basic</option>
+                                                        <option class="text-dark" value="Advance">Advance</option>
+                                                        <option class="text-dark" value="Leadership Program">Leadership Program</option>
+                                                    </select>
+                                                    <div v-if="errors.asiaworks_training" class="text-mydanger mt-2">{{ errors.asiaworks_training }}</div>
+                                                </div>
+                                            </div>
                                             <div class="fv-row">
                                                 <label class="required form-label fs-6">Darimana Mendapatkan Informasi Ini?</label>
                                                 <div class="input-group">
@@ -770,6 +805,8 @@
                 problem: '',
                 hope: '',
                 from: '',
+                asiaworks_joined: '',
+                asiaworks_training: '',
             });
 
             const resetForm = () => {
@@ -784,6 +821,8 @@
                 form.problem = '';
                 form.hope = '';
                 form.from = '';
+                form.asiaworks_joined = '';
+                form.asiaworks_training = '';
             };
 
             const submit = () => {
@@ -805,6 +844,10 @@
                 payload.append('problem', form.problem);
                 payload.append('hope', form.hope);
                 payload.append('from', form.from);
+                payload.append('asiaworks_joined', form.asiaworks_joined);
+                if (form.asiaworks_joined === 'Ya') {
+                    payload.append('asiaworks_training', form.asiaworks_training);
+                }
 
                 const cleanup = () => {
                     if (submitBtn) {
@@ -815,6 +858,9 @@
 
                 router.post('/hpi', payload, {
                     onSuccess: () => {
+                        const asiaworksInfo = form.asiaworks_joined === 'Ya'
+                            ? `Ya (${form.asiaworks_training || '-'})`
+                            : form.asiaworks_joined;
                         const waMessage = encodeURIComponent(
                             `*Pendaftaran HPI Baru*\n\n` +
                             `Nama: ${form.name}\n` +
@@ -825,6 +871,7 @@
                             `Perusahaan/Organisasi: ${form.business_name}\n` +
                             `Bidang Industri: ${form.business_field}\n` +
                             `Jabatan: ${form.position}\n` +
+                            `Pernah Ikut Asiaworks: ${asiaworksInfo}\n` +
                             `Tantangan: ${form.problem}\n` +
                             `Harapan: ${form.hope}\n` +
                             `Sumber Info: ${form.from}`

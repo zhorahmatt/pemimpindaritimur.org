@@ -235,6 +235,12 @@
                                             Usaha / Brand
                                         </th>
                                         <th
+                                            class="bg-secondary min-w-150px"
+                                            style="letter-spacing: 0.04em"
+                                        >
+                                            Asiaworks
+                                        </th>
+                                        <th
                                             class="bg-secondary min-w-100px"
                                             style="letter-spacing: 0.04em"
                                         >
@@ -297,6 +303,18 @@
                                         </td>
                                         <td>{{ data.business_name }}</td>
                                         <td>
+                                            <div v-if="data.asiaworks_joined === 'Ya'">
+                                                <span class="badge bg-light-primary text-primary fw-bold fs-7">
+                                                    {{ data.asiaworks_training || 'Ya' }}
+                                                </span>
+                                            </div>
+                                            <div v-else>
+                                                <span class="badge bg-light-secondary text-gray-500 fs-7">
+                                                    Tidak
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
                                             <span
                                                 class="badge text-capitalize fs-7 px-3 py-2"
                                                 :class="{
@@ -353,7 +371,7 @@
                     </div>
                 </div>
             </section>
-            <form @submit.prevent="submit">
+            <form @submit.prevent="submitForm()">
                 <div
                     id="kt_drawer_example_advanced"
                     class="bg-body"
@@ -364,7 +382,7 @@
                     data-kt-drawer-close="#kt_drawer_example_advanced_close"
                     data-kt-drawer-name="docs"
                     data-kt-drawer-overlay="true"
-                    data-kt-drawer-width="{default:'100%', 'md': '500px'}"
+                    data-kt-drawer-width="{default:'100%', 'md': '550px'}"
                     data-kt-drawer-direction="end"
                 >
                     <div class="card w-100 rounded-0">
@@ -372,7 +390,7 @@
                             class="card-header ps-6 pe-3 h-60px border-bottom border-gray-300 h-60px h-lg-70px"
                         >
                             <div class="card-title">
-                                <h2>Data Peserta</h2>
+                                <h2>Edit Data Peserta</h2>
                             </div>
                             <div
                                 class="card-toolbar"
@@ -386,14 +404,33 @@
                             </div>
                         </div>
                         <div
-                            class="card-body bg-light p-6 d-flex flex-column gap-7"
+                            class="card-body bg-light p-6 d-flex flex-column gap-6"
+                            style="max-height: calc(100vh - 140px); overflow-y: auto;"
                         >
                             <div class="flex-grow-1">
+                                <!-- Status Card -->
+                                <div class="card rounded-4 border border-gray-300 mb-6">
+                                    <div class="card-header h-auto p-5 border-bottom border-gray-300" style="min-height: unset">
+                                        <div class="card-title m-0">
+                                            <h3>Status Pendaftaran</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-5">
+                                        <label class="form-label fs-6 fw-semibold text-gray-700">Status</label>
+                                        <select class="form-select fs-5" v-model="form.status">
+                                            <option value="pending">Pending</option>
+                                            <option value="accept">Disetujui</option>
+                                            <option value="deny">Ditolak</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Informasi Pribadi -->
                                 <div
-                                    class="card rounded-4 border border-gray-300"
+                                    class="card rounded-4 border border-gray-300 mb-6"
                                 >
                                     <div
-                                        class="card-header h-auto p-6 border-bottom border-gray-300"
+                                        class="card-header h-auto p-5 border-bottom border-gray-300"
                                         style="min-height: unset"
                                     >
                                         <div class="card-title m-0">
@@ -401,79 +438,44 @@
                                         </div>
                                     </div>
                                     <div
-                                        class="card-body p-6 d-flex flex-column gap-3"
+                                        class="card-body p-5 d-flex flex-column gap-4"
                                     >
-                                        <div
-                                            class="d-flex justify-content-between gap-6"
-                                        >
-                                            <p class="fs-5 text-gray-600 mb-0">
-                                                Nama Peserta
-                                            </p>
-                                            <p
-                                                class="fs-5 text-end text-dark fw-bold mb-0"
-                                            >
-                                                {{ selectedData?.name }}
-                                            </p>
+                                        <div>
+                                            <label class="required form-label fs-6 fw-semibold text-gray-700">Nama Peserta</label>
+                                            <input type="text" class="form-control fs-5" v-model="form.name" required placeholder="Masukkan nama peserta..." />
                                         </div>
-                                        <div
-                                            class="d-flex justify-content-between gap-6"
-                                        >
-                                            <p class="fs-5 text-gray-600 mb-0">
-                                                Alamat Email
-                                            </p>
-                                            <a
-                                                :href="`mailto:${selectedData?.email}`"
-                                                class="fs-5 text-end btn-link-myprimary fw-bold mb-0"
-                                                >{{ selectedData?.email }}</a
-                                            >
+                                        <div>
+                                            <label class="required form-label fs-6 fw-semibold text-gray-700">Alamat Email</label>
+                                            <input type="email" class="form-control fs-5" v-model="form.email" required placeholder="Masukkan email..." />
                                         </div>
-                                        <div
-                                            class="d-flex justify-content-between gap-6"
-                                        >
-                                            <p class="fs-5 text-gray-600 mb-0">
-                                                No. WhatsApp
-                                            </p>
-                                            <a
-                                                :href="`https://wa.me/${selectedData?.whatsapp.replace(
-                                                    /^0/,
-                                                    '62'
-                                                )}`"
-                                                target="_blank"
-                                                class="fs-5 text-end btn-link-myprimary fw-bold mb-0"
-                                                >{{ selectedData?.whatsapp }}</a
-                                            >
+                                        <div>
+                                            <label class="required form-label fs-6 fw-semibold text-gray-700">No. WhatsApp</label>
+                                            <input type="text" class="form-control fs-5" v-model="form.whatsapp" required placeholder="Masukkan no. whatsapp..." />
                                         </div>
-                                        <div
-                                            class="d-flex justify-content-between gap-6"
-                                        >
-                                            <p class="fs-5 text-gray-600 mb-0">
-                                                Asal Kab/Kota
-                                            </p>
-                                            <p
-                                                class="fs-5 text-end text-dark fw-bold mb-0"
-                                            >
-                                                {{ selectedData?.city }}
-                                            </p>
-                                        </div>
-                                        <div
-                                            class="d-flex justify-content-between gap-6"
-                                        >
-                                            <p class="fs-5 text-gray-600 mb-0">
-                                                Ukuran Baju
-                                            </p>
-                                            <p
-                                                class="fs-5 text-end text-dark fw-bold mb-0"
-                                            >
-                                                {{ selectedData?.size }}
-                                            </p>
+                                        <div class="row g-4">
+                                            <div class="col-7">
+                                                <label class="required form-label fs-6 fw-semibold text-gray-700">Asal Kab/Kota</label>
+                                                <input type="text" class="form-control fs-5" v-model="form.city" required placeholder="Asal kota..." />
+                                            </div>
+                                            <div class="col-5">
+                                                <label class="required form-label fs-6 fw-semibold text-gray-700">Ukuran Baju</label>
+                                                <select class="form-select fs-5" v-model="form.size" required>
+                                                    <option value="M">M</option>
+                                                    <option value="L">L</option>
+                                                    <option value="XL">XL</option>
+                                                    <option value="XXL">XXL</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Informasi Usaha -->
                                 <div
-                                    class="card rounded-4 border border-gray-300 mt-6"
+                                    class="card rounded-4 border border-gray-300 mb-6"
                                 >
                                     <div
-                                        class="card-header h-auto p-6 border-bottom border-gray-300"
+                                        class="card-header h-auto p-5 border-bottom border-gray-300"
                                         style="min-height: unset"
                                     >
                                         <div class="card-title m-0">
@@ -481,55 +483,63 @@
                                         </div>
                                     </div>
                                     <div
-                                        class="card-body p-6 d-flex flex-column gap-3"
+                                        class="card-body p-5 d-flex flex-column gap-4"
                                     >
-                                        <div
-                                            class="d-flex justify-content-between gap-6"
-                                        >
-                                            <p class="fs-5 text-gray-600 mb-0">
-                                                Nama Usaha/Brand
-                                            </p>
-                                            <p
-                                                class="fs-5 text-end text-dark fw-bold mb-0"
-                                            >
-                                                {{
-                                                    selectedData?.business_name
-                                                }}
-                                            </p>
+                                        <div>
+                                            <label class="required form-label fs-6 fw-semibold text-gray-700">Nama Usaha / Perusahaan</label>
+                                            <input type="text" class="form-control fs-5" v-model="form.business_name" required placeholder="Nama usaha..." />
                                         </div>
-                                        <div
-                                            class="d-flex justify-content-between gap-6"
-                                        >
-                                            <p class="fs-5 text-gray-600 mb-0">
-                                                Bidang Usaha
-                                            </p>
-                                            <p
-                                                class="fs-5 text-end text-dark fw-bold mb-0"
-                                            >
-                                                {{
-                                                    selectedData?.business_field
-                                                }}
-                                            </p>
+                                        <div>
+                                            <label class="required form-label fs-6 fw-semibold text-gray-700">Bidang Usaha</label>
+                                            <input type="text" class="form-control fs-5" v-model="form.business_field" required placeholder="Bidang usaha..." />
                                         </div>
-                                        <div
-                                            class="d-flex justify-content-between gap-6"
-                                        >
-                                            <p class="fs-5 text-gray-600 mb-0">
-                                                Jabatan
-                                            </p>
-                                            <p
-                                                class="fs-5 text-end text-dark fw-bold mb-0"
-                                            >
-                                                {{ selectedData?.position }}
-                                            </p>
+                                        <div>
+                                            <label class="required form-label fs-6 fw-semibold text-gray-700">Jabatan</label>
+                                            <input type="text" class="form-control fs-5" v-model="form.position" required placeholder="Jabatan..." />
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Pelatihan Asiaworks -->
                                 <div
-                                    class="card rounded-4 border border-gray-300 mt-6"
+                                    class="card rounded-4 border border-gray-300 mb-6"
                                 >
                                     <div
-                                        class="card-header h-auto p-6 border-bottom border-gray-300"
+                                        class="card-header h-auto p-5 border-bottom border-gray-300"
+                                        style="min-height: unset"
+                                    >
+                                        <div class="card-title m-0">
+                                            <h3>Program Asiaworks Indonesia</h3>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="card-body p-5 d-flex flex-column gap-4"
+                                    >
+                                        <div>
+                                            <label class="form-label fs-6 fw-semibold text-gray-700">Pernah Mengikuti Program Pelatihan Asiaworks?</label>
+                                            <select class="form-select fs-5" v-model="form.asiaworks_joined">
+                                                <option value="Ya">Ya</option>
+                                                <option value="Tidak">Tidak</option>
+                                            </select>
+                                        </div>
+                                        <div v-if="form.asiaworks_joined === 'Ya'">
+                                            <label class="form-label fs-6 fw-semibold text-gray-700">Training yang Diikuti</label>
+                                            <select class="form-select fs-5" v-model="form.asiaworks_training">
+                                                <option value="">Pilih training...</option>
+                                                <option value="Basic">Basic</option>
+                                                <option value="Advance">Advance</option>
+                                                <option value="Leadership Program">Leadership Program</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Informasi Lainnya -->
+                                <div
+                                    class="card rounded-4 border border-gray-300"
+                                >
+                                    <div
+                                        class="card-header h-auto p-5 border-bottom border-gray-300"
                                         style="min-height: unset"
                                     >
                                         <div class="card-title m-0">
@@ -537,56 +547,32 @@
                                         </div>
                                     </div>
                                     <div
-                                        class="card-body p-6 d-flex flex-column gap-5"
+                                        class="card-body p-5 d-flex flex-column gap-4"
                                     >
-                                        <div class="d-flex flex-column gap-2">
-                                            <p class="fs-5 text-gray-600 mb-0">
-                                                Tantangan/Masalah yang Sedang Dihadapi
-                                            </p>
-                                            <p
-                                                class="fs-5 text-dark fw-bold mb-0"
-                                            >
-                                                {{ selectedData?.problem }}
-                                            </p>
+                                        <div>
+                                            <label class="required form-label fs-6 fw-semibold text-gray-700">Tantangan/Masalah yang Sedang Dihadapi</label>
+                                            <textarea class="form-control fs-5" rows="3" v-model="form.problem" required placeholder="Tantangan atau masalah..."></textarea>
                                         </div>
-                                        <div class="d-flex flex-column gap-2">
-                                            <p class="fs-5 text-gray-600 mb-0">
-                                                Harapan Setelah Mengikuti Training HPI
-                                            </p>
-                                            <p
-                                                class="fs-5 text-dark fw-bold mb-0"
-                                            >
-                                                {{ selectedData?.hope }}
-                                            </p>
+                                        <div>
+                                            <label class="required form-label fs-6 fw-semibold text-gray-700">Harapan Setelah Mengikuti Training HPI</label>
+                                            <textarea class="form-control fs-5" rows="3" v-model="form.hope" required placeholder="Harapan setelah training..."></textarea>
                                         </div>
-                                        <div class="d-flex flex-column gap-2">
-                                            <p class="fs-5 text-gray-600 mb-0">
-                                                Darimana Mendapatkan Informasi
-                                                Ini?
-                                            </p>
-                                            <p
-                                                class="fs-5 text-dark fw-bold mb-0"
-                                            >
-                                                {{ selectedData?.from }}
-                                            </p>
+                                        <div>
+                                            <label class="required form-label fs-6 fw-semibold text-gray-700">Darimana Mendapatkan Informasi Ini?</label>
+                                            <input type="text" class="form-control fs-5" v-model="form.from" required placeholder="Sumber informasi..." />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex gap-4">
+                            <!-- Action Buttons -->
+                            <div class="d-flex flex-column gap-3 pt-3">
                                 <button
-                                    type="button"
-                                    id="kt_drawer_deny_button"
-                                    class="btn btn-sm btn-mydanger-solid flex-fill fs-5"
-                                    :disabled="selectedData?.status === 'deny'"
-                                    @click="submit('deny')"
+                                    type="submit"
+                                    id="kt_drawer_save_button"
+                                    class="btn btn-sm btn-myprimary w-100 fs-5 py-3"
                                 >
                                     <span class="indicator-label">
-                                        {{
-                                            selectedData?.status === "deny"
-                                                ? "Ditolak"
-                                                : "Tolak"
-                                        }}
+                                        <i class="ri-save-line me-1 fs-4"></i> Simpan Perubahan
                                     </span>
                                     <span class="indicator-progress">
                                         Mohon Tunggu...
@@ -595,29 +581,42 @@
                                         ></span>
                                     </span>
                                 </button>
-                                <button
-                                    type="button"
-                                    id="kt_drawer_accept_button"
-                                    class="btn btn-sm btn-mysuccess-solid flex-fill fs-5"
-                                    :disabled="
-                                        selectedData?.status === 'accept'
-                                    "
-                                    @click="submit('accept')"
-                                >
-                                    <span class="indicator-label">
-                                        {{
-                                            selectedData?.status === "accept"
-                                                ? "Disetujui"
-                                                : "Setujui"
-                                        }}
-                                    </span>
-                                    <span class="indicator-progress">
-                                        Mohon Tunggu...
-                                        <span
-                                            class="spinner-border spinner-border-sm align-middle ms-2"
-                                        ></span>
-                                    </span>
-                                </button>
+                                <div class="d-flex gap-3">
+                                    <button
+                                        type="button"
+                                        id="kt_drawer_deny_button"
+                                        class="btn btn-sm btn-mydanger-solid flex-fill fs-5"
+                                        :disabled="form.status === 'deny'"
+                                        @click="submitForm('deny')"
+                                    >
+                                        <span class="indicator-label">
+                                            Tolak
+                                        </span>
+                                        <span class="indicator-progress">
+                                            Mohon Tunggu...
+                                            <span
+                                                class="spinner-border spinner-border-sm align-middle ms-2"
+                                            ></span>
+                                        </span>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        id="kt_drawer_accept_button"
+                                        class="btn btn-sm btn-mysuccess-solid flex-fill fs-5"
+                                        :disabled="form.status === 'accept'"
+                                        @click="submitForm('accept')"
+                                    >
+                                        <span class="indicator-label">
+                                            Setujui
+                                        </span>
+                                        <span class="indicator-progress">
+                                            Mohon Tunggu...
+                                            <span
+                                                class="spinner-border spinner-border-sm align-middle ms-2"
+                                            ></span>
+                                        </span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -690,14 +689,40 @@ export default {
         };
 
         const form = reactive({
-            data: "",
+            name: "",
+            email: "",
+            whatsapp: "",
+            city: "",
+            size: "",
+            business_name: "",
+            business_field: "",
+            position: "",
+            problem: "",
+            hope: "",
+            from: "",
+            asiaworks_joined: "Tidak",
+            asiaworks_training: "",
+            status: "pending",
         });
 
         const selectedData = ref(null);
         const isEditMode = ref(false);
 
         const resetForm = () => {
-            form.data = "";
+            form.name = "";
+            form.email = "";
+            form.whatsapp = "";
+            form.city = "";
+            form.size = "";
+            form.business_name = "";
+            form.business_field = "";
+            form.position = "";
+            form.problem = "";
+            form.hope = "";
+            form.from = "";
+            form.asiaworks_joined = "Tidak";
+            form.asiaworks_training = "";
+            form.status = "pending";
             isEditMode.value = false;
             selectedData.value = null;
 
@@ -707,11 +732,16 @@ export default {
             if (drawerCloseBtn) drawerCloseBtn.click();
         };
 
-        const submit = (status) => {
-            const buttonId =
-                status === "accept"
-                    ? "#kt_drawer_accept_button"
-                    : "#kt_drawer_deny_button";
+        const submitForm = (targetStatus = null) => {
+            if (!selectedData.value) return;
+
+            const statusToSave = targetStatus || form.status;
+            const buttonId = targetStatus === "accept"
+                ? "#kt_drawer_accept_button"
+                : targetStatus === "deny"
+                ? "#kt_drawer_deny_button"
+                : "#kt_drawer_save_button";
+
             const submitBtn = document.querySelector(buttonId);
 
             if (submitBtn) {
@@ -728,7 +758,22 @@ export default {
 
             const payload = new FormData();
             payload.append("_method", "PUT");
-            payload.append("status", status);
+            payload.append("name", form.name);
+            payload.append("email", form.email);
+            payload.append("whatsapp", form.whatsapp);
+            payload.append("city", form.city);
+            payload.append("size", form.size);
+            payload.append("business_name", form.business_name);
+            payload.append("business_field", form.business_field);
+            payload.append("position", form.position);
+            payload.append("problem", form.problem);
+            payload.append("hope", form.hope);
+            payload.append("from", form.from);
+            payload.append("asiaworks_joined", form.asiaworks_joined);
+            if (form.asiaworks_joined === "Ya") {
+                payload.append("asiaworks_training", form.asiaworks_training);
+            }
+            payload.append("status", statusToSave);
 
             router.post(
                 `/hpi/dashboard/${selectedData.value.id}`,
@@ -738,10 +783,7 @@ export default {
                         Swal.fire({
                             icon: "success",
                             title: "Berhasil!",
-                            text:
-                                status === "accept"
-                                    ? "Data peserta berhasil disetujui."
-                                    : "Data peserta berhasil ditolak.",
+                            text: "Data peserta berhasil disimpan.",
                             timer: 2000,
                             timerProgressBar: true,
                             showConfirmButton: false,
@@ -753,7 +795,7 @@ export default {
                         Swal.fire({
                             icon: "error",
                             title: "Gagal",
-                            text: "Tidak dapat mengubah status. Coba lagi.",
+                            text: "Tidak dapat memperbarui data peserta. Periksa input Anda.",
                             timer: 2000,
                             timerProgressBar: true,
                             showConfirmButton: false,
@@ -769,7 +811,20 @@ export default {
         const editData = (data) => {
             isEditMode.value = true;
             selectedData.value = { ...data };
-            form.data = data.data || "";
+            form.name = data.name || "";
+            form.email = data.email || "";
+            form.whatsapp = data.whatsapp || "";
+            form.city = data.city || "";
+            form.size = data.size || "L";
+            form.business_name = data.business_name || "";
+            form.business_field = data.business_field || "";
+            form.position = data.position || "";
+            form.problem = data.problem || "";
+            form.hope = data.hope || "";
+            form.from = data.from || "";
+            form.asiaworks_joined = data.asiaworks_joined || "Tidak";
+            form.asiaworks_training = data.asiaworks_training || "";
+            form.status = data.status || "pending";
             openDrawer();
         };
 
@@ -820,7 +875,7 @@ export default {
             handleStatusChange,
             selectedStatus,
             form,
-            submit,
+            submitForm,
             destroy,
             resetForm,
             editData,
